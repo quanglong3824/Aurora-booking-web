@@ -1,0 +1,212 @@
+# ========================================
+# AURORA HOTEL PLAZA - HTACCESS CONFIGURATION
+# ========================================
+
+# Bật RewriteEngine
+RewriteEngine On
+
+# ========================================
+# BẢO MẬT TUYỆT ĐỐI CHO AURORA_CORE (PRIVATE)
+# ========================================
+
+# Chặn hoàn toàn mọi truy cập vào thư mục aurora_core
+<Directory "../aurora_core">
+    Order Deny,Allow
+    Deny from all
+</Directory>
+
+# Chặn truy cập URL trực tiếp đến aurora_core
+RewriteRule ^aurora_core/ - [F,L]
+RewriteRule ^\.\.\/aurora_core/ - [F,L]
+
+# Chặn mọi request có chứa aurora_core
+RewriteCond %{THE_REQUEST} \s/+.*aurora_core [NC]
+RewriteRule ^ - [F,L]
+
+# Chặn truy cập qua query string
+RewriteCond %{QUERY_STRING} aurora_core [NC]
+RewriteRule ^ - [F,L]
+
+# Chặn truy cập vào các file cấu hình và nhạy cảm
+<Files ~ "^\.ht">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Chặn truy cập vào các file backup và log
+<FilesMatch "\.(bak|backup|log|old|orig|original|php~|swp|tmp)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Chặn truy cập vào file config và database
+<FilesMatch "(config|database|db_config)\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Ngăn chặn directory browsing
+Options -Indexes
+
+# Chặn các user agent độc hại
+RewriteCond %{HTTP_USER_AGENT} (libwww-perl|wget|python|nikto|curl|scan|java|winhttp|clshttp|loader) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (%0A|%0D|%27|%3C|%3E|%00) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (;|<|>|'|"|\)|\(|%0A|%0D|%22|%27|%28|%3C|%3E|%00).*(libwww-perl|wget|python|nikto|curl|scan|java|winhttp|HTTrack|clshttp|archiver|loader|email|harvest|extract|grab|miner) [NC]
+RewriteRule .* - [F]
+
+# ========================================
+# CHỐNG HOTLINKING HÌNH ẢNH
+# ========================================
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?aurorahotelplaza\.com [NC]
+RewriteRule \.(jpg|jpeg|png|gif|webp|svg)$ - [F]
+
+# ========================================
+# SEO VÀ URL REWRITING
+# ========================================
+
+# Chuyển hướng từ www sang non-www (hoặc ngược lại)
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# Bắt buộc HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Loại bỏ trailing slash
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{THE_REQUEST} \s/+([^?\s]*?)/?(\?[^\s]*)?\s [NC]
+RewriteRule ^ /%1%2 [R=301,L]
+
+# ========================================
+# URL SEO CHUẨN HÓA THEO TỪ KHÓA KHÁCH SẠN
+# ========================================
+
+# Trang chủ
+RewriteRule ^$ index.php [L]
+
+# Giới thiệu khách sạn Aurora Plaza - SEO optimized
+RewriteRule ^khach-san-aurora-plaza/?$ ../aurora_core/gioi-thieu-khach-san/gioi-thieu.php [L]
+RewriteRule ^gioi-thieu-khach-san-aurora/?$ ../aurora_core/gioi-thieu-khach-san/gioi-thieu.php [L]
+RewriteRule ^ve-chung-toi/?$ ../aurora_core/gioi-thieu-khach-san/gioi-thieu.php [L]
+
+# Liên hệ khách sạn - SEO optimized
+RewriteRule ^lien-he-khach-san-aurora/?$ ../aurora_core/lien-he/lien-he.php [L]
+RewriteRule ^thong-tin-lien-he/?$ ../aurora_core/lien-he/lien-he.php [L]
+RewriteRule ^dia-chi-khach-san/?$ ../aurora_core/lien-he/lien-he.php [L]
+
+# Đặt phòng khách sạn - SEO optimized
+RewriteRule ^dat-phong-khach-san-aurora/?$ ../aurora_core/dat-phong/dat-phong.php [L]
+RewriteRule ^booking-hotel-aurora/?$ ../aurora_core/dat-phong/dat-phong.php [L]
+RewriteRule ^kiem-tra-phong-trong/?$ ../aurora_core/dat-phong/dat-phong.php [L]
+
+# Tin tức khách sạn - SEO optimized
+RewriteRule ^tin-tuc-khach-san/?$ ../aurora_core/bai-viet/bai-viet.php [L]
+RewriteRule ^su-kien-aurora-plaza/?$ ../aurora_core/bai-viet/bai-viet.php [L]
+RewriteRule ^blog-khach-san/?$ ../aurora_core/bai-viet/bai-viet.php [L]
+
+# Thư viện ảnh khách sạn - SEO optimized
+RewriteRule ^hinh-anh-khach-san-aurora/?$ ../aurora_core/thu-vien-anh/thu-vien.php [L]
+RewriteRule ^gallery-hotel-aurora/?$ ../aurora_core/thu-vien-anh/thu-vien.php [L]
+RewriteRule ^anh-khach-san/?$ ../aurora_core/thu-vien-anh/thu-vien.php [L]
+
+# ========================================
+# URL SEO CHO PHÒNG KHÁCH SẠN
+# ========================================
+
+# Phòng Deluxe - SEO optimized
+RewriteRule ^phong-deluxe-aurora-plaza/?$ ../aurora_core/dich-vu/phong/deluxe.php [L]
+RewriteRule ^phong-khach-san-deluxe/?$ ../aurora_core/dich-vu/phong/deluxe.php [L]
+RewriteRule ^deluxe-room-aurora/?$ ../aurora_core/dich-vu/phong/deluxe.php [L]
+
+# Phòng Premium Deluxe - SEO optimized
+RewriteRule ^phong-premium-deluxe-aurora/?$ ../aurora_core/dich-vu/phong/premium-deluxe.php [L]
+RewriteRule ^phong-cao-cap-aurora-plaza/?$ ../aurora_core/dich-vu/phong/premium-deluxe.php [L]
+RewriteRule ^premium-deluxe-room/?$ ../aurora_core/dich-vu/phong/premium-deluxe.php [L]
+
+# Phòng Premium Deluxe Twin - SEO optimized
+RewriteRule ^phong-premium-deluxe-twin-aurora/?$ ../aurora_core/dich-vu/phong/premium-deluxe-twin.php [L]
+RewriteRule ^phong-doi-cao-cap-aurora/?$ ../aurora_core/dich-vu/phong/premium-deluxe-twin.php [L]
+RewriteRule ^twin-room-premium-aurora/?$ ../aurora_core/dich-vu/phong/premium-deluxe-twin.php [L]
+
+# Phòng Studio - SEO optimized
+RewriteRule ^phong-studio-aurora-plaza/?$ ../aurora_core/dich-vu/phong/studio.php [L]
+RewriteRule ^studio-apartment-aurora/?$ ../aurora_core/dich-vu/phong/studio.php [L]
+RewriteRule ^can-ho-studio-khach-san/?$ ../aurora_core/dich-vu/phong/studio.php [L]
+
+# ========================================
+# URL SEO CHO DỊCH VỤ KHÁCH SẠN
+# ========================================
+
+# Căn hộ dịch vụ - SEO optimized
+RewriteRule ^can-ho-dich-vu-aurora/?$ ../aurora_core/dich-vu/can-ho/ [L]
+RewriteRule ^serviced-apartment-aurora/?$ ../aurora_core/dich-vu/can-ho/ [L]
+RewriteRule ^thue-can-ho-aurora-plaza/?$ ../aurora_core/dich-vu/can-ho/ [L]
+
+# Nhà hàng khách sạn - SEO optimized
+RewriteRule ^nha-hang-aurora-plaza/?$ ../aurora_core/dich-vu/nha-hang/ [L]
+RewriteRule ^restaurant-hotel-aurora/?$ ../aurora_core/dich-vu/nha-hang/ [L]
+RewriteRule ^am-thuc-khach-san/?$ ../aurora_core/dich-vu/nha-hang/ [L]
+
+# Nhà hàng tiệc cưới - SEO optimized
+RewriteRule ^tiec-cuoi-aurora-plaza/?$ ../aurora_core/dich-vu/nha-hang-tiec-cuoi/ [L]
+RewriteRule ^wedding-venue-aurora/?$ ../aurora_core/dich-vu/nha-hang-tiec-cuoi/ [L]
+RewriteRule ^to-chuc-tiec-cuoi-khach-san/?$ ../aurora_core/dich-vu/nha-hang-tiec-cuoi/ [L]
+
+# Trung tâm hội nghị - SEO optimized
+RewriteRule ^hoi-nghi-su-kien-aurora/?$ ../aurora_core/dich-vu/trung-tam-hoi-nghi/ [L]
+RewriteRule ^conference-center-aurora/?$ ../aurora_core/dich-vu/trung-tam-hoi-nghi/ [L]
+RewriteRule ^phong-hop-khach-san/?$ ../aurora_core/dich-vu/trung-tam-hoi-nghi/ [L]
+
+# Văn phòng cho thuê - SEO optimized
+RewriteRule ^van-phong-cho-thue-aurora/?$ ../aurora_core/dich-vu/van-phong-cho-thue/ [L]
+RewriteRule ^office-rental-aurora-plaza/?$ ../aurora_core/dich-vu/van-phong-cho-thue/ [L]
+RewriteRule ^thue-van-phong-khach-san/?$ ../aurora_core/dich-vu/van-phong-cho-thue/ [L]
+
+# ========================================
+# TỐI ƯU HÓA HIỆU SUẤT
+# ========================================
+
+# Bật nén Gzip
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# Cache Control cho các file tĩnh
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+</IfModule>
+
+# ========================================
+# FALLBACK CHO CÁC FILE PHP
+# ========================================
+
+# Nếu không tìm thấy file cụ thể, thử tìm file .php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# ========================================
+# ERROR PAGES
+# ========================================
+ErrorDocument 403 /403.html
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
