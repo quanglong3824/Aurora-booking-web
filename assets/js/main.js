@@ -1,43 +1,138 @@
 // Aurora Hotel - Main JavaScript File
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Header Scroll Effect
+    const header = document.querySelector('.header');
+    let lastScrollTop = 0;
+    
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Add scrolled class for styling
+        if (scrollTop > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        
+        // Hide/show header on scroll
+        if (scrollTop > lastScrollTop && scrollTop > 200) {
+            // Scrolling down
+            header.style.transform = 'translateY(-100%)';
+        } else {
+            // Scrolling up
+            header.style.transform = 'translateY(0)';
+        }
+        
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+
     // Mobile Navigation Toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    const body = document.body;
 
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+            body.classList.toggle('nav-open');
             
-            // Animate hamburger menu
-            const spans = navToggle.querySelectorAll('span');
-            spans.forEach((span, index) => {
-                if (navMenu.classList.contains('active')) {
-                    if (index === 0) span.style.transform = 'rotate(45deg) translate(5px, 5px)';
-                    if (index === 1) span.style.opacity = '0';
-                    if (index === 2) span.style.transform = 'rotate(-45deg) translate(7px, -6px)';
-                } else {
-                    span.style.transform = 'none';
-                    span.style.opacity = '1';
-                }
+            // Prevent body scroll when menu is open
+            if (navMenu.classList.contains('active')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = '';
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                body.classList.remove('nav-open');
+                body.style.overflow = '';
+            }
+        });
+
+        // Close mobile menu when clicking on menu links
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                body.classList.remove('nav-open');
+                body.style.overflow = '';
             });
         });
     }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (navMenu && navMenu.classList.contains('active')) {
+            if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                body.classList.remove('nav-open');
+                body.style.overflow = '';
+            }
+        }
+    });
 
     // Close mobile menu when clicking on a link
     const navLinks = document.querySelectorAll('.nav-menu a');
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            if (navMenu.classList.contains('active')) {
+            if (navMenu && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
-                const spans = navToggle.querySelectorAll('span');
-                spans.forEach(span => {
-                    span.style.transform = 'none';
-                    span.style.opacity = '1';
-                });
+                navToggle.classList.remove('active');
+                body.classList.remove('nav-open');
+                body.style.overflow = '';
             }
         });
     });
+
+    // Enhanced Dropdown Menu Interactions
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(dropdown => {
+        const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+        let timeoutId;
+
+        dropdown.addEventListener('mouseenter', function() {
+            clearTimeout(timeoutId);
+            dropdownMenu.style.display = 'block';
+            setTimeout(() => {
+                dropdownMenu.classList.add('show');
+            }, 10);
+        });
+
+        dropdown.addEventListener('mouseleave', function() {
+            dropdownMenu.classList.remove('show');
+            timeoutId = setTimeout(() => {
+                dropdownMenu.style.display = 'none';
+            }, 300);
+        });
+    });
+
+    // Active Navigation Link Highlighting
+    function updateActiveNavLink() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.php';
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const linkHref = link.getAttribute('href');
+            
+            if (linkHref === currentPage || 
+                (currentPage === '' && linkHref === 'index.php') ||
+                (currentPage === 'index.php' && linkHref === 'index.php')) {
+                link.classList.add('active');
+            }
+        });
+    }
+    
+    updateActiveNavLink();
 
     // Smooth scrolling for navigation links
     const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
@@ -48,8 +143,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetSection.offsetTop - headerHeight;
+                const headerHeight = header.offsetHeight;
+                const targetPosition = targetSection.offsetTop - headerHeight - 20;
                 
                 window.scrollTo({
                     top: targetPosition,
@@ -59,15 +154,59 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Search Functionality (if search exists)
+    const searchToggle = document.querySelector('.search-toggle');
+    const searchForm = document.querySelector('.search-form');
+    
+    if (searchToggle && searchForm) {
+        searchToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            searchForm.classList.toggle('active');
+            const searchInput = searchForm.querySelector('input');
+            if (searchInput && searchForm.classList.contains('active')) {
+                searchInput.focus();
+            }
+        });
+    }
+
+    // Keyboard Navigation Support
+    document.addEventListener('keydown', function(e) {
+        // Close mobile menu with Escape key
+        if (e.key === 'Escape' && navMenu && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+            body.classList.remove('nav-open');
+            body.style.overflow = '';
+        }
+    });
+
+    // Intersection Observer for Animation on Scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for animation
+    const animateElements = document.querySelectorAll('.room-card, .service-card, .stat-item');
+    animateElements.forEach(el => observer.observe(el));
+
     // Header background change on scroll
-    const header = document.querySelector('.header');
+    const headerElement = document.querySelector('.header');
     window.addEventListener('scroll', function() {
         if (window.scrollY > 100) {
-            header.style.background = 'rgba(255, 255, 255, 0.98)';
-            header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            headerElement.style.background = 'rgba(255, 255, 255, 0.98)';
+            headerElement.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
         } else {
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
-            header.style.boxShadow = 'none';
+            headerElement.style.background = 'rgba(255, 255, 255, 0.95)';
+            headerElement.style.boxShadow = 'none';
         }
     });
 
@@ -158,23 +297,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Animate elements on scroll
-    const observerOptions = {
+    const scrollObserverOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver(function(entries) {
+    const scrollObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('loading');
             }
         });
-    }, observerOptions);
+    }, scrollObserverOptions);
 
     // Observe elements for animation
-    const animateElements = document.querySelectorAll('.room-card, .service-card, .about-text, .contact-item');
-    animateElements.forEach(el => {
-        observer.observe(el);
+    const scrollAnimateElements = document.querySelectorAll('.room-card, .service-card, .about-text, .contact-item');
+    scrollAnimateElements.forEach(el => {
+        scrollObserver.observe(el);
     });
 
     // Set minimum date for booking form
@@ -267,7 +406,10 @@ document.addEventListener('DOMContentLoaded', function() {
     images.forEach(img => {
         img.addEventListener('error', function() {
             if (!this.src.includes('placeholder')) {
-                this.src = this.getAttribute('onerror').match(/'([^']+)'/)[1];
+                const onerrorAttr = this.getAttribute('onerror');
+                if (onerrorAttr && onerrorAttr.includes("'")) {
+                    this.src = onerrorAttr.match(/'([^']+)'/)[1];
+                }
             }
         });
     });
@@ -292,6 +434,43 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('afterprint', function() {
         document.body.classList.remove('printing');
     });
+
+    // Floating Action Button
+    const floatingBtn = document.getElementById('floatingBtn');
+    const floatingMenu = document.getElementById('floatingMenu');
+
+    if (floatingBtn && floatingMenu) {
+        floatingBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            floatingBtn.classList.toggle('active');
+            floatingMenu.classList.toggle('active');
+        });
+
+        // Close floating menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!floatingBtn.contains(e.target) && !floatingMenu.contains(e.target)) {
+                floatingBtn.classList.remove('active');
+                floatingMenu.classList.remove('active');
+            }
+        });
+
+        // Close floating menu when clicking on a link
+        const floatingLinks = floatingMenu.querySelectorAll('.floating-link');
+        floatingLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                floatingBtn.classList.remove('active');
+                floatingMenu.classList.remove('active');
+            });
+        });
+
+        // Close floating menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && floatingMenu.classList.contains('active')) {
+                floatingBtn.classList.remove('active');
+                floatingMenu.classList.remove('active');
+            }
+        });
+    }
 
     console.log('Aurora Hotel website loaded successfully! 🏨✨');
 });

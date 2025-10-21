@@ -1,0 +1,30 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="conciergeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1" />
+<stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+</linearGradient>
+</defs>
+<rect width="400" height="300" fill="url(#conciergeGradient)"/>
+<!-- Reception Desk -->
+<rect x="100" y="150" width="200" height="80" fill="#7c2d12"/>
+<rect x="110" y="160" width="180" height="60" fill="#a3a3a3"/>
+<!-- Computer -->
+<rect x="180" y="170" width="40" height="25" fill="#374151"/>
+<rect x="185" y="175" width="30" height="15" fill="#1f2937"/>
+<!-- Phone -->
+<rect x="140" y="180" width="20" height="10" fill="#1f2937"/>
+<!-- Keys -->
+<circle cx="260" cy="185" r="3" fill="#fbbf24"/>
+<circle cx="270" cy="185" r="3" fill="#fbbf24"/>
+<circle cx="280" cy="185" r="3" fill="#fbbf24"/>
+<!-- Concierge Figure -->
+<circle cx="200" cy="120" r="20" fill="#fbbf24"/>
+<rect x="190" y="140" width="20" height="40" fill="#1f2937"/>
+<!-- Welcome Sign -->
+<rect x="50" y="80" width="100" height="30" fill="#dc2626"/>
+<text x="100" y="100" text-anchor="middle" fill="#ffffff" font-family="Arial" font-size="12" font-weight="bold">WELCOME</text>
+<!-- Floor -->
+<rect x="0" y="230" width="400" height="70" fill="#6b7280"/>
+<text x="200" y="270" text-anchor="middle" fill="#f3f4f6" font-family="Arial" font-size="16" font-weight="bold">Concierge Service</text>
+</svg>

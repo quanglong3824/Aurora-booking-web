@@ -1,0 +1,114 @@
+<svg width="1920" height="600" viewBox="0 0 1920 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="roomsHeroBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a365d;stop-opacity:0.9"/>
+      <stop offset="50%" style="stop-color:#2d5a87;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#4a90b8;stop-opacity:0.7"/>
+    </linearGradient>
+    <linearGradient id="roomGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f7fafc"/>
+      <stop offset="100%" style="stop-color:#edf2f7"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1920" height="600" fill="url(#roomsHeroBg)"/>
+  
+  <!-- Hotel Building -->
+  <rect x="200" y="150" width="400" height="300" fill="#2d3748" rx="8"/>
+  <rect x="220" y="170" width="360" height="260" fill="#4a5568" rx="4"/>
+  
+  <!-- Windows Pattern -->
+  <g fill="#ffd700" opacity="0.8">
+    <rect x="240" y="190" width="25" height="35" rx="2"/>
+    <rect x="280" y="190" width="25" height="35" rx="2"/>
+    <rect x="320" y="190" width="25" height="35" rx="2"/>
+    <rect x="360" y="190" width="25" height="35" rx="2"/>
+    <rect x="400" y="190" width="25" height="35" rx="2"/>
+    <rect x="440" y="190" width="25" height="35" rx="2"/>
+    <rect x="480" y="190" width="25" height="35" rx="2"/>
+    <rect x="520" y="190" width="25" height="35" rx="2"/>
+    
+    <rect x="240" y="240" width="25" height="35" rx="2"/>
+    <rect x="280" y="240" width="25" height="35" rx="2"/>
+    <rect x="320" y="240" width="25" height="35" rx="2"/>
+    <rect x="360" y="240" width="25" height="35" rx="2"/>
+    <rect x="400" y="240" width="25" height="35" rx="2"/>
+    <rect x="440" y="240" width="25" height="35" rx="2"/>
+    <rect x="480" y="240" width="25" height="35" rx="2"/>
+    <rect x="520" y="240" width="25" height="35" rx="2"/>
+    
+    <rect x="240" y="290" width="25" height="35" rx="2"/>
+    <rect x="280" y="290" width="25" height="35" rx="2"/>
+    <rect x="320" y="290" width="25" height="35" rx="2"/>
+    <rect x="360" y="290" width="25" height="35" rx="2"/>
+    <rect x="400" y="290" width="25" height="35" rx="2"/>
+    <rect x="440" y="290" width="25" height="35" rx="2"/>
+    <rect x="480" y="290" width="25" height="35" rx="2"/>
+    <rect x="520" y="290" width="25" height="35" rx="2"/>
+    
+    <rect x="240" y="340" width="25" height="35" rx="2"/>
+    <rect x="280" y="340" width="25" height="35" rx="2"/>
+    <rect x="320" y="340" width="25" height="35" rx="2"/>
+    <rect x="360" y="340" width="25" height="35" rx="2"/>
+    <rect x="400" y="340" width="25" height="35" rx="2"/>
+    <rect x="440" y="340" width="25" height="35" rx="2"/>
+    <rect x="480" y="340" width="25" height="35" rx="2"/>
+    <rect x="520" y="340" width="25" height="35" rx="2"/>
+  </g>
+  
+  <!-- Hotel Entrance -->
+  <rect x="350" y="380" width="80" height="70" fill="#2d3748"/>
+  <rect x="360" y="390" width="60" height="50" fill="#4a5568"/>
+  <circle cx="390" cy="415" r="3" fill="#ffd700"/>
+  
+  <!-- Room Icons -->
+  <g transform="translate(700, 200)">
+    <!-- Standard Room -->
+    <rect x="0" y="0" width="120" height="80" fill="url(#roomGradient)" rx="8" stroke="#e2e8f0" stroke-width="2"/>
+    <rect x="10" y="10" width="40" height="25" fill="#4299e1" rx="2"/>
+    <rect x="60" y="10" width="15" height="15" fill="#ed8936" rx="1"/>
+    <rect x="85" y="10" width="15" height="15" fill="#38a169" rx="1"/>
+    <text x="60" y="50" font-family="Arial" font-size="10" fill="#2d3748" text-anchor="middle">Standard</text>
+  </g>
+  
+  <g transform="translate(850, 200)">
+    <!-- Deluxe Room -->
+    <rect x="0" y="0" width="120" height="80" fill="url(#roomGradient)" rx="8" stroke="#e2e8f0" stroke-width="2"/>
+    <rect x="10" y="10" width="50" height="30" fill="#4299e1" rx="2"/>
+    <rect x="70" y="10" width="20" height="15" fill="#ed8936" rx="1"/>
+    <rect x="95" y="10" width="15" height="15" fill="#38a169" rx="1"/>
+    <circle cx="80" cy="50" r="8" fill="#e53e3e" opacity="0.3"/>
+    <text x="60" y="70" font-family="Arial" font-size="10" fill="#2d3748" text-anchor="middle">Deluxe</text>
+  </g>
+  
+  <g transform="translate(1000, 200)">
+    <!-- Suite Room -->
+    <rect x="0" y="0" width="120" height="80" fill="url(#roomGradient)" rx="8" stroke="#e2e8f0" stroke-width="2"/>
+    <rect x="10" y="10" width="60" height="35" fill="#4299e1" rx="2"/>
+    <rect x="75" y="10" width="35" height="20" fill="#ed8936" rx="1"/>
+    <rect x="80" y="35" width="25" height="15" fill="#38a169" rx="1"/>
+    <circle cx="90" cy="55" r="10" fill="#e53e3e" opacity="0.3"/>
+    <text x="60" y="70" font-family="Arial" font-size="10" fill="#2d3748" text-anchor="middle">Suite</text>
+  </g>
+  
+  <!-- Decorative Elements -->
+  <circle cx="1400" cy="150" r="40" fill="#ffd700" opacity="0.2"/>
+  <circle cx="1500" cy="250" r="25" fill="#4299e1" opacity="0.3"/>
+  <circle cx="1600" cy="180" r="30" fill="#38a169" opacity="0.2"/>
+  
+  <!-- Stars -->
+  <g fill="#ffd700" opacity="0.6">
+    <polygon points="1300,100 1305,110 1315,110 1307,117 1310,127 1300,120 1290,127 1293,117 1285,110 1295,110" />
+    <polygon points="1450,120 1453,127 1460,127 1455,132 1457,139 1450,135 1443,139 1445,132 1440,127 1447,127" />
+    <polygon points="1550,90 1553,97 1560,97 1555,102 1557,109 1550,105 1543,109 1545,102 1540,97 1547,97" />
+  </g>
+  
+  <!-- Text Overlay -->
+  <text x="960" y="400" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">
+    Phòng nghỉ Aurora Hotel
+  </text>
+  <text x="960" y="450" font-family="Arial, sans-serif" font-size="24" fill="#e2e8f0" text-anchor="middle">
+    Không gian nghỉ dưỡng sang trọng với tiêu chuẩn 5 sao
+  </text>
+</svg>

@@ -1,0 +1,27 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="roomGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:#f8fafc;stop-opacity:1" />
+<stop offset="100%" style="stop-color:#e2e8f0;stop-opacity:1" />
+</linearGradient>
+</defs>
+<rect width="400" height="300" fill="url(#roomGradient)"/>
+<!-- Bed -->
+<rect x="50" y="150" width="120" height="80" fill="#8b5cf6" rx="8"/>
+<rect x="55" y="155" width="110" height="70" fill="#a78bfa" rx="4"/>
+<!-- Pillows -->
+<circle cx="80" cy="170" r="15" fill="#f3f4f6"/>
+<circle cx="140" cy="170" r="15" fill="#f3f4f6"/>
+<!-- Window -->
+<rect x="250" y="50" width="100" height="120" fill="#ddd6fe" stroke="#8b5cf6" stroke-width="3"/>
+<line x1="300" y1="50" x2="300" y2="170" stroke="#8b5cf6" stroke-width="2"/>
+<line x1="250" y1="110" x2="350" y2="110" stroke="#8b5cf6" stroke-width="2"/>
+<!-- Chair -->
+<rect x="200" y="180" width="40" height="60" fill="#fbbf24"/>
+<rect x="205" y="185" width="30" height="30" fill="#f59e0b"/>
+<!-- Table -->
+<ellipse cx="280" cy="220" rx="30" ry="20" fill="#92400e"/>
+<!-- Floor -->
+<rect x="0" y="250" width="400" height="50" fill="#d1d5db"/>
+<text x="200" y="280" text-anchor="middle" fill="#6b7280" font-family="Arial" font-size="16" font-weight="bold">Phòng Tiêu Chuẩn</text>
+</svg>
