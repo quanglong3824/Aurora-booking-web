@@ -1,17 +1,18 @@
 <?php
 $page_title = "Phòng nghỉ - Aurora Hotel";
-$page_description = "Khám phá các loại phòng nghỉ sang trọng tại Aurora Hotel: phòng tiêu chuẩn, cao cấp, suite với đầy đủ tiện nghi hiện đại";
-$page_keywords = "phòng nghỉ aurora hotel, đặt phòng, phòng tiêu chuẩn, phòng cao cấp, suite, khách sạn sang trọng";
+$page_description = "Khám phá các loại phòng nghỉ sang trọng tại Aurora Hotel: Deluxe, Premium Deluxe, Premium Deluxe Twin, Studio VIP với đầy đủ tiện nghi hiện đại";
+$page_keywords = "phòng nghỉ aurora hotel, đặt phòng, phòng deluxe, phòng premium, phòng studio vip, khách sạn sang trọng";
 $current_page = "phong";
 $breadcrumb = [
-    ['title' => 'Trang chủ', 'url' => 'index.php'],
+    ['title' => 'Trang chủ', 'url' => '../index.php'],
     ['title' => 'Phòng nghỉ', 'url' => 'phong.php', 'active' => true]
 ];
+$page_header = true;
 $page_header_title = "Phòng nghỉ Aurora Hotel";
 $page_header_subtitle = "Không gian nghỉ dưỡng sang trọng với tiêu chuẩn 5 sao";
 $page_header_bg = "/assets/image/rooms-hero.jpg";
 
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <!-- Room Filter & Search -->
@@ -20,44 +21,9 @@ include 'includes/header.php';
         <div class="filter-controls">
             <div class="filter-tabs">
                 <button class="filter-btn active" data-filter="all">Tất cả phòng</button>
-                <button class="filter-btn" data-filter="standard">Tiêu chuẩn</button>
-                <button class="filter-btn" data-filter="deluxe">Cao cấp</button>
-                <button class="filter-btn" data-filter="suite">Suite</button>
-                <button class="filter-btn" data-filter="presidential">Presidential</button>
-            </div>
-            
-            <div class="filter-options">
-                <div class="price-filter">
-                    <label>Giá phòng:</label>
-                    <select id="priceRange">
-                        <option value="">Tất cả</option>
-                        <option value="1000000-2000000">1-2 triệu VNĐ</option>
-                        <option value="2000000-3000000">2-3 triệu VNĐ</option>
-                        <option value="3000000-5000000">3-5 triệu VNĐ</option>
-                        <option value="5000000+">Trên 5 triệu VNĐ</option>
-                    </select>
-                </div>
-                
-                <div class="capacity-filter">
-                    <label>Số khách:</label>
-                    <select id="capacity">
-                        <option value="">Tất cả</option>
-                        <option value="1-2">1-2 khách</option>
-                        <option value="3-4">3-4 khách</option>
-                        <option value="5+">5+ khách</option>
-                    </select>
-                </div>
-                
-                <div class="view-filter">
-                    <label>Tầm nhìn:</label>
-                    <select id="view">
-                        <option value="">Tất cả</option>
-                        <option value="city">Thành phố</option>
-                        <option value="garden">Vườn</option>
-                        <option value="pool">Hồ bơi</option>
-                        <option value="ocean">Biển</option>
-                    </select>
-                </div>
+                <button class="filter-btn" data-filter="deluxe">Deluxe</button>
+                <button class="filter-btn" data-filter="premium">Premium</button>
+                <button class="filter-btn" data-filter="studio">Studio VIP</button>
             </div>
         </div>
     </div>
@@ -66,45 +32,45 @@ include 'includes/header.php';
 <!-- Rooms Grid -->
 <section class="rooms-showcase">
     <div class="container">
-        <!-- Standard Rooms -->
-        <div class="room-category" data-category="standard">
+        <!-- Deluxe Rooms -->
+        <div class="room-category" data-category="deluxe">
             <div class="category-header">
-                <h2>Phòng tiêu chuẩn</h2>
-                <p>Không gian thoải mái với đầy đủ tiện nghi cơ bản</p>
+                <h2>Phòng Deluxe</h2>
+                <p>Không gian sang trọng với thiết kế tinh tế và view tuyệt đẹp</p>
             </div>
             
             <div class="rooms-grid">
-                <div class="room-card featured" data-room-type="standard" data-price="1200000" data-capacity="2" data-view="city">
+                <div class="room-card featured" data-room-type="deluxe">
                     <div class="room-image-container">
-                        <img src="/assets/image/room-standard.jpg" alt="Phòng tiêu chuẩn" loading="lazy">
+                        <img src="<?php echo asset('image/room-deluxe.jpg'); ?>" alt="Phòng Deluxe Sang Trọng" loading="lazy">
                         <div class="room-badge">Phổ biến</div>
                         <div class="room-gallery-btn">
                             <i class="fas fa-images"></i>
-                            <span>8 ảnh</span>
+                            <span>12 ảnh</span>
                         </div>
                     </div>
                     
                     <div class="room-content">
                         <div class="room-header">
-                            <h3>Standard City View</h3>
+                            <h3>Phòng Deluxe Sang Trọng</h3>
                             <div class="room-rating">
                                 <div class="stars">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
+                                    <i class="fas fa-star"></i>
                                 </div>
-                                <span class="rating-text">4.2/5</span>
+                                <span class="rating-text">4.8/5</span>
                             </div>
                         </div>
                         
                         <div class="room-details">
                             <div class="room-specs">
-                                <span><i class="fas fa-bed"></i> 1 giường đôi</span>
+                                <span><i class="fas fa-bed"></i> 1 giường King</span>
                                 <span><i class="fas fa-users"></i> 2 khách</span>
-                                <span><i class="fas fa-expand-arrows-alt"></i> 25m²</span>
-                                <span><i class="fas fa-eye"></i> View thành phố</span>
+                                <span><i class="fas fa-expand-arrows-alt"></i> 35m²</span>
+                                <span><i class="fas fa-eye"></i> View biển/thành phố</span>
                             </div>
                             
                             <div class="room-amenities">
@@ -114,40 +80,305 @@ include 'includes/header.php';
                                 </div>
                                 <div class="amenity-item">
                                     <i class="fas fa-tv"></i>
-                                    <span>TV LCD 42"</span>
+                                    <span>Smart TV 55"</span>
                                 </div>
                                 <div class="amenity-item">
                                     <i class="fas fa-snowflake"></i>
-                                    <span>Điều hòa</span>
+                                    <span>Điều hòa thông minh</span>
                                 </div>
                                 <div class="amenity-item">
                                     <i class="fas fa-coffee"></i>
-                                    <span>Minibar</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-shield-alt"></i>
-                                    <span>Két an toàn</span>
+                                    <span>Minibar cao cấp</span>
                                 </div>
                                 <div class="amenity-item">
                                     <i class="fas fa-bath"></i>
-                                    <span>Phòng tắm riêng</span>
+                                    <span>Phòng tắm marble</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-concierge-bell"></i>
+                                    <span>Dịch vụ 24/7</span>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="room-pricing">
                             <div class="price-info">
-                                <span class="current-price">1.200.000 VNĐ</span>
+                                <span class="current-price">2.500.000 VNĐ</span>
                                 <span class="price-period">/đêm</span>
-                                <span class="original-price">1.500.000 VNĐ</span>
                             </div>
-                            <div class="discount-badge">Giảm 20%</div>
                         </div>
                         
                         <div class="room-actions">
-                            <button class="btn-secondary room-details-btn">Xem chi tiết</button>
-                            <button class="btn-primary room-book-btn">Đặt ngay</button>
+                            <a href="<?php echo url('pages/rooms/phong-deluxe/phong-deluxe-sang-trong.php'); ?>" class="btn-secondary room-details-btn">Xem chi tiết</a>
+                            <a href="<?php echo url('pages/dat-phong.php'); ?>" class="btn-primary room-book-btn">Đặt ngay</a>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Premium Deluxe Rooms -->
+        <div class="room-category" data-category="premium">
+            <div class="category-header">
+                <h2>Phòng Premium Deluxe</h2>
+                <p>Đẳng cấp cao nhất với không gian rộng rãi và tiện nghi hoàn hảo</p>
+            </div>
+            
+            <div class="rooms-grid">
+                <div class="room-card" data-room-type="premium">
+                    <div class="room-image-container">
+                        <img src="<?php echo asset('image/room-suite.jpg'); ?>" alt="Phòng Premium Deluxe Cao Cấp" loading="lazy">
+                        <div class="room-badge">Cao cấp</div>
+                        <div class="room-gallery-btn">
+                            <i class="fas fa-images"></i>
+                            <span>15 ảnh</span>
+                        </div>
+                    </div>
+                    
+                    <div class="room-content">
+                        <div class="room-header">
+                            <h3>Phòng Premium Deluxe Cao Cấp</h3>
+                            <div class="room-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-text">4.9/5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="room-details">
+                            <div class="room-specs">
+                                <span><i class="fas fa-bed"></i> 1 giường King</span>
+                                <span><i class="fas fa-users"></i> 2-3 khách</span>
+                                <span><i class="fas fa-expand-arrows-alt"></i> 45m²</span>
+                                <span><i class="fas fa-eye"></i> View biển panorama</span>
+                            </div>
+                            
+                            <div class="room-amenities">
+                                <div class="amenity-item">
+                                    <i class="fas fa-wifi"></i>
+                                    <span>WiFi tốc độ cao</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-tv"></i>
+                                    <span>Smart TV 65"</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-hot-tub"></i>
+                                    <span>Jacuzzi riêng</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-glass-cheers"></i>
+                                    <span>Bar mini cao cấp</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-spa"></i>
+                                    <span>Khu vực thư giãn</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-crown"></i>
+                                    <span>Dịch vụ VIP</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="room-pricing">
+                            <div class="price-info">
+                                <span class="current-price">4.200.000 VNĐ</span>
+                                <span class="price-period">/đêm</span>
+                            </div>
+                        </div>
+                        
+                        <div class="room-actions">
+                            <a href="<?php echo url('pages/rooms/phong-premium-deluxe/phong-premium-deluxe-cao-cap.php'); ?>" class="btn-secondary room-details-btn">Xem chi tiết</a>
+                            <a href="<?php echo url('pages/dat-phong.php'); ?>" class="btn-primary room-book-btn">Đặt ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="room-card" data-room-type="premium">
+                    <div class="room-image-container">
+                        <img src="<?php echo asset('image/room-suite-ocean.jpg'); ?>" alt="Phòng Premium Deluxe Twin Đôi" loading="lazy">
+                        <div class="room-badge">Gia đình</div>
+                        <div class="room-gallery-btn">
+                            <i class="fas fa-images"></i>
+                            <span>14 ảnh</span>
+                        </div>
+                    </div>
+                    
+                    <div class="room-content">
+                        <div class="room-header">
+                            <h3>Phòng Premium Deluxe Twin Đôi</h3>
+                            <div class="room-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-text">4.7/5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="room-details">
+                            <div class="room-specs">
+                                <span><i class="fas fa-bed"></i> 2 giường đơn</span>
+                                <span><i class="fas fa-users"></i> 2-4 khách</span>
+                                <span><i class="fas fa-expand-arrows-alt"></i> 42m²</span>
+                                <span><i class="fas fa-eye"></i> View biển</span>
+                            </div>
+                            
+                            <div class="room-amenities">
+                                <div class="amenity-item">
+                                    <i class="fas fa-wifi"></i>
+                                    <span>WiFi tốc độ cao</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-tv"></i>
+                                    <span>2 Smart TV 50"</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-couch"></i>
+                                    <span>Khu vực nghỉ ngơi</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-coffee"></i>
+                                    <span>Máy pha cà phê</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-bath"></i>
+                                    <span>2 phòng tắm</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-concierge-bell"></i>
+                                    <span>Dịch vụ cao cấp</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="room-pricing">
+                            <div class="price-info">
+                                <span class="current-price">3.800.000 VNĐ</span>
+                                <span class="price-period">/đêm</span>
+                            </div>
+                        </div>
+                        
+                        <div class="room-actions">
+                            <a href="<?php echo url('pages/rooms/phong-premium-deluxe-twin/phong-premium-deluxe-twin-doi.php'); ?>" class="btn-secondary room-details-btn">Xem chi tiết</a>
+                            <a href="<?php echo url('pages/dat-phong.php'); ?>" class="btn-primary room-book-btn">Đặt ngay</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Studio VIP Rooms -->
+        <div class="room-category" data-category="studio">
+            <div class="category-header">
+                <h2>Phòng Studio VIP</h2>
+                <p>Không gian sống hiện đại với thiết kế thông minh và dịch vụ VIP</p>
+            </div>
+            
+            <div class="rooms-grid">
+                <div class="room-card" data-room-type="studio">
+                    <div class="room-image-container">
+                        <img src="<?php echo asset('image/room-presidential.jpg'); ?>" alt="Phòng Studio VIP Đẳng Cấp" loading="lazy">
+                        <div class="room-badge">VIP</div>
+                        <div class="room-gallery-btn">
+                            <i class="fas fa-images"></i>
+                            <span>18 ảnh</span>
+                        </div>
+                    </div>
+                    
+                    <div class="room-content">
+                        <div class="room-header">
+                            <h3>Phòng Studio VIP Đẳng Cấp</h3>
+                            <div class="room-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-text">5.0/5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="room-details">
+                            <div class="room-specs">
+                                <span><i class="fas fa-bed"></i> 1 giường King</span>
+                                <span><i class="fas fa-users"></i> 2 khách</span>
+                                <span><i class="fas fa-expand-arrows-alt"></i> 55m²</span>
+                                <span><i class="fas fa-eye"></i> View 360° thành phố</span>
+                            </div>
+                            
+                            <div class="room-amenities">
+                                <div class="amenity-item">
+                                    <i class="fas fa-crown"></i>
+                                    <span>Dịch vụ Butler</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-tv"></i>
+                                    <span>Smart TV 75"</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-utensils"></i>
+                                    <span>Bếp mini cao cấp</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-wine-glass"></i>
+                                    <span>Wine cellar riêng</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-spa"></i>
+                                    <span>Spa mini trong phòng</span>
+                                </div>
+                                <div class="amenity-item">
+                                    <i class="fas fa-helicopter"></i>
+                                    <span>Dịch vụ helicopter</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="room-pricing">
+                            <div class="price-info">
+                                <span class="current-price">8.500.000 VNĐ</span>
+                                <span class="price-period">/đêm</span>
+                            </div>
+                        </div>
+                        
+                        <div class="room-actions">
+                            <a href="<?php echo url('pages/rooms/phong-studio-vip/phong-studio-vip-dang-cap.php'); ?>" class="btn-secondary room-details-btn">Xem chi tiết</a>
+                            <a href="<?php echo url('pages/dat-phong.php'); ?>" class="btn-primary room-book-btn">Đặt ngay</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Sẵn sàng trải nghiệm kỳ nghỉ tuyệt vời?</h2>
+            <p>Đặt phòng ngay hôm nay để nhận ưu đãi đặc biệt và dịch vụ tốt nhất</p>
+            <div class="cta-actions">
+                <a href="<?php echo url('pages/dat-phong.php'); ?>" class="btn-primary">Đặt phòng ngay</a>
+                <a href="<?php echo url('pages/lien-he.php'); ?>" class="btn-secondary">Liên hệ tư vấn</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<?php include '../includes/footer.php'; ?>
                     </div>
                 </div>
                 
@@ -743,7 +974,7 @@ include 'includes/header.php';
     </div>
 </section>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>
 
 <script>
 // Room filtering functionality

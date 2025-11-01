@@ -11,7 +11,7 @@ $page_header_title = "Dịch vụ Aurora Hotel";
 $page_header_subtitle = "Trải nghiệm đẳng cấp với đầy đủ tiện ích hiện đại";
 $page_header_bg = "/assets/image/services-hero.jpg";
 
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <!-- Services Overview -->
@@ -1214,4 +1214,4 @@ include 'includes/header.php';
 }
 </style>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

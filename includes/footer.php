@@ -1,3 +1,7 @@
+<?php
+// Include configuration for dynamic paths
+require_once __DIR__ . '/config.php';
+?>
 </main>
     <!-- Main Content End -->
 
@@ -20,24 +24,24 @@
                 <div class="footer-section">
                     <h4>Liên kết nhanh</h4>
                     <ul>
-                        <li><a href="/">Trang chủ</a></li>
-                        <li><a href="/phong.php">Phòng nghỉ</a></li>
-                        <li><a href="/dich-vu.php">Dịch vụ</a></li>
-                        <li><a href="/thu-vien-anh.php">Thư viện ảnh</a></li>
-                        <li><a href="/gioi-thieu.php">Giới thiệu</a></li>
-                        <li><a href="/lien-he.php">Liên hệ</a></li>
+                        <li><a href="<?php echo url('index.php'); ?>">Trang chủ</a></li>
+                        <li><a href="<?php echo url('pages/phong.php'); ?>">Phòng nghỉ</a></li>
+                        <li><a href="<?php echo url('pages/dich-vu.php'); ?>">Dịch vụ</a></li>
+                        <li><a href="<?php echo url('pages/thu-vien-anh.php'); ?>">Thư viện ảnh</a></li>
+                        <li><a href="<?php echo url('pages/gioi-thieu.php'); ?>">Giới thiệu</a></li>
+                        <li><a href="<?php echo url('pages/lien-he.php'); ?>">Liên hệ</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
                     <h4>Dịch vụ</h4>
                     <ul>
-                        <li><a href="/nha-hang.php">Nhà hàng</a></li>
-                        <li><a href="/spa.php">Spa & Wellness</a></li>
-                        <li><a href="/hoi-nghi.php">Phòng hội nghị</a></li>
-                        <li><a href="/gym.php">Phòng gym</a></li>
-                        <li><a href="/ho-boi.php">Hồ bơi</a></li>
-                        <li><a href="/dua-don-san-bay.php">Đưa đón sân bay</a></li>
+                        <li><a href="<?php echo url('pages/nha-hang.php'); ?>">Nhà hàng</a></li>
+                        <li><a href="<?php echo url('pages/spa.php'); ?>">Spa & Wellness</a></li>
+                        <li><a href="<?php echo url('pages/hoi-nghi.php'); ?>">Phòng hội nghị</a></li>
+                        <li><a href="<?php echo url('pages/gym.php'); ?>">Phòng gym</a></li>
+                        <li><a href="<?php echo url('pages/ho-boi.php'); ?>">Hồ bơi</a></li>
+                        <li><a href="<?php echo url('pages/dua-don-san-bay.php'); ?>">Đưa đón sân bay</a></li>
                     </ul>
                 </div>
                 
@@ -89,10 +93,10 @@
     </div>
 
     <!-- JavaScript Files -->
-    <script src="assets/js/main.js"></script>
+    <script src="<?php echo asset('js/main.js'); ?>"></script>
     <?php if(isset($additional_js)): ?>
         <?php foreach($additional_js as $js): ?>
-            <script src="<?php echo $js; ?>"></script>
+            <script src="<?php echo asset($js); ?>"></script>
         <?php endforeach; ?>
     <?php endif; ?>
     

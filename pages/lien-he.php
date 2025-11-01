@@ -11,7 +11,7 @@ $page_header_title = "Liên hệ với Aurora Hotel";
 $page_header_subtitle = "Chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7";
 $page_header_bg = "/assets/image/contact-hero.jpg";
 
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <!-- Contact Methods -->
@@ -1422,4 +1422,4 @@ function showNotification(message, type) {
 }
 </script>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

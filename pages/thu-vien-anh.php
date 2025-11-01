@@ -11,7 +11,7 @@ $page_header_title = "Thư viện ảnh Aurora Hotel";
 $page_header_subtitle = "Khám phá vẻ đẹp sang trọng qua từng khung hình";
 $page_header_bg = "/assets/image/gallery-hero.jpg";
 
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <!-- Gallery Filter -->
@@ -1250,4 +1250,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

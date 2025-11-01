@@ -11,7 +11,7 @@ $page_header_title = "Giới thiệu Aurora Hotel";
 $page_header_subtitle = "Câu chuyện về sự sang trọng và đẳng cấp";
 $page_header_bg = "/assets/image/about-hero.jpg";
 
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <!-- About Hero Section -->
@@ -1010,4 +1010,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

@@ -13,7 +13,7 @@ $breadcrumb = [
 $additional_css = ['assets/css/dat-phong.css'];
 
 // Include header
-include 'includes/header.php';
+include '../includes/header.php';
 ?>
 
 <!-- Page Header -->
@@ -346,7 +346,7 @@ include 'includes/header.php';
 
 <?php
 // Include footer
-include 'includes/footer.php';
+include '../includes/footer.php';
 ?>
 
 <script src="assets/js/dat-phong.js"></script>

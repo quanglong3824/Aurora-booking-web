@@ -1,3 +1,7 @@
+<?php
+// Include configuration for dynamic paths
+require_once __DIR__ . '/config.php';
+?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -8,13 +12,13 @@
     <meta name="keywords" content="khách sạn, hotel, Aurora, sang trọng, TP.HCM, đặt phòng, nghỉ dưỡng">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/image/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="<?php echo asset('image/favicon.ico'); ?>">
     
     <!-- CSS Files -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo asset('css/style.css'); ?>">
     <?php if(isset($additional_css)): ?>
         <?php foreach($additional_css as $css): ?>
-            <link rel="stylesheet" href="<?php echo $css; ?>">
+            <link rel="stylesheet" href="<?php echo asset('css/' . $css); ?>">
         <?php endforeach; ?>
     <?php endif; ?>
     
@@ -25,7 +29,7 @@
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="<?php echo isset($page_title) ? $page_title . ' - Aurora Hotel' : 'Aurora Hotel - Khách sạn sang trọng'; ?>">
     <meta property="og:description" content="<?php echo isset($page_description) ? $page_description : 'Aurora Hotel - Khách sạn sang trọng với dịch vụ đẳng cấp quốc tế'; ?>">
-    <meta property="og:image" content="assets/image/aurora-hotel-og.jpg">
+    <meta property="og:image" content="<?php echo asset('image/aurora-hotel-og.jpg'); ?>">
     <meta property="og:url" content="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>">
     <meta property="og:type" content="website">
     
@@ -33,7 +37,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?php echo isset($page_title) ? $page_title . ' - Aurora Hotel' : 'Aurora Hotel - Khách sạn sang trọng'; ?>">
     <meta name="twitter:description" content="<?php echo isset($page_description) ? $page_description : 'Aurora Hotel - Khách sạn sang trọng với dịch vụ đẳng cấp quốc tế'; ?>">
-    <meta name="twitter:image" content="/assets/image/aurora-hotel-og.jpg">
+    <meta name="twitter:image" content="<?php echo asset('image/aurora-hotel-og.jpg'); ?>">
 </head>
 <body class="<?php echo isset($body_class) ? $body_class : ''; ?>">
     <!-- Header -->
@@ -41,39 +45,27 @@
         <nav class="navbar">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <a href="index.php">
+                    <a href="<?php echo url('index.php'); ?>">
                         <h1>Aurora Hotel</h1>
                     </a>
                 </div>
                 <ul class="nav-menu" id="navMenu">
-                    <li><a href="index.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'index.php' || basename($_SERVER['PHP_SELF']) == '') ? 'active' : ''; ?>">Trang chủ</a></li>
+                    <li><a href="<?php echo url('index.php'); ?>" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'index.php' || basename($_SERVER['PHP_SELF']) == '') ? 'active' : ''; ?>">Trang chủ</a></li>
+                    <li><a href="<?php echo url('pages/phong-va-can-ho.php'); ?>" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'phong-va-can-ho.php' || strpos($_SERVER['PHP_SELF'], 'phong') !== false || strpos($_SERVER['PHP_SELF'], 'can-ho') !== false || strpos($_SERVER['PHP_SELF'], 'rooms') !== false || strpos($_SERVER['PHP_SELF'], 'apartments') !== false) ? 'active' : ''; ?>">Phòng & Căn hộ</a></li>
+                    <li><a href="<?php echo url('pages/dich-vu.php'); ?>" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'dich-vu.php') ? 'active' : ''; ?>">Dịch vụ</a></li>
                     <li class="dropdown">
-                        <a href="phong.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], 'phong') !== false) ? 'active' : ''; ?>">
-                            Phòng <i class="fas fa-chevron-down"></i>
+                        <a href="#" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'thu-vien-anh.php' || basename($_SERVER['PHP_SELF']) == 'gioi-thieu.php') ? 'active' : ''; ?>">
+                            Khám phá <i class="fas fa-chevron-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="phong-tieu-chuan.php">Phòng tiêu chuẩn</a></li>
-                            <!-- <li><a href="phong-cao-cap.php">Phòng cao cấp</a></li> -->
-                            <li><a href="phong-suite.php">Phòng suite</a></li>
+                            <li><a href="<?php echo url('pages/thu-vien-anh.php'); ?>">Thư viện ảnh</a></li>
+                            <li><a href="<?php echo url('pages/gioi-thieu.php'); ?>">Giới thiệu</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="dich-vu.php" class="<?php echo (strpos($_SERVER['PHP_SELF'], 'dich-vu') !== false) ? 'active' : ''; ?>">
-                            Dịch vụ <i class="fas fa-chevron-down"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="nha-hang.php">Nhà hàng</a></li>
-                            <li><a href="spa.php">Spa & Wellness</a></li>
-                            <li><a href="hoi-nghi.php">Hội nghị</a></li>
-                            <li><a href="gym.php">Phòng gym</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="thu-vien-anh.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'thu-vien-anh.php') ? 'active' : ''; ?>">Thư viện ảnh</a></li>
-                    <li><a href="gioi-thieu.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'gioi-thieu.php') ? 'active' : ''; ?>">Giới thiệu</a></li>
-                    <li><a href="lien-he.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'lien-he.php') ? 'active' : ''; ?>">Liên hệ</a></li>
+                    <li><a href="<?php echo url('pages/lien-he.php'); ?>" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'lien-he.php') ? 'active' : ''; ?>">Liên hệ</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <a href="dat-phong.php" class="btn-book-now">Đặt phòng</a>
+                    <a href="<?php echo url('pages/dat-phong.php'); ?>" class="btn-book-now">Đặt phòng</a>
                     <div class="nav-toggle" id="navToggle">
                         <span></span>
                         <span></span>
@@ -134,37 +126,25 @@
                 </a>
             </div>
             <div class="floating-menu-item">
-                <a href="phong.php" class="floating-link">
-                    <i class="fas fa-bed"></i>
-                    <span>Phòng</span>
+                <a href="<?php echo url('pages/phong-va-can-ho.php'); ?>" class="floating-link">
+                    <i class="fas fa-building"></i>
+                    <span>Phòng & Căn hộ</span>
                 </a>
             </div>
             <div class="floating-menu-item">
-                <a href="dich-vu.php" class="floating-link">
+                <a href="<?php echo url('pages/dich-vu.php'); ?>" class="floating-link">
                     <i class="fas fa-concierge-bell"></i>
                     <span>Dịch vụ</span>
                 </a>
             </div>
             <div class="floating-menu-item">
-                <a href="thu-vien-anh.php" class="floating-link">
-                    <i class="fas fa-images"></i>
-                    <span>Thư viện</span>
-                </a>
-            </div>
-            <div class="floating-menu-item">
-                <a href="gioi-thieu.php" class="floating-link">
-                    <i class="fas fa-info-circle"></i>
-                    <span>Giới thiệu</span>
-                </a>
-            </div>
-            <div class="floating-menu-item">
-                <a href="lien-he.php" class="floating-link">
+                <a href="<?php echo url('pages/lien-he.php'); ?>" class="floating-link">
                     <i class="fas fa-phone"></i>
                     <span>Liên hệ</span>
                 </a>
             </div>
             <div class="floating-menu-item">
-                <a href="dat-phong.php" class="floating-link booking-link">
+                <a href="<?php echo url('pages/dat-phong.php'); ?>" class="floating-link booking-link">
                     <i class="fas fa-calendar-check"></i>
                     <span>Đặt phòng</span>
                 </a>
