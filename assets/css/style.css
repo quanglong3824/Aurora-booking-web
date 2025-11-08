@@ -12,6 +12,22 @@ body {
     overflow-x: hidden;
 }
 
+/* Brand Color Variables */
+:root {
+    --brand-primary: #d4af37; /* Gold */
+    --brand-primary-2: #f4d03f; /* Gold light */
+    --brand-primary-rgb: 212, 175, 55;
+
+    --brand-secondary: #2c3e50; /* Navy */
+    --brand-secondary-rgb: 44, 62, 80;
+
+    --brand-accent: #667eea; /* Indigo */
+    --brand-accent-2: #764ba2; /* Purple */
+    --brand-accent-rgb: 102, 126, 234;
+
+    --text-on-dark: #ffffff;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -42,8 +58,8 @@ h3 {
 /* Buttons */
 .btn-primary {
     display: inline-block;
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
-    color: #fff;
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-primary-2));
+    color: var(--text-on-dark);
     padding: 15px 30px;
     text-decoration: none;
     border-radius: 50px;
@@ -57,13 +73,13 @@ h3 {
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 10px 25px rgba(var(--brand-primary-rgb), 0.3);
 }
 
 .btn-room {
     display: inline-block;
-    background: #2c3e50;
-    color: #fff;
+    background: var(--brand-secondary);
+    color: var(--text-on-dark);
     padding: 12px 25px;
     text-decoration: none;
     border-radius: 25px;
@@ -79,8 +95,8 @@ h3 {
 
 .btn-booking {
     grid-column: 1 / -1;
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
-    color: #fff;
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-primary-2));
+    color: var(--text-on-dark);
     padding: 15px 30px;
     border: none;
     border-radius: 25px;
@@ -93,7 +109,7 @@ h3 {
 
 .btn-booking:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 8px 20px rgba(var(--brand-primary-rgb), 0.3);
 }
 
 /* Header */
@@ -254,8 +270,8 @@ h3 {
 }
 
 .btn-book-now {
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
-    color: #fff;
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-primary-2));
+    color: var(--text-on-dark);
     padding: clamp(8px, 1.5vw, 12px) clamp(16px, 3vw, 24px);
     text-decoration: none;
     border-radius: 25px;
@@ -267,7 +283,7 @@ h3 {
 
 .btn-book-now:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 8px 20px rgba(var(--brand-primary-rgb), 0.3);
 }
 
 /* Dropdown Menu Styles */
