@@ -13,7 +13,6 @@ $page_header_bg = "/assets/image/services-hero.jpg";
 
 include '../includes/header.php';
 ?>
-
 <!-- Services Overview -->
 <section class="services-overview">
     <div class="container">

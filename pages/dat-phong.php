@@ -10,7 +10,7 @@ $breadcrumb = [
 ];
 
 // CSS bổ sung cho trang đặt phòng
-$additional_css = ['assets/css/dat-phong.css'];
+$additional_css = ['dat-phong.css'];
 
 // Include header
 include '../includes/header.php';
