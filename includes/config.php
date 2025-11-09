@@ -42,13 +42,13 @@ function getRelativeRoot() {
 define('BASE_URL', getBaseUrl());
 define('RELATIVE_ROOT', getRelativeRoot());
 
-// Helper function to create proper URLs
+// Helper function to create proper URLs (absolute based on BASE_URL)
 function url($path = '') {
-    return RELATIVE_ROOT . ltrim($path, '/');
+    return BASE_URL . ltrim($path, '/');
 }
 
-// Helper function for assets
+// Helper function for assets (absolute path)
 function asset($path = '') {
-    return url('assets/' . ltrim($path, '/'));
+    return BASE_URL . 'assets/' . ltrim($path, '/');
 }
 ?>
