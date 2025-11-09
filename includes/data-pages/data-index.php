@@ -60,21 +60,135 @@ if (!function_exists('get_deluxe_page_data')) {
     }
 }
 
+// Dữ liệu Premium Deluxe (khối 2)
+if (!function_exists('get_premium_deluxe_page_data')) {
+    function get_premium_deluxe_page_data() {
+        $data = [];
+        include __DIR__ . '/data-premium-deluxe.php';
+        $data['price_text'] = isset($price_text) ? $price_text : null;
+        $data['hero_subtitle'] = isset($hero_subtitle) ? $hero_subtitle : null;
+        $data['page_title'] = isset($page_title) ? $page_title : null;
+        $data['amenities'] = isset($amenities) ? $amenities : [];
+        $data['included_services'] = isset($included_services) ? $included_services : [];
+        $data['main_image'] = isset($main_image) ? $main_image : 'img/premium deluxe/PREMIUM-DELUXE-AURORA-HOTEL-1.jpg';
+        return $data;
+    }
+}
+
+// Dữ liệu Studio VIP (khối 3)
+if (!function_exists('get_studio_vip_page_data')) {
+    function get_studio_vip_page_data() {
+        $data = [];
+        include __DIR__ . '/data-studio-vip.php';
+        $data['price_text'] = isset($price_text) ? $price_text : null;
+        $data['hero_subtitle'] = isset($hero_subtitle) ? $hero_subtitle : null;
+        $data['page_title'] = isset($page_title) ? $page_title : null;
+        $data['amenities'] = isset($amenities) ? $amenities : [];
+        $data['included_services'] = isset($included_services) ? $included_services : [];
+        $data['main_image'] = isset($main_image) ? $main_image : 'img/studio apartment/CAN-HO-STUDIO-AURORA-HOTEL-1.jpg';
+        return $data;
+    }
+}
+
 $deluxe_data = get_deluxe_page_data();
 if (!empty($deluxe_data['price_text'])) {
     // Lấy phần số từ "1.900.000 VNĐ" -> "1.900.000"
     $room_deluxe_price = preg_replace('/[^0-9\.]/', '', $deluxe_data['price_text']);
 }
 
-// Ghi đè trực tiếp các biến hiển thị trên trang chủ bằng dữ liệu Deluxe theo yêu cầu
-// Xóa ánh xạ thừa sang biến phòng tiêu chuẩn để dữ liệu gọn sạch
+// Làm gọn và gán trực tiếp các biến dành riêng cho card Deluxe từ dữ liệu trang gốc
+if (!empty($deluxe_data['page_title'])) {
+    // Rút gọn tiêu đề lấy phần trước " - Aurora Hotel Plaza"
+    $room_deluxe_title = preg_replace('/\s*-\s*Aurora Hotel Plaza$/', '', $deluxe_data['page_title']);
+}
+if (!empty($deluxe_data['hero_subtitle'])) {
+    $room_deluxe_desc = $deluxe_data['hero_subtitle'];
+}
 
 // Biến ảnh hiển thị cho card Deluxe trên trang chủ
 $room_deluxe_image = isset($deluxe_data['main_image']) ? $deluxe_data['main_image'] : 'img/deluxe/DELUXE-ROOM-AURORA-1.jpg';
 
-// Biến DEMO cho các khối 2 và 3 (chưa sẵn sàng)
-$demo_block_text = 'DEMO – Chưa sẵn sàng';
-$demo_null = 'null';
+// Nạp dữ liệu Premium Deluxe cho khối 2 trên trang chủ
+$premium_data = get_premium_deluxe_page_data();
+// Giá: trích số từ "2.200.000 VNĐ" -> "2.200.000"
+$room_premium_price = !empty($premium_data['price_text']) ? preg_replace('/[^0-9\.]/', '', $premium_data['price_text']) : '2.200.000';
+// Tiêu đề rút gọn
+if (!empty($premium_data['page_title'])) {
+    $room_premium_title = preg_replace('/\s*-\s*Aurora Hotel Plaza$/', '', $premium_data['page_title']);
+} else {
+    $room_premium_title = 'Premium Deluxe Cao Cấp';
+}
+// Mô tả card
+$room_premium_desc = !empty($premium_data['hero_subtitle']) ? $premium_data['hero_subtitle'] : 'Không gian nghỉ dưỡng đẳng cấp, tiện nghi 5 sao.';
+// Ảnh card
+$room_premium_image = isset($premium_data['main_image']) ? $premium_data['main_image'] : 'img/premium deluxe/PREMIUM-DELUXE-AURORA-HOTEL-1.jpg';
+// Liên kết chi tiết (để index.php bọc bằng url())
+$room_premium_link_path = 'pages/phong/premium-deluxe-cao-cap.php';
+
+// Tiện nghi hiển thị trên card (Wifi, Bồn tắm, Dịch vụ phòng)
+$room_premium_amenity_wifi = 'WiFi miễn phí';
+$room_premium_amenity_bath = 'Vòi sen & bồn tắm';
+$room_premium_amenity_service = 'Dịch vụ phòng';
+if (!empty($premium_data['amenities']) && is_array($premium_data['amenities'])) {
+    foreach ($premium_data['amenities'] as $a) {
+        $lower = mb_strtolower($a);
+        if (strpos($lower, 'wifi') !== false) {
+            $room_premium_amenity_wifi = $a;
+        }
+        if (strpos($lower, 'bồn tắm') !== false || strpos($lower, 'vòi sen') !== false) {
+            $room_premium_amenity_bath = $a;
+        }
+    }
+}
+if (!empty($premium_data['included_services']) && is_array($premium_data['included_services'])) {
+    foreach ($premium_data['included_services'] as $s) {
+        $lower = mb_strtolower($s);
+        if (strpos($lower, 'dịch vụ phòng') !== false) {
+            $room_premium_amenity_service = $s;
+        }
+    }
+}
+
+// Nạp dữ liệu Studio VIP cho khối 3 trên trang chủ
+$studio_data = get_studio_vip_page_data();
+// Giá: trích số từ "2.950.000 VNĐ" -> "2.950.000"
+$room_studio_price = !empty($studio_data['price_text']) ? preg_replace('/[^0-9\.]/', '', $studio_data['price_text']) : '2.950.000';
+// Tiêu đề rút gọn
+if (!empty($studio_data['page_title'])) {
+    $room_studio_title = preg_replace('/\s*-\s*Aurora Hotel Plaza$/', '', $studio_data['page_title']);
+} else {
+    $room_studio_title = 'AURORA STUDIO (VIP)';
+}
+// Mô tả card
+$room_studio_desc = !empty($studio_data['hero_subtitle']) ? $studio_data['hero_subtitle'] : 'AURORA STUDIO (VIP) – Thiết kế sang trọng, tiện nghi cao cấp.';
+// Ảnh card
+$room_studio_image = isset($studio_data['main_image']) ? $studio_data['main_image'] : 'img/studio apartment/CAN-HO-STUDIO-AURORA-HOTEL-1.jpg';
+// Liên kết chi tiết
+$room_studio_link_path = 'pages/phong/studio-vip-dang-cap.php';
+
+// Tiện nghi hiển thị trên card (Wifi, Bồn tắm, Dịch vụ phòng)
+$room_studio_amenity_wifi = 'WiFi miễn phí';
+$room_studio_amenity_bath = 'Vòi sen & bồn tắm';
+$room_studio_amenity_service = 'Dịch vụ phòng';
+if (!empty($studio_data['amenities']) && is_array($studio_data['amenities'])) {
+    foreach ($studio_data['amenities'] as $a) {
+        $lower = mb_strtolower($a);
+        if (strpos($lower, 'wifi') !== false) {
+            $room_studio_amenity_wifi = $a;
+        }
+        if (strpos($lower, 'bồn tắm') !== false || strpos($lower, 'vòi sen') !== false) {
+            $room_studio_amenity_bath = $a;
+        }
+    }
+}
+if (!empty($studio_data['included_services']) && is_array($studio_data['included_services'])) {
+    foreach ($studio_data['included_services'] as $s) {
+        $lower = mb_strtolower($s);
+        if (strpos($lower, 'dịch vụ phòng') !== false) {
+            $room_studio_amenity_service = $s;
+        }
+    }
+}
 
 $services_title = 'Dịch vụ';
 $services_desc = 'Khám phá các dịch vụ đẳng cấp của chúng tôi';

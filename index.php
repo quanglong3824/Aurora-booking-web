@@ -3,6 +3,7 @@
 include 'includes/data-pages/data-index.php';
 // Include header
 include 'includes/header.php';
+
 ?>
 
 <!-- Hero Section -->
@@ -125,45 +126,45 @@ include 'includes/header.php';
                 </div>
             </div>
 
-            <!-- Khối 2 – DEMO (chưa sẵn sàng) -->
+            <!-- Khối 2 – Premium Deluxe Cao Cấp -->
             <div class="room-card">
                 <div class="room-image">
-                    <img src="https://via.placeholder.com/400x300/f0f0f0/666?text=DEMO" alt="<?= $demo_block_text ?>">
+                    <img src="<?= asset($room_premium_image) ?>" alt="<?= htmlspecialchars($room_premium_title) ?>" onerror="this.src='https://via.placeholder.com/400x300/f0f0f0/666?text=Premium+Deluxe'">
                 </div>
                 <div class="room-info">
-                    <h3><?= $demo_block_text ?></h3>
-                    <p><?= $demo_block_text ?></p>
+                    <h3><?= $room_premium_title ?></h3>
+                    <p><?= $room_premium_desc ?></p>
                     <div class="room-amenities">
-                        <span><i class="fas fa-wifi"></i> <?= $demo_null ?></span>
-                        <span><i class="fas fa-bath"></i> <?= $demo_null ?></span>
-                        <span><i class="fas fa-concierge-bell"></i> <?= $demo_null ?></span>
+                        <span><i class="fas fa-wifi"></i> <?= $room_premium_amenity_wifi ?></span>
+                        <span><i class="fas fa-bath"></i> <?= $room_premium_amenity_bath ?></span>
+                        <span><i class="fas fa-concierge-bell"></i> <?= $room_premium_amenity_service ?></span>
                     </div>
                     <div class="room-price">
-                        <span class="price"><?= $demo_null ?> VNĐ</span>
+                        <span class="price"><?= $room_premium_price ?> VNĐ</span>
                         <span class="per-night">/đêm</span>
                     </div>
-                    <a href="#" class="btn-room" style="background-color: rgb(<?= $brand_color_rgb ?>); border-color: rgb(<?= $brand_color_rgb ?>);"><?= $demo_null ?></a>
+                    <a href="<?= url($room_premium_link_path) ?>" class="btn-room" style="background-color: rgb(<?= $brand_color_rgb ?>); border-color: rgb(<?= $brand_color_rgb ?>);"><?= $cta_book_now ?></a>
                 </div>
             </div>
 
-            <!-- Khối 3 – DEMO (chưa sẵn sàng) -->
+            <!-- Khối 3 – Studio VIP Đẳng Cấp -->
             <div class="room-card">
                 <div class="room-image">
-                    <img src="https://via.placeholder.com/400x300/f0f0f0/666?text=DEMO" alt="<?= $demo_block_text ?>">
+                    <img src="<?= asset($room_studio_image) ?>" alt="<?= htmlspecialchars($room_studio_title) ?>" onerror="this.src='https://via.placeholder.com/400x300/f0f0f0/666?text=Studio+VIP'">
                 </div>
                 <div class="room-info">
-                    <h3><?= $demo_block_text ?></h3>
-                    <p><?= $demo_block_text ?></p>
+                    <h3><?= $room_studio_title ?></h3>
+                    <p><?= $room_studio_desc ?></p>
                     <div class="room-amenities">
-                        <span><i class="fas fa-wifi"></i> <?= $demo_null ?></span>
-                        <span><i class="fas fa-bath"></i> <?= $demo_null ?></span>
-                        <span><i class="fas fa-concierge-bell"></i> <?= $demo_null ?></span>
+                        <span><i class="fas fa-wifi"></i> <?= $room_studio_amenity_wifi ?></span>
+                        <span><i class="fas fa-bath"></i> <?= $room_studio_amenity_bath ?></span>
+                        <span><i class="fas fa-concierge-bell"></i> <?= $room_studio_amenity_service ?></span>
                     </div>
                     <div class="room-price">
-                        <span class="price"><?= $demo_null ?> VNĐ</span>
+                        <span class="price"><?= $room_studio_price ?> VNĐ</span>
                         <span class="per-night">/đêm</span>
                     </div>
-                    <a href="#" class="btn-room" style="background-color: rgb(<?= $brand_color_rgb ?>); border-color: rgb(<?= $brand_color_rgb ?>);"><?= $demo_null ?></a>
+                    <a href="<?= url($room_studio_link_path) ?>" class="btn-room" style="background-color: rgb(<?= $brand_color_rgb ?>); border-color: rgb(<?= $brand_color_rgb ?>);"><?= $cta_book_now ?></a>
                 </div>
             </div>
         </div>
