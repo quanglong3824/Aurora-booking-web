@@ -362,7 +362,7 @@ include '../includes/header.php';
     display: block;
     font-size: 2.5rem;
     font-weight: 700;
-    color: #d4af37;
+    color: #cc9a2c;
     margin-bottom: 5px;
 }
 
@@ -444,7 +444,7 @@ include '../includes/header.php';
     top: 0;
     bottom: 0;
     width: 2px;
-    background: #d4af37;
+    background: #cc9a2c;
     transform: translateX(-50%);
 }
 
@@ -464,7 +464,7 @@ include '../includes/header.php';
 }
 
 .timeline-year {
-    background: #d4af37;
+    background: #cc9a2c;
     color: white;
     padding: 15px 25px;
     border-radius: 25px;
@@ -524,7 +524,7 @@ include '../includes/header.php';
 .mv-icon {
     width: 80px;
     height: 80px;
-    background: #d4af37;
+    background: #cc9a2c;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -540,7 +540,7 @@ include '../includes/header.php';
 .mv-item h3 {
     font-size: 1.5rem;
     margin-bottom: 20px;
-    color: #d4af37;
+    color: #cc9a2c;
 }
 
 .team-section {
@@ -623,7 +623,7 @@ include '../includes/header.php';
 }
 
 .member-position {
-    color: #d4af37;
+    color: #cc9a2c;
     font-weight: 600;
     margin-bottom: 15px;
     text-transform: uppercase;
@@ -667,7 +667,7 @@ include '../includes/header.php';
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #d4af37, #f1c40f);
+    background: linear-gradient(90deg, #cc9a2c, #f1c40f);
 }
 
 .award-item:hover {
@@ -677,7 +677,7 @@ include '../includes/header.php';
 .award-icon {
     width: 70px;
     height: 70px;
-    background: linear-gradient(135deg, #d4af37, #f1c40f);
+    background: linear-gradient(135deg, #cc9a2c, #f1c40f);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -704,7 +704,7 @@ include '../includes/header.php';
 
 .award-year {
     display: inline-block;
-    background: #d4af37;
+    background: #cc9a2c;
     color: white;
     padding: 5px 15px;
     border-radius: 15px;

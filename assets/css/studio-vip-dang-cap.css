@@ -1,0 +1,12 @@
+/* Studio VIP Đẳng Cấp - Overrides */
+.room-detail-page .booking-card.vip { border: 1px solid rgba(155,89,182,0.25); box-shadow: 0 12px 32px rgba(155,89,182,0.18); position: sticky; top: 100px; }
+.room-detail-page .booking-card.vip .vip-badge { display:flex; align-items:center; gap:8px; background: linear-gradient(135deg, #8e44ad, #9b59b6); color:#fff; padding:8px 12px; border-radius:999px; width:max-content; margin:0 auto 12px; font-weight:700; letter-spacing:0.5px; }
+.room-detail-page .booking-card.vip .vip-note { text-align:center; color:#6c3483; font-size:0.95rem; margin-top:6px; }
+.room-detail-page .price-info { text-align:center; padding:18px; border-radius:12px; background: linear-gradient(135deg, rgba(142,68,173,0.12), rgba(155,89,182,0.08)); margin-bottom:16px; }
+.room-detail-page .price-info .price { font-size: 2.3rem; font-weight: 700; color: #8e44ad; }
+.room-detail-page .gallery-item .gallery-overlay { position:absolute; bottom:10px; left:10px; background: rgba(0,0,0,0.6); color:#fff; padding:6px 10px; border-radius:8px; font-size:0.9rem; }
+.room-detail-page .highlights.vip .highlight-item { background:#fbf4ff; border:1px dashed #d2b4de; border-radius:12px; padding:14px; }
+
+@media (max-width: 768px) {
+  .room-detail-page .vip-badge { font-size:0.9rem; }
+}

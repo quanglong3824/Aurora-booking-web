@@ -1,0 +1,13 @@
+/* Premium Deluxe Cao Cấp - Overrides */
+.room-detail-page .booking-card.premium { border: 1px solid rgba(204,154,44,0.2); box-shadow: 0 10px 30px rgba(204,154,44,0.15); }
+.room-detail-page .booking-card.premium .premium-badge { display:flex; align-items:center; gap:8px; background: linear-gradient(135deg, #cc9a2c, #f4d03f); color:#fff; padding:8px 12px; border-radius:999px; width:max-content; margin:0 auto 12px; font-weight:700; }
+.room-detail-page .booking-card.premium .vip-note { text-align:center; color:#8a6d1d; font-size:0.95rem; margin-top:6px; }
+.room-detail-page .btn-premium { background: linear-gradient(135deg, #cc9a2c, #f4d03f); color:#fff; border:none; }
+.room-detail-page .btn-premium:hover { box-shadow: 0 8px 22px rgba(204,154,44,0.35); transform: translateY(-2px); }
+.room-detail-page .highlights { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px; }
+.room-detail-page .highlight-item { background:#fff8e1; border:1px dashed #f1c40f; border-radius:12px; padding:14px; }
+.room-detail-page .gallery-item .gallery-overlay { position:absolute; bottom:10px; left:10px; background: rgba(0,0,0,0.55); color:#fff; padding:6px 10px; border-radius:8px; font-size:0.9rem; }
+
+@media (max-width: 768px) {
+  .room-detail-page .premium-badge { font-size:0.9rem; }
+}

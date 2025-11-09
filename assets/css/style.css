@@ -16,7 +16,7 @@ body {
 :root {
     --brand-primary: #cc9a2c; /* Gold */
     --brand-primary-2: #cc9a2c; /* Gold light */
-    --brand-primary-rgb: 212, 175, 55;
+    --brand-primary-rgb: 204, 154, 44;
 
     --brand-secondary: #2c3e50; /* Navy */
     --brand-secondary-rgb: 44, 62, 80;
@@ -160,11 +160,11 @@ h3 {
 }
 
 .nav-logo h1 {
-    color: #d4af37;
+    color: var(--brand-primary);
     font-size: clamp(1.5rem, 4vw, 2.2rem);
     margin: 0;
     font-weight: 700;
-    text-shadow: 0 2px 4px rgba(212, 175, 55, 0.2);
+    text-shadow: 0 2px 4px rgba(var(--brand-primary-rgb), 0.2);
     transition: all 0.3s ease;
 }
 
@@ -190,7 +190,7 @@ h3 {
 .nav-toggle span {
     width: 100%;
     height: 3px;
-    background: #d4af37;
+    background: var(--brand-primary);
     border-radius: 2px;
     transition: all 0.3s ease;
     display: block;
@@ -233,12 +233,12 @@ h3 {
 }
 
 .nav-menu a:hover {
-    color: #d4af37;
+    color: var(--brand-primary);
     transform: translateY(-2px);
 }
 
 .nav-menu a.active {
-    color: #d4af37;
+    color: var(--brand-primary);
     font-weight: 600;
 }
 
@@ -249,7 +249,7 @@ h3 {
     left: 50%;
     width: 0;
     height: 3px;
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-primary-2));
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     transform: translateX(-50%);
     border-radius: 2px;
@@ -332,8 +332,8 @@ h3 {
 }
 
 .dropdown-menu a:hover {
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(244, 208, 63, 0.1));
-    color: #d4af37;
+    background: linear-gradient(135deg, rgba(var(--brand-primary-rgb), 0.1), rgba(var(--brand-primary-rgb), 0.1));
+    color: var(--brand-primary);
     padding-left: 2rem;
     transform: none;
 }
@@ -350,7 +350,7 @@ h3 {
 }
 
 .btn-book-now {
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-primary-2));
     color: #fff;
     padding: 0.8rem 1.8rem;
     text-decoration: none;
@@ -360,13 +360,13 @@ h3 {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 4px 15px rgba(var(--brand-primary-rgb), 0.3);
 }
 
 .btn-book-now:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
-    background: linear-gradient(135deg, #f4d03f, #d4af37);
+    box-shadow: 0 8px 25px rgba(var(--brand-primary-rgb), 0.4);
+    background: linear-gradient(135deg, var(--brand-primary-2), var(--brand-primary));
 }
 
 /* Mobile Menu Toggle */
@@ -484,7 +484,7 @@ h3 {
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #d4af37;
+    border-color: #cc9a2c;
 }
 
 /* Section Headers */
@@ -576,7 +576,7 @@ h3 {
 }
 
 .room-amenities i {
-    color: #d4af37;
+    color: #cc9a2c;
 }
 
 .room-price {
@@ -589,7 +589,7 @@ h3 {
 .price {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #d4af37;
+    color: #cc9a2c;
 }
 
 .per-night {
@@ -625,7 +625,7 @@ h3 {
 .service-icon {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    background: linear-gradient(135deg, #cc9a2c, #f4d03f);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -684,7 +684,7 @@ h3 {
 
 .stat h3 {
     font-size: 2.5rem;
-    color: #d4af37;
+    color: #cc9a2c;
     margin-bottom: 5px;
 }
 
@@ -732,7 +732,7 @@ h3 {
 .contact-item i {
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    background: linear-gradient(135deg, #cc9a2c, #f4d03f);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -780,7 +780,7 @@ h3 {
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
-    border-color: #d4af37;
+    border-color: #cc9a2c;
 }
 
 .contact-form textarea {
@@ -805,7 +805,7 @@ h3 {
 .footer-section h3,
 .footer-section h4 {
     margin-bottom: 20px;
-    color: #d4af37;
+    color: #cc9a2c;
 }
 
 .footer-section p {
@@ -829,7 +829,7 @@ h3 {
 }
 
 .footer-section ul li a:hover {
-    color: #d4af37;
+    color: #cc9a2c;
 }
 
 .social-links {
@@ -851,7 +851,7 @@ h3 {
 }
 
 .social-links a:hover {
-    background: #d4af37;
+    background: #cc9a2c;
     transform: translateY(-2px);
 }
 
@@ -940,7 +940,7 @@ h3 {
 .nav-menu a:focus,
 .btn-book-now:focus,
 .nav-toggle:focus {
-    outline: 2px solid #d4af37;
+    outline: 2px solid #cc9a2c;
     outline-offset: 2px;
     border-radius: 4px;
 }
@@ -971,7 +971,7 @@ html {
 
 /* Room Filter Section */
 .room-filter {
-    background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    background: linear-gradient(135deg, #cc9a2c 0%, #b8941f 100%);
     padding: 2rem 0;
     margin-bottom: 3rem;
     margin-top: 80px; /* Tránh header đè lên */
@@ -1010,9 +1010,9 @@ html {
 }
 
 .filter-btn.active {
-    background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    background: linear-gradient(135deg, #cc9a2c 0%, #b8941f 100%);
     color: white;
-    border-color: #d4af37;
+    border-color: #cc9a2c;
     box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
 }
 
@@ -1046,7 +1046,7 @@ html {
 
 .filter-options select:focus {
     outline: none;
-    border-color: #d4af37;
+    border-color: #cc9a2c;
     box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
 }
 
@@ -1069,7 +1069,7 @@ html {
     font-weight: 700;
     color: #2d3748;
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    background: linear-gradient(135deg, #cc9a2c 0%, #b8941f 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -1111,7 +1111,7 @@ html {
 }
 
 .room-card.exclusive {
-    border: 3px solid #d4af37;
+    border: 3px solid #cc9a2c;
     box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
 }
 
@@ -1136,7 +1136,7 @@ html {
     position: absolute;
     top: 1rem;
     left: 1rem;
-    background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    background: linear-gradient(135deg, #cc9a2c 0%, #b8941f 100%);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 20px;
@@ -1146,7 +1146,7 @@ html {
 }
 
 .room-badge.exclusive {
-    background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    background: linear-gradient(135deg, #cc9a2c 0%, #b8941f 100%);
 }
 
 .room-gallery-btn {
@@ -1230,7 +1230,7 @@ html {
 }
 
 .room-specs i {
-    color: #d4af37;
+    color: #cc9a2c;
 }
 
 .room-amenities {
@@ -1248,7 +1248,7 @@ html {
 }
 
 .amenity-item i {
-    color: #d4af37;
+    color: #cc9a2c;
     width: 16px;
     text-align: center;
 }
@@ -1322,7 +1322,7 @@ html {
 }
 
 .room-book-btn {
-    background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    background: linear-gradient(135deg, #cc9a2c 0%, #b8941f 100%);
     color: white;
 }
 
@@ -1358,7 +1358,7 @@ html {
 }
 
 .comparison-table th {
-    background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    background: linear-gradient(135deg, #cc9a2c 0%, #b8941f 100%);
     color: white;
     font-weight: 600;
     font-size: 1.1rem;
@@ -1393,7 +1393,7 @@ html {
 /* Special Offers */
 .special-offers {
     padding: 4rem 0;
-    background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    background: linear-gradient(135deg, #cc9a2c 0%, #b8941f 100%);
     color: white;
 }
 
@@ -1460,7 +1460,7 @@ html {
 }
 
 .btn-offer {
-    background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    background: linear-gradient(135deg, #cc9a2c 0%, #b8941f 100%);
     color: white;
     border: none;
     padding: 1rem 2rem;
@@ -1507,7 +1507,7 @@ html {
 }
 
 .breadcrumb a {
-    color: #d4af37;
+    color: #cc9a2c;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
@@ -1574,7 +1574,7 @@ html {
 
 .room-detail-hero .room-badge {
     display: inline-block;
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    background: linear-gradient(135deg, #cc9a2c, #f4d03f);
     color: #2c3e50;
     padding: 0.5rem 1.5rem;
     border-radius: 25px;
@@ -1587,7 +1587,7 @@ html {
 }
 
 .room-detail-hero .room-badge.exclusive {
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    background: linear-gradient(135deg, #cc9a2c, #f4d03f);
     color: #2c3e50;
     box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
@@ -1627,7 +1627,7 @@ html {
 }
 
 .room-detail-hero .room-quick-info i {
-    color: #d4af37;
+    color: #cc9a2c;
     font-size: 1.1rem;
 }
 
@@ -1683,7 +1683,7 @@ html {
 
 .thumbnail:hover,
 .thumbnail.active {
-    border-color: #d4af37;
+    border-color: #cc9a2c;
     transform: scale(1.05);
     box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
 }
@@ -1727,7 +1727,7 @@ html {
 
 .room-info .info-card h2 {
     font-size: 1.8rem;
-    border-bottom: 2px solid #d4af37;
+    border-bottom: 2px solid #cc9a2c;
     padding-bottom: 0.5rem;
 }
 
@@ -1748,11 +1748,11 @@ html {
     padding: 1rem;
     background: #f8f9fa;
     border-radius: 10px;
-    border-left: 4px solid #d4af37;
+    border-left: 4px solid #cc9a2c;
 }
 
 .spec-item i {
-    color: #d4af37;
+    color: #cc9a2c;
     font-size: 1.3rem;
     width: 24px;
     text-align: center;
@@ -1792,7 +1792,7 @@ html {
 }
 
 .amenity-category h4 i {
-    color: #d4af37;
+    color: #cc9a2c;
     font-size: 1.2rem;
 }
 
@@ -1812,7 +1812,7 @@ html {
     content: '✓';
     position: absolute;
     left: 0;
-    color: #d4af37;
+    color: #cc9a2c;
     font-weight: bold;
 }
 
@@ -1838,13 +1838,13 @@ html {
 }
 
 .service-item:hover {
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    background: linear-gradient(135deg, #cc9a2c, #f4d03f);
     color: white;
     transform: translateX(5px);
 }
 
 .service-item i {
-    color: #d4af37;
+    color: #cc9a2c;
     font-size: 1.5rem;
     width: 30px;
     text-align: center;
@@ -1881,7 +1881,7 @@ html {
     align-items: center;
     gap: 0.8rem;
     padding: 1rem;
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    background: linear-gradient(135deg, #cc9a2c, #f4d03f);
     color: #2c3e50;
     border-radius: 10px;
     font-weight: 500;
@@ -1915,7 +1915,7 @@ html {
 
 .booking-card.suite-booking {
     background: linear-gradient(135deg, #f8f9fa, #ffffff);
-    border: 2px solid #d4af37;
+    border: 2px solid #cc9a2c;
 }
 
 .price-section {
@@ -1942,7 +1942,7 @@ html {
 .current-price {
     font-size: 2rem;
     font-weight: 700;
-    color: #d4af37;
+    color: #cc9a2c;
 }
 
 .price-period {
@@ -2006,7 +2006,7 @@ html {
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #d4af37;
+    border-color: #cc9a2c;
     box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
 }
 
@@ -2046,7 +2046,7 @@ html {
 }
 
 .price-total {
-    border-top: 2px solid #d4af37;
+    border-top: 2px solid #cc9a2c;
     padding-top: 1rem;
     font-weight: 700;
     font-size: 1.1rem;
@@ -2061,7 +2061,7 @@ html {
 /* Book Button */
 .btn-book-room {
     width: 100%;
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    background: linear-gradient(135deg, #cc9a2c, #f4d03f);
     color: #2c3e50;
     border: none;
     padding: 1rem 2rem;
@@ -2079,18 +2079,18 @@ html {
 }
 
 .btn-book-room:hover {
-    background: linear-gradient(135deg, #f4d03f, #d4af37);
+    background: linear-gradient(135deg, #f4d03f, #cc9a2c);
     transform: translateY(-2px);
     box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
 }
 
 .btn-book-room.suite-btn {
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    background: linear-gradient(135deg, #cc9a2c, #f4d03f);
     color: #2c3e50;
 }
 
 .btn-book-room.suite-btn:hover {
-    background: linear-gradient(135deg, #f4d03f, #d4af37);
+    background: linear-gradient(135deg, #f4d03f, #cc9a2c);
     box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
 }
 
@@ -2124,7 +2124,7 @@ html {
 }
 
 .vip-services-card h3 {
-    color: #d4af37;
+    color: #cc9a2c;
     margin-bottom: 1.5rem;
     text-align: center;
     font-family: 'Playfair Display', serif;
@@ -2148,7 +2148,7 @@ html {
 }
 
 .vip-service i {
-    color: #d4af37;
+    color: #cc9a2c;
     font-size: 1.2rem;
     width: 24px;
     text-align: center;
@@ -2162,7 +2162,7 @@ html {
 
 .vip-value .included {
     display: block;
-    color: #d4af37;
+    color: #cc9a2c;
     font-weight: 600;
     margin-top: 0.5rem;
 }
@@ -2207,13 +2207,13 @@ html {
 }
 
 .contact-method:hover {
-    border-color: #d4af37;
+    border-color: #cc9a2c;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
 }
 
 .contact-method i {
-    color: #d4af37;
+    color: #cc9a2c;
     font-size: 1.3rem;
     width: 30px;
     text-align: center;
@@ -2280,7 +2280,7 @@ html {
 }
 
 .policy-card h3 i {
-    color: #d4af37;
+    color: #cc9a2c;
     font-size: 1.4rem;
 }
 
@@ -2880,7 +2880,7 @@ html {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    background: linear-gradient(135deg, #cc9a2c, #f4d03f);
     border: none;
     box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
     cursor: pointer;
@@ -2969,13 +2969,13 @@ html {
 }
 
 .floating-link.booking-link {
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    background: linear-gradient(135deg, #cc9a2c, #f4d03f);
     color: #2c3e50;
     font-weight: 600;
 }
 
 .floating-link.booking-link:hover {
-    background: linear-gradient(135deg, #f4d03f, #d4af37);
+    background: linear-gradient(135deg, #f4d03f, #cc9a2c);
     transform: translateX(5px) scale(1.02);
 }
 

@@ -659,7 +659,7 @@ include '../includes/header.php';
 }
 
 .service-badge {
-    background: #d4af37;
+    background: #cc9a2c;
     color: white;
     padding: 8px 16px;
     border-radius: 20px;
@@ -702,14 +702,14 @@ include '../includes/header.php';
 }
 
 .service-features i {
-    color: #d4af37;
+    color: #cc9a2c;
 }
 
 .service-link {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: #d4af37;
+    color: #cc9a2c;
     font-weight: 600;
     text-decoration: none;
     transition: color 0.3s ease;
@@ -761,7 +761,7 @@ include '../includes/header.php';
 
 .highlight-item i {
     font-size: 1.5rem;
-    color: #d4af37;
+    color: #cc9a2c;
     margin-top: 5px;
     flex-shrink: 0;
 }
@@ -877,7 +877,7 @@ include '../includes/header.php';
 }
 
 .menu-price {
-    color: #d4af37;
+    color: #cc9a2c;
     font-weight: 700;
 }
 
@@ -902,7 +902,7 @@ include '../includes/header.php';
 
 .feature-item i {
     font-size: 1.5rem;
-    color: #d4af37;
+    color: #cc9a2c;
     flex-shrink: 0;
 }
 
@@ -947,7 +947,7 @@ include '../includes/header.php';
 }
 
 .program-time {
-    background: #d4af37;
+    background: #cc9a2c;
     color: white;
     padding: 8px 15px;
     border-radius: 20px;
@@ -1003,7 +1003,7 @@ include '../includes/header.php';
 }
 
 .room-specs i {
-    color: #d4af37;
+    color: #cc9a2c;
 }
 
 .room-item p {
@@ -1044,7 +1044,7 @@ include '../includes/header.php';
 }
 
 .service-category i {
-    color: #d4af37;
+    color: #cc9a2c;
 }
 
 .service-category ul {
@@ -1062,7 +1062,7 @@ include '../includes/header.php';
 
 .service-category li:before {
     content: '•';
-    color: #d4af37;
+    color: #cc9a2c;
     position: absolute;
     left: 0;
 }
@@ -1098,7 +1098,7 @@ include '../includes/header.php';
 
 .additional-item i {
     font-size: 2.5rem;
-    color: #d4af37;
+    color: #cc9a2c;
     margin-bottom: 20px;
 }
 

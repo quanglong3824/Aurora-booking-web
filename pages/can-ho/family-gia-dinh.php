@@ -3,20 +3,20 @@ php
 $page_title = "Căn Hộ Family Gia Đình - Aurora Hotel";
 $page_description = "Căn hộ Family rộng rãi với 2 phòng ngủ, phù hợp cho gia đình có trẻ em. Tiện nghi đầy đủ và không gian thoải mái tại Aurora Hotel.";
 $canonical_url = "https://aurorahotel.vn/can-ho-family-gia-dinh";
-$additional_css = ['room-detail.css'];
+$additional_css = ['apartment-detail.css', 'can-ho-family.css'];
 $breadcrumb = [
     ['name' => 'Trang chủ', 'url' => '/'],
     ['name' => 'Căn hộ', 'url' => '/can-ho'],
     ['name' => 'Căn Hộ Family Gia Đình', 'url' => '']
 ];
-include '../../../includes/header.php';
+include '../../includes/header.php';
 ?>
 
-<main class="apartment-detail-page">
+<main class="apartment-detail-page family-theme">
     <!-- Hero Section -->
     <section class="apartment-hero">
         <div class="hero-image">
-            <img src="../../../assets/image/room-suite-ocean.jpg" alt="Căn Hộ Family Gia Đình Aurora Hotel" loading="lazy">
+            <img src="<?php echo asset('assets/image/room-suite-ocean.jpg'); ?>" alt="Căn Hộ Family Gia Đình Aurora Hotel" loading="lazy">
             <div class="hero-overlay">
                 <div class="container">
                     <h1>Căn Hộ Family Gia Đình</h1>
@@ -244,7 +244,7 @@ include '../../../includes/header.php';
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="../../../assets/image/room-deluxe.jpg" alt="Căn hộ Family - Bếp" loading="lazy">
+                    <img src="<?php echo asset('assets/image/room-deluxe.jpg'); ?>" alt="Căn hộ Family - Bếp" loading="lazy">
                     <div class="gallery-overlay">
                         <span>Bếp đầy đủ tiện nghi</span>
                     </div>
@@ -259,29 +259,29 @@ include '../../../includes/header.php';
             <h3>Các Căn Hộ Khác</h3>
             <div class="apartments-grid">
                 <div class="apartment-card">
-                    <img src="../../../assets/image/room-presidential.jpg" alt="Căn hộ Premium" loading="lazy">
+                    <img src="<?php echo asset('assets/image/room-presidential.jpg'); ?>" alt="Căn hộ Premium" loading="lazy">
                     <div class="apartment-card-content">
                         <h4>Căn Hộ Premium</h4>
                         <p class="apartment-price">6.500.000 VNĐ/đêm</p>
-                        <a href="../can-ho-premium/can-ho-premium-sang-trong.php" class="btn btn-outline">Xem Chi Tiết</a>
+                        <a href="<?php echo url('pages/can-ho/premium-sang-trong.php'); ?>" class="btn btn-outline">Xem Chi Tiết</a>
                     </div>
                 </div>
                 
                 <div class="apartment-card">
-                    <img src="../../../assets/image/room-suite-ocean.jpg" alt="Căn hộ Studio" loading="lazy">
+                    <img src="<?php echo asset('assets/image/room-suite-ocean.jpg'); ?>" alt="Căn hộ Studio" loading="lazy">
                     <div class="apartment-card-content">
                         <h4>Căn Hộ Studio</h4>
                         <p class="apartment-price">4.800.000 VNĐ/đêm</p>
-                        <a href="../can-ho-studio/can-ho-studio-hien-dai.php" class="btn btn-outline">Xem Chi Tiết</a>
+                        <a href="<?php echo url('pages/can-ho/studio-hien-dai.php'); ?>" class="btn btn-outline">Xem Chi Tiết</a>
                     </div>
                 </div>
                 
                 <div class="apartment-card">
-                    <img src="../../../assets/image/room-standard.jpg" alt="Phòng Premium Deluxe Twin" loading="lazy">
+                    <img src="<?php echo asset('assets/image/room-standard.jpg'); ?>" alt="Phòng Premium Deluxe Twin" loading="lazy">
                     <div class="apartment-card-content">
                         <h4>Phòng Premium Twin</h4>
                         <p class="apartment-price">3.500.000 VNĐ/đêm</p>
-                        <a href="../../rooms/phong-premium-deluxe-twin/phong-premium-deluxe-twin-doi.php" class="btn btn-outline">Xem Chi Tiết</a>
+                        <a href="<?php echo url('pages/phong/premium-deluxe-twin-doi.php'); ?>" class="btn btn-outline">Xem Chi Tiết</a>
                     </div>
                 </div>
             </div>
@@ -289,4 +289,4 @@ include '../../../includes/header.php';
     </section>
 </main>
 
-<?php include '../../../includes/footer.php'; ?>
+<?php include '../../includes/footer.php'; ?>

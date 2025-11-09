@@ -1,0 +1,172 @@
+/* Auth Pages Styles - Aurora Hotel */
+
+.auth-page {
+    padding: 90px 90px;
+    background: #f8f9fa;
+}
+
+.auth-container {
+    margin-top: 100px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.auth-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.auth-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+}
+
+.auth-illustration {
+    background: linear-gradient(135deg, rgba(var(--brand-primary-rgb),0.12), rgba(var(--brand-primary-rgb),0.06));
+    padding: 28px;
+    display: flex;
+    align-items: center;
+}
+
+.auth-illustration .illustration-box {
+    border: 2px dashed rgba(var(--brand-primary-rgb),0.3);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    color: #2c3e50;
+}
+
+.auth-content {
+    padding: 32px 28px;
+}
+
+.auth-title {
+    margin-bottom: 6px;
+    color: #2c3e50;
+}
+
+.auth-subtitle {
+    color: #666;
+    margin-bottom: 18px;
+}
+
+.auth-form .form-group {
+    margin-bottom: 14px;
+}
+
+.auth-form .form-group.small { margin-top: -6px; }
+
+.auth-form label {
+    display: block;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 6px;
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="email"],
+.auth-form input[type="password"],
+.auth-form input[type="tel"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-form input:focus {
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 4px rgba(var(--brand-primary-rgb),0.12);
+}
+
+.auth-form .form-help {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.auth-form .form-error {
+    font-size: 0.9rem;
+    color: #c0392b;
+}
+
+.auth-form .form-success {
+    font-size: 0.9rem;
+    color: #2ecc71;
+}
+
+.auth-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.auth-links a { color: var(--brand-secondary); text-decoration: none; }
+.auth-links a:hover { text-decoration: underline; }
+
+.auth-divider {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 10px;
+    margin: 16px 0;
+    color: #999;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+}
+
+.btn-auth {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-primary-2));
+    color: var(--text-on-dark);
+    padding: 12px 18px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-auth:hover { filter: brightness(1.05); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+
+.auth-switch {
+    margin-top: 18px;
+    color: #666;
+}
+
+.auth-switch a { color: var(--brand-secondary); text-decoration: none; }
+.auth-switch a:hover { text-decoration: underline; }
+
+@media (max-width: 992px) {
+    .auth-grid { grid-template-columns: 1fr; }
+    .auth-illustration { padding: 20px; }
+}
+
+/* Header login link */
+.nav-actions .nav-login {
+    margin-right: 12px;
+    color: var(--brand-secondary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-actions .nav-login:hover { color: var(--brand-primary); }
+
+/* Utility */
+.text-center { text-align: center; }
+.mt-1 { margin-top: 6px; }
+.mt-2 { margin-top: 12px; }
+.mt-3 { margin-top: 18px; }
+.mb-1 { margin-bottom: 6px; }
+.mb-2 { margin-bottom: 12px; }
+.mb-3 { margin-bottom: 18px; }

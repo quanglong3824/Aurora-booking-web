@@ -552,8 +552,8 @@ include '../includes/header.php';
 
 .filter-btn:hover,
 .filter-btn.active {
-    background: #d4af37;
-    border-color: #d4af37;
+    background: #cc9a2c;
+    border-color: #cc9a2c;
     color: white;
     transform: translateY(-2px);
 }
@@ -704,7 +704,7 @@ include '../includes/header.php';
 .stat-icon {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, #d4af37, #f1c40f);
+    background: linear-gradient(135deg, #cc9a2c, #f1c40f);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -771,7 +771,7 @@ include '../includes/header.php';
 }
 
 .feature i {
-    color: #d4af37;
+    color: #cc9a2c;
     font-size: 1.2rem;
 }
 
@@ -865,7 +865,7 @@ include '../includes/header.php';
 }
 
 .lightbox-close:hover {
-    color: #d4af37;
+    color: #cc9a2c;
 }
 
 .lightbox-prev,

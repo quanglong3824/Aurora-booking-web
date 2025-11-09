@@ -541,13 +541,13 @@ include '../includes/header.php';
 .contact-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    border-color: #d4af37;
+    border-color: #cc9a2c;
 }
 
 .contact-icon {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, #d4af37, #f1c40f);
+    background: linear-gradient(135deg, #cc9a2c, #f1c40f);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -584,7 +584,7 @@ include '../includes/header.php';
 }
 
 .contact-link {
-    color: #d4af37;
+    color: #cc9a2c;
     text-decoration: none;
     font-size: 1.1rem;
     transition: color 0.3s ease;
@@ -680,7 +680,7 @@ include '../includes/header.php';
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #d4af37;
+    border-color: #cc9a2c;
 }
 
 .form-group textarea {
@@ -750,7 +750,7 @@ include '../includes/header.php';
 .location-icon {
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, #d4af37, #f1c40f);
+    background: linear-gradient(135deg, #cc9a2c, #f1c40f);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -869,7 +869,7 @@ include '../includes/header.php';
 .info-item i {
     width: 40px;
     height: 40px;
-    background: linear-gradient(135deg, #d4af37, #f1c40f);
+    background: linear-gradient(135deg, #cc9a2c, #f1c40f);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1014,7 +1014,7 @@ include '../includes/header.php';
 }
 
 .faq-question i {
-    color: #d4af37;
+    color: #cc9a2c;
     font-size: 1.2rem;
     transition: transform 0.3s ease;
 }

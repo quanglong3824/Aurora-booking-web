@@ -65,6 +65,7 @@ require_once __DIR__ . '/config.php';
                     <li><a href="<?php echo url('pages/lien-he.php'); ?>" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'lien-he.php') ? 'active' : ''; ?>">Liên hệ</a></li>
                 </ul>
                 <div class="nav-actions">
+                    <a href="<?php echo url('pages/auth/dang-nhap.php'); ?>" class="nav-login">Đăng nhập</a>
                     <a href="<?php echo url('pages/dat-phong.php'); ?>" class="btn-book-now">Đặt phòng</a>
                     <div class="nav-toggle" id="navToggle">
                         <span></span>

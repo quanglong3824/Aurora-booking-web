@@ -1,0 +1,48 @@
+/* Căn Hộ Studio Hiện Đại - phong cách tối giản, mát mẻ */
+.apartment-detail-page.studio-theme {
+  --studio-bg: #f0f6ff;
+  --studio-primary: #1e4b7a;
+  --studio-accent: #3a7bd5;
+  --studio-text: #2d3954;
+  --studio-muted: #6b7c93;
+  background: var(--studio-bg);
+}
+
+/* Hero */
+.studio-theme .apartment-hero .hero-overlay { background: linear-gradient(180deg, rgba(58,123,213,0.18), rgba(240,246,255,0.9)); }
+.studio-theme .apartment-hero h1 { color: var(--studio-primary); }
+.studio-theme .hero-subtitle { color: var(--studio-muted); }
+
+/* Nội dung studio */
+.studio-theme .apartment-content h2,
+.studio-theme .apartment-content h3 { color: var(--studio-primary); }
+.studio-theme .apartment-content p { color: var(--studio-text); }
+
+.studio-theme .amenity-section,
+.studio-theme .layout-item,
+.studio-theme .policy-item { background: #fff; border: 1px solid #e1e9f5; border-radius: 12px; box-shadow: 0 8px 20px rgba(30,75,122,0.08); }
+.studio-theme .layout-item i { color: var(--studio-accent); }
+
+/* Nút và hành động */
+.studio-theme .btn-book,
+.studio-theme .btn-primary { background: var(--studio-accent); border-color: var(--studio-accent); color: #fff; border-radius: 12px; }
+.studio-theme .btn-book:hover,
+.studio-theme .btn-primary:hover { background: #2e6ab7; border-color: #2e6ab7; }
+
+/* Gallery */
+.studio-theme .apartment-gallery .gallery-item { border-radius: 12px; overflow: hidden; }
+.studio-theme .apartment-gallery .gallery-overlay { background: rgba(58,123,213,0.18); color: var(--studio-primary); }
+
+/* Liên quan */
+.studio-theme .apartment-card { border: 1px solid #e1e9f5; border-radius: 12px; box-shadow: 0 8px 20px rgba(30,75,122,0.08); }
+.studio-theme .apartment-card h4 { color: var(--studio-primary); }
+.studio-theme .apartment-price { color: var(--studio-muted); }
+.studio-theme .btn.btn-outline { border-color: var(--studio-primary); color: var(--studio-primary); }
+.studio-theme .btn.btn-outline:hover { background: var(--studio-primary); color: #fff; }
+
+/* Responsive */
+@media (max-width: 992px) { .studio-theme .booking-card { margin-top: 20px; } }
+@media (max-width: 576px) {
+  .studio-theme .apartment-hero h1 { font-size: 1.6rem; }
+  .studio-theme .btn-book { width: 100%; }
+}

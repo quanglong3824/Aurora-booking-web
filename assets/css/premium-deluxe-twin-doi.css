@@ -1,0 +1,14 @@
+/* Premium Deluxe Twin Đôi - Overrides */
+.room-detail-page .booking-card.family { border: 1px solid rgba(52,152,219,0.15); box-shadow: 0 10px 28px rgba(52,152,219,0.12); }
+.room-detail-page .booking-card.family .family-badge { display:flex; align-items:center; gap:8px; background: linear-gradient(135deg, #3498db, #5dade2); color:#fff; padding:8px 12px; border-radius:999px; width:max-content; margin:0 auto 12px; font-weight:700; }
+.room-detail-page .booking-card.family .family-note { text-align:center; color:#1b4f72; font-size:0.95rem; margin-top:6px; }
+.room-detail-page .btn-family { background: linear-gradient(135deg, #3498db, #5dade2); color:#fff; border:none; }
+.room-detail-page .btn-family:hover { box-shadow: 0 8px 22px rgba(52,152,219,0.35); transform: translateY(-2px); }
+.room-detail-page .family-activities { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:16px; margin-top:18px; }
+.room-detail-page .family-activities .activity-item { display:flex; gap:12px; background:#f8fbff; border:1px solid #eaf2fb; border-radius:12px; padding:12px; align-items:flex-start; }
+.room-detail-page .family-activities .activity-item i { color:#3498db; font-size:1.4rem; }
+.room-detail-page .services-list li::before { content:'\f004'; font-family:'Font Awesome 6 Free'; font-weight:900; color:#3498db; }
+
+@media (max-width: 768px) {
+  .room-detail-page .family-badge { font-size:0.9rem; }
+}

@@ -3,20 +3,20 @@ php
 $page_title = "Phòng Premium Deluxe Cao Cấp - Aurora Hotel";
 $page_description = "Phòng Premium Deluxe cao cấp với thiết kế sang trọng, tiện nghi đẳng cấp và dịch vụ hoàn hảo tại Aurora Hotel.";
 $canonical_url = "https://aurorahotel.vn/phong-premium-deluxe-cao-cap";
-$additional_css = ['room-detail.css'];
+$additional_css = ['room-detail.css', 'premium-deluxe-cao-cap.css'];
 $breadcrumb = [
     ['name' => 'Trang chủ', 'url' => '/'],
     ['name' => 'Phòng', 'url' => '/phong'],
     ['name' => 'Phòng Premium Deluxe Cao Cấp', 'url' => '']
 ];
-include '../../../includes/header.php';
+include '../../includes/header.php';
 ?>
 
 <main class="room-detail-page">
     <!-- Hero Section -->
     <section class="room-hero">
         <div class="hero-image">
-            <img src="../../../assets/image/room-suite.jpg" alt="Phòng Premium Deluxe Cao Cấp Aurora Hotel" loading="lazy">
+            <img src="<?php echo asset('image/room-suite.jpg'); ?>" alt="Phòng Premium Deluxe Cao Cấp Aurora Hotel" loading="lazy">
             <div class="hero-overlay">
                 <div class="container">
                     <h1>Phòng Premium Deluxe Cao Cấp</h1>
@@ -164,25 +164,25 @@ include '../../../includes/header.php';
             <h3>Thư Viện Hình Ảnh</h3>
             <div class="gallery-grid">
                 <div class="gallery-item main">
-                    <img src="../../../assets/image/room-suite.jpg" alt="Phòng Premium Deluxe - Không gian chính" loading="lazy">
+                    <img src="<?php echo asset('image/room-suite.jpg'); ?>" alt="Phòng Premium Deluxe - Không gian chính" loading="lazy">
                     <div class="gallery-overlay">
                         <span>Không gian chính</span>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="../../../assets/image/room-suite-ocean.jpg" alt="Phòng Premium Deluxe - View biển" loading="lazy">
+                    <img src="<?php echo asset('image/room-suite-ocean.jpg'); ?>" alt="Phòng Premium Deluxe - View biển" loading="lazy">
                     <div class="gallery-overlay">
                         <span>View biển tuyệt đẹp</span>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="../../../assets/image/room-deluxe-pool.jpg" alt="Phòng Premium Deluxe - Phòng tắm" loading="lazy">
+                    <img src="<?php echo asset('image/room-deluxe-pool.jpg'); ?>" alt="Phòng Premium Deluxe - Phòng tắm" loading="lazy">
                     <div class="gallery-overlay">
                         <span>Phòng tắm cao cấp</span>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="../../../assets/image/room-deluxe.jpg" alt="Phòng Premium Deluxe - Ban công" loading="lazy">
+                    <img src="<?php echo asset('image/room-deluxe.jpg'); ?>" alt="Phòng Premium Deluxe - Ban công" loading="lazy">
                     <div class="gallery-overlay">
                         <span>Ban công riêng</span>
                     </div>
@@ -197,29 +197,29 @@ include '../../../includes/header.php';
             <h3>Khám Phá Các Phòng Khác</h3>
             <div class="rooms-grid">
                 <div class="room-card">
-                    <img src="../../../assets/image/room-deluxe.jpg" alt="Phòng Deluxe" loading="lazy">
+                    <img src="<?php echo asset('image/room-deluxe.jpg'); ?>" alt="Phòng Deluxe" loading="lazy">
                     <div class="room-card-content">
                         <h4>Phòng Deluxe Sang Trọng</h4>
                         <p class="room-price">2.500.000 VNĐ/đêm</p>
-                        <a href="../phong-deluxe/phong-deluxe-sang-trong.php" class="btn btn-outline">Xem Chi Tiết</a>
+                        <a href="<?php echo url('pages/phong/deluxe-sang-trong.php'); ?>" class="btn btn-outline">Xem Chi Tiết</a>
                     </div>
                 </div>
                 
                 <div class="room-card">
-                    <img src="../../../assets/image/room-presidential.jpg" alt="Phòng Studio VIP" loading="lazy">
+                    <img src="<?php echo asset('image/room-presidential.jpg'); ?>" alt="Phòng Studio VIP" loading="lazy">
                     <div class="room-card-content">
                         <h4>Phòng Studio VIP</h4>
                         <p class="room-price">4.500.000 VNĐ/đêm</p>
-                        <a href="../phong-studio-vip/phong-studio-vip-dang-cap.php" class="btn btn-outline">Xem Chi Tiết</a>
+                        <a href="<?php echo url('pages/phong/studio-vip-dang-cap.php'); ?>" class="btn btn-outline">Xem Chi Tiết</a>
                     </div>
                 </div>
                 
                 <div class="room-card">
-                    <img src="../../../assets/image/room-standard.jpg" alt="Phòng Premium Deluxe Twin" loading="lazy">
+                    <img src="<?php echo asset('image/room-standard.jpg'); ?>" alt="Phòng Premium Deluxe Twin" loading="lazy">
                     <div class="room-card-content">
                         <h4>Premium Deluxe Twin</h4>
                         <p class="room-price">3.500.000 VNĐ/đêm</p>
-                        <a href="../phong-premium-deluxe-twin/phong-premium-deluxe-twin-doi.php" class="btn btn-outline">Xem Chi Tiết</a>
+                        <a href="<?php echo url('pages/phong/premium-deluxe-twin-doi.php'); ?>" class="btn btn-outline">Xem Chi Tiết</a>
                     </div>
                 </div>
             </div>
@@ -227,4 +227,4 @@ include '../../../includes/header.php';
     </section>
 </main>
 
-<?php include '../../../includes/footer.php'; ?>
+<?php include '../../includes/footer.php'; ?>

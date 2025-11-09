@@ -1,0 +1,56 @@
+/* Căn Hộ Premium Sang Trọng - phong cách hiện đại, sang trọng */
+.apartment-detail-page.premium-theme {
+  --premium-bg: #f7f8fb;
+  --premium-primary: #222c3f;
+  --premium-accent: #caa664; /* gold */
+  --premium-text: #2b2f36;
+  --premium-muted: #6c7280;
+}
+
+/* Hero */
+.premium-theme .apartment-hero .hero-overlay { background: linear-gradient(180deg, rgba(34,44,63,0.25), rgba(247,248,251,0.9)); }
+.premium-theme .apartment-hero h1 { color: var(--premium-primary); letter-spacing: 0.4px; }
+.premium-theme .hero-subtitle { color: var(--premium-muted); }
+
+/* Khối nội dung cao cấp */
+.premium-theme .apartment-content h2,
+.premium-theme .apartment-content h3 { color: var(--premium-primary); }
+.premium-theme .apartment-content p { color: var(--premium-text); }
+
+.premium-theme .layout-item,
+.premium-theme .exclusive-item,
+.premium-theme .amenity-item {
+  background: #fff;
+  border: 1px solid #e6e8ee;
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(34,44,63,0.08);
+}
+.premium-theme .layout-item i { color: var(--premium-accent); }
+
+/* Nút premium */
+.premium-theme .btn-premium-apartment,
+.premium-theme .btn-book { background: var(--premium-primary); color: #fff; border: 1px solid var(--premium-primary); border-radius: 12px; }
+.premium-theme .btn-premium-apartment:hover,
+.premium-theme .btn-book:hover { background: #1a2130; border-color: #1a2130; }
+
+/* Điểm nhấn vàng */
+.premium-theme .badge-premium { display: inline-block; padding: 6px 12px; background: #fff6e2; color: var(--premium-primary); border: 1px solid #f0e1bf; border-radius: 999px; font-weight: 600; }
+.premium-theme .price-info { color: var(--premium-accent); font-weight: 700; }
+
+/* Gallery */
+.premium-theme .apartment-gallery .gallery-item { border-radius: 12px; overflow: hidden; }
+.premium-theme .apartment-gallery .gallery-overlay { background: rgba(202,166,100,0.2); color: var(--premium-primary); }
+
+/* Liên quan */
+.premium-theme .apartment-card { border: 1px solid #e6e8ee; border-radius: 12px; box-shadow: 0 10px 24px rgba(34,44,63,0.08); }
+.premium-theme .apartment-card h4 { color: var(--premium-primary); }
+.premium-theme .apartment-price { color: var(--premium-muted); }
+.premium-theme .btn.btn-outline { border-color: var(--premium-primary); color: var(--premium-primary); }
+.premium-theme .btn.btn-outline:hover { background: var(--premium-primary); color: #fff; }
+
+/* Responsive */
+@media (max-width: 992px) { .premium-theme .booking-card { margin-top: 20px; } }
+@media (max-width: 576px) {
+  .premium-theme .apartment-hero h1 { font-size: 1.6rem; }
+  .premium-theme .btn-book { width: 100%; }
+}

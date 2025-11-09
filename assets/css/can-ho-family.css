@@ -1,0 +1,65 @@
+/* Căn Hộ Family Gia Đình - phong cách ấm áp, thân thiện */
+.apartment-detail-page.family-theme {
+  --family-bg: #fff8f0;
+  --family-primary: #c47f2c;
+  --family-primary-dark: #9e6522;
+  --family-text: #3a2f27;
+  --family-muted: #7a6a5f;
+  --family-card: #ffffff;
+  background-color: var(--family-bg);
+}
+
+/* Hero */
+.family-theme .apartment-hero .hero-image img { filter: saturate(1.05) contrast(1.02); }
+.family-theme .apartment-hero .hero-overlay { background: linear-gradient(180deg, rgba(196,127,44,0.15), rgba(255,248,240,0.85)); }
+.family-theme .apartment-hero h1 { color: var(--family-primary); letter-spacing: 0.3px; }
+.family-theme .apartment-hero .hero-subtitle { color: var(--family-text); opacity: 0.9; }
+
+/* Nội dung chính */
+.family-theme .apartment-content h2,
+.family-theme .apartment-content h3 {
+  color: var(--family-primary);
+}
+.family-theme .apartment-content p { color: var(--family-text); }
+
+/* Thẻ tiện nghi và mục danh sách */
+.family-theme .layout-item,
+.family-theme .amenity-item,
+.family-theme .exclusive-item {
+  background: var(--family-card);
+  border: 1px solid #f3e5d7;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(196,127,44,0.08);
+}
+.family-theme .layout-item i { color: var(--family-primary); }
+
+/* Card đặt phòng */
+.family-theme .booking-card { background: #fff; border: 1px solid #f1e3d5; border-radius: 16px; box-shadow: 0 10px 24px rgba(196,127,44,0.12); }
+.family-theme .price-info { color: var(--family-primary-dark); }
+.family-theme .btn-book,
+.family-theme .btn-primary { background: var(--family-primary); color: #fff; border-radius: 12px; border: none; }
+.family-theme .btn-book:hover,
+.family-theme .btn-primary:hover { background: var(--family-primary-dark); }
+
+/* Gallery */
+.family-theme .apartment-gallery .gallery-item { border-radius: 14px; overflow: hidden; }
+.family-theme .apartment-gallery .gallery-overlay { background: rgba(196,127,44,0.18); color: #2a1f18; }
+
+/* Thẻ căn hộ liên quan */
+.family-theme .apartment-card { border: 1px solid #f3e5d7; border-radius: 14px; box-shadow: 0 8px 20px rgba(196,127,44,0.08); }
+.family-theme .apartment-card h4 { color: var(--family-primary-dark); }
+.family-theme .apartment-price { color: var(--family-muted); }
+.family-theme .btn.btn-outline { border-color: var(--family-primary); color: var(--family-primary); }
+.family-theme .btn.btn-outline:hover { background: var(--family-primary); color: #fff; }
+
+/* Badge nhỏ */
+.family-theme .badge-family { display: inline-block; padding: 6px 10px; background: #ffe7cc; color: var(--family-primary-dark); border-radius: 20px; font-weight: 600; }
+
+/* Responsive */
+@media (max-width: 992px) {
+  .family-theme .booking-card { margin-top: 20px; }
+}
+@media (max-width: 576px) {
+  .family-theme .apartment-hero h1 { font-size: 1.6rem; }
+  .family-theme .btn-book { width: 100%; }
+}

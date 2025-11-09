@@ -102,7 +102,7 @@
 }
 
 .booking-step h3 {
-    color: #d4af37;
+    color: var(--brand-primary);
     font-size: 1.8rem;
     margin-bottom: 30px;
     padding-bottom: 15px;
@@ -148,8 +148,8 @@
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #d4af37;
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px rgba(var(--brand-primary-rgb), 0.1);
 }
 
 .form-group textarea {
@@ -186,8 +186,8 @@
 }
 
 .service-item input[type="checkbox"]:checked + label {
-    border-color: #d4af37;
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(244, 208, 63, 0.05));
+    border-color: var(--brand-primary);
+    background: linear-gradient(135deg, rgba(var(--brand-primary-rgb), 0.1), rgba(var(--brand-primary-rgb), 0.05));
 }
 
 .service-info h4 {
@@ -203,7 +203,7 @@
 }
 
 .service-price {
-    color: #d4af37;
+    color: var(--brand-primary);
     font-weight: 600;
     font-size: 1rem;
 }
@@ -240,7 +240,7 @@
     align-items: center;
     padding: 15px 0;
     margin-top: 15px;
-    border-top: 2px solid #d4af37;
+    border-top: 2px solid #cc9a2c;
     font-weight: 700;
     font-size: 1.2rem;
     color: #2c3e50;
@@ -285,13 +285,13 @@
 }
 
 .payment-option input[type="radio"]:checked + label {
-    border-color: #d4af37;
+    border-color: #cc9a2c;
     background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(244, 208, 63, 0.05));
 }
 
 .payment-option label i {
     font-size: 1.5rem;
-    color: #d4af37;
+    color: #cc9a2c;
 }
 
 .payment-option label span {
@@ -319,7 +319,7 @@
 }
 
 .checkbox-label a {
-    color: #d4af37;
+    color: #cc9a2c;
     text-decoration: none;
 }
 
@@ -362,7 +362,7 @@
 
 .btn-next,
 .btn-submit {
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    background: linear-gradient(135deg, #cc9a2c, #f4d03f);
     color: white;
     box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
@@ -409,7 +409,7 @@
 .info-item i {
     width: 40px;
     height: 40px;
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    background: linear-gradient(135deg, #cc9a2c, #f4d03f);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -463,7 +463,7 @@
     align-items: center;
     padding: 15px 0;
     margin-top: 15px;
-    border-top: 2px solid #d4af37;
+    border-top: 2px solid #cc9a2c;
     font-weight: 700;
     font-size: 1.1rem;
     color: #2c3e50;
@@ -502,7 +502,7 @@
 }
 
 .contact-item i {
-    color: #d4af37;
+    color: #cc9a2c;
     width: 16px;
 }
 
@@ -544,7 +544,7 @@
 .modal-header {
     text-align: center;
     padding: 40px 30px 20px;
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    background: linear-gradient(135deg, #cc9a2c, #f4d03f);
     border-radius: 20px 20px 0 0;
     color: white;
 }
@@ -585,7 +585,7 @@
 
 .booking-code strong {
     font-size: 1.3rem;
-    color: #d4af37;
+    color: #cc9a2c;
     font-weight: 700;
 }
 
@@ -608,7 +608,7 @@
 }
 
 .modal-footer .btn-primary {
-    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    background: linear-gradient(135deg, #cc9a2c, #f4d03f);
     color: white;
 }
 
