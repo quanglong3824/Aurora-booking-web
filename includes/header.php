@@ -45,8 +45,11 @@ require_once __DIR__ . '/config.php';
         <nav class="navbar">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <a href="<?php echo url('index.php'); ?>">
-                        <h1>Aurora Hotel Plaza</h1>
+                    <a href="<?php echo url('index.php'); ?>" class="nav-logo-link" aria-label="Aurora Hotel Plaza">
+                        <img src="<?php echo asset('img/src/logo/logo-white-ui.png'); ?>"
+                             alt="<?php echo isset($hotel_name) ? $hotel_name : 'Aurora Hotel Plaza'; ?>"
+                             class="logo-img"
+                             style="height:80px; width:auto; display:block;" />
                     </a>
                 </div>
                 <ul class="nav-menu" id="navMenu">
