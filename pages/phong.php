@@ -36,17 +36,19 @@ include '../includes/header.php';
         <div class="room-category" data-category="deluxe">
             <div class="category-header">
                 <h2>Phòng Deluxe</h2>
-                <p>Không gian sang trọng với thiết kế tinh tế và view tuyệt đẹp</p>
+                <?php include_once '../includes/data-pages/data-deluxe.php'; ?>
+                <p><?php echo htmlspecialchars($hero_subtitle); ?></p>
             </div>
 
             <div class="rooms-grid">
                 <div class="room-card featured" data-room-type="deluxe">
                     <div class="room-image-container">
-                        <img src="<?php echo asset('image/room-deluxe.jpg'); ?>" alt="Phòng Deluxe Sang Trọng" loading="lazy">
+                        <img src="<?php echo asset('img/deluxe/DELUXE-ROOM-AURORA-1.jpg'); ?>" alt="Phòng Deluxe Sang Trọng" loading="lazy">
                         <div class="room-badge">Phổ biến</div>
                         <div class="room-gallery-btn">
                             <i class="fas fa-images"></i>
-                            <span>12 ảnh</span>
+                            <?php $deluxe_images = glob(__DIR__ . '/../assets/img/deluxe/*.jpg'); ?>
+                            <span><?php echo isset($deluxe_images) ? count($deluxe_images) : 0; ?> ảnh</span>
                         </div>
                     </div>
 
@@ -66,51 +68,45 @@ include '../includes/header.php';
                         </div>
 
                         <div class="room-details">
+                            <?php if (isset($specs) && is_array($specs)) : ?>
                             <div class="room-specs">
-                                <span><i class="fas fa-bed"></i> 1 giường King</span>
-                                <span><i class="fas fa-users"></i> 2 khách</span>
-                                <span><i class="fas fa-expand-arrows-alt"></i> 35m²</span>
-                                <span><i class="fas fa-eye"></i> View biển/thành phố</span>
+                                <?php foreach ($specs as $spec): 
+                                    $icon = 'fas fa-check';
+                                    if (isset($spec['label']) && stripos($spec['label'], 'Diện tích') !== false) {
+                                        $icon = 'fas fa-expand-arrows-alt';
+                                    } elseif (isset($spec['label']) && stripos($spec['label'], 'Sức chứa') !== false) {
+                                        $icon = 'fas fa-users';
+                                    } elseif (isset($spec['label']) && stripos($spec['label'], 'Loại giường') !== false) {
+                                        $icon = 'fas fa-bed';
+                                    }
+                                ?>
+                                    <span><i class="<?php echo $icon; ?>"></i> <?php echo htmlspecialchars($spec['value']); ?></span>
+                                <?php endforeach; ?>
                             </div>
+                            <?php endif; ?>
 
                             <div class="room-amenities">
-                                <div class="amenity-item">
-                                    <i class="fas fa-wifi"></i>
-                                    <span>WiFi miễn phí</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-tv"></i>
-                                    <span>Smart TV 55"</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-snowflake"></i>
-                                    <span>Điều hòa thông minh</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-coffee"></i>
-                                    <span>Minibar cao cấp</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-bath"></i>
-                                    <span>Phòng tắm marble</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-concierge-bell"></i>
-                                    <span>Dịch vụ 24/7</span>
-                                </div>
+                                <?php if (isset($amenities) && is_array($amenities)) : ?>
+                                    <?php foreach ($amenities as $amenity): ?>
+                                        <div class="amenity-item">
+                                            <i class="fas fa-check"></i>
+                                            <span><?php echo htmlspecialchars($amenity); ?></span>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </div>
                         </div>
 
                         <div class="room-pricing">
                             <div class="price-info">
-                                <span class="current-price">2.500.000 VNĐ</span>
-                                <span class="price-period">/đêm</span>
+                                <span class="current-price"><?php echo htmlspecialchars($price_text); ?></span>
+                                <span class="price-period"><?php echo htmlspecialchars($per_night_text); ?></span>
                             </div>
                         </div>
 
                         <div class="room-actions">
-                            <a href="<?php echo url('pages/phong/deluxe-sang-trong.php'); ?>" class="btn-secondary room-details-btn">Xem chi tiết</a>
-                            <a href="<?php echo url('pages/dat-phong.php'); ?>" class="btn-primary room-book-btn">Đặt ngay</a>
+                            <a href="<?php echo url('pages/phong/deluxe-sang-trong.php'); ?>" class="btn-secondary room-details-btn"><?php echo isset($related1_btn_text) ? htmlspecialchars($related1_btn_text) : 'Xem Chi Tiết'; ?></a>
+                            <a href="<?php echo url('pages/dat-phong.php?room=deluxe'); ?>" class="btn-primary room-book-btn"><?php echo htmlspecialchars($book_button_text); ?></a>
                         </div>
                     </div>
                 </div>
@@ -121,17 +117,18 @@ include '../includes/header.php';
         <div class="room-category" data-category="premium">
             <div class="category-header">
                 <h2>Phòng Premium Deluxe</h2>
-                <p>Đẳng cấp cao nhất với không gian rộng rãi và tiện nghi hoàn hảo</p>
+                <?php include_once '../includes/data-pages/data-premium-deluxe.php'; ?>
+                <p><?php echo htmlspecialchars($hero_subtitle); ?></p>
             </div>
 
             <div class="rooms-grid">
                 <div class="room-card" data-room-type="premium">
                     <div class="room-image-container">
-                        <img src="<?php echo asset('image/room-suite.jpg'); ?>" alt="Phòng Premium Deluxe Cao Cấp" loading="lazy">
+                        <img src="<?php echo asset($main_image); ?>" alt="<?php echo htmlspecialchars($gallery_main_alt); ?>" loading="lazy">
                         <div class="room-badge">Cao cấp</div>
                         <div class="room-gallery-btn">
                             <i class="fas fa-images"></i>
-                            <span>15 ảnh</span>
+                            <span><?php echo (isset($gallery_images) && is_array($gallery_images)) ? count($gallery_images) : 0; ?> ảnh</span>
                         </div>
                     </div>
 
@@ -151,51 +148,47 @@ include '../includes/header.php';
                         </div>
 
                         <div class="room-details">
+                            <?php if (isset($specs) && is_array($specs)) : ?>
                             <div class="room-specs">
-                                <span><i class="fas fa-bed"></i> 1 giường King</span>
-                                <span><i class="fas fa-users"></i> 2-3 khách</span>
-                                <span><i class="fas fa-expand-arrows-alt"></i> 45m²</span>
-                                <span><i class="fas fa-eye"></i> View biển panorama</span>
+                                <?php foreach ($specs as $spec): 
+                                    $icon = 'fas fa-check';
+                                    if (isset($spec['label']) && stripos($spec['label'], 'Diện tích') !== false) {
+                                        $icon = 'fas fa-expand-arrows-alt';
+                                    } elseif (isset($spec['label']) && stripos($spec['label'], 'Sức chứa') !== false) {
+                                        $icon = 'fas fa-users';
+                                    } elseif (isset($spec['label']) && stripos($spec['label'], 'Loại giường') !== false) {
+                                        $icon = 'fas fa-bed';
+                                    } elseif (isset($spec['label']) && stripos($spec['label'], 'View') !== false) {
+                                        $icon = 'fas fa-eye';
+                                    }
+                                ?>
+                                    <span><i class="<?php echo $icon; ?>"></i> <?php echo htmlspecialchars($spec['value']); ?></span>
+                                <?php endforeach; ?>
                             </div>
+                            <?php endif; ?>
 
                             <div class="room-amenities">
-                                <div class="amenity-item">
-                                    <i class="fas fa-wifi"></i>
-                                    <span>WiFi tốc độ cao</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-tv"></i>
-                                    <span>Smart TV 65"</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-hot-tub"></i>
-                                    <span>Jacuzzi riêng</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-glass-cheers"></i>
-                                    <span>Bar mini cao cấp</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-spa"></i>
-                                    <span>Khu vực thư giãn</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-crown"></i>
-                                    <span>Dịch vụ VIP</span>
-                                </div>
+                                <?php if (isset($amenities) && is_array($amenities)) : ?>
+                                    <?php foreach ($amenities as $amenity): ?>
+                                        <div class="amenity-item">
+                                            <i class="fas fa-check"></i>
+                                            <span><?php echo htmlspecialchars($amenity); ?></span>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </div>
                         </div>
 
                         <div class="room-pricing">
                             <div class="price-info">
-                                <span class="current-price">4.200.000 VNĐ</span>
-                                <span class="price-period">/đêm</span>
+                                <span class="current-price"><?php echo htmlspecialchars($price_text); ?></span>
+                                <span class="price-period"><?php echo htmlspecialchars($per_night_text); ?></span>
                             </div>
                         </div>
 
                         <div class="room-actions">
                             <a href="<?php echo url('pages/phong/premium-deluxe-cao-cap.php'); ?>" class="btn-secondary room-details-btn">Xem chi tiết</a>
-                            <a href="<?php echo url('pages/dat-phong.php'); ?>" class="btn-primary room-book-btn">Đặt ngay</a>
+                            <a href="<?php echo url($booking_url_path); ?>" class="btn-primary room-book-btn"><?php echo htmlspecialchars($book_button_text); ?></a>
                         </div>
                     </div>
                 </div>
@@ -270,7 +263,7 @@ include '../includes/header.php';
 
                         <div class="room-actions">
                             <a href="<?php echo url('pages/phong/premium-deluxe-twin-doi.php'); ?>" class="btn-secondary room-details-btn">Xem chi tiết</a>
-                            <a href="<?php echo url('pages/dat-phong.php'); ?>" class="btn-primary room-book-btn">Đặt ngay</a>
+                            <a href="<?php echo url('pages/dat-phong.php?room=premium-deluxe-twin'); ?>" class="btn-primary room-book-btn">Đặt ngay</a>
                         </div>
                     </div>
                 </div>
@@ -281,17 +274,18 @@ include '../includes/header.php';
         <div class="room-category" data-category="studio">
             <div class="category-header">
                 <h2>Phòng Studio VIP</h2>
-                <p>Không gian sống hiện đại với thiết kế thông minh và dịch vụ VIP</p>
+                <?php include_once '../includes/data-pages/data-studio-vip.php'; ?>
+                <p><?php echo htmlspecialchars($hero_subtitle); ?></p>
             </div>
 
             <div class="rooms-grid">
                 <div class="room-card" data-room-type="studio">
                     <div class="room-image-container">
-                        <img src="<?php echo asset('image/room-presidential.jpg'); ?>" alt="Phòng Studio VIP Đẳng Cấp" loading="lazy">
+                        <img src="<?php echo asset($main_image); ?>" alt="<?php echo htmlspecialchars($gallery_main_alt); ?>" loading="lazy">
                         <div class="room-badge">VIP</div>
                         <div class="room-gallery-btn">
                             <i class="fas fa-images"></i>
-                            <span>18 ảnh</span>
+                            <span><?php echo (isset($gallery_images) && is_array($gallery_images)) ? count($gallery_images) : 0; ?> ảnh</span>
                         </div>
                     </div>
 
@@ -311,51 +305,47 @@ include '../includes/header.php';
                         </div>
 
                         <div class="room-details">
+                            <?php if (isset($specs) && is_array($specs)) : ?>
                             <div class="room-specs">
-                                <span><i class="fas fa-bed"></i> 1 giường King</span>
-                                <span><i class="fas fa-users"></i> 2 khách</span>
-                                <span><i class="fas fa-expand-arrows-alt"></i> 55m²</span>
-                                <span><i class="fas fa-eye"></i> View 360° thành phố</span>
+                                <?php foreach ($specs as $spec): 
+                                    $icon = 'fas fa-check';
+                                    if (isset($spec['label']) && stripos($spec['label'], 'Diện tích') !== false) {
+                                        $icon = 'fas fa-expand-arrows-alt';
+                                    } elseif (isset($spec['label']) && stripos($spec['label'], 'Sức chứa') !== false) {
+                                        $icon = 'fas fa-users';
+                                    } elseif (isset($spec['label']) && stripos($spec['label'], 'Loại giường') !== false) {
+                                        $icon = 'fas fa-bed';
+                                    } elseif (isset($spec['label']) && stripos($spec['label'], 'View') !== false) {
+                                        $icon = 'fas fa-eye';
+                                    }
+                                ?>
+                                    <span><i class="<?php echo $icon; ?>"></i> <?php echo htmlspecialchars($spec['value']); ?></span>
+                                <?php endforeach; ?>
                             </div>
+                            <?php endif; ?>
 
                             <div class="room-amenities">
-                                <div class="amenity-item">
-                                    <i class="fas fa-crown"></i>
-                                    <span>Dịch vụ Butler</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-tv"></i>
-                                    <span>Smart TV 75"</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-utensils"></i>
-                                    <span>Bếp mini cao cấp</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-wine-glass"></i>
-                                    <span>Wine cellar riêng</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-spa"></i>
-                                    <span>Spa mini trong phòng</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-helicopter"></i>
-                                    <span>Dịch vụ helicopter</span>
-                                </div>
+                                <?php if (isset($amenities) && is_array($amenities)) : ?>
+                                    <?php foreach ($amenities as $amenity): ?>
+                                        <div class="amenity-item">
+                                            <i class="fas fa-check"></i>
+                                            <span><?php echo htmlspecialchars($amenity); ?></span>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </div>
                         </div>
 
                         <div class="room-pricing">
                             <div class="price-info">
-                                <span class="current-price">8.500.000 VNĐ</span>
-                                <span class="price-period">/đêm</span>
+                                <span class="current-price"><?php echo htmlspecialchars($price_text); ?></span>
+                                <span class="price-period"><?php echo htmlspecialchars($per_night_text); ?></span>
                             </div>
                         </div>
 
                         <div class="room-actions">
                             <a href="<?php echo url('pages/phong/studio-vip-dang-cap.php'); ?>" class="btn-secondary room-details-btn">Xem chi tiết</a>
-                            <a href="<?php echo url('pages/dat-phong.php'); ?>" class="btn-primary room-book-btn">Đặt ngay</a>
+                            <a href="<?php echo url($booking_url_path); ?>" class="btn-primary room-book-btn"><?php echo htmlspecialchars($book_button_text); ?></a>
                         </div>
                     </div>
                 </div>

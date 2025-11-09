@@ -9,7 +9,7 @@ $breadcrumb = [
 ];
 $page_header_title = "Dịch vụ Aurora Hotel Plaza";
 $page_header_subtitle = "Trải nghiệm đẳng cấp với đầy đủ tiện ích hiện đại";
-$page_header_bg = "/assets/image/services-hero.jpg";
+$page_header_bg = "/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-2.jpg";
 
 include '../includes/header.php';
 ?>
@@ -24,7 +24,7 @@ include '../includes/header.php';
         <div class="services-grid">
             <div class="service-card featured">
                 <div class="service-image">
-                    <img src="/assets/image/restaurant.jpg" alt="Nhà hàng Aurora" loading="lazy">
+                    <img src="/assets/img/restaurant/NHA-HANG-AURORA-HOTEL-1.jpg" alt="Nhà hàng Aurora" loading="lazy">
                     <div class="service-overlay">
                         <div class="service-badge">Nổi bật</div>
                     </div>
@@ -43,7 +43,7 @@ include '../includes/header.php';
             
             <div class="service-card">
                 <div class="service-image">
-                    <img src="/assets/image/spa.jpg" alt="Aurora Spa" loading="lazy">
+                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-6.jpg" alt="Aurora Spa" loading="lazy">
                 </div>
                 <div class="service-content">
                     <h3>Aurora Spa & Wellness</h3>
@@ -59,7 +59,7 @@ include '../includes/header.php';
             
             <div class="service-card">
                 <div class="service-image">
-                    <img src="/assets/image/pool.jpg" alt="Hồ bơi" loading="lazy">
+                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-4.jpg" alt="Hồ bơi" loading="lazy">
                 </div>
                 <div class="service-content">
                     <h3>Hồ bơi vô cực</h3>
@@ -75,7 +75,7 @@ include '../includes/header.php';
             
             <div class="service-card">
                 <div class="service-image">
-                    <img src="/assets/image/gym.jpg" alt="Phòng gym" loading="lazy">
+                    <img src="/assets/img/service/gym/GYM-AURORA-HOTEL-1.jpg" alt="Phòng gym" loading="lazy">
                 </div>
                 <div class="service-content">
                     <h3>Fitness Center</h3>
@@ -91,7 +91,7 @@ include '../includes/header.php';
             
             <div class="service-card">
                 <div class="service-image">
-                    <img src="/assets/image/conference.jpg" alt="Phòng hội nghị" loading="lazy">
+                    <img src="/assets/img/service/meet/Hoi-nghi-aurora-5.jpg" alt="Phòng hội nghị" loading="lazy">
                 </div>
                 <div class="service-content">
                     <h3>Trung tâm hội nghị</h3>
@@ -107,7 +107,7 @@ include '../includes/header.php';
             
             <div class="service-card">
                 <div class="service-image">
-                    <img src="/assets/image/concierge.jpg" alt="Dịch vụ concierge" loading="lazy">
+                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-3.jpg" alt="Dịch vụ concierge" loading="lazy">
                 </div>
                 <div class="service-content">
                     <h3>Concierge Service</h3>
@@ -178,12 +178,12 @@ include '../includes/header.php';
             
             <div class="service-detail-gallery">
                 <div class="gallery-main">
-                    <img src="/assets/image/restaurant-main.jpg" alt="Nhà hàng Aurora" loading="lazy">
+                    <img src="/assets/img/restaurant/NHA-HANG-AURORA-HOTEL-1.jpg" alt="Nhà hàng Aurora" loading="lazy">
                 </div>
                 <div class="gallery-thumbs">
-                    <img src="/assets/image/restaurant-1.jpg" alt="Không gian nhà hàng" loading="lazy">
-                    <img src="/assets/image/restaurant-2.jpg" alt="Món ăn đặc sắc" loading="lazy">
-                    <img src="/assets/image/restaurant-3.jpg" alt="Hầm rượu" loading="lazy">
+                    <img src="/assets/img/restaurant/NHA-HANG-AURORA-HOTEL-10.jpg" alt="Không gian nhà hàng" loading="lazy">
+                    <img src="/assets/img/restaurant/NHA-HANG-AURORA-HOTEL-11.jpg" alt="Món ăn đặc sắc" loading="lazy">
+                    <img src="/assets/img/restaurant/NHA-HANG-AURORA-HOTEL-14.jpg" alt="Hầm rượu" loading="lazy">
                 </div>
             </div>
         </div>
@@ -196,12 +196,12 @@ include '../includes/header.php';
         <div class="service-detail-content">
             <div class="service-detail-gallery">
                 <div class="gallery-main">
-                    <img src="/assets/image/spa-main.jpg" alt="Aurora Spa" loading="lazy">
+                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-2.jpg" alt="Aurora Spa" loading="lazy">
                 </div>
                 <div class="gallery-thumbs">
-                    <img src="/assets/image/spa-1.jpg" alt="Phòng massage" loading="lazy">
-                    <img src="/assets/image/spa-2.jpg" alt="Sauna" loading="lazy">
-                    <img src="/assets/image/spa-3.jpg" alt="Jacuzzi" loading="lazy">
+                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-3.jpg" alt="Phòng massage" loading="lazy">
+                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-4.jpg" alt="Sauna" loading="lazy">
+                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-6.jpg" alt="Jacuzzi" loading="lazy">
                 </div>
             </div>
             
@@ -306,12 +306,12 @@ include '../includes/header.php';
             
             <div class="service-detail-gallery">
                 <div class="gallery-main">
-                    <img src="/assets/image/pool-main.jpg" alt="Hồ bơi vô cực" loading="lazy">
+                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-1.jpg" alt="Hồ bơi vô cực" loading="lazy">
                 </div>
                 <div class="gallery-thumbs">
-                    <img src="/assets/image/pool-1.jpg" alt="Tầm nhìn từ hồ bơi" loading="lazy">
-                    <img src="/assets/image/pool-2.jpg" alt="Pool bar" loading="lazy">
-                    <img src="/assets/image/pool-3.jpg" alt="Khu vực thư giãn" loading="lazy">
+                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-2.jpg" alt="Tầm nhìn từ hồ bơi" loading="lazy">
+                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-3.jpg" alt="Pool bar" loading="lazy">
+                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-4.jpg" alt="Khu vực thư giãn" loading="lazy">
                 </div>
             </div>
         </div>
@@ -324,12 +324,12 @@ include '../includes/header.php';
         <div class="service-detail-content">
             <div class="service-detail-gallery">
                 <div class="gallery-main">
-                    <img src="/assets/image/gym-main.jpg" alt="Fitness Center" loading="lazy">
+                    <img src="/assets/img/service/gym/GYM-AURORA-HOTEL-1.jpg" alt="Fitness Center" loading="lazy">
                 </div>
                 <div class="gallery-thumbs">
-                    <img src="/assets/image/gym-1.jpg" alt="Khu tập tạ" loading="lazy">
-                    <img src="/assets/image/gym-2.jpg" alt="Khu cardio" loading="lazy">
-                    <img src="/assets/image/gym-3.jpg" alt="Phòng yoga" loading="lazy">
+                    <img src="/assets/img/service/gym/GYM-AURORA-HOTEL-2.jpg" alt="Khu tập tạ" loading="lazy">
+                    <img src="/assets/img/service/gym/GYM-AURORA-HOTEL-3.jpg" alt="Khu cardio" loading="lazy">
+                    <img src="/assets/img/service/gym/GYM-AURORA-HOTEL-1.jpg" alt="Phòng yoga" loading="lazy">
                 </div>
             </div>
             
@@ -447,12 +447,12 @@ include '../includes/header.php';
             
             <div class="service-detail-gallery">
                 <div class="gallery-main">
-                    <img src="/assets/image/conference-main.jpg" alt="Trung tâm hội nghị" loading="lazy">
+                    <img src="/assets/img/service/meet/Hoi-nghi-aurora-5.jpg" alt="Trung tâm hội nghị" loading="lazy">
                 </div>
                 <div class="gallery-thumbs">
-                    <img src="/assets/image/conference-1.jpg" alt="Grand Ballroom" loading="lazy">
-                    <img src="/assets/image/conference-2.jpg" alt="Meeting Room" loading="lazy">
-                    <img src="/assets/image/conference-3.jpg" alt="Boardroom" loading="lazy">
+                    <img src="/assets/img/service/meet/Hoi-nghi-aurora-6.jpg" alt="Grand Ballroom" loading="lazy">
+                    <img src="/assets/img/service/office/Van-phong-cho-thue-Aurora-1.jpg" alt="Meeting Room" loading="lazy">
+                    <img src="/assets/img/service/office/Van-phong-cho-thue-Aurora-2.jpg" alt="Boardroom" loading="lazy">
                 </div>
             </div>
         </div>
@@ -465,12 +465,12 @@ include '../includes/header.php';
         <div class="service-detail-content">
             <div class="service-detail-gallery">
                 <div class="gallery-main">
-                    <img src="/assets/image/concierge-main.jpg" alt="Concierge Service" loading="lazy">
+                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-3.jpg" alt="Concierge Service" loading="lazy">
                 </div>
                 <div class="gallery-thumbs">
-                    <img src="/assets/image/concierge-1.jpg" alt="Lễ tân" loading="lazy">
-                    <img src="/assets/image/concierge-2.jpg" alt="Dịch vụ vận chuyển" loading="lazy">
-                    <img src="/assets/image/concierge-3.jpg" alt="Hỗ trợ khách hàng" loading="lazy">
+                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-2.jpg" alt="Lễ tân" loading="lazy">
+                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-1.jpg" alt="Dịch vụ vận chuyển" loading="lazy">
+                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-4.jpg" alt="Hỗ trợ khách hàng" loading="lazy">
                 </div>
             </div>
             
