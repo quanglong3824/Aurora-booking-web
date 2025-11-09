@@ -1,0 +1,95 @@
+-- Aurora Hotel Plaza - Deluxe Sang Trọng
+-- Bảng dữ liệu cho trang phòng Deluxe, dùng tiền tố cột: room_deluxe
+
+CREATE TABLE IF NOT EXISTS `deluxe_sang_trong` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `room_deluxe_slug` VARCHAR(100) NOT NULL,
+  `room_deluxe_title` VARCHAR(255) NOT NULL,
+  `room_deluxe_description` TEXT,
+  `room_deluxe_hero_subtitle` VARCHAR(255),
+  `room_deluxe_price_text` VARCHAR(50),
+  `room_deluxe_per_night_text` VARCHAR(20),
+  `room_deluxe_booking_url` VARCHAR(255),
+  `room_deluxe_book_button_text` VARCHAR(100),
+  `room_deluxe_contact_hotline_label` VARCHAR(100),
+  `room_deluxe_contact_hotline` VARCHAR(50),
+  `room_deluxe_contact_email_label` VARCHAR(100),
+  `room_deluxe_contact_email_booking` VARCHAR(150),
+  `room_deluxe_contact_email_info` VARCHAR(150),
+  `room_deluxe_amenities` TEXT, -- JSON array
+  `room_deluxe_included_services` TEXT, -- JSON array
+  `room_deluxe_specs` TEXT, -- JSON array of objects {label,value}
+  `room_deluxe_gallery_main_alt` VARCHAR(255),
+  `room_deluxe_gallery_prev_label` VARCHAR(100),
+  `room_deluxe_gallery_next_label` VARCHAR(100),
+  `room_deluxe_lightbox_close_label` VARCHAR(100),
+  `room_deluxe_related_heading` VARCHAR(150),
+  `room_deluxe_related1_title` VARCHAR(150),
+  `room_deluxe_related1_price` VARCHAR(100),
+  `room_deluxe_related1_btn_text` VARCHAR(100),
+  `room_deluxe_related2_title` VARCHAR(150),
+  `room_deluxe_related2_price` VARCHAR(100),
+  `room_deluxe_related2_btn_text` VARCHAR(100),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `deluxe_sang_trong` (
+  `room_deluxe_slug`,
+  `room_deluxe_title`,
+  `room_deluxe_description`,
+  `room_deluxe_hero_subtitle`,
+  `room_deluxe_price_text`,
+  `room_deluxe_per_night_text`,
+  `room_deluxe_booking_url`,
+  `room_deluxe_book_button_text`,
+  `room_deluxe_contact_hotline_label`,
+  `room_deluxe_contact_hotline`,
+  `room_deluxe_contact_email_label`,
+  `room_deluxe_contact_email_booking`,
+  `room_deluxe_contact_email_info`,
+  `room_deluxe_amenities`,
+  `room_deluxe_included_services`,
+  `room_deluxe_specs`,
+  `room_deluxe_gallery_main_alt`,
+  `room_deluxe_gallery_prev_label`,
+  `room_deluxe_gallery_next_label`,
+  `room_deluxe_lightbox_close_label`,
+  `room_deluxe_related_heading`,
+  `room_deluxe_related1_title`,
+  `room_deluxe_related1_price`,
+  `room_deluxe_related1_btn_text`,
+  `room_deluxe_related2_title`,
+  `room_deluxe_related2_price`,
+  `room_deluxe_related2_btn_text`
+) VALUES (
+  'deluxe-sang-trong',
+  'Phòng Deluxe Sang Trọng - Aurora Hotel Plaza',
+  'Phòng Deluxe sang trọng với thiết kế hiện đại, view đẹp và đầy đủ tiện nghi cao cấp tại Aurora Hotel Plaza.',
+  'Trải nghiệm không gian nghỉ dưỡng đẳng cấp với thiết kế tinh tế',
+  '1.900.000 VNĐ',
+  '/đêm',
+  '../../dat-phong.php?room=deluxe',
+  'Đặt Phòng Ngay',
+  'Hotline đặt phòng:',
+  '(+84-251) 391.8888',
+  'Email liên hệ:',
+  'booking@aurorahotelplaza.com',
+  'info@aurorahotelplaza.com',
+  '["Internet, Wifi miễn phí","Điện thoại IDD","TV vệ tinh","Két an toàn","Giặt ủi","Vòi sen & bồn tắm","Giường đôi: 1 cái"]',
+  '["Bữa sáng miễn phí","Xông hơi","Hồ bơi","Dịch vụ phòng","Phòng Gym"]',
+  '[{"label":"Diện tích:","value":"35m²"},{"label":"Sức chứa:","value":"2 người lớn"},{"label":"Loại giường:","value":"King Size"}]',
+  'Phòng Deluxe - Không gian chính',
+  'Ảnh trước',
+  'Ảnh sau',
+  'Đóng',
+  'Các Loại Phòng Khác',
+  'Phòng Premium Deluxe',
+  '3.200.000 VNĐ/đêm',
+  'Xem Chi Tiết',
+  'Phòng Studio VIP',
+  '4.500.000 VNĐ/đêm',
+  'Xem Chi Tiết'
+);
+
+-- Lưu ý: các trường JSON đang lưu ở dạng TEXT để tương thích mọi phiên bản MySQL/MariaDB.
+-- Khi triển khai CSDL với hỗ trợ JSON, có thể đổi các cột JSON sang kiểu JSON.
