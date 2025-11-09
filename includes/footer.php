@@ -79,19 +79,6 @@ require_once __DIR__ . '/config.php';
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop" aria-label="Về đầu trang">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-spinner">
-            <div class="spinner"></div>
-            <p>Đang tải...</p>
-        </div>
-    </div>
-
     <!-- JavaScript Files -->
     <script src="<?php echo asset('js/main.js'); ?>"></script>
     <?php if(isset($additional_js)): ?>
