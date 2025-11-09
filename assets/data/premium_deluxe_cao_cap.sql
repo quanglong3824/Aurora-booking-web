@@ -1,0 +1,95 @@
+-- Aurora Hotel Plaza - Premium Deluxe Cao Cấp
+-- Bảng dữ liệu cho trang phòng Premium Deluxe Cao Cấp, dùng tiền tố cột: room_premium_deluxe
+
+CREATE TABLE IF NOT EXISTS `premium_deluxe_cao_cap` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `room_premium_deluxe_slug` VARCHAR(100) NOT NULL,
+  `room_premium_deluxe_title` VARCHAR(255) NOT NULL,
+  `room_premium_deluxe_description` TEXT,
+  `room_premium_deluxe_hero_subtitle` VARCHAR(255),
+  `room_premium_deluxe_price_text` VARCHAR(50),
+  `room_premium_deluxe_per_night_text` VARCHAR(20),
+  `room_premium_deluxe_booking_url` VARCHAR(255),
+  `room_premium_deluxe_book_button_text` VARCHAR(100),
+  `room_premium_deluxe_contact_hotline_label` VARCHAR(100),
+  `room_premium_deluxe_contact_hotline` VARCHAR(50),
+  `room_premium_deluxe_contact_email_label` VARCHAR(100),
+  `room_premium_deluxe_contact_email_booking` VARCHAR(150),
+  `room_premium_deluxe_contact_email_info` VARCHAR(150),
+  `room_premium_deluxe_amenities` TEXT, -- JSON array
+  `room_premium_deluxe_included_services` TEXT, -- JSON array
+  `room_premium_deluxe_specs` TEXT, -- JSON array of objects {label,value}
+  `room_premium_deluxe_gallery_main_alt` VARCHAR(255),
+  `room_premium_deluxe_gallery_prev_label` VARCHAR(100),
+  `room_premium_deluxe_gallery_next_label` VARCHAR(100),
+  `room_premium_deluxe_lightbox_close_label` VARCHAR(100),
+  `room_premium_deluxe_related_heading` VARCHAR(150),
+  `room_premium_deluxe_related1_title` VARCHAR(150),
+  `room_premium_deluxe_related1_price` VARCHAR(100),
+  `room_premium_deluxe_related1_btn_text` VARCHAR(100),
+  `room_premium_deluxe_related2_title` VARCHAR(150),
+  `room_premium_deluxe_related2_price` VARCHAR(100),
+  `room_premium_deluxe_related2_btn_text` VARCHAR(100),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `premium_deluxe_cao_cap` (
+  `room_premium_deluxe_slug`,
+  `room_premium_deluxe_title`,
+  `room_premium_deluxe_description`,
+  `room_premium_deluxe_hero_subtitle`,
+  `room_premium_deluxe_price_text`,
+  `room_premium_deluxe_per_night_text`,
+  `room_premium_deluxe_booking_url`,
+  `room_premium_deluxe_book_button_text`,
+  `room_premium_deluxe_contact_hotline_label`,
+  `room_premium_deluxe_contact_hotline`,
+  `room_premium_deluxe_contact_email_label`,
+  `room_premium_deluxe_contact_email_booking`,
+  `room_premium_deluxe_contact_email_info`,
+  `room_premium_deluxe_amenities`,
+  `room_premium_deluxe_included_services`,
+  `room_premium_deluxe_specs`,
+  `room_premium_deluxe_gallery_main_alt`,
+  `room_premium_deluxe_gallery_prev_label`,
+  `room_premium_deluxe_gallery_next_label`,
+  `room_premium_deluxe_lightbox_close_label`,
+  `room_premium_deluxe_related_heading`,
+  `room_premium_deluxe_related1_title`,
+  `room_premium_deluxe_related1_price`,
+  `room_premium_deluxe_related1_btn_text`,
+  `room_premium_deluxe_related2_title`,
+  `room_premium_deluxe_related2_price`,
+  `room_premium_deluxe_related2_btn_text`
+) VALUES (
+  'premium-deluxe-cao-cap',
+  'Phòng Premium Deluxe Cao Cấp - Aurora Hotel Plaza',
+  'Phòng Premium Deluxe cao cấp với thiết kế sang trọng, tiện nghi 5 sao tại Aurora Hotel Plaza.',
+  'Không gian nghỉ dưỡng đẳng cấp với thiết kế sang trọng và tiện nghi 5 sao',
+  '2.200.000 VNĐ',
+  '/đêm',
+  'pages/dat-phong.php?room=premium-deluxe',
+  'Đặt Phòng Premium',
+  'Hotline',
+  '+84 251 391 8888',
+  'Email',
+  'booking@aurorahotelplaza.com',
+  'info@aurorahotelplaza.com',
+  '["Internet, Wifi miễn phí","Điện thoại IDD","TV vệ tinh","Két an toàn","Giặt ủi","Ghế sofa","Bàn làm việc","Vòi sen & bồn tắm","Giường đôi: 1 cái"]',
+  '["Bữa sáng miễn phí","Xông hơi","Hồ bơi","Dịch vụ phòng","Phòng Gym"]',
+  '[{"label":"Diện tích:","value":"45m²"},{"label":"Sức chứa:","value":"2-3 người lớn"},{"label":"Loại giường:","value":"Giường đôi (1 cái)"},{"label":"View:","value":"Thành phố"}]',
+  'Phòng Premium Deluxe Cao Cấp - Hình ảnh chính',
+  'Ảnh trước',
+  'Ảnh sau',
+  'Đóng',
+  'Khám Phá Các Phòng Khác',
+  'Phòng Deluxe Sang Trọng',
+  '2.000.000 VNĐ/đêm',
+  'Xem Chi Tiết',
+  'Phòng Studio VIP',
+  '4.500.000 VNĐ/đêm',
+  'Xem Chi Tiết'
+);
+
+-- Lưu ý: các trường JSON đang lưu ở dạng TEXT để tương thích mọi phiên bản MySQL/MariaDB.
+-- Khi triển khai CSDL với hỗ trợ JSON, có thể đổi các cột JSON sang kiểu JSON.

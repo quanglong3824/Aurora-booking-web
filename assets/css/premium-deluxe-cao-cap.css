@@ -8,6 +8,63 @@
 .room-detail-page .highlight-item { background:#fff8e1; border:1px dashed #f1c40f; border-radius:12px; padding:14px; }
 .room-detail-page .gallery-item .gallery-overlay { position:absolute; bottom:10px; left:10px; background: rgba(0,0,0,0.55); color:#fff; padding:6px 10px; border-radius:8px; font-size:0.9rem; }
 
+/* Slider Styles (match Deluxe page) */
+.room-detail-page .image-slider { position: relative; overflow: hidden; background: #fff; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+.room-detail-page .slider-main { position: relative; height: 520px; }
+.room-detail-page .slider-main img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px 14px 0 0; cursor: zoom-in; }
+.room-detail-page .slider-main img.fade-in { animation: sliderFade 450ms ease both; }
+@keyframes sliderFade { from { opacity: 0; transform: scale(1.02); } to { opacity: 1; transform: scale(1); } }
+.room-detail-page .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; background: rgba(0,0,0,0.45); color: #fff; border: none; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.room-detail-page .slider-btn:hover { background: rgba(0,0,0,0.6); }
+.room-detail-page .slider-btn.prev { left: 14px; }
+.room-detail-page .slider-btn.next { right: 14px; }
+.room-detail-page .slider-thumbs { display: grid; grid-template-columns: repeat(10, 1fr); gap: 10px; padding: 12px; background: #f8f9fa; }
+.room-detail-page .slider-thumbs .thumb { width: 100%; height: 76px; object-fit: cover; border-radius: 10px; cursor: pointer; opacity: 0.8; transition: transform .2s ease, opacity .2s ease, box-shadow .2s ease; }
+.room-detail-page .slider-thumbs .thumb:hover { opacity: 1; transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,0.08); }
+.room-detail-page .slider-thumbs .thumb.active { outline: 2px solid var(--brand-primary); opacity: 1; }
+
+/* Lightbox (match Deluxe page) */
+.lightbox { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 999; }
+.lightbox.open { display: flex; }
+.lightbox-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.7); }
+.lightbox-content { position: relative; max-width: 90vw; max-height: 90vh; z-index: 1; display: flex; align-items: center; gap: 10px; }
+.lightbox-content img { max-width: 86vw; max-height: 86vh; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,0.3); }
+.lightbox-close, .lightbox-prev, .lightbox-next { position: absolute; background: rgba(0,0,0,0.6); color: #fff; border: none; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.lightbox-close { top: -20px; right: -20px; }
+.lightbox-prev { left: -50px; }
+.lightbox-next { right: -50px; }
+
 @media (max-width: 768px) {
   .room-detail-page .premium-badge { font-size:0.9rem; }
+  .room-detail-page .slider-main { height: 320px; }
+  .room-detail-page .slider-thumbs { grid-template-columns: repeat(5, 1fr); }
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .room-detail-page .slider-main { height: 260px; }
+  .room-detail-page .slider-btn { width: 36px; height: 36px; }
+  .room-detail-page .slider-thumbs { display: flex; gap: 8px; padding: 10px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .room-detail-page .slider-thumbs .thumb { min-width: 90px; height: 60px; }
+}
+@media (max-width: 420px) {
+  .room-detail-page .slider-main { height: 220px; }
+  .room-detail-page .slider-thumbs .thumb { min-width: 80px; height: 54px; }
+}
+
+/* Contact Info (match Deluxe page style) */
+.room-detail-page .contact-info { display: grid; gap: 12px; margin-top: 16px; }
+.room-detail-page .contact-item { display: flex; align-items: center; gap: 12px; background: #f8f9fa; padding: 12px; border-radius: 10px; }
+.room-detail-page .contact-icon { color: var(--brand-primary); font-size: 18px; }
+.room-detail-page .contact-line { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.room-detail-page .contact-line .label { font-weight: 600; color: #2c3e50; }
+.room-detail-page .contact-line .value { color: #374151; text-decoration: none; }
+.room-detail-page .contact-line .value:hover { color: var(--brand-primary); }
+.room-detail-page .contact-line .divider { color: #9CA3AF; }
+
+@media (max-width: 768px) {
+  .room-detail-page .contact-item { padding: 10px; }
+  .room-detail-page .contact-icon { font-size: 16px; }
+  .room-detail-page .contact-line { flex-wrap: wrap; white-space: normal; }
+  .room-detail-page .contact-line .divider { display: none; }
 }
