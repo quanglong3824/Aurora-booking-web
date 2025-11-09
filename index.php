@@ -25,35 +25,79 @@ include 'includes/header.php';
 <!-- Booking Form -->
 <section id="booking" class="booking-section">
     <div class="container">
-        <div class="booking-form">
-            <h3>Đặt phòng</h3>
-            <form class="booking-form-grid">
-                <div class="form-group">
-                    <label>Ngày nhận phòng</label>
-                    <input type="date" id="checkin" required>
+        <div class="booking-wrapper">
+            <header class="booking-header">
+                <h2 class="booking-title">Đặt phòng nhanh</h2>
+                <p class="booking-subtitle">Chọn ngày, loại phòng và số khách để xem giá tốt nhất</p>
+            </header>
+
+            <form class="booking-form" id="quick-booking-form">
+                <div class="form-row">
+                    <!-- Check-in -->
+                    <div class="form-group">
+                        <label for="checkin" class="form-label">
+                            <i class="far fa-calendar-alt"></i> Ngày nhận phòng
+                        </label>
+                        <input type="date"
+                               id="checkin"
+                               name="checkin"
+                               class="form-control"
+                               min="<?= date('Y-m-d') ?>"
+                               required>
+                        <small class="form-text">Nhận phòng sau 14:00</small>
+                    </div>
+
+                    <!-- Check-out -->
+                    <div class="form-group">
+                        <label for="checkout" class="form-label">
+                            <i class="far fa-calendar-alt"></i> Ngày trả phòng
+                        </label>
+                        <input type="date"
+                               id="checkout"
+                               name="checkout"
+                               class="form-control"
+                               min="<?= date('Y-m-d', strtotime('+1 day')) ?>"
+                               required>
+                        <small class="form-text">Trả phòng trước 12:00</small>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Ngày trả phòng</label>
-                    <input type="date" id="checkout" required>
+
+                <div class="form-row">
+                    <!-- Guests -->
+                    <div class="form-group">
+                        <label for="guests" class="form-label">
+                            <i class="fas fa-users"></i> Số khách
+                        </label>
+                        <select id="guests" name="guests" class="form-control" required>
+                            <option value="" disabled selected hidden>Chọn số khách</option>
+                            <option value="1">1 khách (1 người lớn)</option>
+                            <option value="2">2 khách (2 người lớn)</option>
+                            <option value="3">3 khách (2 người lớn + 1 trẻ em)</option>
+                            <option value="4">4 khách (2 người lớn + 2 trẻ em)</option>
+                        </select>
+                    </div>
+
+                    <!-- Room type -->
+                    <div class="form-group">
+                        <label for="room-type" class="form-label">
+                            <i class="fas fa-bed"></i> Loại phòng
+                        </label>
+                        <select id="room-type" name="room-type" class="form-control" required>
+                            <option value="" disabled selected hidden>Chọn loại phòng</option>
+                            <option value="standard">Phòng Tiêu Chuẩn – 1.200.000 ₫/đêm</option>
+                            <option value="deluxe">Phòng Cao Cấp – 2.000.000 ₫/đêm</option>
+                            <option value="suite">Phòng Suite – 3.500.000 ₫/đêm</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Số khách</label>
-                    <select id="guests">
-                        <option value="1">1 khách</option>
-                        <option value="2">2 khách</option>
-                        <option value="3">3 khách</option>
-                        <option value="4">4 khách</option>
-                    </select>
+
+                <div class="form-action">
+                    <button type="submit" class="btn-booking">
+                        <span class="btn-text">Tìm phòng trống</span>
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <p class="booking-note">Giá đã bao gồm thuế & bữa sáng</p>
                 </div>
-                <div class="form-group">
-                    <label>Loại phòng</label>
-                    <select id="room-type">
-                        <option value="standard">Phòng tiêu chuẩn</option>
-                        <option value="deluxe">Phòng cao cấp</option>
-                        <option value="suite">Phòng suite</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn-booking">Tìm phòng</button>
             </form>
         </div>
     </div>
