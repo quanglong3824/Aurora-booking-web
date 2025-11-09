@@ -1,71 +1,43 @@
 <?php
-require_once 'config/config.php';
+// Trả về mã lỗi 404 và chặn index
 http_response_code(404);
+header('X-Robots-Tag: noindex, nofollow');
+
+// Thiết lập thông tin trang theo style hiện tại
+$page_title = 'Không tìm thấy trang';
+$page_description = 'Trang bạn đang tìm kiếm không tồn tại hoặc đã được di chuyển.';
+$body_class = 'error-page';
+$show_breadcrumb = true;
+$breadcrumb_items = [
+    ['title' => 'Trang chủ', 'url' => 'index.php'],
+    ['title' => '404']
+];
+
+// Hiển thị Page Header theo bố cục chuẩn
+$page_header = true;
+$page_header_title = '404 - Không tìm thấy trang';
+$page_header_subtitle = 'Xin lỗi, chúng tôi không thể tìm thấy nội dung bạn yêu cầu.';
+$page_header_bg = '/assets/image/page-header-bg.jpg';
+
+// Include header theo giao diện chuẩn
+include 'includes/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Không Tìm Thấy Trang | <?php echo SITE_NAME; ?></title>
-    <meta name="robots" content="noindex, nofollow">
-    <link rel="stylesheet" href="<?php echo ASSETS_URL; ?>/css/style.css">
-    <style>
-        .error-page {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .error-content {
-            max-width: 600px;
-            padding: 2rem;
-        }
-        .error-code {
-            font-size: 8rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        .error-message {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .error-description {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        .btn-home {
-            display: inline-block;
-            padding: 12px 30px;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            border: 2px solid rgba(255,255,255,0.3);
-            transition: all 0.3s ease;
-        }
-        .btn-home:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-        }
-    </style>
-</head>
-<body>
-    <div class="error-page">
+
+<section class="section error-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Trang không tồn tại</h2>
+            <p>Liên kết có thể đã bị thay đổi hoặc bị xóa. Vui lòng kiểm tra lại địa chỉ hoặc chọn một hành động bên dưới.</p>
+        </div>
+
         <div class="error-content">
-            <div class="error-code">404</div>
-            <h1 class="error-message">Không Tìm Thấy Trang</h1>
-            <p class="error-description">
-                Xin lỗi, trang bạn đang tìm kiếm không tồn tại hoặc đã được di chuyển.
-                Vui lòng kiểm tra lại đường dẫn hoặc quay về trang chủ.
-            </p>
-            <a href="<?php echo BASE_URL; ?>" class="btn-home">Về Trang Chủ</a>
+            <div class="error-code" aria-hidden="true">404</div>
+            <div class="error-actions" style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="index.php" class="btn-primary">Về trang chủ</a>
+                <a href="pages/lien-he.php" class="btn-secondary">Liên hệ hỗ trợ</a>
+            </div>
         </div>
     </div>
-</body>
-</html>
+</section>
+
+<?php include 'includes/footer.php'; ?>
