@@ -15,7 +15,7 @@ body {
 /* Brand Color Variables */
 :root {
     --brand-primary: #cc9a2c; /* Gold */
-    --brand-primary-2: #f4d03f; /* Gold light */
+    --brand-primary-2: #cc9a2c; /* Gold light */
     --brand-primary-rgb: 212, 175, 55;
 
     --brand-secondary: #2c3e50; /* Navy */
