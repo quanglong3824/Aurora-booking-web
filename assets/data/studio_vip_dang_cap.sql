@@ -1,0 +1,95 @@
+-- Aurora Hotel Plaza - Studio VIP Đẳng Cấp
+-- Bảng dữ liệu cho trang phòng Studio VIP, dùng tiền tố cột: room_studio_vip
+
+CREATE TABLE IF NOT EXISTS `studio_vip_dang_cap` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `room_studio_vip_slug` VARCHAR(100) NOT NULL,
+  `room_studio_vip_title` VARCHAR(255) NOT NULL,
+  `room_studio_vip_description` TEXT,
+  `room_studio_vip_hero_subtitle` VARCHAR(255),
+  `room_studio_vip_price_text` VARCHAR(50),
+  `room_studio_vip_per_night_text` VARCHAR(20),
+  `room_studio_vip_booking_url` VARCHAR(255),
+  `room_studio_vip_book_button_text` VARCHAR(100),
+  `room_studio_vip_contact_hotline_label` VARCHAR(100),
+  `room_studio_vip_contact_hotline` VARCHAR(50),
+  `room_studio_vip_contact_email_label` VARCHAR(100),
+  `room_studio_vip_contact_email_booking` VARCHAR(150),
+  `room_studio_vip_contact_email_info` VARCHAR(150),
+  `room_studio_vip_amenities` TEXT, -- JSON array
+  `room_studio_vip_included_services` TEXT, -- JSON array
+  `room_studio_vip_specs` TEXT, -- JSON array of objects {label,value}
+  `room_studio_vip_gallery_main_alt` VARCHAR(255),
+  `room_studio_vip_gallery_prev_label` VARCHAR(100),
+  `room_studio_vip_gallery_next_label` VARCHAR(100),
+  `room_studio_vip_lightbox_close_label` VARCHAR(100),
+  `room_studio_vip_related_heading` VARCHAR(150),
+  `room_studio_vip_related1_title` VARCHAR(150),
+  `room_studio_vip_related1_price` VARCHAR(100),
+  `room_studio_vip_related1_btn_text` VARCHAR(100),
+  `room_studio_vip_related2_title` VARCHAR(150),
+  `room_studio_vip_related2_price` VARCHAR(100),
+  `room_studio_vip_related2_btn_text` VARCHAR(100),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `studio_vip_dang_cap` (
+  `room_studio_vip_slug`,
+  `room_studio_vip_title`,
+  `room_studio_vip_description`,
+  `room_studio_vip_hero_subtitle`,
+  `room_studio_vip_price_text`,
+  `room_studio_vip_per_night_text`,
+  `room_studio_vip_booking_url`,
+  `room_studio_vip_book_button_text`,
+  `room_studio_vip_contact_hotline_label`,
+  `room_studio_vip_contact_hotline`,
+  `room_studio_vip_contact_email_label`,
+  `room_studio_vip_contact_email_booking`,
+  `room_studio_vip_contact_email_info`,
+  `room_studio_vip_amenities`,
+  `room_studio_vip_included_services`,
+  `room_studio_vip_specs`,
+  `room_studio_vip_gallery_main_alt`,
+  `room_studio_vip_gallery_prev_label`,
+  `room_studio_vip_gallery_next_label`,
+  `room_studio_vip_lightbox_close_label`,
+  `room_studio_vip_related_heading`,
+  `room_studio_vip_related1_title`,
+  `room_studio_vip_related1_price`,
+  `room_studio_vip_related1_btn_text`,
+  `room_studio_vip_related2_title`,
+  `room_studio_vip_related2_price`,
+  `room_studio_vip_related2_btn_text`
+) VALUES (
+  'studio-vip-dang-cap',
+  'Phòng Studio VIP Đẳng Cấp - Aurora Hotel Plaza',
+  'AURORA STUDIO (VIP) mang đến không gian nghỉ dưỡng đẳng cấp với thiết kế sang trọng, tiện nghi hiện đại và dịch vụ VIP chuyên biệt. Phòng có diện tích rộng rãi, khu vực làm việc và không gian thư giãn thoải mái.',
+  'AURORA STUDIO (VIP) – Trải nghiệm đỉnh cao của sự sang trọng',
+  '2.950.000 VNĐ',
+  '/đêm',
+  '../../dat-phong.php?room=studio-vip',
+  'Đặt Phòng VIP',
+  'Hotline đặt phòng:',
+  '(+84-251) 391.8888',
+  'Email liên hệ:',
+  'booking@aurorahotelplaza.com',
+  'info@aurorahotelplaza.com',
+  '["Internet, Wifi miễn phí","Điện thoại IDD","TV vệ tinh","Két an toàn","Giặt ủi","Vòi sen & bồn tắm","Bàn làm việc","Giường đôi: 1 cái"]',
+  '["Bữa sáng miễn phí","Xông hơi","Hồ bơi","Dịch vụ phòng","Phòng Gym"]',
+  '[{"label":"Diện tích:","value":"45-65m²"},{"label":"Sức chứa:","value":"2 người lớn"},{"label":"Loại giường:","value":"Giường đôi"},{"label":"View:","value":"Thành phố"}]',
+  'Phòng Studio VIP Đẳng Cấp - Hình ảnh chính',
+  'Ảnh trước',
+  'Ảnh sau',
+  'Đóng',
+  'Khám Phá Các Phòng Khác',
+  'Phòng Deluxe Sang Trọng',
+  '1.900.000 VNĐ/đêm',
+  'Xem Chi Tiết',
+  'Phòng Premium Deluxe',
+  '2.200.000 VNĐ/đêm',
+  'Xem Chi Tiết'
+);
+
+-- Lưu ý: các trường JSON đang lưu ở dạng TEXT để tương thích mọi phiên bản MySQL/MariaDB.
+-- Khi triển khai CSDL với hỗ trợ JSON, có thể đổi các cột JSON sang kiểu JSON.
