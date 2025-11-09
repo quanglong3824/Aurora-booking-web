@@ -1,6 +1,6 @@
 <?php
 $page_title = "Đăng nhập";
-$page_description = "Đăng nhập tài khoản Aurora Hotel để quản lý đặt phòng";
+$page_description = "Đăng nhập tài khoản Aurora Hotel Plaza để quản lý đặt phòng";
 $additional_css = ['auth.css'];
 include '../../includes/header.php';
 ?>

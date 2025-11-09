@@ -10,7 +10,7 @@ require_once __DIR__ . '/config.php';
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Aurora Hotel</h3>
+                    <h3>Aurora Hotel Plaza</h3>
                     <p>Khách sạn sang trọng với dịch vụ đẳng cấp quốc tế. Chúng tôi cam kết mang đến cho quý khách những trải nghiệm nghỉ dưỡng không thể nào quên.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
@@ -68,7 +68,7 @@ require_once __DIR__ . '/config.php';
             
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
-                    <p>&copy; <?php echo date('Y'); ?> Aurora Hotel. Tất cả quyền được bảo lưu.</p>
+                    <p>&copy; <?php echo date('Y'); ?> Aurora Hotel Plaza. Tất cả quyền được bảo lưu.</p>
                     <div class="footer-links">
                         <a href="/chinh-sach-bao-mat.php">Chính sách bảo mật</a>
                         <a href="/dieu-khoan-su-dung.php">Điều khoản sử dụng</a>
@@ -114,7 +114,7 @@ require_once __DIR__ . '/config.php';
     {
         "@context": "https://schema.org",
         "@type": "Hotel",
-        "name": "Aurora Hotel",
+        "name": "Aurora Hotel Plaza",
         "description": "Khách sạn sang trọng với dịch vụ đẳng cấp quốc tế tại TP.HCM",
         "url": "https://aurorahotel.com",
         "telephone": "+84-28-1234-5678",

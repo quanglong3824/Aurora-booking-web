@@ -1,7 +1,7 @@
 php
 <?php
-$page_title = "Căn Hộ Premium Sang Trọng - Aurora Hotel";
-$page_description = "Căn hộ Premium với thiết kế sang trọng, tiện nghi cao cấp và dịch vụ đẳng cấp 5 sao tại Aurora Hotel.";
+$page_title = "Căn Hộ Premium Sang Trọng - Aurora Hotel Plaza";
+$page_description = "Căn hộ Premium với thiết kế sang trọng, tiện nghi cao cấp và dịch vụ đẳng cấp 5 sao tại Aurora Hotel Plaza.";
 $canonical_url = "https://aurorahotel.vn/can-ho-premium-sang-trong";
 $additional_css = ['apartment-detail.css', 'can-ho-premium.css'];
 $breadcrumb = [
@@ -16,7 +16,7 @@ include '../../includes/header.php';
     <!-- Hero Section -->
     <section class="apartment-hero">
         <div class="hero-image">
-            <img src="<?php echo asset('assets/image/room-presidential.jpg'); ?>" alt="Căn Hộ Premium Sang Trọng Aurora Hotel" loading="lazy">
+            <img src="<?php echo asset('assets/image/room-presidential.jpg'); ?>" alt="Căn Hộ Premium Sang Trọng Aurora Hotel Plaza" loading="lazy">
             <div class="hero-overlay">
                 <div class="container">
                     <h1>Căn Hộ Premium Sang Trọng</h1>
@@ -33,7 +33,7 @@ include '../../includes/header.php';
                 <div class="col-lg-8">
                     <div class="apartment-content">
                         <h2>Về Căn Hộ Premium Sang Trọng</h2>
-                        <p>Căn hộ Premium của Aurora Hotel là biểu tượng của sự sang trọng và tinh tế với diện tích 120m². Được thiết kế theo phong cách hiện đại kết hợp với nét đẹp cổ điển, căn hộ bao gồm 2 phòng ngủ master, phòng khách rộng rãi, bếp cao cấp và 3 phòng tắm với jacuzzi riêng. Đây là lựa chọn hoàn hảo cho những ai tìm kiếm trải nghiệm nghỉ dưỡng đẳng cấp thượng lưu.</p>
+                        <p>Căn hộ Premium của Aurora Hotel Plaza là biểu tượng của sự sang trọng và tinh tế với diện tích 120m². Được thiết kế theo phong cách hiện đại kết hợp với nét đẹp cổ điển, căn hộ bao gồm 2 phòng ngủ master, phòng khách rộng rãi, bếp cao cấp và 3 phòng tắm với jacuzzi riêng. Đây là lựa chọn hoàn hảo cho những ai tìm kiếm trải nghiệm nghỉ dưỡng đẳng cấp thượng lưu.</p>
                         
                         <h3>Thiết Kế Căn Hộ Premium</h3>
                         <div class="apartment-layout">

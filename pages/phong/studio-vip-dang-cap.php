@@ -1,7 +1,7 @@
 php
 <?php
-$page_title = "Phòng Studio VIP Đẳng Cấp - Aurora Hotel";
-$page_description = "Phòng Studio VIP với thiết kế sang trọng, tiện nghi cao cấp và dịch vụ VIP đẳng cấp quốc tế tại Aurora Hotel.";
+$page_title = "Phòng Studio VIP Đẳng Cấp - Aurora Hotel Plaza";
+$page_description = "Phòng Studio VIP với thiết kế sang trọng, tiện nghi cao cấp và dịch vụ VIP đẳng cấp quốc tế tại Aurora Hotel Plaza.";
 $canonical_url = "https://aurorahotel.vn/phong-studio-vip-dang-cap";
 $additional_css = ['room-detail.css', 'studio-vip-dang-cap.css'];
 $breadcrumb = [
@@ -16,7 +16,7 @@ include '../../includes/header.php';
     <!-- Hero Section -->
     <section class="room-hero">
         <div class="hero-image">
-            <img src="<?php echo asset('image/room-presidential.jpg'); ?>" alt="Phòng Studio VIP Đẳng Cấp Aurora Hotel" loading="lazy">
+            <img src="<?php echo asset('image/room-presidential.jpg'); ?>" alt="Phòng Studio VIP Đẳng Cấp Aurora Hotel Plaza" loading="lazy">
             <div class="hero-overlay">
                 <div class="container">
                     <h1>Phòng Studio VIP Đẳng Cấp</h1>
@@ -33,7 +33,7 @@ include '../../includes/header.php';
                 <div class="col-lg-8">
                     <div class="room-content">
                         <h2>Về Phòng Studio VIP Đẳng Cấp</h2>
-                        <p>Phòng Studio VIP của Aurora Hotel là đỉnh cao của sự sang trọng và tinh tế với diện tích 65m². Được thiết kế như một căn hộ mini cao cấp, phòng có không gian sống mở, phòng ngủ riêng biệt, bếp nhỏ hiện đại và ban công panorama với view 360 độ tuyệt đẹp.</p>
+                        <p>Phòng Studio VIP của Aurora Hotel Plaza là đỉnh cao của sự sang trọng và tinh tế với diện tích 65m². Được thiết kế như một căn hộ mini cao cấp, phòng có không gian sống mở, phòng ngủ riêng biệt, bếp nhỏ hiện đại và ban công panorama với view 360 độ tuyệt đẹp.</p>
                         
                         <h3>Tiện Nghi VIP Đẳng Cấp</h3>
                         <div class="amenities-grid">

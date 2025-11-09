@@ -1,4 +1,4 @@
-// Booking Page JavaScript - Aurora Hotel
+// Booking Page JavaScript - Aurora Hotel Plaza
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize booking form

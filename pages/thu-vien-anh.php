@@ -1,13 +1,13 @@
 <?php
-$page_title = "Thư viện ảnh - Aurora Hotel";
-$page_description = "Khám phá vẻ đẹp của Aurora Hotel qua bộ sưu tập hình ảnh về phòng nghỉ, tiện ích và không gian sang trọng";
-$page_keywords = "thư viện ảnh aurora hotel, hình ảnh khách sạn, phòng nghỉ, tiện ích, gallery";
+$page_title = "Thư viện ảnh - Aurora Hotel Plaza";
+$page_description = "Khám phá vẻ đẹp của Aurora Hotel Plaza qua bộ sưu tập hình ảnh về phòng nghỉ, tiện ích và không gian sang trọng";
+$page_keywords = "thư viện ảnh Aurora Hotel Plaza, hình ảnh khách sạn, phòng nghỉ, tiện ích, gallery";
 $current_page = "thu-vien-anh";
 $breadcrumb = [
     ['title' => 'Trang chủ', 'url' => 'index.php'],
     ['title' => 'Thư viện ảnh', 'url' => 'thu-vien-anh.php', 'active' => true]
 ];
-$page_header_title = "Thư viện ảnh Aurora Hotel";
+$page_header_title = "Thư viện ảnh Aurora Hotel Plaza";
 $page_header_subtitle = "Khám phá vẻ đẹp sang trọng qua từng khung hình";
 $page_header_bg = "/assets/image/gallery-hero.jpg";
 
@@ -465,7 +465,7 @@ include '../includes/header.php';
     <div class="container">
         <div class="cta-content">
             <div class="cta-text">
-                <h2>Khám phá Aurora Hotel với Virtual Tour 360°</h2>
+                <h2>Khám phá Aurora Hotel Plaza với Virtual Tour 360°</h2>
                 <p>Trải nghiệm không gian khách sạn một cách sống động và chân thực nhất</p>
                 <div class="cta-features">
                     <div class="feature">

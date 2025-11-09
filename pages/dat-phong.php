@@ -1,8 +1,8 @@
 <?php
 // Thiết lập thông tin trang
-$page_title = "Đặt phòng - Aurora Hotel";
-$page_description = "Đặt phòng trực tuyến tại Aurora Hotel với giá tốt nhất và dịch vụ chuyên nghiệp";
-$page_keywords = "đặt phòng, Aurora Hotel, booking, khách sạn";
+$page_title = "Đặt phòng - Aurora Hotel Plaza";
+$page_description = "Đặt phòng trực tuyến tại Aurora Hotel Plaza với giá tốt nhất và dịch vụ chuyên nghiệp";
+$page_keywords = "đặt phòng, Aurora Hotel Plaza, booking, khách sạn";
 $current_page = "booking";
 $breadcrumb = [
     ['title' => 'Trang chủ', 'url' => 'index.php', 'active' => false],
@@ -240,7 +240,7 @@ include '../includes/header.php';
                             <label class="checkbox-label">
                                 <input type="checkbox" id="agree-terms" name="agree_terms" required>
                                 <span class="checkmark"></span>
-                                Tôi đồng ý với <a href="#" target="_blank">điều khoản và điều kiện</a> của Aurora Hotel
+                                Tôi đồng ý với <a href="#" target="_blank">điều khoản và điều kiện</a> của Aurora Hotel Plaza
                             </label>
                         </div>
 
@@ -331,7 +331,7 @@ include '../includes/header.php';
             <h3>Đặt phòng thành công!</h3>
         </div>
         <div class="modal-body">
-            <p>Cảm ơn bạn đã đặt phòng tại Aurora Hotel. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất để xác nhận thông tin.</p>
+            <p>Cảm ơn bạn đã đặt phòng tại Aurora Hotel Plaza. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất để xác nhận thông tin.</p>
             <div class="booking-code">
                 <span>Mã đặt phòng của bạn:</span>
                 <strong id="booking-code-display">AUR-2024-001</strong>

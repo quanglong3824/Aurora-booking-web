@@ -1,13 +1,13 @@
 <?php
-$page_title = "Giới thiệu - Aurora Hotel";
-$page_description = "Khám phá câu chuyện về Aurora Hotel - khách sạn sang trọng với dịch vụ đẳng cấp quốc tế tại trung tâm TP.HCM";
-$page_keywords = "giới thiệu aurora hotel, khách sạn sang trọng, dịch vụ đẳng cấp, tp.hcm";
+$page_title = "Giới thiệu - Aurora Hotel Plaza";
+$page_description = "Khám phá câu chuyện về Aurora Hotel Plaza - khách sạn sang trọng với dịch vụ đẳng cấp quốc tế tại trung tâm TP.HCM";
+$page_keywords = "giới thiệu Aurora Hotel Plaza, khách sạn sang trọng, dịch vụ đẳng cấp, tp.hcm";
 $current_page = "gioi-thieu";
 $breadcrumb = [
     ['title' => 'Trang chủ', 'url' => 'index.php'],
     ['title' => 'Giới thiệu', 'url' => 'gioi-thieu.php', 'active' => true]
 ];
-$page_header_title = "Giới thiệu Aurora Hotel";
+$page_header_title = "Giới thiệu Aurora Hotel Plaza";
 $page_header_subtitle = "Câu chuyện về sự sang trọng và đẳng cấp";
 $page_header_bg = "/assets/image/about-hero.jpg";
 
@@ -19,7 +19,7 @@ include '../includes/header.php';
     <div class="container">
         <div class="about-hero-content">
             <div class="about-hero-text">
-                <h1>Chào mừng đến với Aurora Hotel</h1>
+                <h1>Chào mừng đến với Aurora Hotel Plaza</h1>
                 <p class="lead">Nơi hội tụ của sự sang trọng, tinh tế và dịch vụ đẳng cấp quốc tế</p>
                 <div class="about-stats">
                     <div class="stat-item">
@@ -41,7 +41,7 @@ include '../includes/header.php';
                 </div>
             </div>
             <div class="about-hero-image">
-                <img src="/assets/image/hotel-exterior.jpg" alt="Aurora Hotel Exterior" loading="lazy">
+                <img src="/assets/image/hotel-exterior.jpg" alt="Aurora Hotel Plaza Exterior" loading="lazy">
                 <div class="image-overlay">
                     <div class="play-button" data-video="hotel-tour">
                         <i class="fas fa-play"></i>
@@ -66,7 +66,7 @@ include '../includes/header.php';
                 <div class="timeline-year">2009</div>
                 <div class="timeline-content">
                     <h3>Khởi đầu ước mơ</h3>
-                    <p>Aurora Hotel được thành lập với tầm nhìn trở thành khách sạn hàng đầu tại TP.HCM, mang đến trải nghiệm nghỉ dưỡng đẳng cấp quốc tế.</p>
+                    <p>Aurora Hotel Plaza được thành lập với tầm nhìn trở thành khách sạn hàng đầu tại TP.HCM, mang đến trải nghiệm nghỉ dưỡng đẳng cấp quốc tế.</p>
                 </div>
             </div>
             
@@ -141,13 +141,13 @@ include '../includes/header.php';
     <div class="container">
         <div class="section-header">
             <h2>Đội ngũ lãnh đạo</h2>
-            <p>Những con người tài năng đứng sau thành công của Aurora Hotel</p>
+            <p>Những con người tài năng đứng sau thành công của Aurora Hotel Plaza</p>
         </div>
         
         <div class="team-grid">
             <div class="team-member">
                 <div class="member-image">
-                    <img src="/assets/image/ceo.jpg" alt="CEO Aurora Hotel" loading="lazy">
+                    <img src="/assets/image/ceo.jpg" alt="CEO Aurora Hotel Plaza" loading="lazy">
                     <div class="member-overlay">
                         <div class="member-social">
                             <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -158,7 +158,7 @@ include '../includes/header.php';
                 <div class="member-info">
                     <h4>Nguyễn Văn Minh</h4>
                     <p class="member-position">Tổng Giám Đốc</p>
-                    <p class="member-description">Với hơn 20 năm kinh nghiệm trong ngành khách sạn, ông Minh đã dẫn dắt Aurora Hotel trở thành thương hiệu uy tín hàng đầu.</p>
+                    <p class="member-description">Với hơn 20 năm kinh nghiệm trong ngành khách sạn, ông Minh đã dẫn dắt Aurora Hotel Plaza trở thành thương hiệu uy tín hàng đầu.</p>
                 </div>
             </div>
             
@@ -253,7 +253,7 @@ include '../includes/header.php';
         <div class="sustainability-content">
             <div class="sustainability-text">
                 <h2>Cam kết phát triển bền vững</h2>
-                <p class="lead">Aurora Hotel cam kết bảo vệ môi trường và đóng góp tích cực cho cộng đồng địa phương.</p>
+                <p class="lead">Aurora Hotel Plaza cam kết bảo vệ môi trường và đóng góp tích cực cho cộng đồng địa phương.</p>
                 
                 <div class="sustainability-features">
                     <div class="feature-item">
@@ -295,7 +295,7 @@ include '../includes/header.php';
 <section class="cta-section">
     <div class="container">
         <div class="cta-content">
-            <h2>Trải nghiệm Aurora Hotel ngay hôm nay</h2>
+            <h2>Trải nghiệm Aurora Hotel Plaza ngay hôm nay</h2>
             <p>Đặt phòng ngay để khám phá sự khác biệt mà chúng tôi mang lại</p>
             <div class="cta-buttons">
                 <a href="/dat-phong.php" class="btn btn-primary">Đặt phòng ngay</a>

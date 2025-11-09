@@ -1,7 +1,7 @@
 <?php
 $page_title = "Phòng & Căn hộ";
-$page_description = "Tổng quan các lựa chọn phòng nghỉ và căn hộ tại Aurora Hotel";
-$page_keywords = "phòng nghỉ, căn hộ, Aurora Hotel, deluxe, studio, premium";
+$page_description = "Tổng quan các lựa chọn phòng nghỉ và căn hộ tại Aurora Hotel Plaza";
+$page_keywords = "phòng nghỉ, căn hộ, Aurora Hotel Plaza, deluxe, studio, premium";
 
 // Hiển thị header trang chuẩn
 $page_header = true;
@@ -26,7 +26,7 @@ include '../includes/header.php';
             <!-- Cột: Phòng nghỉ -->
             <article class="overview-card" style="border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#fff;">
                 <div class="overview-image" style="max-height:300px; overflow:hidden;">
-                    <img src="<?php echo asset('image/room-deluxe.jpg'); ?>" alt="Phòng nghỉ Aurora Hotel" class="img-fluid" style="width:100%; height:100%; object-fit:cover;">
+                    <img src="<?php echo asset('image/room-deluxe.jpg'); ?>" alt="Phòng nghỉ Aurora Hotel Plaza" class="img-fluid" style="width:100%; height:100%; object-fit:cover;">
                 </div>
                 <div class="overview-body" style="padding:20px;">
                     <h3 style="margin-bottom:8px;">Phòng nghỉ</h3>

@@ -1,6 +1,6 @@
 <?php
 $page_title = "Quên mật khẩu";
-$page_description = "Khôi phục mật khẩu tài khoản Aurora Hotel";
+$page_description = "Khôi phục mật khẩu tài khoản Aurora Hotel Plaza";
 $additional_css = ['auth.css'];
 include '../../includes/header.php';
 ?>

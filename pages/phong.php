@@ -1,14 +1,14 @@
 <?php
-$page_title = "Phòng nghỉ - Aurora Hotel";
-$page_description = "Khám phá các loại phòng nghỉ sang trọng tại Aurora Hotel: Deluxe, Premium Deluxe, Premium Deluxe Twin, Studio VIP với đầy đủ tiện nghi hiện đại";
-$page_keywords = "phòng nghỉ aurora hotel, đặt phòng, phòng deluxe, phòng premium, phòng studio vip, khách sạn sang trọng";
+$page_title = "Phòng nghỉ - Aurora Hotel Plaza";
+$page_description = "Khám phá các loại phòng nghỉ sang trọng tại Aurora Hotel Plaza: Deluxe, Premium Deluxe, Premium Deluxe Twin, Studio VIP với đầy đủ tiện nghi hiện đại";
+$page_keywords = "phòng nghỉ Aurora Hotel Plaza, đặt phòng, phòng deluxe, phòng premium, phòng studio vip, khách sạn sang trọng";
 $current_page = "phong";
 $breadcrumb = [
     ['title' => 'Trang chủ', 'url' => '../index.php'],
     ['title' => 'Phòng nghỉ', 'url' => 'phong.php', 'active' => true]
 ];
 $page_header = true;
-$page_header_title = "Phòng nghỉ Aurora Hotel";
+$page_header_title = "Phòng nghỉ Aurora Hotel Plaza";
 $page_header_subtitle = "Không gian nghỉ dưỡng sang trọng với tiêu chuẩn 5 sao";
 $page_header_bg = "/assets/image/rooms-hero.jpg";
 

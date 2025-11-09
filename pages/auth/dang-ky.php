@@ -1,6 +1,6 @@
 <?php
 $page_title = "Đăng ký";
-$page_description = "Tạo tài khoản Aurora Hotel để nhận ưu đãi và quản lý đặt phòng";
+$page_description = "Tạo tài khoản Aurora Hotel Plaza để nhận ưu đãi và quản lý đặt phòng";
 $additional_css = ['auth.css'];
 include '../../includes/header.php';
 ?>

@@ -1,4 +1,4 @@
-// Aurora Hotel - Main JavaScript File
+// Aurora Hotel Plaza - Main JavaScript File
 
 document.addEventListener('DOMContentLoaded', function() {
     // Header Scroll Effect
@@ -472,5 +472,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    console.log('Aurora Hotel website loaded successfully! 🏨✨');
+    console.log('Aurora Hotel Plaza website loaded successfully! 🏨✨');
 });

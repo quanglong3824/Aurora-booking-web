@@ -1,7 +1,7 @@
 php
 <?php
-$page_title = "Phòng Premium Deluxe Twin Đôi - Aurora Hotel";
-$page_description = "Phòng Premium Deluxe Twin với 2 giường đơn cao cấp, thiết kế hiện đại và tiện nghi đẳng cấp tại Aurora Hotel.";
+$page_title = "Phòng Premium Deluxe Twin Đôi - Aurora Hotel Plaza";
+$page_description = "Phòng Premium Deluxe Twin với 2 giường đơn cao cấp, thiết kế hiện đại và tiện nghi đẳng cấp tại Aurora Hotel Plaza.";
 $canonical_url = "https://aurorahotel.vn/phong-premium-deluxe-twin-doi";
 $additional_css = ['room-detail.css', 'premium-deluxe-twin-doi.css'];
 $breadcrumb = [
@@ -16,7 +16,7 @@ include '../../includes/header.php';
     <!-- Hero Section -->
     <section class="room-hero">
         <div class="hero-image">
-            <img src="<?php echo asset('image/room-standard.jpg'); ?>" alt="Phòng Premium Deluxe Twin Đôi Aurora Hotel" loading="lazy">
+            <img src="<?php echo asset('image/room-standard.jpg'); ?>" alt="Phòng Premium Deluxe Twin Đôi Aurora Hotel Plaza" loading="lazy">
             <div class="hero-overlay">
                 <div class="container">
                     <h1>Phòng Premium Deluxe Twin Đôi</h1>
@@ -33,7 +33,7 @@ include '../../includes/header.php';
                 <div class="col-lg-8">
                     <div class="room-content">
                         <h2>Về Phòng Premium Deluxe Twin Đôi</h2>
-                        <p>Phòng Premium Deluxe Twin của Aurora Hotel được thiết kế đặc biệt cho gia đình hoặc nhóm bạn với diện tích 50m². Phòng có 2 giường đôi cao cấp, khu vực sinh hoạt chung rộng rãi và ban công riêng với view tuyệt đẹp ra biển hoặc thành phố.</p>
+                        <p>Phòng Premium Deluxe Twin của Aurora Hotel Plaza được thiết kế đặc biệt cho gia đình hoặc nhóm bạn với diện tích 50m². Phòng có 2 giường đôi cao cấp, khu vực sinh hoạt chung rộng rãi và ban công riêng với view tuyệt đẹp ra biển hoặc thành phố.</p>
                         
                         <h3>Tiện Nghi Phòng Twin</h3>
                         <div class="amenities-grid">

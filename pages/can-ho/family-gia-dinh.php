@@ -1,7 +1,7 @@
 php
 <?php
-$page_title = "Căn Hộ Family Gia Đình - Aurora Hotel";
-$page_description = "Căn hộ Family rộng rãi với 2 phòng ngủ, phù hợp cho gia đình có trẻ em. Tiện nghi đầy đủ và không gian thoải mái tại Aurora Hotel.";
+$page_title = "Căn Hộ Family Gia Đình - Aurora Hotel Plaza";
+$page_description = "Căn hộ Family rộng rãi với 2 phòng ngủ, phù hợp cho gia đình có trẻ em. Tiện nghi đầy đủ và không gian thoải mái tại Aurora Hotel Plaza.";
 $canonical_url = "https://aurorahotel.vn/can-ho-family-gia-dinh";
 $additional_css = ['apartment-detail.css', 'can-ho-family.css'];
 $breadcrumb = [
@@ -16,7 +16,7 @@ include '../../includes/header.php';
     <!-- Hero Section -->
     <section class="apartment-hero">
         <div class="hero-image">
-            <img src="<?php echo asset('assets/image/room-suite-ocean.jpg'); ?>" alt="Căn Hộ Family Gia Đình Aurora Hotel" loading="lazy">
+            <img src="<?php echo asset('assets/image/room-suite-ocean.jpg'); ?>" alt="Căn Hộ Family Gia Đình Aurora Hotel Plaza" loading="lazy">
             <div class="hero-overlay">
                 <div class="container">
                     <h1>Căn Hộ Family Gia Đình</h1>
@@ -33,7 +33,7 @@ include '../../includes/header.php';
                 <div class="col-lg-8">
                     <div class="apartment-content">
                         <h2>Về Căn Hộ Family Gia Đình</h2>
-                        <p>Căn hộ Family của Aurora Hotel được thiết kế đặc biệt cho gia đình với diện tích 80m², bao gồm 2 phòng ngủ riêng biệt, phòng khách rộng rãi, bếp đầy đủ tiện nghi và 2 phòng tắm. Đây là lựa chọn hoàn hảo cho kỳ nghỉ gia đình dài ngày với không gian sống thoải mái như ở nhà.</p>
+                        <p>Căn hộ Family của Aurora Hotel Plaza được thiết kế đặc biệt cho gia đình với diện tích 80m², bao gồm 2 phòng ngủ riêng biệt, phòng khách rộng rãi, bếp đầy đủ tiện nghi và 2 phòng tắm. Đây là lựa chọn hoàn hảo cho kỳ nghỉ gia đình dài ngày với không gian sống thoải mái như ở nhà.</p>
                         
                         <h3>Bố Trí Căn Hộ</h3>
                         <div class="apartment-layout">

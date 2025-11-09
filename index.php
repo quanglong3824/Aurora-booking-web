@@ -1,8 +1,8 @@
 <?php
 // Thiết lập thông tin trang
-$page_title = "Aurora Hotel - Khách sạn sang trọng";
-$page_description = "Trải nghiệm nghỉ dưỡng sang trọng với dịch vụ đẳng cấp quốc tế tại Aurora Hotel";
-$page_keywords = "khách sạn, Aurora Hotel, nghỉ dưỡng, sang trọng, đặt phòng";
+$page_title = "Aurora Hotel Plaza - Khách sạn sang trọng";
+$page_description = "Trải nghiệm nghỉ dưỡng sang trọng với dịch vụ đẳng cấp quốc tế tại Aurora Hotel Plaza";
+$page_keywords = "khách sạn, Aurora Hotel Plaza, nghỉ dưỡng, sang trọng, đặt phòng";
 $current_page = "home";
 $breadcrumb = [
     ['title' => 'Trang chủ', 'url' => 'index.php', 'active' => true]
@@ -15,7 +15,7 @@ include 'includes/header.php';
 <!-- Hero Section -->
 <section id="home" class="hero">
     <div class="hero-content">
-        <h1>Chào mừng đến với Aurora Hotel</h1>
+        <h1>Chào mừng đến với Aurora Hotel Plaza</h1>
         <p>Trải nghiệm nghỉ dưỡng sang trọng với dịch vụ đẳng cấp quốc tế</p>
         <a href="#booking" class="btn-primary">Đặt phòng ngay</a>
     </div>
@@ -239,8 +239,8 @@ include 'includes/header.php';
     <div class="container">
         <div class="about-content">
             <div class="about-text">
-                <h2>Về Aurora Hotel</h2>
-                <p>Aurora Hotel là biểu tượng của sự sang trọng và đẳng cấp, mang đến trải nghiệm nghỉ dưỡng không thể nào quên. Với hơn 20 năm kinh nghiệm trong ngành khách sạn, chúng tôi cam kết mang đến dịch vụ tốt nhất cho quý khách.</p>
+                <h2>Về Aurora Hotel Plaza</h2>
+                <p>Aurora Hotel Plaza là biểu tượng của sự sang trọng và đẳng cấp, mang đến trải nghiệm nghỉ dưỡng không thể nào quên. Với hơn 20 năm kinh nghiệm trong ngành khách sạn, chúng tôi cam kết mang đến dịch vụ tốt nhất cho quý khách.</p>
                 <div class="about-stats">
                     <div class="stat-item">
                         <span class="stat-number">200+</span>
@@ -258,7 +258,7 @@ include 'includes/header.php';
                 <a href="gioi-thieu.php" class="btn-secondary">Tìm hiểu thêm</a>
             </div>
             <div class="about-image">
-                <img src="assets/image/about-hotel.jpg" alt="Aurora Hotel" onerror="this.src='https://via.placeholder.com/600x400/f0f0f0/666?text=Aurora+Hotel'">
+                <img src="assets/image/about-hotel.jpg" alt="Aurora Hotel Plaza" onerror="this.src='https://via.placeholder.com/600x400/f0f0f0/666?text=Aurora+Hotel'">
             </div>
         </div>
     </div>
@@ -269,7 +269,7 @@ include 'includes/header.php';
     <div class="container">
         <div class="section-header">
             <h2>Thư viện ảnh</h2>
-            <p>Khám phá vẻ đẹp của Aurora Hotel</p>
+            <p>Khám phá vẻ đẹp của Aurora Hotel Plaza</p>
         </div>
         <div class="gallery-grid">
             <div class="gallery-item">

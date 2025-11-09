@@ -1,8 +1,8 @@
 <?php
-// Căn Hộ Studio Hiện Đại - Aurora Hotel
-$page_title = "Căn Hộ Studio Hiện Đại | Aurora Hotel";
-$page_description = "Căn hộ Studio tại Aurora Hotel - Không gian sống thông minh với thiết kế hiện đại, tiện nghi đầy đủ và giá cả hợp lý. Lý tưởng cho cặp đôi và khách công tác.";
-$page_keywords = "căn hộ studio, căn hộ hiện đại, Aurora hotel, căn hộ compact, nghỉ dưỡng studio, căn hộ thông minh";
+// Căn Hộ Studio Hiện Đại - Aurora Hotel Plaza
+$page_title = "Căn Hộ Studio Hiện Đại | Aurora Hotel Plaza";
+$page_description = "Căn hộ Studio tại Aurora Hotel Plaza - Không gian sống thông minh với thiết kế hiện đại, tiện nghi đầy đủ và giá cả hợp lý. Lý tưởng cho cặp đôi và khách công tác.";
+$page_keywords = "căn hộ studio, căn hộ hiện đại, Aurora Hotel Plaza, căn hộ compact, nghỉ dưỡng studio, căn hộ thông minh";
 $canonical_url = "/can-ho/studio/can-ho-studio-hien-dai";
 $additional_css = ['apartment-detail.css', 'can-ho-studio.css'];
 
@@ -13,7 +13,7 @@ include '../../includes/header.php';
     <!-- Hero Section -->
     <section class="apartment-hero">
         <div class="hero-image">
-            <img src="<?php echo asset('assets/image/room-suite-ocean.jpg'); ?>" alt="Căn Hộ Studio Hiện Đại Aurora Hotel" loading="lazy">
+            <img src="<?php echo asset('assets/image/room-suite-ocean.jpg'); ?>" alt="Căn Hộ Studio Hiện Đại Aurora Hotel Plaza" loading="lazy">
             <div class="hero-overlay">
                 <div class="container">
                     <h1>Căn Hộ Studio Hiện Đại</h1>
@@ -30,7 +30,7 @@ include '../../includes/header.php';
                 <div class="col-lg-8">
                     <div class="apartment-content">
                         <h2>Về Căn Hộ Studio Hiện Đại</h2>
-                        <p>Căn hộ Studio của Aurora Hotel được thiết kế thông minh với diện tích 45m², tối ưu hóa không gian sống với phong cách hiện đại và tiện nghi. Bao gồm khu vực ngủ, phòng khách mở, bếp nhỏ gọn và phòng tắm riêng. Đây là lựa chọn hoàn hảo cho cặp đôi, khách công tác hoặc du khách muốn trải nghiệm không gian sống độc lập với giá cả hợp lý.</p>
+                        <p>Căn hộ Studio của Aurora Hotel Plaza được thiết kế thông minh với diện tích 45m², tối ưu hóa không gian sống với phong cách hiện đại và tiện nghi. Bao gồm khu vực ngủ, phòng khách mở, bếp nhỏ gọn và phòng tắm riêng. Đây là lựa chọn hoàn hảo cho cặp đôi, khách công tác hoặc du khách muốn trải nghiệm không gian sống độc lập với giá cả hợp lý.</p>
                         
                         <h3>Thiết Kế Studio Thông Minh</h3>
                         <div class="apartment-layout">

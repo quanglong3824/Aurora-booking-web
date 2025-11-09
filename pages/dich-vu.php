@@ -1,13 +1,13 @@
 <?php
-$page_title = "Dịch vụ - Aurora Hotel";
-$page_description = "Khám phá đầy đủ các dịch vụ cao cấp tại Aurora Hotel: nhà hàng, spa, phòng gym, hồ bơi, hội nghị và nhiều tiện ích khác";
-$page_keywords = "dịch vụ aurora hotel, nhà hàng, spa, phòng gym, hồ bơi, hội nghị, tiện ích khách sạn";
+$page_title = "Dịch vụ - Aurora Hotel Plaza";
+$page_description = "Khám phá đầy đủ các dịch vụ cao cấp tại Aurora Hotel Plaza: nhà hàng, spa, phòng gym, hồ bơi, hội nghị và nhiều tiện ích khác";
+$page_keywords = "dịch vụ Aurora Hotel Plaza, nhà hàng, spa, phòng gym, hồ bơi, hội nghị, tiện ích khách sạn";
 $current_page = "dich-vu";
 $breadcrumb = [
     ['title' => 'Trang chủ', 'url' => 'index.php'],
     ['title' => 'Dịch vụ', 'url' => 'dich-vu.php', 'active' => true]
 ];
-$page_header_title = "Dịch vụ Aurora Hotel";
+$page_header_title = "Dịch vụ Aurora Hotel Plaza";
 $page_header_subtitle = "Trải nghiệm đẳng cấp với đầy đủ tiện ích hiện đại";
 $page_header_bg = "/assets/image/services-hero.jpg";
 
@@ -18,7 +18,7 @@ include '../includes/header.php';
     <div class="container">
         <div class="section-header">
             <h2>Dịch vụ đẳng cấp quốc tế</h2>
-            <p>Aurora Hotel tự hào mang đến cho quý khách những dịch vụ tốt nhất với tiêu chuẩn 5 sao</p>
+            <p>Aurora Hotel Plaza tự hào mang đến cho quý khách những dịch vụ tốt nhất với tiêu chuẩn 5 sao</p>
         </div>
         
         <div class="services-grid">

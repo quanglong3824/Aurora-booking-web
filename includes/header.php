@@ -7,8 +7,8 @@ require_once __DIR__ . '/config.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo isset($page_title) ? $page_title . ' - Aurora Hotel' : 'Aurora Hotel - Khách sạn sang trọng'; ?></title>
-    <meta name="description" content="<?php echo isset($page_description) ? $page_description : 'Aurora Hotel - Khách sạn sang trọng với dịch vụ đẳng cấp quốc tế tại TP.HCM'; ?>">
+    <title><?php echo isset($page_title) ? $page_title . ' - Aurora Hotel Plaza' : 'Aurora Hotel Plaza - Khách sạn sang trọng'; ?></title>
+    <meta name="description" content="<?php echo isset($page_description) ? $page_description : 'Aurora Hotel Plaza - Khách sạn sang trọng với dịch vụ đẳng cấp quốc tế tại TP.HCM'; ?>">
     <meta name="keywords" content="khách sạn, hotel, Aurora, sang trọng, TP.HCM, đặt phòng, nghỉ dưỡng">
     
     <!-- Favicon -->
@@ -27,16 +27,16 @@ require_once __DIR__ . '/config.php';
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="<?php echo isset($page_title) ? $page_title . ' - Aurora Hotel' : 'Aurora Hotel - Khách sạn sang trọng'; ?>">
-    <meta property="og:description" content="<?php echo isset($page_description) ? $page_description : 'Aurora Hotel - Khách sạn sang trọng với dịch vụ đẳng cấp quốc tế'; ?>">
+    <meta property="og:title" content="<?php echo isset($page_title) ? $page_title . ' - Aurora Hotel Plaza' : 'Aurora Hotel Plaza - Khách sạn sang trọng'; ?>">
+    <meta property="og:description" content="<?php echo isset($page_description) ? $page_description : 'Aurora Hotel Plaza - Khách sạn sang trọng với dịch vụ đẳng cấp quốc tế'; ?>">
     <meta property="og:image" content="<?php echo asset('image/aurora-hotel-og.jpg'); ?>">
     <meta property="og:url" content="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>">
     <meta property="og:type" content="website">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="<?php echo isset($page_title) ? $page_title . ' - Aurora Hotel' : 'Aurora Hotel - Khách sạn sang trọng'; ?>">
-    <meta name="twitter:description" content="<?php echo isset($page_description) ? $page_description : 'Aurora Hotel - Khách sạn sang trọng với dịch vụ đẳng cấp quốc tế'; ?>">
+    <meta name="twitter:title" content="<?php echo isset($page_title) ? $page_title . ' - Aurora Hotel Plaza' : 'Aurora Hotel Plaza - Khách sạn sang trọng'; ?>">
+    <meta name="twitter:description" content="<?php echo isset($page_description) ? $page_description : 'Aurora Hotel Plaza - Khách sạn sang trọng với dịch vụ đẳng cấp quốc tế'; ?>">
     <meta name="twitter:image" content="<?php echo asset('image/aurora-hotel-og.jpg'); ?>">
 </head>
 <body class="<?php echo isset($body_class) ? $body_class : ''; ?>">
@@ -46,7 +46,7 @@ require_once __DIR__ . '/config.php';
             <div class="nav-container">
                 <div class="nav-logo">
                     <a href="<?php echo url('index.php'); ?>">
-                        <h1>Aurora Hotel</h1>
+                        <h1>Aurora Hotel Plaza</h1>
                     </a>
                 </div>
                 <ul class="nav-menu" id="navMenu">

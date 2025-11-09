@@ -1,13 +1,13 @@
 <?php
-$page_title = "Liên hệ - Aurora Hotel";
-$page_description = "Liên hệ với Aurora Hotel để được tư vấn và hỗ trợ tốt nhất. Chúng tôi luôn sẵn sàng phục vụ bạn 24/7";
-$page_keywords = "liên hệ aurora hotel, đặt phòng, tư vấn, hỗ trợ khách hàng, hotline";
+$page_title = "Liên hệ - Aurora Hotel Plaza";
+$page_description = "Liên hệ với Aurora Hotel Plaza để được tư vấn và hỗ trợ tốt nhất. Chúng tôi luôn sẵn sàng phục vụ bạn 24/7";
+$page_keywords = "liên hệ Aurora Hotel Plaza, đặt phòng, tư vấn, hỗ trợ khách hàng, hotline";
 $current_page = "lien-he";
 $breadcrumb = [
     ['title' => 'Trang chủ', 'url' => 'index.php'],
     ['title' => 'Liên hệ', 'url' => 'lien-he.php', 'active' => true]
 ];
-$page_header_title = "Liên hệ với Aurora Hotel";
+$page_header_title = "Liên hệ với Aurora Hotel Plaza";
 $page_header_subtitle = "Chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7";
 $page_header_bg = "/assets/image/contact-hero.jpg";
 
@@ -141,7 +141,7 @@ include '../includes/header.php';
                         <label class="checkbox-label">
                             <input type="checkbox" name="newsletter" value="1">
                             <span class="checkmark"></span>
-                            Tôi muốn nhận thông tin khuyến mãi và tin tức từ Aurora Hotel
+                            Tôi muốn nhận thông tin khuyến mãi và tin tức từ Aurora Hotel Plaza
                         </label>
                     </div>
                     
@@ -224,7 +224,7 @@ include '../includes/header.php';
         <div class="location-content">
             <div class="location-info">
                 <h2>Vị trí thuận lợi</h2>
-                <p>Aurora Hotel tọa lạc tại vị trí đắc địa trong trung tâm thành phố, dễ dàng di chuyển đến các điểm tham quan và khu vực kinh doanh.</p>
+                <p>Aurora Hotel Plaza tọa lạc tại vị trí đắc địa trong trung tâm thành phố, dễ dàng di chuyển đến các điểm tham quan và khu vực kinh doanh.</p>
                 
                 <div class="location-details">
                     <div class="location-item">
@@ -292,7 +292,7 @@ include '../includes/header.php';
                 </div>
                 <div class="map-overlay">
                     <div class="map-info">
-                        <h4>Aurora Hotel</h4>
+                        <h4>Aurora Hotel Plaza</h4>
                         <p>123 Đường Nguyễn Huệ, Quận 1</p>
                         <div class="map-rating">
                             <div class="stars">
@@ -454,7 +454,7 @@ include '../includes/header.php';
         <div class="faq-container">
             <div class="faq-item">
                 <div class="faq-question">
-                    <h4>Làm thế nào để đặt phòng tại Aurora Hotel?</h4>
+                    <h4>Làm thế nào để đặt phòng tại Aurora Hotel Plaza?</h4>
                     <i class="fas fa-plus"></i>
                 </div>
                 <div class="faq-answer">
