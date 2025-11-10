@@ -2,6 +2,17 @@ php
 <?php
 // Nạp dữ liệu trang Studio VIP từ file riêng
 include '../../includes/data-pages/data-studio-vip.php';
+// Breadcrumb cho trang Phòng Studio VIP Đẳng Cấp
+$breadcrumb = [
+    [
+        'title' => 'Phòng',
+        'url' => '/pages/phong.php'
+    ],
+    [
+        'title' => 'Phòng Studio VIP Đẳng Cấp',
+        'active' => true
+    ]
+];
 // Include header sau khi có biến tiêu đề/mô tả
 include '../../includes/header.php';
 ?>
@@ -135,27 +146,70 @@ include '../../includes/header.php';
     </div>
 
     <!-- Related Rooms -->
+    <?php
+        // Build randomized suggested rooms excluding current type
+        $current_type = 'studio_vip';
+        $roomCatalog = [
+            'deluxe' => [
+                'data_file' => '../../includes/data-pages/data-deluxe.php',
+                'detail_link' => 'pages/phong/deluxe-sang-trong.php',
+                'fallback_image' => 'img/deluxe/DELUXE-ROOM-AURORA-1.jpg',
+            ],
+            'premium_deluxe' => [
+                'data_file' => '../../includes/data-pages/data-premium-deluxe.php',
+                'detail_link' => 'pages/phong/premium-deluxe-cao-cap.php',
+                'fallback_image' => 'img/premium deluxe/PREMIUM-DELUXE-AURORA-HOTEL-1.jpg',
+            ],
+            'premium_twin' => [
+                'data_file' => '../../includes/data-pages/data-premium-deluxe-twin.php',
+                'detail_link' => 'pages/phong/premium-deluxe-twin-doi.php',
+                'fallback_image' => 'img/premium twin/PREMIUM-DELUXE-TWIN-AURORA-1.jpg',
+            ],
+            'studio_vip' => [
+                'data_file' => '../../includes/data-pages/data-studio-vip.php',
+                'detail_link' => 'pages/phong/studio-vip-dang-cap.php',
+                'fallback_image' => 'img/studio apartment/CAN-HO-STUDIO-AURORA-HOTEL-1.jpg',
+            ],
+        ];
+
+        $buildCard = function(array $conf) {
+            $vars = (function($file){ include $file; return get_defined_vars(); })($conf['data_file']);
+            $title = isset($vars['page_title']) ? $vars['page_title'] : 'Phòng';
+            $price = isset($vars['price_text']) ? $vars['price_text'] : '';
+            $perNight = isset($vars['per_night_text']) ? trim($vars['per_night_text']) : '';
+            if ($perNight !== '') { $price = trim($price.' '.$perNight); }
+            $image = isset($vars['main_image']) ? $vars['main_image'] : $conf['fallback_image'];
+            return [
+                'title' => $title,
+                'price' => $price,
+                'link' => $conf['detail_link'],
+                'image' => $image,
+            ];
+        };
+
+        $pool = [];
+        foreach ($roomCatalog as $key => $conf) {
+            if ($key !== $current_type) { $pool[] = $buildCard($conf); }
+        }
+        shuffle($pool);
+        $suggested_rooms = array_slice($pool, 0, 2);
+    ?>
     <section class="related-rooms">
         <div class="container">
             <h3><?php echo htmlspecialchars($related_heading); ?></h3>
             <div class="rooms-grid">
-                <div class="room-card">
-                    <img src="<?php echo asset('img/deluxe/DELUXE-ROOM-AURORA-1.jpg'); ?>" alt="<?php echo htmlspecialchars($related1_title); ?>" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/f0f0f0/666?text=Deluxe'">
-                    <div class="room-card-content">
-                        <h4><?php echo htmlspecialchars($related1_title); ?></h4>
-                        <p class="room-price"><?php echo htmlspecialchars($related1_price); ?></p>
-                        <a href="<?php echo url('pages/phong/deluxe-sang-trong.php'); ?>" class="btn btn-outline"><?php echo htmlspecialchars($related1_btn_text); ?></a>
+                <?php foreach ($suggested_rooms as $s): ?>
+                    <div class="room-card">
+                        <img src="<?php echo asset($s['image']); ?>" alt="<?php echo htmlspecialchars($s['title']); ?>" loading="lazy">
+                        <div class="room-card-content">
+                            <h4><?php echo htmlspecialchars($s['title']); ?></h4>
+                            <?php if (!empty($s['price'])): ?>
+                                <p class="room-price"><?php echo htmlspecialchars($s['price']); ?></p>
+                            <?php endif; ?>
+                            <a href="<?php echo url($s['link']); ?>" class="btn btn-outline">Xem Chi Tiết</a>
+                        </div>
                     </div>
-                </div>
-
-                <div class="room-card">
-                    <img src="<?php echo asset('img/premium deluxe/PREMIUM-DELUXE-AURORA-HOTEL-1.jpg'); ?>" alt="<?php echo htmlspecialchars($related2_title); ?>" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/f0f0f0/666?text=Premium+Deluxe'">
-                    <div class="room-card-content">
-                        <h4><?php echo htmlspecialchars($related2_title); ?></h4>
-                        <p class="room-price"><?php echo htmlspecialchars($related2_price); ?></p>
-                        <a href="<?php echo url('pages/phong/premium-deluxe-cao-cap.php'); ?>" class="btn btn-outline"><?php echo htmlspecialchars($related2_btn_text); ?></a>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>

@@ -35,6 +35,7 @@ $specs = [
     ["label" => "Diện tích:", "value" => "35m²"],
     ["label" => "Sức chứa:", "value" => "2 người lớn"],
     ["label" => "Loại giường:", "value" => "King Size"],
+    ["label" => "View:", "value" => "Thành phố"],
 ];
 
 $booking_url = "../../dat-phong.php?room=deluxe";

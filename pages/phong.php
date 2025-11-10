@@ -190,16 +190,18 @@ include '../includes/header.php';
                             <a href="<?php echo url('pages/phong/premium-deluxe-cao-cap.php'); ?>" class="btn-secondary room-details-btn">Xem chi tiết</a>
                             <a href="<?php echo url($booking_url_path); ?>" class="btn-primary room-book-btn"><?php echo htmlspecialchars($book_button_text); ?></a>
                         </div>
-                    </div>
                 </div>
+            </div>
 
+                <?php include_once '../includes/data-pages/data-premium-deluxe-twin.php'; ?>
                 <div class="room-card" data-room-type="premium">
                     <div class="room-image-container">
-                        <img src="<?php echo asset('image/room-suite-ocean.jpg'); ?>" alt="Phòng Premium Deluxe Twin Đôi" loading="lazy">
+                        <img src="<?php echo asset($main_image); ?>" alt="<?php echo htmlspecialchars($gallery_main_alt); ?>" loading="lazy">
                         <div class="room-badge">Gia đình</div>
                         <div class="room-gallery-btn">
                             <i class="fas fa-images"></i>
-                            <span>14 ảnh</span>
+                            <?php $premium_twin_images = glob(__DIR__ . '/../assets/img/premium twin/*.jpg'); ?>
+                            <span><?php echo isset($premium_twin_images) ? count($premium_twin_images) : 0; ?> ảnh</span>
                         </div>
                     </div>
 
@@ -219,51 +221,47 @@ include '../includes/header.php';
                         </div>
 
                         <div class="room-details">
+                            <?php if (isset($specs) && is_array($specs)) : ?>
                             <div class="room-specs">
-                                <span><i class="fas fa-bed"></i> 2 giường đơn</span>
-                                <span><i class="fas fa-users"></i> 2-4 khách</span>
-                                <span><i class="fas fa-expand-arrows-alt"></i> 42m²</span>
-                                <span><i class="fas fa-eye"></i> View biển</span>
+                                <?php foreach ($specs as $spec): 
+                                    $icon = 'fas fa-check';
+                                    if (isset($spec['label']) && stripos($spec['label'], 'Diện tích') !== false) {
+                                        $icon = 'fas fa-expand-arrows-alt';
+                                    } elseif (isset($spec['label']) && stripos($spec['label'], 'Sức chứa') !== false) {
+                                        $icon = 'fas fa-users';
+                                    } elseif (isset($spec['label']) && stripos($spec['label'], 'Loại giường') !== false) {
+                                        $icon = 'fas fa-bed';
+                                    } elseif (isset($spec['label']) && stripos($spec['label'], 'View') !== false) {
+                                        $icon = 'fas fa-eye';
+                                    }
+                                ?>
+                                    <span><i class="<?php echo $icon; ?>"></i> <?php echo htmlspecialchars($spec['value']); ?></span>
+                                <?php endforeach; ?>
                             </div>
+                            <?php endif; ?>
 
                             <div class="room-amenities">
-                                <div class="amenity-item">
-                                    <i class="fas fa-wifi"></i>
-                                    <span>WiFi tốc độ cao</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-tv"></i>
-                                    <span>2 Smart TV 50"</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-couch"></i>
-                                    <span>Khu vực nghỉ ngơi</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-coffee"></i>
-                                    <span>Máy pha cà phê</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-bath"></i>
-                                    <span>2 phòng tắm</span>
-                                </div>
-                                <div class="amenity-item">
-                                    <i class="fas fa-concierge-bell"></i>
-                                    <span>Dịch vụ cao cấp</span>
-                                </div>
+                                <?php if (isset($amenities) && is_array($amenities)) : ?>
+                                    <?php foreach ($amenities as $amenity): ?>
+                                        <div class="amenity-item">
+                                            <i class="fas fa-check"></i>
+                                            <span><?php echo htmlspecialchars($amenity); ?></span>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </div>
                         </div>
 
                         <div class="room-pricing">
                             <div class="price-info">
-                                <span class="current-price">3.800.000 VNĐ</span>
-                                <span class="price-period">/đêm</span>
+                                <span class="current-price"><?php echo htmlspecialchars($price_text); ?></span>
+                                <span class="price-period"><?php echo htmlspecialchars($per_night_text); ?></span>
                             </div>
                         </div>
 
                         <div class="room-actions">
                             <a href="<?php echo url('pages/phong/premium-deluxe-twin-doi.php'); ?>" class="btn-secondary room-details-btn">Xem chi tiết</a>
-                            <a href="<?php echo url('pages/dat-phong.php?room=premium-deluxe-twin'); ?>" class="btn-primary room-book-btn">Đặt ngay</a>
+                            <a href="<?php echo url('pages/dat-phong.php?room=premium-deluxe-twin'); ?>" class="btn-primary room-book-btn"><?php echo htmlspecialchars($book_button_text); ?></a>
                         </div>
                     </div>
                 </div>
@@ -354,7 +352,7 @@ include '../includes/header.php';
     </div>
 </section>
 
-<!-- Room Comparison -->
+<!-- Room Comparison (Old Table Style, New Data) -->
 <section class="room-comparison">
     <div class="container">
         <div class="section-header">
@@ -362,66 +360,135 @@ include '../includes/header.php';
             <p>Tìm hiểu chi tiết về từng loại phòng để lựa chọn phù hợp nhất</p>
         </div>
 
+        <?php
+            // Tập hợp dữ liệu từ các file để dựng bảng
+            include '../includes/data-pages/data-deluxe.php';
+            $d_specs = isset($specs) ? $specs : [];
+            $d_amenities = isset($amenities) ? $amenities : [];
+            $d_services = isset($included_services) ? $included_services : [];
+            $d_price = ($price_text ?? '') . (($per_night_text ?? '') ? ' ' . $per_night_text : '');
+
+            include '../includes/data-pages/data-premium-deluxe.php';
+            $p_specs = isset($specs) ? $specs : [];
+            $p_amenities = isset($amenities) ? $amenities : [];
+            $p_services = isset($included_services) ? $included_services : [];
+            $p_price = ($price_text ?? '') . (($per_night_text ?? '') ? ' ' . $per_night_text : '');
+
+            include '../includes/data-pages/data-premium-deluxe-twin.php';
+            $t_specs = isset($specs) ? $specs : [];
+            $t_amenities = isset($amenities) ? $amenities : [];
+            $t_services = isset($included_services) ? $included_services : [];
+            $t_price = ($price_text ?? '') . (($per_night_text ?? '') ? ' ' . $per_night_text : '');
+
+            include '../includes/data-pages/data-studio-vip.php';
+            $s_specs = isset($specs) ? $specs : [];
+            $s_amenities = isset($amenities) ? $amenities : [];
+            $s_services = isset($included_services) ? $included_services : [];
+            $s_price = ($price_text ?? '') . (($per_night_text ?? '') ? ' ' . $per_night_text : '');
+
+            function find_spec($specsArr, $key) {
+                foreach ($specsArr as $sp) {
+                    if (stripos($sp['label'], $key) !== false) return $sp['value'];
+                }
+                return '';
+            }
+
+            function has_item($arr, $keyword) {
+                foreach ($arr as $item) {
+                    if (stripos($item, $keyword) !== false) return true;
+                }
+                return false;
+            }
+        ?>
+
         <div class="comparison-table">
             <table>
                 <thead>
                     <tr>
-                        <th>Tiện ích</th>
-                        <th>Standard</th>
+                        <th>Tiêu chí</th>
                         <th>Deluxe</th>
-                        <th>Suite</th>
-                        <th>Presidential</th>
+                        <th>Premium Deluxe</th>
+                        <th>Premium Twin</th>
+                        <th>Studio VIP</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Diện tích</td>
-                        <td>25-28m²</td>
-                        <td>35-40m²</td>
-                        <td>65-80m²</td>
-                        <td>150m²</td>
+                        <td>Giá</td>
+                        <td><?php echo htmlspecialchars($d_price); ?></td>
+                        <td><?php echo htmlspecialchars($p_price); ?></td>
+                        <td><?php echo htmlspecialchars($t_price); ?></td>
+                        <td><?php echo htmlspecialchars($s_price); ?></td>
                     </tr>
                     <tr>
-                        <td>Số khách tối đa</td>
-                        <td>2 khách</td>
-                        <td>2-4 khách</td>
-                        <td>4-6 khách</td>
-                        <td>6-8 khách</td>
+                        <td>Diện tích</td>
+                        <td><?php echo htmlspecialchars(find_spec($d_specs, 'Diện tích')); ?></td>
+                        <td><?php echo htmlspecialchars(find_spec($p_specs, 'Diện tích')); ?></td>
+                        <td><?php echo htmlspecialchars(find_spec($t_specs, 'Diện tích')); ?></td>
+                        <td><?php echo htmlspecialchars(find_spec($s_specs, 'Diện tích')); ?></td>
+                    </tr>
+                    <tr>
+                        <td>Sức chứa</td>
+                        <td><?php echo htmlspecialchars(find_spec($d_specs, 'Sức chứa')); ?></td>
+                        <td><?php echo htmlspecialchars(find_spec($p_specs, 'Sức chứa')); ?></td>
+                        <td><?php echo htmlspecialchars(find_spec($t_specs, 'Sức chứa')); ?></td>
+                        <td><?php echo htmlspecialchars(find_spec($s_specs, 'Sức chứa')); ?></td>
+                    </tr>
+                    <tr>
+                        <td>Loại giường</td>
+                        <td><?php echo htmlspecialchars(find_spec($d_specs, 'Loại giường')); ?></td>
+                        <td><?php echo htmlspecialchars(find_spec($p_specs, 'Loại giường')); ?></td>
+                        <td><?php echo htmlspecialchars(find_spec($t_specs, 'Loại giường')); ?></td>
+                        <td><?php echo htmlspecialchars(find_spec($s_specs, 'Loại giường')); ?></td>
+                    </tr>
+                    <tr>
+                        <td>View</td>
+                        <td><?php echo ($v = find_spec($d_specs, 'View')) ? htmlspecialchars($v) : '<i class="fas fa-minus text-muted"></i>'; ?></td>
+                        <td><?php echo htmlspecialchars(find_spec($p_specs, 'View')); ?></td>
+                        <td><?php echo htmlspecialchars(find_spec($t_specs, 'View')); ?></td>
+                        <td><?php echo htmlspecialchars(find_spec($s_specs, 'View')); ?></td>
                     </tr>
                     <tr>
                         <td>WiFi miễn phí</td>
-                        <td><i class="fas fa-check text-success"></i></td>
-                        <td><i class="fas fa-check text-success"></i></td>
-                        <td><i class="fas fa-check text-success"></i></td>
-                        <td><i class="fas fa-check text-success"></i></td>
+                        <td><?php echo has_item($d_amenities, 'Wifi') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                        <td><?php echo has_item($p_amenities, 'Wifi') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                        <td><?php echo has_item($t_amenities, 'Wifi') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                        <td><?php echo has_item($s_amenities, 'Wifi') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
                     </tr>
                     <tr>
-                        <td>Room Service 24/7</td>
-                        <td><i class="fas fa-times text-danger"></i></td>
-                        <td><i class="fas fa-check text-success"></i></td>
-                        <td><i class="fas fa-check text-success"></i></td>
-                        <td><i class="fas fa-check text-success"></i></td>
+                        <td>Bữa sáng miễn phí</td>
+                        <td><?php echo has_item($d_services, 'Bữa sáng') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                        <td><?php echo has_item($p_services, 'Bữa sáng') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                        <td><?php echo has_item($t_services, 'Bữa sáng') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                        <td><?php echo has_item($s_services, 'Bữa sáng') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
                     </tr>
                     <tr>
-                        <td>Bồn tắm Jacuzzi</td>
-                        <td><i class="fas fa-times text-danger"></i></td>
-                        <td><i class="fas fa-check text-success"></i></td>
-                        <td><i class="fas fa-check text-success"></i></td>
-                        <td><i class="fas fa-check text-success"></i></td>
+                        <td>Xông hơi</td>
+                        <td><?php echo has_item($d_services, 'Xông hơi') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                        <td><?php echo has_item($p_services, 'Xông hơi') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                        <td><?php echo has_item($t_services, 'Xông hơi') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                        <td><?php echo has_item($s_services, 'Xông hơi') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
                     </tr>
                     <tr>
-                        <td>Butler Service</td>
-                        <td><i class="fas fa-times text-danger"></i></td>
-                        <td><i class="fas fa-times text-danger"></i></td>
-                        <td><i class="fas fa-check text-success"></i></td>
-                        <td><i class="fas fa-check text-success"></i></td>
+                        <td>Hồ bơi</td>
+                        <td><?php echo has_item($d_services, 'Hồ bơi') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                        <td><?php echo has_item($p_services, 'Hồ bơi') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                        <td><?php echo has_item($t_services, 'Hồ bơi') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                        <td><?php echo has_item($s_services, 'Hồ bơi') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
                     </tr>
                     <tr>
-                        <td>Hồ bơi riêng</td>
-                        <td><i class="fas fa-times text-danger"></i></td>
-                        <td><i class="fas fa-times text-danger"></i></td>
-                        <td><i class="fas fa-times text-danger"></i></td>
-                        <td><i class="fas fa-check text-success"></i></td>
+                        <td>Dịch vụ phòng</td>
+                        <td><?php echo has_item($d_services, 'Dịch vụ phòng') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                        <td><?php echo has_item($p_services, 'Dịch vụ phòng') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                        <td><?php echo has_item($t_services, 'Dịch vụ phòng') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                        <td><?php echo has_item($s_services, 'Dịch vụ phòng') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                    </tr>
+                    <tr>
+                        <td>Phòng Gym</td>
+                        <td><?php echo has_item($d_services, 'Gym') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                        <td><?php echo has_item($p_services, 'Gym') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                        <td><?php echo has_item($t_services, 'Gym') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
+                        <td><?php echo has_item($s_services, 'Gym') ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'; ?></td>
                     </tr>
                 </tbody>
             </table>

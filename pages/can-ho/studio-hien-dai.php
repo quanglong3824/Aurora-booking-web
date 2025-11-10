@@ -6,6 +6,17 @@ $page_keywords = "căn hộ studio, căn hộ hiện đại, Aurora Hotel Plaza,
 $canonical_url = "/can-ho/studio/can-ho-studio-hien-dai";
 $additional_css = ['apartment-detail.css', 'can-ho-studio.css'];
 
+$breadcrumb = [
+    [
+        'title' => 'Căn hộ',
+        'url' => '/pages/can-ho.php'
+    ],
+    [
+        'title' => 'Căn Hộ Studio Hiện Đại',
+        'active' => true
+    ]
+];
+
 include '../../includes/header.php';
 ?>
 

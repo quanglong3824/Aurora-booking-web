@@ -1,218 +1,97 @@
 php
 <?php
-$page_title = "Căn Hộ Family Gia Đình - Aurora Hotel Plaza";
-$page_description = "Căn hộ Family rộng rãi với 2 phòng ngủ, phù hợp cho gia đình có trẻ em. Tiện nghi đầy đủ và không gian thoải mái tại Aurora Hotel Plaza.";
-$canonical_url = "https://aurorahotel.vn/can-ho-family-gia-dinh";
-$additional_css = ['apartment-detail.css', 'can-ho-family.css'];
+// Nạp dữ liệu trang Family từ file riêng theo mẫu Deluxe
+include '../../includes/data-pages/data-family-apartment.php';
+// Breadcrumb cho trang Căn Hộ Family
 $breadcrumb = [
-    ['name' => 'Trang chủ', 'url' => '/'],
-    ['name' => 'Căn hộ', 'url' => '/can-ho'],
-    ['name' => 'Căn Hộ Family Gia Đình', 'url' => '']
+    [
+        'title' => 'Căn hộ',
+        'url' => '/pages/can-ho.php'
+    ],
+    [
+        'title' => $page_title,
+        'active' => true
+    ]
 ];
+// Include header
 include '../../includes/header.php';
 ?>
 
-<main class="apartment-detail-page family-theme">
+<div class="room-detail-page">
     <!-- Hero Section -->
-    <section class="apartment-hero">
+    <section class="room-hero">
         <div class="hero-image">
-            <img src="<?php echo asset('assets/image/room-suite-ocean.jpg'); ?>" alt="Căn Hộ Family Gia Đình Aurora Hotel Plaza" loading="lazy">
+            <img src="<?php echo asset($main_image); ?>" alt="Căn Hộ Family Gia Đình Aurora Hotel Plaza" loading="lazy">
             <div class="hero-overlay">
                 <div class="container">
-                    <h1>Căn Hộ Family Gia Đình</h1>
-                    <p class="hero-subtitle">Không gian sống hoàn hảo cho gia đình với đầy đủ tiện nghi như ở nhà</p>
+                    <h1><?php echo $page_title; ?></h1>
+                    <p class="hero-subtitle"><?php echo $hero_subtitle; ?></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Apartment Information -->
-    <section class="apartment-info">
+    <!-- Apartment Information (theo mẫu Deluxe) -->
+    <section class="room-info">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="apartment-content">
-                        <h2>Về Căn Hộ Family Gia Đình</h2>
-                        <p>Căn hộ Family của Aurora Hotel Plaza được thiết kế đặc biệt cho gia đình với diện tích 80m², bao gồm 2 phòng ngủ riêng biệt, phòng khách rộng rãi, bếp đầy đủ tiện nghi và 2 phòng tắm. Đây là lựa chọn hoàn hảo cho kỳ nghỉ gia đình dài ngày với không gian sống thoải mái như ở nhà.</p>
+                    <div class="room-content">
+                        <h2><?php echo $about_heading; ?></h2>
+                        <p><?php echo $about_paragraph; ?></p>
                         
-                        <h3>Bố Trí Căn Hộ</h3>
-                        <div class="apartment-layout">
-                            <div class="layout-item">
-                                <i class="fas fa-bed"></i>
-                                <div>
-                                    <h4>Phòng Ngủ Chính</h4>
-                                    <p>Giường King Size, tủ quần áo lớn, ban công riêng</p>
-                                </div>
-                            </div>
-                            <div class="layout-item">
-                                <i class="fas fa-child"></i>
-                                <div>
-                                    <h4>Phòng Ngủ Trẻ Em</h4>
-                                    <p>2 giường đơn, khu vực chơi, tủ đồ chơi</p>
-                                </div>
-                            </div>
-                            <div class="layout-item">
-                                <i class="fas fa-couch"></i>
-                                <div>
-                                    <h4>Phòng Khách</h4>
-                                    <p>Sofa lớn, TV 65 inch, khu vực ăn uống</p>
-                                </div>
-                            </div>
-                            <div class="layout-item">
-                                <i class="fas fa-utensils"></i>
-                                <div>
-                                    <h4>Bếp Đầy Đủ</h4>
-                                    <p>Tủ lạnh, bếp từ, lò vi sóng, máy rửa bát</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h3>Tiện Nghi Gia Đình</h3>
-                        <div class="amenities-grid">
-                            <div class="amenity-item family">
-                                <i class="fas fa-home"></i>
-                                <span>Không gian sống như ở nhà</span>
-                            </div>
-                            <div class="amenity-item family">
-                                <i class="fas fa-kitchen-set"></i>
-                                <span>Bếp đầy đủ tiện nghi nấu ăn</span>
-                            </div>
-                            <div class="amenity-item family">
-                                <i class="fas fa-washing-machine"></i>
-                                <span>Máy giặt & máy sấy riêng</span>
-                            </div>
-                            <div class="amenity-item family">
-                                <i class="fas fa-wifi"></i>
-                                <span>WiFi tốc độ cao miễn phí</span>
-                            </div>
-                            <div class="amenity-item family">
-                                <i class="fas fa-tv"></i>
-                                <span>Smart TV trong mỗi phòng</span>
-                            </div>
-                            <div class="amenity-item family">
-                                <i class="fas fa-snowflake"></i>
-                                <span>Điều hòa đa vùng</span>
-                            </div>
-                            <div class="amenity-item family">
-                                <i class="fas fa-baby"></i>
-                                <span>Tiện nghi an toàn cho trẻ em</span>
-                            </div>
-                            <div class="amenity-item family">
-                                <i class="fas fa-car"></i>
-                                <span>Chỗ đậu xe riêng miễn phí</span>
-                            </div>
-                        </div>
-
-                        <h3>Dịch Vụ Gia Đình Đặc Biệt</h3>
-                        <ul class="services-list family">
-                            <li>Dịch vụ trông trẻ chuyên nghiệp</li>
-                            <li>Hoạt động giải trí cho trẻ em</li>
-                            <li>Dịch vụ mua sắm tạp hóa</li>
-                            <li>Cho thuê xe đẩy em bé & ghế ăn</li>
-                            <li>Dịch vụ nấu ăn tại nhà</li>
-                            <li>Tour tham quan gia đình</li>
-                            <li>Đưa đón trường học (nếu cần)</li>
-                            <li>Hỗ trợ y tế 24/7</li>
+                        <h3><?php echo $amenities_heading; ?></h3>
+                        <ul class="services-list">
+                            <?php foreach ($amenities as $amenity): ?>
+                                <li><?php echo $amenity; ?></li>
+                            <?php endforeach; ?>
                         </ul>
 
-                        <h3>Hoạt Động Gia Đình</h3>
-                        <div class="family-activities">
-                            <div class="activity-card">
-                                <img src="../../../assets/image/pool.jpg" alt="Hồ bơi gia đình" loading="lazy">
-                                <div class="activity-content">
-                                    <h4>Hồ Bơi Gia Đình</h4>
-                                    <p>Hồ bơi có khu vực riêng cho trẻ em với độ sâu an toàn và nhân viên cứu hộ</p>
-                                </div>
-                            </div>
-                            <div class="activity-card">
-                                <img src="../../../assets/image/gym.jpg" alt="Khu vui chơi trẻ em" loading="lazy">
-                                <div class="activity-content">
-                                    <h4>Khu Vui Chơi Trẻ Em</h4>
-                                    <p>Khu vực vui chơi trong nhà và ngoài trời được thiết kế an toàn</p>
-                                </div>
-                            </div>
-                            <div class="activity-card">
-                                <img src="../../../assets/image/restaurant.jpg" alt="Nhà hàng gia đình" loading="lazy">
-                                <div class="activity-content">
-                                    <h4>Nhà Hàng Gia Đình</h4>
-                                    <p>Menu đặc biệt cho trẻ em và không gian ăn uống thân thiện</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h3>Chính Sách Gia Đình</h3>
-                        <div class="family-policies">
-                            <div class="policy-item">
-                                <h4>Trẻ Em Miễn Phí</h4>
-                                <p>Trẻ em dưới 12 tuổi được miễn phí khi ở cùng bố mẹ (tối đa 2 trẻ)</p>
-                            </div>
-                            <div class="policy-item">
-                                <h4>Giường Phụ</h4>
-                                <p>Cung cấp miễn phí giường phụ, nôi em bé và các tiện nghi cho trẻ</p>
-                            </div>
-                            <div class="policy-item">
-                                <h4>Check-in Linh Hoạt</h4>
-                                <p>Check-in sớm và check-out muộn miễn phí cho gia đình có trẻ nhỏ</p>
-                            </div>
-                        </div>
+                        <h3><?php echo $services_heading; ?></h3>
+                        <ul class="services-list">
+                            <?php foreach ($included_services as $service): ?>
+                                <li><?php echo $service; ?></li>
+                            <?php endforeach; ?>
+                        </ul>
                     </div>
                 </div>
                 
                 <div class="col-lg-4">
-                    <div class="booking-card family-apartment">
-                        <div class="family-badge">
-                            <i class="fas fa-home"></i>
-                            <span>FAMILY HOME</span>
-                        </div>
-                        
+                    <div class="booking-card">
                         <div class="price-info">
-                            <span class="price">5.500.000 VNĐ</span>
-                            <span class="per-night">/đêm</span>
-                            <div class="family-note">Bao gồm 2 trẻ em dưới 12 tuổi</div>
+                            <span class="price"><?php echo $price_text; ?></span>
+                            <span class="per-night"><?php echo $per_night_text; ?></span>
                         </div>
                         
-                        <div class="apartment-specs">
-                            <div class="spec-item">
-                                <strong>Diện tích:</strong> 80m²
-                            </div>
-                            <div class="spec-item">
-                                <strong>Phòng ngủ:</strong> 2 phòng
-                            </div>
-                            <div class="spec-item">
-                                <strong>Phòng tắm:</strong> 2 phòng
-                            </div>
-                            <div class="spec-item">
-                                <strong>Sức chứa:</strong> 4-6 người
-                            </div>
-                            <div class="spec-item">
-                                <strong>Bếp:</strong> Đầy đủ tiện nghi
-                            </div>
-                            <div class="spec-item">
-                                <strong>Ban công:</strong> Rộng rãi an toàn
-                            </div>
+                        <div class="room-specs">
+                            <?php foreach ($specs as $spec): ?>
+                                <div class="spec-item">
+                                    <strong><?php echo $spec['label']; ?></strong> <?php echo $spec['value']; ?>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                         
-                        <div class="family-perks">
-                            <h4>Ưu Đãi Gia Đình</h4>
-                            <ul>
-                                <li>Trẻ em dưới 12 tuổi miễn phí</li>
-                                <li>Breakfast buffet gia đình</li>
-                                <li>Chỗ đậu xe miễn phí</li>
-                                <li>Hoạt động trẻ em miễn phí</li>
-                                <li>Late check-out đến 14:00</li>
-                                <li>Dịch vụ giặt ủi ưu tiên</li>
-                            </ul>
-                        </div>
-                        
-                        <a href="../../dat-phong.php?room=family-apartment" class="btn btn-family-apartment btn-book">
-                            <i class="fas fa-home"></i>
-                            Đặt Căn Hộ Gia Đình
+                        <a href="<?php echo $booking_url; ?>" class="btn btn-primary btn-book">
+                            <?php echo $book_button_text; ?>
                         </a>
                         
                         <div class="contact-info">
-                            <p><strong>Hotline gia đình:</strong></p>
-                            <p><a href="tel:+84123456789">+84 123 456 789</a></p>
-                            <small>Tư vấn chuyên biệt cho gia đình</small>
+                            <div class="contact-item">
+                                <i class="fas fa-phone contact-icon" aria-hidden="true"></i>
+                                <div class="contact-line">
+                                    <span class="label"><?php echo $contact_hotline_label; ?></span>
+                                    <a class="value" href="tel:+842513918888" aria-label="Gọi đặt phòng"><?php echo $contact_hotline; ?></a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope contact-icon" aria-hidden="true"></i>
+                                <div class="contact-line">
+                                    <span class="label"><?php echo $contact_email_label; ?></span>
+                                    <a class="value" href="mailto:<?php echo $contact_email_booking; ?>" aria-label="Gửi email đặt phòng"><?php echo $contact_email_booking; ?></a>
+                                    <span class="divider">|</span>
+                                    <a class="value" href="mailto:<?php echo $contact_email_info; ?>" aria-label="Gửi email thông tin"><?php echo $contact_email_info; ?></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -220,73 +99,68 @@ include '../../includes/header.php';
         </div>
     </section>
 
-    <!-- Apartment Gallery -->
-    <section class="apartment-gallery">
+    <!-- Room Gallery (Slider) -->
+    <section class="room-gallery">
         <div class="container">
-            <h3>Hình Ảnh Căn Hộ Family</h3>
-            <div class="gallery-grid apartment">
-                <div class="gallery-item main">
-                    <img src="../../../assets/image/room-suite-ocean.jpg" alt="Căn hộ Family - Phòng khách" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span>Phòng khách rộng rãi</span>
-                    </div>
+            <h3><?php echo $gallery_heading; ?></h3>
+            <div class="image-slider" id="deluxeSlider">
+                <button class="slider-btn prev" aria-label="<?php echo $gallery_prev_label; ?>"><i class="fas fa-chevron-left"></i></button>
+                <div class="slider-main">
+                    <img id="sliderMainImage"
+                         src="<?php echo asset('img/family apartment/CAN-HO-FAMILY-AURORA-HOTEL-3.jpg'); ?>"
+                         alt="<?php echo $gallery_main_alt; ?>"
+                         loading="eager"
+                         decoding="async"
+                         fetchpriority="high">
                 </div>
-                <div class="gallery-item">
-                    <img src="../../../assets/image/room-suite.jpg" alt="Căn hộ Family - Phòng ngủ chính" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span>Phòng ngủ chính</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="../../../assets/image/room-standard.jpg" alt="Căn hộ Family - Phòng trẻ em" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span>Phòng ngủ trẻ em</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="<?php echo asset('assets/image/room-deluxe.jpg'); ?>" alt="Căn hộ Family - Bếp" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span>Bếp đầy đủ tiện nghi</span>
-                    </div>
+                <button class="slider-btn next" aria-label="<?php echo $gallery_next_label; ?>"><i class="fas fa-chevron-right"></i></button>
+                <div class="slider-thumbs" id="sliderThumbs">
+                    <img class="thumb active" src="<?php echo asset('img/family apartment/CAN-HO-FAMILY-AURORA-HOTEL-3.jpg'); ?>" data-full="<?php echo asset('img/family apartment/CAN-HO-FAMILY-AURORA-HOTEL-3.jpg'); ?>" alt="Thumb 1" loading="lazy" decoding="async">
+                    <img class="thumb" src="<?php echo asset('img/family apartment/CAN-HO-FAMILY-AURORA-HOTEL-5.jpg'); ?>" data-full="<?php echo asset('img/family apartment/CAN-HO-FAMILY-AURORA-HOTEL-5.jpg'); ?>" alt="Thumb 2" loading="lazy" decoding="async">
+                    <img class="thumb" src="<?php echo asset('img/family apartment/CAN-HO-FAMILY-AURORA-HOTEL-6.jpg'); ?>" data-full="<?php echo asset('img/family apartment/CAN-HO-FAMILY-AURORA-HOTEL-6.jpg'); ?>" alt="Thumb 3" loading="lazy" decoding="async">
+                    <img class="thumb" src="<?php echo asset('img/family apartment/CAN-HO-FAMILY-AURORA-HOTEL-7.jpg'); ?>" data-full="<?php echo asset('img/family apartment/CAN-HO-FAMILY-AURORA-HOTEL-7.jpg'); ?>" alt="Thumb 4" loading="lazy" decoding="async">
+                    <img class="thumb" src="<?php echo asset('img/family apartment/CAN-HO-FAMILY-AURORA-HOTEL-8.jpg'); ?>" data-full="<?php echo asset('img/family apartment/CAN-HO-FAMILY-AURORA-HOTEL-8.jpg'); ?>" alt="Thumb 5" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Lightbox for images -->
+    <div class="lightbox" id="imageLightbox" aria-hidden="true">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose" aria-label="<?php echo $lightbox_close_label; ?>"><i class="fas fa-times"></i></button>
+            <button class="lightbox-prev" id="lightboxPrev" aria-label="<?php echo $gallery_prev_label; ?>"><i class="fas fa-chevron-left"></i></button>
+            <img id="lightboxImage" src="<?php echo asset('img/family apartment/CAN-HO-FAMILY-AURORA-HOTEL-3.jpg'); ?>" alt="Xem ảnh lớn">
+            <button class="lightbox-next" id="lightboxNext" aria-label="<?php echo $gallery_next_label; ?>"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="lightbox-overlay" id="lightboxOverlay"></div>
+    </div>
 
     <!-- Related Apartments -->
-    <section class="related-apartments">
+    <section class="related-rooms">
         <div class="container">
-            <h3>Các Căn Hộ Khác</h3>
-            <div class="apartments-grid">
-                <div class="apartment-card">
-                    <img src="<?php echo asset('assets/image/room-presidential.jpg'); ?>" alt="Căn hộ Premium" loading="lazy">
-                    <div class="apartment-card-content">
-                        <h4>Căn Hộ Premium</h4>
-                        <p class="apartment-price">6.500.000 VNĐ/đêm</p>
-                        <a href="<?php echo url('pages/can-ho/premium-sang-trong.php'); ?>" class="btn btn-outline">Xem Chi Tiết</a>
+            <h3><?php echo $related_heading; ?></h3>
+            <div class="rooms-grid">
+                <div class="room-card">
+                    <img src="<?php echo asset('img/premium apartment/CAN-HO-PREMIUM-AURORA-HOTEL-1.jpg'); ?>" alt="Căn Hộ Premium" loading="lazy">
+                    <div class="room-card-content">
+                        <h4><?php echo $related1_title; ?></h4>
+                        <p class="room-price"><?php echo $related1_price; ?></p>
+                        <a href="<?php echo url('pages/can-ho/premium-sang-trong.php'); ?>" class="btn btn-outline"><?php echo $related1_btn_text; ?></a>
                     </div>
                 </div>
                 
-                <div class="apartment-card">
-                    <img src="<?php echo asset('assets/image/room-suite-ocean.jpg'); ?>" alt="Căn hộ Studio" loading="lazy">
-                    <div class="apartment-card-content">
-                        <h4>Căn Hộ Studio</h4>
-                        <p class="apartment-price">4.800.000 VNĐ/đêm</p>
-                        <a href="<?php echo url('pages/can-ho/studio-hien-dai.php'); ?>" class="btn btn-outline">Xem Chi Tiết</a>
-                    </div>
-                </div>
-                
-                <div class="apartment-card">
-                    <img src="<?php echo asset('assets/image/room-standard.jpg'); ?>" alt="Phòng Premium Deluxe Twin" loading="lazy">
-                    <div class="apartment-card-content">
-                        <h4>Phòng Premium Twin</h4>
-                        <p class="apartment-price">3.500.000 VNĐ/đêm</p>
-                        <a href="<?php echo url('pages/phong/premium-deluxe-twin-doi.php'); ?>" class="btn btn-outline">Xem Chi Tiết</a>
+                <div class="room-card">
+                    <img src="<?php echo asset('img/studio apartment/CAN-HO-STUDIO-AURORA-HOTEL-1.jpg'); ?>" alt="Căn Hộ Studio" loading="lazy">
+                    <div class="room-card-content">
+                        <h4><?php echo $related2_title; ?></h4>
+                        <p class="room-price"><?php echo $related2_price; ?></p>
+                        <a href="<?php echo url('pages/can-ho/studio-hien-dai.php'); ?>" class="btn btn-outline"><?php echo $related2_btn_text; ?></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-</main>
+</div>
 
-<?php include '../../includes/footer.php'; ?>
+<?php include_once '../../includes/footer.php'; ?>

@@ -1,6 +1,13 @@
 <?php
 // Nạp dữ liệu text/meta riêng cho trang Phòng & Căn hộ
 include '../includes/data-pages/data-phong-can-ho.php';
+// Breadcrumb cho trang Phòng & Căn hộ
+$breadcrumb = [
+    [
+        'title' => 'Phòng & Căn hộ',
+        'active' => true
+    ]
+];
 // Include header chuẩn
 include '../includes/header.php';
 ?>

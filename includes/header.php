@@ -100,20 +100,39 @@ require_once __DIR__ . '/config.php';
     </header>
 
     <!-- Breadcrumb -->
-    <?php if(isset($show_breadcrumb) && $show_breadcrumb): ?>
-    <nav class="breadcrumb-nav" style="margin-top: 100px;">
+    <?php 
+        // Normalize breadcrumb from different page variables
+        $has_breadcrumb = false;
+        $render_items = [];
+
+        if (isset($breadcrumb_items) && is_array($breadcrumb_items) && count($breadcrumb_items) > 0) {
+            $has_breadcrumb = isset($show_breadcrumb) ? (bool)$show_breadcrumb : true;
+            $render_items = $breadcrumb_items;
+        } elseif (isset($breadcrumb) && is_array($breadcrumb) && count($breadcrumb) > 0) {
+            $has_breadcrumb = true;
+            foreach ($breadcrumb as $item) {
+                $title = isset($item['title']) ? $item['title'] : (isset($item['name']) ? $item['name'] : '');
+                $url = isset($item['url']) ? $item['url'] : null;
+                $active = isset($item['active']) ? (bool)$item['active'] : false;
+                $render_items[] = [
+                    'title' => $title,
+                    'url' => $active ? null : $url
+                ];
+            }
+        }
+    ?>
+    <?php if($has_breadcrumb): ?>
+    <nav class="breadcrumb-nav" style="margin-top: 120px;">
         <div class="container" style="margin-top: 100px;">
             <ol class="breadcrumb">
                 <li><a href="/"><i class="fas fa-home"></i> Trang chủ</a></li>
-                <?php if(isset($breadcrumb_items)): ?>
-                    <?php foreach($breadcrumb_items as $item): ?>
-                        <?php if(isset($item['url'])): ?>
-                            <li><a href="<?php echo $item['url']; ?>"><?php echo $item['title']; ?></a></li>
-                        <?php else: ?>
-                            <li class="active"><?php echo $item['title']; ?></li>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                <?php endif; ?>
+                <?php foreach($render_items as $item): ?>
+                    <?php if(isset($item['url']) && $item['url']): ?>
+                        <li><a href="<?php echo $item['url']; ?>"><?php echo $item['title']; ?></a></li>
+                    <?php else: ?>
+                        <li class="active"><?php echo $item['title']; ?></li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </ol>
         </div>
     </nav>
@@ -121,7 +140,7 @@ require_once __DIR__ . '/config.php';
 
     <!-- Page Header -->
     <?php if(isset($page_header) && $page_header): ?>
-    <section class="page-header" style="background-image: url('<?php echo isset($page_header_bg) ? $page_header_bg : '/assets/image/page-header-bg.jpg'; ?>');">
+    <section class="page-header" style="background-image: url('<?php echo isset($page_header_bg) ? $page_header_bg : '/assets/image/page-header-bg.jpg'; ?>'); margin-top: 120px;">
         <div class="page-header-overlay"></div>
         <div class="container">
             <div class="page-header-content">
