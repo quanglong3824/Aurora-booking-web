@@ -41,7 +41,7 @@ include '../includes/header.php';
                 </div>
             </div>
             
-            <div class="service-card">
+            <!-- <div class="service-card">
                 <div class="service-image">
                     <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-6.jpg" alt="Aurora Spa" loading="lazy">
                 </div>
@@ -55,7 +55,7 @@ include '../includes/header.php';
                     </div>
                     <a href="#spa" class="service-link">Xem chi tiết <i class="fas fa-arrow-right"></i></a>
                 </div>
-            </div>
+            </div> -->
             
             <div class="service-card">
                 <div class="service-image">
@@ -161,11 +161,11 @@ include '../includes/header.php';
                 <div class="service-info">
                     <div class="info-item">
                         <strong>Giờ phục vụ:</strong>
-                        <span>06:00 - 23:00 (Buffet sáng: 06:00 - 10:00)</span>
+                        <span>06:00 - 22:00 (Buffet sáng: 06:00 - 10:00)</span>
                     </div>
                     <div class="info-item">
                         <strong>Sức chứa:</strong>
-                        <span>150 khách</span>
+                        <span>200 khách</span>
                     </div>
                     <div class="info-item">
                         <strong>Đặt bàn:</strong>
@@ -190,7 +190,7 @@ include '../includes/header.php';
     </div>
 </section>
 
-<!-- Spa Section -->
+<!-- Spa Section
 <section id="spa" class="service-detail alt">
     <div class="container">
         <div class="service-detail-content">
@@ -250,7 +250,7 @@ include '../includes/header.php';
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- Pool Section -->
 <section id="pool" class="service-detail">

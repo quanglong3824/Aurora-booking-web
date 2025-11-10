@@ -6,13 +6,20 @@ require_once __DIR__ . '/config.php';
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+        
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo isset($page_title) ? $page_title . ' - Aurora Hotel Plaza' : 'Aurora Hotel Plaza - Khách sạn sang trọng'; ?></title>
-    <meta name="description" content="<?php echo isset($page_description) ? $page_description : 'Aurora Hotel Plaza - Khách sạn sang trọng với dịch vụ đẳng cấp quốc tế tại TP.HCM'; ?>">
-    <meta name="keywords" content="khách sạn, hotel, Aurora, sang trọng, TP.HCM, đặt phòng, nghỉ dưỡng">
+    <title><?php echo isset($page_title) ? $page_title . ' - Aurora Hotel Plaza' : 'Aurora Hotel Plaza - Khách sạn 4 sao ở Biên Hoà'; ?></title>
+    <meta name="description" content="<?php echo isset($page_description) ? $page_description : 'Aurora Hotel Plaza - Khách sạn 4 sao ở Biên Hoà với dịch vụ chuẩn 4 sao'; ?>">
+    <meta name="keywords" content="khách sạn Biên Hoà, khách sạn 4 sao Biên Hoà, đặt phòng khách sạn Biên Hoà, Aurora Hotel Plaza, Aurora Biên Hoà, 
+    khách sạn sang trọng Biên Hoà, nơi lưu trú Biên Hoà, resort Biên Hoà, khách sạn gần trung tâm Biên Hoà, khách sạn gần sân bay Biên Hoà, khách sạn có hồ bơi Biên Hoà, khách 
+    sạn giá tốt Biên Hoà, khách sạn cao cấp Biên Hoà, đặt phòng trực tuyến Biên Hoà, khách sạn 4 sao gần Biên Hoà, Aurora Plaza Biên Hoà, khách sạn tiện nghi Biên Hoà, nghỉ dưỡng Biên Hoà, 
+    du lịch Biên Hoà, khách sạn view đẹp Biên Hoà, khách sạn gần chợ Biên Hoà, khách sạn gần bệnh viện Biên Hoà, Aurora booking, Aurora reservation, hotel in Bien Hoa, 4 star hotel Bien Hoa,
+     book hotel Bien Hoa, Bien Hoa accommodation, luxury hotel Bien Hoa, top hotel Bien Hoa, best hotel in Bien Hoa">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="<?php echo asset('image/favicon.ico'); ?>">
+    <link rel="icon" type="image/png" href="<?php echo asset('img/src/logo/favicon.png'); ?>">
+    <link rel="shortcut icon" type="image/png" href="<?php echo asset('img/src/logo/favicon.png'); ?>">
+    <link rel="apple-touch-icon" href="<?php echo asset('img/src/logo/favicon.png'); ?>">
     
     <!-- CSS Files -->
     <link rel="stylesheet" href="<?php echo asset('css/style.css'); ?>">

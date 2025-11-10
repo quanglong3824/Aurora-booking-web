@@ -1,4 +1,7 @@
 <?php
+// Debug tạm thời để xác định nguyên nhân 500 (sẽ gỡ sau khi fix)
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 $page_title = "Thư viện ảnh - Aurora Hotel Plaza";
 $page_description = "Khám phá vẻ đẹp của Aurora Hotel Plaza qua bộ sưu tập hình ảnh về phòng nghỉ, tiện ích và không gian sang trọng";
 $page_keywords = "thư viện ảnh Aurora Hotel Plaza, hình ảnh khách sạn, phòng nghỉ, tiện ích, gallery";
@@ -11,7 +14,13 @@ $page_header_title = "Thư viện ảnh Aurora Hotel Plaza";
 $page_header_subtitle = "Khám phá vẻ đẹp sang trọng qua từng khung hình";
 $page_header_bg = "/assets/image/gallery-hero.jpg";
 
+// Liên kết CSS/JS riêng cho trang Thư viện ảnh
+$additional_css = ['thu-vien-anh.css'];
+$additional_js = ['js/thu-vien-anh.js'];
+
 include '../includes/header.php';
+// Include dữ liệu ảnh để sử dụng trong gallery
+include_once '../includes/data-pages/data-image.php';
 ?>
 
 <!-- Gallery Filter -->
@@ -34,6 +43,107 @@ include '../includes/header.php';
 <section class="gallery-grid">
     <div class="container">
         <div class="masonry-grid" id="galleryGrid">
+            <?php
+            // Hàm chuyển danh mục thành slug cho data-category
+            if (!function_exists('slugify_category')) {
+                function slugify_category(string $category): string
+                {
+                    $slug = strtolower(preg_replace('/[^A-Za-z0-9]+/', '-', trim($category)));
+                    $slug = trim($slug, '-');
+                    return $slug !== '' ? $slug : 'misc';
+                }
+            }
+
+            // Hàm tạo alt từ tên file
+            if (!function_exists('alt_from_filename')) {
+                function alt_from_filename(string $filename): string
+                {
+                    $name = preg_replace('/\.[^.]+$/', '', $filename);
+                    $name = str_replace(['-', '_'], ' ', $name);
+                    return ucfirst($name);
+                }
+            }
+
+            // Render động toàn bộ ảnh từ assets/img
+            if (isset($IMAGES_BY_CATEGORY) && is_array($IMAGES_BY_CATEGORY)) {
+                // Map danh mục (theo thư mục) sang các tab filter UI
+                if (!function_exists('ui_category_for_path')) {
+                    function ui_category_for_path(string $category): ?string
+                    {
+                        $c = strtolower(trim($category));
+                        if ($c === '' || str_starts_with($c, 'src')) return null; // bỏ ảnh logo/ui
+                        // chuẩn hoá khoảng trắng thừa
+                        $c = preg_replace('/\s+/', ' ', $c);
+
+                        // mapping cụ thể
+                        if (str_starts_with($c, 'restaurant')) return 'restaurant';
+                        if (str_starts_with($c, 'post') || str_contains($c, 'wedding')) return 'events';
+                        if (str_starts_with($c, 'service')) return 'facilities';
+                        if (str_contains($c, 'spa')) return 'spa';
+                        if (str_contains($c, 'pool')) return 'pool';
+                        if (str_contains($c, 'hero banner')) return 'exterior';
+                        // các thư mục phòng nghỉ
+                        if (
+                            str_contains($c, 'deluxe') ||
+                            str_contains($c, 'premium') ||
+                            str_contains($c, 'studio apartment') ||
+                            str_contains($c, 'family apartment') ||
+                            str_contains($c, 'vip')
+                        ) return 'rooms';
+
+                        return 'rooms';
+                    }
+                }
+
+                if (!function_exists('ui_label_for_slug')) {
+                    function ui_label_for_slug(string $slug): string
+                    {
+                        return [
+                            'all' => 'Tất cả',
+                            'rooms' => 'Phòng nghỉ',
+                            'restaurant' => 'Nhà hàng',
+                            'spa' => 'Spa & Wellness',
+                            'pool' => 'Hồ bơi',
+                            'facilities' => 'Tiện ích',
+                            'events' => 'Sự kiện',
+                            'exterior' => 'Ngoại thất',
+                        ][$slug] ?? 'Khác';
+                    }
+                }
+                foreach ($IMAGES_BY_CATEGORY as $category => $files) {
+                    $uiSlug = ui_category_for_path($category);
+                    if ($uiSlug === null) { continue; }
+                    foreach ($files as $file) {
+                        // Dùng đường dẫn tương đối từ thư mục pages tới assets/img
+                        $src = '../assets/img' . ($category !== '' ? '/' . $category : '') . '/' . $file;
+                        $alt = alt_from_filename($file);
+                        $title = $category !== '' ? ucwords(str_replace(['-', '_', '/'], ' ', trim($category))) : 'Aurora Image';
+                        $badge = ui_label_for_slug($uiSlug);
+                        ?>
+                        <div class="gallery-item" data-category="<?php echo htmlspecialchars($uiSlug); ?>">
+                            <div class="gallery-image">
+                                <span class="gallery-badge"><?php echo htmlspecialchars($badge); ?></span>
+                                <img src="<?php echo htmlspecialchars($src); ?>" alt="<?php echo htmlspecialchars($alt); ?>" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <div class="gallery-info">
+                                        <h4><?php echo htmlspecialchars($title); ?></h4>
+                                        <p><?php echo htmlspecialchars($alt); ?></p>
+                                    </div>
+                                    <button class="gallery-zoom" data-src="<?php echo htmlspecialchars($src); ?>">
+                                        <i class="fas fa-search-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="gallery-caption">
+                                <p class="caption-title"><?php echo htmlspecialchars($title); ?></p>
+                                <p class="caption-sub"><?php echo htmlspecialchars($alt); ?></p>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                }
+            }
+            ?>
             <!-- Room Images -->
             <div class="gallery-item" data-category="rooms">
                 <div class="gallery-image">
@@ -517,737 +627,11 @@ include '../includes/header.php';
         <div class="lightbox-counter">
             <span id="lightboxCounter">1 / 20</span>
         </div>
-    </div>
+</div>
 </div>
 
-<style>
-/* Gallery Page Specific Styles */
-.gallery-filter {
-    padding: 40px 0;
-    background: white;
-    border-bottom: 1px solid #e9ecef;
-    position: sticky;
-    top: 80px;
-    z-index: 100;
-}
+<!-- Styles moved to assets/css/thu-vien-anh.css -->
 
-.filter-tabs {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.filter-btn {
-    background: transparent;
-    border: 2px solid #e9ecef;
-    color: #6c757d;
-    padding: 12px 24px;
-    border-radius: 25px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-    background: #cc9a2c;
-    border-color: #cc9a2c;
-    color: white;
-    transform: translateY(-2px);
-}
-
-.gallery-grid {
-    padding: 60px 0;
-    background: #f8f9fa;
-}
-
-.masonry-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    margin-bottom: 60px;
-}
-
-.gallery-item {
-    break-inside: avoid;
-    margin-bottom: 20px;
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.gallery-item.hidden {
-    opacity: 0;
-    transform: translateY(20px);
-    pointer-events: none;
-}
-
-.gallery-image {
-    position: relative;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.gallery-image:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-}
-
-.gallery-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-.gallery-image:hover img {
-    transform: scale(1.05);
-}
-
-.gallery-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.gallery-image:hover .gallery-overlay {
-    opacity: 1;
-}
-
-.gallery-info {
-    align-self: flex-end;
-    color: white;
-}
-
-.gallery-info h4 {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
-    font-weight: 600;
-}
-
-.gallery-info p {
-    font-size: 0.9rem;
-    opacity: 0.9;
-    line-height: 1.4;
-}
-
-.gallery-zoom {
-    align-self: flex-start;
-    background: rgba(255,255,255,0.2);
-    border: none;
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-}
-
-.gallery-zoom:hover {
-    background: rgba(255,255,255,0.3);
-    transform: scale(1.1);
-}
-
-.load-more-container {
-    text-align: center;
-}
-
-.load-more-btn {
-    padding: 15px 30px;
-    font-size: 1rem;
-    border-radius: 25px;
-}
-
-.gallery-stats {
-    padding: 80px 0;
-    background: white;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-}
-
-.stat-item {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 30px;
-    background: #f8f9fa;
-    border-radius: 20px;
-    transition: transform 0.3s ease;
-}
-
-.stat-item:hover {
-    transform: translateY(-5px);
-}
-
-.stat-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #cc9a2c, #f1c40f);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.stat-icon i {
-    font-size: 1.5rem;
-    color: white;
-}
-
-.stat-number {
-    display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 5px;
-}
-
-.stat-label {
-    color: #6c757d;
-    font-size: 0.9rem;
-    line-height: 1.4;
-}
-
-.virtual-tour-cta {
-    padding: 100px 0;
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-    color: white;
-}
-
-.cta-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-}
-
-.cta-text h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    line-height: 1.2;
-}
-
-.cta-text p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    opacity: 0.9;
-    line-height: 1.6;
-}
-
-.cta-features {
-    display: flex;
-    gap: 30px;
-    margin-bottom: 40px;
-}
-
-.feature {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.9rem;
-}
-
-.feature i {
-    color: #cc9a2c;
-    font-size: 1.2rem;
-}
-
-.cta-image {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-}
-
-.cta-image img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-}
-
-.play-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.play-button {
-    width: 80px;
-    height: 80px;
-    background: rgba(212, 175, 55, 0.9);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-}
-
-.play-button:hover {
-    transform: scale(1.1);
-    background: rgba(212, 175, 55, 1);
-}
-
-.play-button i {
-    font-size: 1.8rem;
-    color: white;
-    margin-left: 5px;
-}
-
-/* Lightbox Styles */
-.lightbox {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.95);
-    z-index: 10000;
-    align-items: center;
-    justify-content: center;
-}
-
-.lightbox.active {
-    display: flex;
-}
-
-.lightbox-content {
-    position: relative;
-    max-width: 90%;
-    max-height: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.lightbox-close {
-    position: absolute;
-    top: -50px;
-    right: 0;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
-    z-index: 10001;
-    transition: color 0.3s ease;
-}
-
-.lightbox-close:hover {
-    color: #cc9a2c;
-}
-
-.lightbox-prev,
-.lightbox-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255,255,255,0.1);
-    border: none;
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-}
-
-.lightbox-prev {
-    left: -70px;
-}
-
-.lightbox-next {
-    right: -70px;
-}
-
-.lightbox-prev:hover,
-.lightbox-next:hover {
-    background: rgba(212, 175, 55, 0.8);
-    transform: translateY(-50%) scale(1.1);
-}
-
-.lightbox-image-container {
-    position: relative;
-    text-align: center;
-}
-
-.lightbox-image-container img {
-    max-width: 100%;
-    max-height: 80vh;
-    object-fit: contain;
-    border-radius: 10px;
-}
-
-.lightbox-info {
-    position: absolute;
-    bottom: -60px;
-    left: 0;
-    right: 0;
-    color: white;
-    text-align: center;
-}
-
-.lightbox-info h4 {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
-}
-
-.lightbox-info p {
-    font-size: 0.9rem;
-    opacity: 0.8;
-}
-
-.lightbox-counter {
-    position: absolute;
-    bottom: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-size: 0.9rem;
-    opacity: 0.7;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .masonry-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 15px;
-    }
-    
-    .cta-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        text-align: center;
-    }
-    
-    .cta-features {
-        justify-content: center;
-    }
-}
-
-@media (max-width: 768px) {
-    .filter-tabs {
-        gap: 10px;
-    }
-    
-    .filter-btn {
-        padding: 10px 20px;
-        font-size: 0.85rem;
-    }
-    
-    .masonry-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 10px;
-    }
-    
-    .gallery-overlay {
-        padding: 15px;
-    }
-    
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-    
-    .stat-item {
-        padding: 20px;
-    }
-    
-    .stat-number {
-        font-size: 1.5rem;
-    }
-    
-    .cta-text h2 {
-        font-size: 2rem;
-    }
-    
-    .cta-features {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .lightbox-prev {
-        left: -40px;
-    }
-    
-    .lightbox-next {
-        right: -40px;
-    }
-}
-
-@media (max-width: 480px) {
-    .masonry-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .filter-tabs {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .stat-item {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-    }
-    
-    .lightbox-prev,
-    .lightbox-next {
-        display: none;
-    }
-    
-    .lightbox-close {
-        top: -30px;
-        right: 10px;
-    }
-}
-</style>
-
-<script>
-// Gallery Page JavaScript
-document.addEventListener('DOMContentLoaded', function() {
-    // Filter functionality
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
-    
-    let currentFilter = 'all';
-    let visibleItems = 12;
-    
-    // Filter items
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Update active button
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            currentFilter = btn.getAttribute('data-filter');
-            visibleItems = 12;
-            
-            filterItems();
-        });
-    });
-    
-    function filterItems() {
-        let visibleCount = 0;
-        
-        galleryItems.forEach((item, index) => {
-            const category = item.getAttribute('data-category');
-            const shouldShow = currentFilter === 'all' || category === currentFilter;
-            
-            if (shouldShow && visibleCount < visibleItems) {
-                item.classList.remove('hidden');
-                visibleCount++;
-            } else {
-                item.classList.add('hidden');
-            }
-        });
-        
-        // Show/hide load more button
-        const totalFilteredItems = Array.from(galleryItems).filter(item => {
-            const category = item.getAttribute('data-category');
-            return currentFilter === 'all' || category === currentFilter;
-        }).length;
-        
-        if (visibleCount >= totalFilteredItems) {
-            loadMoreBtn.style.display = 'none';
-        } else {
-            loadMoreBtn.style.display = 'block';
-        }
-    }
-    
-    // Load more functionality
-    loadMoreBtn.addEventListener('click', () => {
-        visibleItems += 12;
-        filterItems();
-    });
-    
-    // Initialize filter
-    filterItems();
-    
-    // Lightbox functionality
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImage = document.getElementById('lightboxImage');
-    const lightboxTitle = document.getElementById('lightboxTitle');
-    const lightboxDescription = document.getElementById('lightboxDescription');
-    const lightboxCounter = document.getElementById('lightboxCounter');
-    const lightboxClose = document.getElementById('lightboxClose');
-    const lightboxPrev = document.getElementById('lightboxPrev');
-    const lightboxNext = document.getElementById('lightboxNext');
-    
-    let currentImageIndex = 0;
-    let currentImages = [];
-    
-    // Open lightbox
-    document.querySelectorAll('.gallery-zoom').forEach((btn, index) => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            
-            // Get all visible images
-            currentImages = Array.from(document.querySelectorAll('.gallery-item:not(.hidden) .gallery-zoom'));
-            currentImageIndex = currentImages.indexOf(btn);
-            
-            showLightboxImage();
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    });
-    
-    // Close lightbox
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-            closeLightbox();
-        }
-    });
-    
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-    
-    // Navigation
-    lightboxPrev.addEventListener('click', () => {
-        currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
-        showLightboxImage();
-    });
-    
-    lightboxNext.addEventListener('click', () => {
-        currentImageIndex = (currentImageIndex + 1) % currentImages.length;
-        showLightboxImage();
-    });
-    
-    function showLightboxImage() {
-        const currentBtn = currentImages[currentImageIndex];
-        const galleryItem = currentBtn.closest('.gallery-item');
-        const img = galleryItem.querySelector('img');
-        const info = galleryItem.querySelector('.gallery-info');
-        
-        lightboxImage.src = currentBtn.getAttribute('data-src');
-        lightboxTitle.textContent = info.querySelector('h4').textContent;
-        lightboxDescription.textContent = info.querySelector('p').textContent;
-        lightboxCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
-    }
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (!lightbox.classList.contains('active')) return;
-        
-        switch(e.key) {
-            case 'Escape':
-                closeLightbox();
-                break;
-            case 'ArrowLeft':
-                lightboxPrev.click();
-                break;
-            case 'ArrowRight':
-                lightboxNext.click();
-                break;
-        }
-    });
-    
-    // Stats counter animation
-    const statNumbers = document.querySelectorAll('.stat-number');
-    
-    const animateCounter = (element) => {
-        const target = parseInt(element.getAttribute('data-count'));
-        const duration = 2000;
-        const step = target / (duration / 16);
-        let current = 0;
-        
-        const timer = setInterval(() => {
-            current += step;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-            element.textContent = Math.floor(current);
-        }, 16);
-    };
-    
-    // Intersection Observer for counter animation
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateCounter(entry.target);
-                counterObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    statNumbers.forEach(counter => {
-        counterObserver.observe(counter);
-    });
-    
-    // Masonry layout adjustment
-    function adjustMasonryLayout() {
-        const grid = document.querySelector('.masonry-grid');
-        if (!grid) return;
-        
-        // Force reflow for masonry effect
-        const items = grid.querySelectorAll('.gallery-item:not(.hidden)');
-        items.forEach(item => {
-            item.style.height = 'auto';
-        });
-    }
-    
-    // Adjust layout on window resize
-    window.addEventListener('resize', adjustMasonryLayout);
-    
-    // Lazy loading for images
-    const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                if (img.dataset.src) {
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                    imageObserver.unobserve(img);
-                }
-            }
-        });
-    });
-    
-    document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
-    });
-});
-</script>
+<!-- Scripts moved to assets/js/thu-vien-anh.js via $additional_js -->
 
 <?php include '../includes/footer.php'; ?>
