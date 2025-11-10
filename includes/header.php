@@ -54,7 +54,15 @@ require_once __DIR__ . '/config.php';
                 </div>
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="<?php echo url('index.php'); ?>" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'index.php' || basename($_SERVER['PHP_SELF']) == '') ? 'active' : ''; ?>">Trang chủ</a></li>
-                    <li><a href="<?php echo url('pages/phong-va-can-ho.php'); ?>" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'phong-va-can-ho.php' || strpos($_SERVER['PHP_SELF'], 'phong') !== false || strpos($_SERVER['PHP_SELF'], 'can-ho') !== false || strpos($_SERVER['PHP_SELF'], 'rooms') !== false || strpos($_SERVER['PHP_SELF'], 'apartments') !== false) ? 'active' : ''; ?>">Phòng & Căn hộ</a></li>
+                    <li class="dropdown">
+                        <a href="<?php echo url('pages/phong-va-can-ho.php'); ?>" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'phong-va-can-ho.php' || basename($_SERVER['PHP_SELF']) == 'phong.php' || strpos($_SERVER['PHP_SELF'], 'can-ho') !== false) ? 'active' : ''; ?>">
+                            Lưu trú <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo url('pages/phong.php'); ?>">Phòng</a></li>
+                            <li><a href="<?php echo url('pages/can-ho.php'); ?>">Căn hộ</a></li>
+                        </ul>
+                    </li>
                     <li><a href="<?php echo url('pages/dich-vu.php'); ?>" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'dich-vu.php') ? 'active' : ''; ?>">Dịch vụ</a></li>
                     <li class="dropdown">
                         <a href="#" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'thu-vien-anh.php' || basename($_SERVER['PHP_SELF']) == 'gioi-thieu.php') ? 'active' : ''; ?>">
@@ -68,7 +76,9 @@ require_once __DIR__ . '/config.php';
                     <li><a href="<?php echo url('pages/lien-he.php'); ?>" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'lien-he.php') ? 'active' : ''; ?>">Liên hệ</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <a href="<?php echo url('pages/auth/dang-nhap.php'); ?>" class="nav-login">Đăng nhập</a>
+                    <a href="<?php echo url('pages/auth/dang-nhap.php'); ?>" class="nav-login" aria-label="Đăng nhập" title="Đăng nhập">
+                        <i class="fas fa-user"></i>
+                    </a>
                     <a href="<?php echo url('pages/dat-phong.php'); ?>" class="btn-book-now">Đặt phòng</a>
                     <div class="nav-toggle" id="navToggle">
                         <span></span>
@@ -84,8 +94,8 @@ require_once __DIR__ . '/config.php';
 
     <!-- Breadcrumb -->
     <?php if(isset($show_breadcrumb) && $show_breadcrumb): ?>
-    <nav class="breadcrumb-nav">
-        <div class="container">
+    <nav class="breadcrumb-nav" style="margin-top: 100px;">
+        <div class="container" style="margin-top: 100px;">
             <ol class="breadcrumb">
                 <li><a href="/"><i class="fas fa-home"></i> Trang chủ</a></li>
                 <?php if(isset($breadcrumb_items)): ?>

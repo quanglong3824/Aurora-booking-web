@@ -29,7 +29,7 @@ include '../includes/header.php';
                     <img src="<?php echo asset('image/room-deluxe.jpg'); ?>" alt="Phòng nghỉ Aurora Hotel Plaza" class="img-fluid" style="width:100%; height:100%; object-fit:cover;">
                 </div>
                 <div class="overview-body" style="padding:20px;">
-                    <h3 style="margin-bottom:8px;">Phòng nghỉ</h3>
+                <h3 id="rooms" style="margin-bottom:8px;">Phòng nghỉ</h3>
                     <p style="color:#4b5563;">Trải nghiệm dịch vụ khách sạn đẳng cấp với các hạng phòng từ Deluxe đến Studio VIP, phù hợp công tác và nghỉ dưỡng.</p>
 
                     <ul class="feature-list" style="display:flex; flex-wrap:wrap; gap:12px; list-style:none; padding:0; margin:16px 0 20px;">
@@ -64,7 +64,7 @@ include '../includes/header.php';
                     <img src="<?php echo asset('image/room-suite-ocean.jpg'); ?>" alt="Căn hộ dịch vụ Aurora" class="img-fluid" style="width:100%; height:100%; object-fit:cover;">
                 </div>
                 <div class="overview-body" style="padding:20px;">
-                    <h3 style="margin-bottom:8px;">Căn hộ dịch vụ</h3>
+                <h3 id="apartments" style="margin-bottom:8px;">Căn hộ dịch vụ</h3>
                     <p style="color:#4b5563;">Không gian như ở nhà với bếp đầy đủ, phòng khách riêng và dịch vụ khách sạn, thích hợp lưu trú dài ngày.</p>
 
                     <ul class="feature-list" style="display:flex; flex-wrap:wrap; gap:12px; list-style:none; padding:0; margin:16px 0 20px;">
