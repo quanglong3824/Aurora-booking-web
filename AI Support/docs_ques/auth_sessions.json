@@ -1,0 +1,41 @@
+{
+  "category": "Đăng nhập & Phiên (Sessions)",
+  "last_updated": "2025-11-10",
+  "items": [
+    {
+      "id": "AUTH-001",
+      "question": "Đăng ký/Đăng nhập an toàn với PHP sessions?",
+      "answer": "Dùng session_start sớm, lưu tối thiểu thông tin người dùng trong session, và rotate session ID sau đăng nhập để giảm nguy cơ hijacking.",
+      "tags": ["session", "login", "security"],
+      "related_files": ["pages/auth/dang-ky.php", "pages/auth/dang-nhap.php"]
+    },
+    {
+      "id": "AUTH-002",
+      "question": "Chống CSRF cho các form nhạy cảm (đặt phòng, đăng nhập)?",
+      "answer": "Sinh token CSRF per-session, nhúng vào form, và kiểm tra ở server khi submit. Từ chối nếu token thiếu/không khớp.",
+      "tags": ["csrf", "forms", "security"],
+      "related_files": ["pages/dat-phong.php", "pages/auth/*.php"]
+    },
+    {
+      "id": "AUTH-003",
+      "question": "Khôi phục mật khẩu an toàn?",
+      "answer": "Tạo mã khôi phục ngẫu nhiên, giới hạn thời gian, gửi qua email, và bắt buộc đổi mật khẩu ngay sau khi xác thực.",
+      "tags": ["password", "reset", "email"],
+      "related_files": ["pages/auth/quen-mat-khau.php"]
+    },
+    {
+      "id": "AUTH-004",
+      "question": "Cookie nhớ đăng nhập và bảo mật?",
+      "answer": "Dùng cookie HttpOnly, Secure (nếu HTTPS), lưu token thay vì mật khẩu, và có cơ chế revoke khi người dùng đăng xuất."
+      ,"tags": ["cookie", "remember-me", "token"],
+      "related_files": ["includes/header.php", "pages/auth/dang-nhap.php"]
+    },
+    {
+      "id": "AUTH-005",
+      "question": "Tránh lộ dữ liệu người dùng trên URL?",
+      "answer": "Không truyền thông tin nhạy cảm qua query string. Dùng POST cho form và lưu thông tin cần thiết trong session hoặc DB.",
+      "tags": ["privacy", "url", "post"],
+      "related_files": ["pages/auth/*.php", "pages/dat-phong.php"]
+    }
+  ]
+}

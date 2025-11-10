@@ -86,6 +86,11 @@ require_once __DIR__ . '/config.php';
             <script src="<?php echo asset($js); ?>"></script>
         <?php endforeach; ?>
     <?php endif; ?>
+
+    <!-- FAQ AI Floating Widget Include -->
+    <link rel="stylesheet" href="<?php echo asset('css/faq-ai.css'); ?>">
+    <?php include __DIR__ . '/UI-FAQ-AI/faq-widget.php'; ?>
+    <script src="<?php echo asset('js/faq-ai.js'); ?>"></script>
     
     <!-- Google Analytics (Replace with your tracking ID) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>

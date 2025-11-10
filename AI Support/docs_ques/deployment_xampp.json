@@ -1,0 +1,70 @@
+{
+  "category": "Triển khai & Môi trường XAMPP",
+  "last_updated": "2025-11-10",
+  "items": [
+    {
+      "id": "XAMPP-001",
+      "question": "Làm sao bật mod_rewrite trên XAMPP để hỗ trợ .htaccess?",
+      "answer": "Mở file httpd.conf của Apache (trong XAMPP), tìm và bỏ comment LoadModule rewrite_module. Đảm bảo AllowOverride All trong phần Directory cho htdocs. Khởi động lại Apache.",
+      "tags": ["apache", "mod_rewrite", "htaccess"],
+      "related_files": [".htaccess", "index.php"],
+      "steps": [
+        "Mở Apache httpd.conf (Ví dụ: /Applications/XAMPP/xamppfiles/etc/httpd.conf)",
+        "Bỏ dấu # trước dòng LoadModule rewrite_module modules/mod_rewrite.so",
+        "Đảm bảo trong <Directory \".../htdocs\"> có AllowOverride All",
+        "Khởi động lại Apache từ XAMPP Control Panel"
+      ]
+    },
+    {
+      "id": "XAMPP-002",
+      "question": "Cấu hình virtual host để trỏ thẳng vào thư mục dự án?",
+      "answer": "Tạo VirtualHost trong httpd-vhosts.conf, set DocumentRoot tới thư mục Aurora-booking-web và ServerName tuỳ chọn. Thêm bản ghi vào hosts nếu cần.",
+      "tags": ["virtualhost", "apache", "routing"],
+      "related_files": [".htaccess"],
+      "steps": [
+        "Mở httpd-vhosts.conf",
+        "Thêm <VirtualHost *:80> với DocumentRoot trỏ tới Aurora-booking-web",
+        "Đặt ServerName (ví dụ: aurora.local)",
+        "Thêm 127.0.0.1 aurora.local vào /etc/hosts",
+        "Khởi động lại Apache"
+      ]
+    },
+    {
+      "id": "XAMPP-003",
+      "question": "Phiên bản PHP khuyến nghị để chạy ổn định dự án này?",
+      "answer": "Khuyến nghị PHP 8.x để có hiệu năng và bảo mật tốt hơn. Nếu dùng PHP 7.x, đảm bảo các extension như mysqli, mbstring được bật.",
+      "tags": ["php", "version", "extensions"],
+      "related_files": ["config/config.php", "config/database.php"],
+      "steps": [
+        "Kiểm tra phpinfo() để xác nhận phiên bản",
+        "Bật extension cần thiết trong php.ini",
+        "Kiểm tra lại kết nối DB và các trang trọng yếu (auth, booking)"
+      ]
+    },
+    {
+      "id": "XAMPP-004",
+      "question": "Sửa lỗi 403/404 khi truy cập các trang con trong thư mục pages/",
+      "answer": "Nguyên nhân thường do .htaccess và quyền thư mục. Đảm bảo mod_rewrite hoạt động, AllowOverride All, và quyền đọc cho web server.",
+      "tags": ["permission", "404", "htaccess"],
+      "related_files": [".htaccess", "pages/*.php"],
+      "steps": [
+        "Xác nhận mod_rewrite",
+        "Kiểm tra quy tắc RewriteRule trong .htaccess",
+        "Đảm bảo quyền đọc trên thư mục pages/",
+        "Xem error_log của Apache để biết chi tiết"
+      ]
+    },
+    {
+      "id": "XAMPP-005",
+      "question": "Thiết lập timezone và locale để hiển thị tiếng Việt đúng dấu?",
+      "answer": "Cấu hình date.timezone trong php.ini (ví dụ Asia/Ho_Chi_Minh) và sử dụng UTF-8 cho nội dung. Đảm bảo header và DB đều dùng UTF-8.",
+      "tags": ["timezone", "locale", "utf-8"],
+      "related_files": ["includes/header.php", "config/database.php"],
+      "steps": [
+        "Sửa php.ini: date.timezone = Asia/Ho_Chi_Minh",
+        "Đảm bảo meta charset UTF-8 trong header",
+        "DB, bảng, và cột dùng utf8mb4"
+      ]
+    }
+  ]
+}

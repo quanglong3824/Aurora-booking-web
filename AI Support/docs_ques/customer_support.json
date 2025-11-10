@@ -1,0 +1,83 @@
+{
+  "category": "Hỗ trợ khách hàng",
+  "last_updated": "2025-11-10",
+  "items": [
+    {
+      "id": "CUS-001",
+      "question": "Giờ nhận phòng (check-in) và trả phòng (check-out) là khi nào?",
+      "answer": "Check-in từ 14:00 và check-out trước 12:00. Quý khách có thể yêu cầu check-in sớm hoặc check-out trễ tùy tình trạng phòng (phụ phí nếu có).",
+      "tags": ["check-in", "check-out", "thời gian"],
+      "related_files": ["pages/phong.php", "pages/dat-phong.php"]
+    },
+    {
+      "id": "CUS-002",
+      "question": "Chính sách hủy phòng và hoàn tiền như thế nào?",
+      "answer": "Hủy phòng miễn phí trước 48 giờ so với thời gian check-in. Sau thời gian này, phí hủy có thể áp dụng tùy loại phòng/khuyến mãi. Vui lòng xem chi tiết tại Chính sách hủy hoặc liên hệ hỗ trợ.",
+      "tags": ["hủy phòng", "hoàn tiền", "chính sách"],
+      "related_files": ["pages/privacy/cancel-room.php"]
+    },
+    {
+      "id": "CUS-003",
+      "question": "Khách sạn chấp nhận những phương thức thanh toán nào?",
+      "answer": "Chúng tôi chấp nhận tiền mặt, thẻ tín dụng/ghi nợ (Visa, MasterCard), chuyển khoản và thanh toán trực tuyến qua cổng bảo mật.",
+      "tags": ["thanh toán", "visa", "mastercard"],
+      "related_files": ["pages/dat-phong.php"]
+    },
+    {
+      "id": "CUS-004",
+      "question": "Giá phòng đã bao gồm bữa sáng chưa?",
+      "answer": "Một số gói phòng bao gồm bữa sáng. Vui lòng kiểm tra thông tin gói đặt phòng hoặc liên hệ lễ tân để biết chi tiết.",
+      "tags": ["bữa sáng", "giá phòng"],
+      "related_files": ["pages/phong/*.php", "pages/dat-phong.php"]
+    },
+    {
+      "id": "CUS-005",
+      "question": "Khách sạn có WiFi miễn phí không?",
+      "answer": "WiFi miễn phí được cung cấp tại toàn bộ khu vực khách sạn, bao gồm phòng nghỉ và khu vực công cộng.",
+      "tags": ["wifi", "internet", "miễn phí"],
+      "related_files": ["pages/phong.php"]
+    },
+    {
+      "id": "CUS-006",
+      "question": "Chính sách đậu xe và phí như thế nào?",
+      "answer": "Khách sạn có bãi đỗ xe riêng và miễn phí một chỗ/đặt phòng (tùy gói). Vui lòng liên hệ để đặt chỗ trước khi đến.",
+      "tags": ["đậu xe", "parking"],
+      "related_files": ["pages/dich-vu.php"]
+    },
+    {
+      "id": "CUS-007",
+      "question": "Khách sạn có chấp nhận thú cưng không?",
+      "answer": "Aurora Hotel Plaza chào đón thú cưng với một số phòng và khu vực phù hợp. Vui lòng thông báo trước để được hỗ trợ tốt nhất.",
+      "tags": ["thú cưng", "pet"],
+      "related_files": ["pages/dich-vu.php"]
+    },
+    {
+      "id": "CUS-008",
+      "question": "Phòng có khu vực hút thuốc không?",
+      "answer": "Khách sạn áp dụng chính sách không hút thuốc trong phòng. Khu vực hút thuốc được bố trí tại các vị trí cho phép trong khuôn viên.",
+      "tags": ["hút thuốc", "policy"],
+      "related_files": ["pages/phong.php"]
+    },
+    {
+      "id": "CUS-009",
+      "question": "Có cung cấp giường phụ/giường trẻ em không?",
+      "answer": "Chúng tôi có giường phụ và cũi trẻ em theo yêu cầu, tùy loại phòng và tính phí. Vui lòng liên hệ trước khi nhận phòng.",
+      "tags": ["giường phụ", "trẻ em"],
+      "related_files": ["pages/phong.php"]
+    },
+    {
+      "id": "CUS-010",
+      "question": "Tôi cần xuất hóa đơn VAT, khách sạn hỗ trợ thế nào?",
+      "answer": "Khách sạn hỗ trợ xuất hóa đơn VAT theo thông tin doanh nghiệp do khách cung cấp. Vui lòng liên hệ lễ tân hoặc bộ phận kế toán để được hướng dẫn.",
+      "tags": ["hoá đơn", "VAT", "kế toán"],
+      "related_files": ["pages/lien-he.php"]
+    },
+    {
+      "id": "CUS-011",
+      "question": "Tôi quên mật khẩu tài khoản đặt phòng, làm sao khôi phục?",
+      "answer": "Vào trang Quên mật khẩu, nhập email để nhận liên kết khôi phục. Vui lòng kiểm tra hộp thư và làm theo hướng dẫn.",
+      "tags": ["mật khẩu", "khôi phục"],
+      "related_files": ["pages/auth/quen-mat-khau.php"]
+    }
+  ]
+}

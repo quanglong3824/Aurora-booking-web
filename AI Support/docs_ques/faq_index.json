@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "generated_at": "2025-11-10",
+  "language": "vi",
+  "overview": "Danh mục các bộ câu hỏi thường gặp (FAQ) theo chủ đề trong dự án Aurora-booking-web.",
+  "files": [
+    {
+      "file": "deployment_xampp.json",
+      "category": "Triển khai & Môi trường XAMPP",
+      "description": "Cấu hình Apache/PHP, mod_rewrite, đường dẫn, quyền truy cập, và lỗi thường gặp khi chạy trên XAMPP."
+    },
+    {
+      "file": "routing_htaccess.json",
+      "category": "Định tuyến & .htaccess",
+      "description": "Quy tắc rewrite, xử lý 404/500, chuẩn SEO URL, và bảo vệ truy cập."
+    },
+    {
+      "file": "database_mysql.json",
+      "category": "Cơ sở dữ liệu MySQL",
+      "description": "Kết nối DB, bộ ký tự (charset), lỗi truy vấn, seed dữ liệu, và bảo mật."
+    },
+    {
+      "file": "php_errors_debug.json",
+      "category": "Lỗi PHP & Gỡ lỗi",
+      "description": "Bật/tắt hiển thị lỗi, log, xử lý biến chưa định nghĩa, và 500 Internal Server Error."
+    },
+    {
+      "file": "booking_flow.json",
+      "category": "Luồng đặt phòng",
+      "description": "Chọn phòng/căn hộ, xử lý tiện ích, xác nhận, lưu DB, và email thông báo."
+    },
+    {
+      "file": "auth_sessions.json",
+      "category": "Đăng nhập & Phiên (Sessions)",
+      "description": "Quản lý đăng ký/đăng nhập, cookie, CSRF, bảo vệ form, và khôi phục mật khẩu."
+    },
+    {
+      "file": "performance_seo.json",
+      "category": "Hiệu năng & SEO",
+      "description": "Tối ưu CSS/JS, lazy-load ảnh, bộ nhớ đệm, sitemap/robots, và thẻ meta."
+    }
+  ]
+}

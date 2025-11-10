@@ -1,0 +1,66 @@
+{
+  "category": "Cơ sở dữ liệu MySQL",
+  "last_updated": "2025-11-10",
+  "items": [
+    {
+      "id": "DB-001",
+      "question": "Kết nối DB thất bại: Unknown database hoặc Access denied?",
+      "answer": "Kiểm tra thông tin trong config/database.php (host, user, password, dbname). Đảm bảo quyền user trên DB và DB đã tồn tại.",
+      "tags": ["mysql", "connection", "credentials"],
+      "related_files": ["config/database.php", "config/config.php"],
+      "steps": [
+        "Xác nhận tên DB đúng",
+        "Cấp quyền cho user: GRANT ALL ON db TO 'user'@'localhost'",
+        "Kiểm tra cổng (3306) và socket nếu dùng macOS"
+      ]
+    },
+    {
+      "id": "DB-002",
+      "question": "Lỗi bộ ký tự gây sai dấu tiếng Việt?",
+      "answer": "Thiết lập utf8mb4 cho kết nối và bảng. Trong mysqli, gọi set_charset('utf8mb4'), và đảm bảo collation như utf8mb4_unicode_ci.",
+      "tags": ["charset", "utf8mb4", "collation"],
+      "related_files": ["config/database.php", "includes/header.php"],
+      "steps": [
+        "Đặt set names utf8mb4",
+        "Kiểm tra bảng/column dùng utf8mb4",
+        "Thêm meta charset UTF-8 trong header"
+      ]
+    },
+    {
+      "id": "DB-003",
+      "question": "Seed dữ liệu demo từ assets/data/*.sql như thế nào?",
+      "answer": "Import các file .sql trong assets/data/ bằng phpMyAdmin hoặc CLI mysql. Đảm bảo đúng DB và không đè dữ liệu hiện có nếu cần.",
+      "tags": ["seed", "sql", "demo-data"],
+      "related_files": ["assets/data/*.sql"],
+      "steps": [
+        "Mở phpMyAdmin và chọn DB",
+        "Import từng file .sql: home_index.sql, deluxe_sang_trong.sql, ...",
+        "Kiểm tra bảng và dữ liệu sau khi import"
+      ]
+    },
+    {
+      "id": "DB-004",
+      "question": "Truy vấn chậm trên trang phòng/căn hộ?",
+      "answer": "Thêm index cho các cột lọc (loại, giá, trạng thái). Sử dụng LIMIT/ORDER BY hợp lý và tránh SELECT *. Dùng EXPLAIN để phân tích.",
+      "tags": ["performance", "index", "query"],
+      "related_files": ["pages/phong.php", "pages/phong-va-can-ho.php"],
+      "steps": [
+        "Chạy EXPLAIN truy vấn",
+        "Thêm index phù hợp",
+        "Giảm số lượng cột trả về"
+      ]
+    },
+    {
+      "id": "DB-005",
+      "question": "Bảo vệ chống SQL injection?",
+      "answer": "Luôn dùng prepared statements (mysqli_stmt) hoặc PDO. Escape dữ liệu đầu vào và xác thực form. Không nối chuỗi trực tiếp từ input người dùng.",
+      "tags": ["security", "sql-injection", "prepared"],
+      "related_files": ["pages/dat-phong.php", "pages/auth/dang-nhap.php"],
+      "steps": [
+        "Thay query nối chuỗi bằng prepared",
+        "Xác thực và sanitize input",
+        "Giới hạn quyền DB user"
+      ]
+    }
+  ]
+}

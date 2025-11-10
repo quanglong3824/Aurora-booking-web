@@ -1,0 +1,59 @@
+{
+  "category": "Lỗi PHP & Gỡ lỗi",
+  "last_updated": "2025-11-10",
+  "items": [
+    {
+      "id": "PHP-001",
+      "question": "Bật hiển thị lỗi để gỡ lỗi trong môi trường dev?",
+      "answer": "Sử dụng ini_set('display_errors', 1) và error_reporting(E_ALL) trong môi trường dev. Không bật trên prod, dùng log riêng.",
+      "tags": ["debug", "error_reporting"],
+      "related_files": ["code_fix/log_debug.php", "includes/header.php"],
+      "steps": [
+        "Thêm error_reporting(E_ALL) khi dev",
+        "Kiểm tra log_debug.php để ghi log có kiểm soát",
+        "Tắt display_errors trên sản xuất"
+      ]
+    },
+    {
+      "id": "PHP-002",
+      "question": "Cách xử lý biến chưa định nghĩa như $amenities trên pages/phong.php?",
+      "answer": "Dùng phép kiểm tra tồn tại trước khi sử dụng. Ví dụ: $p_amenities = isset($amenities) ? $amenities : []; Tránh Notice/Warning khi biến chưa set.",
+      "tags": ["undefined-variable", "notice", "best-practice"],
+      "related_files": ["pages/phong.php"],
+      "examples": [
+        "Ở dòng có: $p_amenities = isset($amenities) ? $amenities : []; đảm bảo không lỗi khi $amenities chưa tồn tại"
+      ]
+    },
+    {
+      "id": "PHP-003",
+      "question": "Khắc phục 500 Internal Server Error không rõ nguyên nhân?",
+      "answer": "Xem error_log của Apache/PHP, bật log chi tiết, kiểm tra .htaccess, và thử cô lập từng phần (comment include) để tìm lỗi nguồn.",
+      "tags": ["500", "error_log", "htaccess"],
+      "related_files": ["500.php", ".htaccess", "includes/*.php"],
+      "steps": [
+        "Bật log ở php.ini và Apache",
+        "Kiểm tra rewrite và quyền truy cập",
+        "Cô lập từng include để khoanh vùng lỗi"
+      ]
+    },
+    {
+      "id": "PHP-004",
+      "question": "Lỗi header already sent khi dùng session/cookie?",
+      "answer": "Đảm bảo không echo/HTML trước session_start hoặc setcookie. Xoá BOM UTF-8, dùng output buffering nếu cần.",
+      "tags": ["headers", "session", "bom"],
+      "related_files": ["includes/header.php", "pages/auth/*.php"],
+      "steps": [
+        "Đặt session_start ở đầu script",
+        "Kiểm tra BOM trong file PHP",
+        "Tránh echo trước khi gửi header"
+      ]
+    },
+    {
+      "id": "PHP-005",
+      "question": "Quản lý lỗi form (validation) với thông báo thân thiện?",
+      "answer": "Xác thực server-side, trả về thông báo rõ ràng, và giữ lại dữ liệu nhập. Kết hợp client-side để cải thiện UX, nhưng không thay thế server-side.",
+      "tags": ["validation", "ux", "forms"],
+      "related_files": ["pages/dat-phong.php", "pages/auth/*.php"]
+    }
+  ]
+}

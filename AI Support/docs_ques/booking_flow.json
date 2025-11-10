@@ -1,0 +1,46 @@
+{
+  "category": "Luồng đặt phòng",
+  "last_updated": "2025-11-10",
+  "items": [
+    {
+      "id": "BOOK-001",
+      "question": "Luồng chuẩn từ chọn phòng/căn hộ đến xác nhận?",
+      "answer": "Người dùng chọn loại phòng/căn hộ, xem chi tiết và tiện ích, nhập thông tin đặt phòng, xác nhận và ghi vào DB; hệ thống có thể gửi email xác nhận.",
+      "tags": ["flow", "ux", "db"],
+      "related_files": ["pages/phong.php", "pages/can-ho.php", "pages/dat-phong.php", "assets/js/dat-phong.js"]
+    },
+    {
+      "id": "BOOK-002",
+      "question": "Không hiển thị tiện ích (amenities) trên trang phòng?",
+      "answer": "Kiểm tra biến nguồn $amenities và dữ liệu DB. Dùng fallback mảng trống để tránh lỗi và cập nhật view hiển thị rõ nếu thiếu dữ liệu.",
+      "tags": ["amenities", "ui", "fallback"],
+      "related_files": ["pages/phong.php", "includes/data-pages/*"]
+    },
+    {
+      "id": "BOOK-003",
+      "question": "Kiểm tra ngày hợp lệ và phòng trống khi đặt phòng?",
+      "answer": "Xác thực ngày đến/đi, không cho đặt quá khứ, kiểm tra kho phòng trong DB, và báo lỗi rõ ràng nếu hết phòng.",
+      "tags": ["validation", "availability", "dates"],
+      "related_files": ["pages/dat-phong.php", "config/database.php"],
+      "steps": [
+        "Kiểm tra định dạng ngày",
+        "So sánh ngày đến < ngày đi",
+        "Truy vấn tồn kho theo loại phòng"
+      ]
+    },
+    {
+      "id": "BOOK-004",
+      "question": "Ghi nhận đặt phòng vào DB an toàn?",
+      "answer": "Dùng prepared statements, ghi nhận chi tiết người đặt, loại phòng, ngày, và tổng chi phí. Lưu trạng thái và mã đơn để tra cứu.",
+      "tags": ["db", "prepared", "order"],
+      "related_files": ["pages/dat-phong.php", "config/database.php"]
+    },
+    {
+      "id": "BOOK-005",
+      "question": "Gửi email xác nhận sau khi đặt phòng?",
+      "answer": "Tích hợp thư viện mail (PHPMailer), cấu hình SMTP, và gửi nội dung chứa thông tin đặt phòng, điều khoản hủy, và liên hệ hỗ trợ.",
+      "tags": ["email", "smtp", "confirmation"],
+      "related_files": ["pages/dat-phong.php", "includes/header.php"]
+    }
+  ]
+}

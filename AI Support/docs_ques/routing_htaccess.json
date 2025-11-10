@@ -1,0 +1,62 @@
+{
+  "category": "Định tuyến & .htaccess",
+  "last_updated": "2025-11-10",
+  "items": [
+    {
+      "id": "HTA-001",
+      "question": "Cấu trúc .htaccess cơ bản để chuyển hướng 404/500 tuỳ chỉnh?",
+      "answer": "Sử dụng ErrorDocument 404 /404.php và ErrorDocument 500 /500.php trong .htaccess. Kết hợp RewriteEngine On để xử lý URL thân thiện.",
+      "tags": ["htaccess", "error-document", "seo"],
+      "related_files": [".htaccess", "404.php", "500.php"],
+      "steps": [
+        "Mở .htaccess ở gốc dự án",
+        "Thêm ErrorDocument 404 /404.php và ErrorDocument 500 /500.php",
+        "Bật RewriteEngine On và kiểm tra các RewriteRule nếu có",
+        "Kiểm tra truy cập URL sai để xác nhận"
+      ]
+    },
+    {
+      "id": "HTA-002",
+      "question": "Làm URL thân thiện cho các trang trong pages/phong/ mà không lặp .php?",
+      "answer": "Thêm RewriteRule để map slug tới file tương ứng. Ví dụ: ^phong/(.*)$ -> pages/phong/$1.php nếu tên file trùng slug.",
+      "tags": ["rewrite", "friendly-url"],
+      "related_files": [".htaccess", "pages/phong/*.php"],
+      "steps": [
+        "Bật RewriteEngine On",
+        "Thêm RewriteRule ^phong/(.*)$ pages/phong/$1.php [L,NC]",
+        "Đảm bảo file tồn tại và bảo vệ tránh truy cập file hệ thống"
+      ]
+    },
+    {
+      "id": "HTA-003",
+      "question": "Khắc phục vòng lặp redirect (Too many redirects)?",
+      "answer": "Kiểm tra điều kiện RewriteCond để tránh tự trỏ về chính nó, thêm kiểm tra REQUEST_FILENAME và tồn tại file/thư mục trước khi rewrite.",
+      "tags": ["redirect", "rewritecond"],
+      "related_files": [".htaccess"],
+      "steps": [
+        "Thêm RewriteCond %{REQUEST_FILENAME} !-f",
+        "Thêm RewriteCond %{REQUEST_FILENAME} !-d",
+        "Đặt RewriteRule chỉ áp dụng cho đường dẫn mong muốn"
+      ]
+    },
+    {
+      "id": "HTA-004",
+      "question": "Bảo vệ thư mục nhạy cảm (config/, includes/) khỏi truy cập trực tiếp?",
+      "answer": "Dùng RewriteRule deny hoặc đặt .htaccess riêng trong thư mục cấm, có thể trả về 403 hoặc chuyển hướng.",
+      "tags": ["security", "deny", "htaccess"],
+      "related_files": [".htaccess", "config/", "includes/"]
+    },
+    {
+      "id": "HTA-005",
+      "question": "Tích hợp canonical URL để tránh trùng lặp nội dung?",
+      "answer": "Thêm thẻ link rel=\"canonical\" trong header cho các trang quan trọng và đảm bảo .htaccess không tạo nhiều biến thể URL khác nhau.",
+      "tags": ["canonical", "seo"],
+      "related_files": ["includes/header.php", ".htaccess"],
+      "steps": [
+        "Thêm canonical trong includes/header.php",
+        "Kiểm tra quy tắc rewrite không tạo bản sao URL",
+        "Kiểm tra bằng công cụ SEO"
+      ]
+    }
+  ]
+}

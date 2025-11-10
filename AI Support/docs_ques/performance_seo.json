@@ -1,0 +1,41 @@
+{
+  "category": "Hiệu năng & SEO",
+  "last_updated": "2025-11-10",
+  "items": [
+    {
+      "id": "PERF-001",
+      "question": "Tối ưu tải CSS/JS để tăng tốc độ hiển thị?",
+      "answer": "Gộp/giảm số file, đặt CSS quan trọng inline hoặc preload, defer/async cho JS, và bật cache trình duyệt qua .htaccess.",
+      "tags": ["css", "js", "cache"],
+      "related_files": ["assets/css/*.css", "assets/js/*.js", ".htaccess"]
+    },
+    {
+      "id": "PERF-002",
+      "question": "Lazy-load ảnh trong thư viện để giảm LCP?",
+      "answer": "Dùng thuộc tính loading=lazy hoặc thư viện JS, nén ảnh và dùng định dạng hiện đại (WebP) nếu phù hợp.",
+      "tags": ["images", "lazy", "lcp"],
+      "related_files": ["pages/thu-vien-anh.php", "assets/img/*", "assets/js/thu-vien-anh.js"]
+    },
+    {
+      "id": "PERF-003",
+      "question": "Cấu hình sitemap và robots.txt cho SEO?",
+      "answer": "Đảm bảo sitemap.xml đầy đủ, robots.txt cho phép crawl các trang công khai, và chặn tài nguyên nhạy cảm. Kiểm tra Search Console.",
+      "tags": ["sitemap", "robots", "seo"],
+      "related_files": ["sitemap.xml", "robots.txt"]
+    },
+    {
+      "id": "PERF-004",
+      "question": "Thêm thẻ meta và dữ liệu cấu trúc (schema) cơ bản?",
+      "answer": "Trong includes/header.php thêm meta title/description động, Open Graph, và có thể thêm schema.org cho khách sạn/phòng."
+      ,"tags": ["meta", "schema", "og"],
+      "related_files": ["includes/header.php", "pages/*.php"]
+    },
+    {
+      "id": "PERF-005",
+      "question": "Bộ nhớ đệm phía server/trình duyệt?",
+      "answer": "Thiết lập Cache-Control trong .htaccess cho assets, và cân nhắc cache nhẹ phía server cho dữ liệu ít thay đổi (ví dụ danh sách tiện ích).",
+      "tags": ["cache", "server", "browser"],
+      "related_files": [".htaccess", "includes/data-pages/*"]
+    }
+  ]
+}
