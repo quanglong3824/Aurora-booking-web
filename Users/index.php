@@ -73,7 +73,7 @@ include __DIR__ . '/header_user.php';
         </div>
     </section>
 
-    <section id="history" class="tab-section" style="display:none;">
+    <section id="history" class="tab-section">
         <h2 style="margin-bottom:12px;">Lịch sử đặt phòng</h2>
         <?php if (empty($bookings)): ?>
             <div class="user-card" style="color:#666;">Bạn chưa có đặt phòng nào hoặc dữ liệu chưa khả dụng.</div>
@@ -115,7 +115,7 @@ include __DIR__ . '/header_user.php';
         <?php endif; ?>
     </section>
 
-    <section id="rewards" class="tab-section" style="display:none;">
+    <section id="rewards" class="tab-section">
         <h2 style="margin-bottom:12px;">Điểm thưởng & đổi điểm</h2>
         <div class="user-grid">
             <div class="user-card">
@@ -138,7 +138,7 @@ include __DIR__ . '/header_user.php';
         </div>
     </section>
 
-    <section id="profile" class="tab-section" style="display:none;">
+    <section id="profile" class="tab-section">
         <h2 style="margin-bottom:12px;">Thông tin cá nhân</h2>
         <div class="user-grid">
             <div class="user-card">
