@@ -90,7 +90,9 @@ if (session_status() === PHP_SESSION_NONE) {
                     <?php if (!empty($_SESSION['user'])): ?>
                         <div class="nav-user" style="display:flex;align-items:center;gap:10px;">
                             <i class="fas fa-user-circle" aria-hidden="true"></i>
-                            <span class="nav-username" title="Tài khoản"><?php echo htmlspecialchars($_SESSION['user']['full_name']); ?></span>
+                            <a href="<?php echo url('Users/index.php'); ?>" class="nav-username" title="Tài khoản" style="text-decoration:none;color:inherit;">
+                                <?php echo htmlspecialchars($_SESSION['user']['full_name']); ?>
+                            </a>
                             <a href="<?php echo url('pages/auth/logout.php'); ?>" class="nav-login" aria-label="Đăng xuất" title="Đăng xuất">
                                 <i class="fas fa-sign-out-alt"></i>
                             </a>
