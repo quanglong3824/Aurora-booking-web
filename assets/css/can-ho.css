@@ -1,0 +1,98 @@
+/* CSS riêng cho trang Căn hộ */
+
+.apartments-showcase {
+  padding: 60px 0;
+}
+
+.apartment-category .category-header {
+  margin-bottom: 16px;
+}
+
+.apartment-category .category-header h2 {
+  font-size: 28px;
+  margin: 0 0 8px;
+}
+
+.apartment-category .category-header p {
+  color: #6b7280; /* slate-500 */
+}
+
+/* Card tweaks to differentiate apartments from rooms */
+.apartment-category .room-card {
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+.apartment-category .room-badge {
+  background: #6366f1; /* indigo */
+}
+
+.apartment-category .room-gallery-btn {
+  background: rgba(0,0,0,0.55);
+}
+
+.apartment-category .room-specs span,
+.apartment-category .room-amenities .amenity-item span {
+  color: #374151; /* gray-700 */
+}
+
+/* Pricing style for "Giá liên hệ" */
+.apartment-category .room-pricing .current-price {
+  color: #111827; /* gray-900 */
+}
+
+/* Filters */
+.room-filter .filter-tabs .filter-btn[data-filter="family"] {
+  border-color: #34d399; /* emerald */
+}
+.room-filter .filter-tabs .filter-btn[data-filter="premium"] {
+  border-color: #f59e0b; /* amber */
+}
+.room-filter .filter-tabs .filter-btn[data-filter="studio"] {
+  border-color: #60a5fa; /* blue */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .apartment-category .category-header h2 {
+    font-size: 22px;
+  }
+}
+
+/* 3-column grid for apartments */
+.rooms-grid.three-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 992px) {
+  .rooms-grid.three-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .rooms-grid.three-cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Category tag label */
+.category-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(17,24,39,0.75); /* gray-900 */
+  border-radius: 999px;
+  backdrop-filter: blur(2px);
+}
+
+.room-image-container {
+  position: relative;
+}
