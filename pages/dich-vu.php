@@ -11,6 +11,13 @@ $page_header_title = "Dịch vụ Aurora Hotel Plaza";
 $page_header_subtitle = "Trải nghiệm đẳng cấp với đầy đủ tiện ích hiện đại";
 $page_header_bg = "/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-2.jpg";
 
+// CSS & JS riêng cho trang Dịch vụ
+$additional_css = isset($additional_css) && is_array($additional_css) ? $additional_css : [];
+$additional_css[] = 'dich-vu.css';
+
+$additional_js = isset($additional_js) && is_array($additional_js) ? $additional_js : [];
+$additional_js[] = 'js/dich-vu.js';
+
 include '../includes/header.php';
 ?>
 <!-- Services Overview -->
@@ -24,7 +31,7 @@ include '../includes/header.php';
         <div class="services-grid">
             <div class="service-card featured">
                 <div class="service-image">
-                    <img src="/assets/img/restaurant/NHA-HANG-AURORA-HOTEL-1.jpg" alt="Nhà hàng Aurora" loading="lazy">
+                    <img src="<?php echo asset('img/restaurant/NHA-HANG-AURORA-HOTEL-1.jpg'); ?>" alt="Nhà hàng Aurora" loading="lazy">
                     <div class="service-overlay">
                         <div class="service-badge">Nổi bật</div>
                     </div>
@@ -59,11 +66,11 @@ include '../includes/header.php';
             
             <div class="service-card">
                 <div class="service-image">
-                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-4.jpg" alt="Hồ bơi" loading="lazy">
+                    <img src="<?php echo asset('img/service/pool/pool.jpg'); ?>" alt="Hồ bơi" loading="lazy">
                 </div>
                 <div class="service-content">
-                    <h3>Hồ bơi vô cực</h3>
-                    <p>Hồ bơi ngoài trời với tầm nhìn panorama tuyệt đẹp ra thành phố</p>
+                    <h3>Hồ bơi</h3>
+                    <p>Hồ bơi ngoài trời với tầm nhìn ra thành phố</p>
                     <div class="service-features">
                         <span><i class="fas fa-swimming-pool"></i> Infinity Pool</span>
                         <span><i class="fas fa-cocktail"></i> Pool Bar</span>
@@ -75,7 +82,7 @@ include '../includes/header.php';
             
             <div class="service-card">
                 <div class="service-image">
-                    <img src="/assets/img/service/gym/GYM-AURORA-HOTEL-1.jpg" alt="Phòng gym" loading="lazy">
+                    <img src="<?php echo asset('img/service/gym/GYM-AURORA-HOTEL-1.jpg'); ?>" alt="Phòng gym" loading="lazy">
                 </div>
                 <div class="service-content">
                     <h3>Fitness Center</h3>
@@ -91,7 +98,7 @@ include '../includes/header.php';
             
             <div class="service-card">
                 <div class="service-image">
-                    <img src="/assets/img/service/meet/Hoi-nghi-aurora-5.jpg" alt="Phòng hội nghị" loading="lazy">
+                    <img src="<?php echo asset('img/service/meet/Hoi-nghi-aurora-5.jpg'); ?>" alt="Phòng hội nghị" loading="lazy">
                 </div>
                 <div class="service-content">
                     <h3>Trung tâm hội nghị</h3>
@@ -107,7 +114,7 @@ include '../includes/header.php';
             
             <div class="service-card">
                 <div class="service-image">
-                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-3.jpg" alt="Dịch vụ concierge" loading="lazy">
+                    <img src="<?php echo asset('img/hero banner/AURORA-HOTEL-BIEN-HOA-3.jpg'); ?>" alt="Dịch vụ concierge" loading="lazy">
                 </div>
                 <div class="service-content">
                     <h3>Concierge Service</h3>
@@ -118,6 +125,72 @@ include '../includes/header.php';
                         <span><i class="fas fa-ticket-alt"></i> Booking</span>
                     </div>
                     <a href="#concierge" class="service-link">Xem chi tiết <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="office" class="service-detail">
+    <div class="container">
+        <div class="service-detail-content">
+            <div class="service-detail-text">
+                <h2>Văn phòng cho thuê</h2>
+                <p class="lead">Không gian làm việc chuyên nghiệp ngay trung tâm Biên Hòa, linh hoạt diện tích, đầy đủ tiện ích và dịch vụ hỗ trợ.</p>
+
+                <div class="service-highlights">
+                    <div class="highlight-item">
+                        <i class="fas fa-building"></i>
+                        <div>
+                            <h4>Không gian linh hoạt</h4>
+                            <p>Từ 20m² đến 200m², phù hợp doanh nghiệp mọi quy mô</p>
+                        </div>
+                    </div>
+
+                    <div class="highlight-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Vị trí trung tâm</h4>
+                            <p>Nằm trong khu phức hợp Aurora Hotel Plaza</p>
+                        </div>
+                    </div>
+
+                    <div class="highlight-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <h4>An ninh 24/7</h4>
+                            <p>Hệ thống kiểm soát ra vào và camera giám sát</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-info">
+                    <div class="info-item">
+                        <strong>Diện tích:</strong>
+                        <span>20m² – 200m² (chia theo nhu cầu)</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Giá thuê:</strong>
+                        <span>Từ 12.000.000 VNĐ/tháng</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Tiện ích:</strong>
+                        <span>Internet tốc độ cao, lễ tân, vệ sinh, bãi xe</span>
+                    </div>
+                </div>
+
+                <a href="/lien-he.php" class="btn btn-primary">Liên hệ thuê văn phòng</a>
+            </div>
+
+            <div class="service-detail-gallery">
+                <div class="gallery-main">
+                    <img src="<?php echo asset('img/service/office/Van-phong-cho-thue-Aurora-1.jpg'); ?>" alt="Văn phòng cho thuê Aurora" loading="lazy">
+                </div>
+                <div class="gallery-thumbs">
+                    <img src="<?php echo asset('img/service/office/Van-phong-cho-thue-Aurora-2.jpg'); ?>" alt="Không gian làm việc hiện đại" loading="lazy">
+                    <img src="<?php echo asset('img/service/office/Van-phong-cho-thue-Aurora-3.jpg'); ?>" alt="Khu vực tiếp khách" loading="lazy">
+                    <img src="<?php echo asset('img/service/office/Van-phong-cho-thue-Aurora-4.jpg'); ?>" alt="Phòng họp riêng" loading="lazy">
+                    <img src="<?php echo asset('img/service/office/Van-phong-cho-thue-Aurora-5.jpg'); ?>" alt="Tiện ích văn phòng" loading="lazy">
                 </div>
             </div>
         </div>
@@ -178,12 +251,14 @@ include '../includes/header.php';
             
             <div class="service-detail-gallery">
                 <div class="gallery-main">
-                    <img src="/assets/img/restaurant/NHA-HANG-AURORA-HOTEL-1.jpg" alt="Nhà hàng Aurora" loading="lazy">
+                    <img src="<?php echo asset('img/restaurant/NHA-HANG-AURORA-HOTEL-1.jpg'); ?>" alt="Nhà hàng Aurora" loading="lazy">
                 </div>
                 <div class="gallery-thumbs">
-                    <img src="/assets/img/restaurant/NHA-HANG-AURORA-HOTEL-10.jpg" alt="Không gian nhà hàng" loading="lazy">
-                    <img src="/assets/img/restaurant/NHA-HANG-AURORA-HOTEL-11.jpg" alt="Món ăn đặc sắc" loading="lazy">
-                    <img src="/assets/img/restaurant/NHA-HANG-AURORA-HOTEL-14.jpg" alt="Hầm rượu" loading="lazy">
+                    <img src="<?php echo asset('img/restaurant/NHA-HANG-AURORA-HOTEL-10.jpg'); ?>" alt="Không gian nhà hàng" loading="lazy">
+                    <img src="<?php echo asset('img/restaurant/NHA-HANG-AURORA-HOTEL-11.jpg'); ?>" alt="Món ăn đặc sắc" loading="lazy">
+                    <img src="<?php echo asset('img/restaurant/NHA-HANG-AURORA-HOTEL-14.jpg'); ?>" alt="Hầm rượu" loading="lazy">
+                    <img src="<?php echo asset('img/restaurant/NHA-HANG-AURORA-HOTEL-2.jpg'); ?>" alt="Bàn ăn sang trọng" loading="lazy">
+                    <img src="<?php echo asset('img/restaurant/NHA-HANG-AURORA-HOTEL-5.jpg'); ?>" alt="Không gian ấm cúng" loading="lazy">
                 </div>
             </div>
         </div>
@@ -196,12 +271,12 @@ include '../includes/header.php';
         <div class="service-detail-content">
             <div class="service-detail-gallery">
                 <div class="gallery-main">
-                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-2.jpg" alt="Aurora Spa" loading="lazy">
+                    <img src="<?php echo asset('img/hero banner/AURORA-HOTEL-BIEN-HOA-2.jpg'); ?>" alt="Aurora Spa" loading="lazy">
                 </div>
                 <div class="gallery-thumbs">
-                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-3.jpg" alt="Phòng massage" loading="lazy">
-                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-4.jpg" alt="Sauna" loading="lazy">
-                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-6.jpg" alt="Jacuzzi" loading="lazy">
+                    <img src="<?php echo asset('img/hero banner/AURORA-HOTEL-BIEN-HOA-3.jpg'); ?>" alt="Phòng massage" loading="lazy">
+                    <img src="<?php echo asset('img/hero banner/AURORA-HOTEL-BIEN-HOA-4.jpg'); ?>" alt="Sauna" loading="lazy">
+                    <img src="<?php echo asset('img/hero banner/AURORA-HOTEL-BIEN-HOA-6.jpg'); ?>" alt="Jacuzzi" loading="lazy">
                 </div>
             </div>
             
@@ -257,29 +332,22 @@ include '../includes/header.php';
     <div class="container">
         <div class="service-detail-content">
             <div class="service-detail-text">
-                <h2>Hồ bơi vô cực</h2>
-                <p class="lead">Thư giãn tại hồ bơi ngoài trời với thiết kế vô cực, tầm nhìn panorama tuyệt đẹp ra toàn cảnh thành phố từ tầng 25.</p>
+                <h2>Hồ bơi</h2>
+                <p class="lead">Thư giãn tại hồ bơi ngoài trời với thiết kế vô cực, tầm nhìn tuyệt đẹp ra toàn cảnh thành phố từ tầng 14.</p>
                 
                 <div class="pool-features">
                     <div class="feature-grid">
                         <div class="feature-item">
                             <i class="fas fa-swimming-pool"></i>
                             <h4>Hồ bơi chính</h4>
-                            <p>25m x 15m, độ sâu 1.2m - 2.5m</p>
+                            <p>25m x 15m, độ sâu 1.2m - 1.8m</p>
                         </div>
                         
                         <div class="feature-item">
                             <i class="fas fa-child"></i>
                             <h4>Hồ bơi trẻ em</h4>
                             <p>Khu vực an toàn cho trẻ em dưới 12 tuổi</p>
-                        </div>
-                        
-                        <div class="feature-item">
-                            <i class="fas fa-hot-tub"></i>
-                            <h4>Jacuzzi</h4>
-                            <p>Bồn tắm nước nóng thư giãn</p>
-                        </div>
-                        
+                        </div>        
                         <div class="feature-item">
                             <i class="fas fa-cocktail"></i>
                             <h4>Pool Bar</h4>
@@ -295,7 +363,7 @@ include '../includes/header.php';
                     </div>
                     <div class="info-item">
                         <strong>Vị trí:</strong>
-                        <span>Tầng 25 - Sky Deck</span>
+                        <span>Tầng 14 - Sky Deck</span>
                     </div>
                     <div class="info-item">
                         <strong>Miễn phí:</strong>
@@ -306,13 +374,14 @@ include '../includes/header.php';
             
             <div class="service-detail-gallery">
                 <div class="gallery-main">
-                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-1.jpg" alt="Hồ bơi vô cực" loading="lazy">
+                    <img src="<?php echo asset('img/service/pool/pool.jpg'); ?>" alt="Hồ bơi" loading="lazy">
                 </div>
-                <div class="gallery-thumbs">
-                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-2.jpg" alt="Tầm nhìn từ hồ bơi" loading="lazy">
-                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-3.jpg" alt="Pool bar" loading="lazy">
-                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-4.jpg" alt="Khu vực thư giãn" loading="lazy">
-                </div>
+                <!-- <div class="gallery-thumbs">
+                    <img src="<?php echo asset('img/hero banner/AURORA-HOTEL-BIEN-HOA-2.jpg'); ?>" alt="Tầm nhìn từ hồ bơi" loading="lazy">
+                    <img src="<?php echo asset('img/hero banner/AURORA-HOTEL-BIEN-HOA-3.jpg'); ?>" alt="Pool bar" loading="lazy">
+                    <img src="<?php echo asset('img/hero banner/AURORA-HOTEL-BIEN-HOA-4.jpg'); ?>" alt="Khu vực thư giãn" loading="lazy">
+                    <img src="<?php echo asset('img/hero banner/AURORA-HOTEL-BIEN-HOA-6.jpg'); ?>" alt="View thành phố" loading="lazy">
+                </div> -->
             </div>
         </div>
     </div>
@@ -324,12 +393,12 @@ include '../includes/header.php';
         <div class="service-detail-content">
             <div class="service-detail-gallery">
                 <div class="gallery-main">
-                    <img src="/assets/img/service/gym/GYM-AURORA-HOTEL-1.jpg" alt="Fitness Center" loading="lazy">
+                    <img src="<?php echo asset('img/service/gym/GYM-AURORA-HOTEL-1.jpg'); ?>" alt="Fitness Center" loading="lazy">
                 </div>
                 <div class="gallery-thumbs">
-                    <img src="/assets/img/service/gym/GYM-AURORA-HOTEL-2.jpg" alt="Khu tập tạ" loading="lazy">
-                    <img src="/assets/img/service/gym/GYM-AURORA-HOTEL-3.jpg" alt="Khu cardio" loading="lazy">
-                    <img src="/assets/img/service/gym/GYM-AURORA-HOTEL-1.jpg" alt="Phòng yoga" loading="lazy">
+                    <img src="<?php echo asset('img/service/gym/GYM-AURORA-HOTEL-2.jpg'); ?>" alt="Khu tập tạ" loading="lazy">
+                    <img src="<?php echo asset('img/service/gym/GYM-AURORA-HOTEL-3.jpg'); ?>" alt="Khu cardio" loading="lazy">
+                    <img src="<?php echo asset('img/service/gym/GYM-AURORA-HOTEL-1.jpg'); ?>" alt="Phòng yoga" loading="lazy">
                 </div>
             </div>
             
@@ -447,12 +516,14 @@ include '../includes/header.php';
             
             <div class="service-detail-gallery">
                 <div class="gallery-main">
-                    <img src="/assets/img/service/meet/Hoi-nghi-aurora-5.jpg" alt="Trung tâm hội nghị" loading="lazy">
+                    <img src="<?php echo asset('img/service/meet/Hoi-nghi-aurora-5.jpg'); ?>" alt="Trung tâm hội nghị" loading="lazy">
                 </div>
                 <div class="gallery-thumbs">
-                    <img src="/assets/img/service/meet/Hoi-nghi-aurora-6.jpg" alt="Grand Ballroom" loading="lazy">
-                    <img src="/assets/img/service/office/Van-phong-cho-thue-Aurora-1.jpg" alt="Meeting Room" loading="lazy">
-                    <img src="/assets/img/service/office/Van-phong-cho-thue-Aurora-2.jpg" alt="Boardroom" loading="lazy">
+                    <img src="<?php echo asset('img/service/meet/Hoi-nghi-aurora-6.jpg'); ?>" alt="Grand Ballroom" loading="lazy">
+                    <!-- <img src="<?php echo asset('img/service/office/Van-phong-cho-thue-Aurora-1.jpg'); ?>" alt="Meeting Room" loading="lazy">
+                    <img src="<?php echo asset('img/service/office/Van-phong-cho-thue-Aurora-2.jpg'); ?>" alt="Boardroom" loading="lazy">
+                    <img src="<?php echo asset('img/service/office/Van-phong-cho-thue-Aurora-3.jpg'); ?>" alt="Văn phòng 1" loading="lazy">
+                    <img src="<?php echo asset('img/service/office/Van-phong-cho-thue-Aurora-4.jpg'); ?>" alt="Văn phòng 2" loading="lazy"> -->
                 </div>
             </div>
         </div>
@@ -465,12 +536,13 @@ include '../includes/header.php';
         <div class="service-detail-content">
             <div class="service-detail-gallery">
                 <div class="gallery-main">
-                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-3.jpg" alt="Concierge Service" loading="lazy">
+                    <img src="<?php echo asset('img/hero banner/AURORA-HOTEL-BIEN-HOA-3.jpg'); ?>" alt="Concierge Service" loading="lazy">
                 </div>
                 <div class="gallery-thumbs">
-                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-2.jpg" alt="Lễ tân" loading="lazy">
-                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-1.jpg" alt="Dịch vụ vận chuyển" loading="lazy">
-                    <img src="/assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-4.jpg" alt="Hỗ trợ khách hàng" loading="lazy">
+                    <img src="<?php echo asset('img/hero banner/AURORA-HOTEL-BIEN-HOA-2.jpg'); ?>" alt="Lễ tân" loading="lazy">
+                    <img src="<?php echo asset('img/hero banner/AURORA-HOTEL-BIEN-HOA-1.jpg'); ?>" alt="Dịch vụ vận chuyển" loading="lazy">
+                    <img src="<?php echo asset('img/hero banner/AURORA-HOTEL-BIEN-HOA-4.jpg'); ?>" alt="Hỗ trợ khách hàng" loading="lazy">
+                    <img src="<?php echo asset('img/hero banner/AURORA-HOTEL-BIEN-HOA-6.jpg'); ?>" alt="Sảnh khách sạn" loading="lazy">
                 </div>
             </div>
             
@@ -590,7 +662,7 @@ include '../includes/header.php';
                 <a href="tel:+842812345678" class="btn btn-primary">
                     <i class="fas fa-phone"></i> Gọi ngay
                 </a>
-                <a href="/lien-he.php" class="btn btn-outline">
+                <a href="/lien-he.php" class="btn btn-primary btn-outline">
                     <i class="fas fa-envelope"></i> Gửi yêu cầu
                 </a>
             </div>
@@ -598,619 +670,5 @@ include '../includes/header.php';
     </div>
 </section>
 
-<style>
-/* Services Page Specific Styles */
-.services-overview {
-    padding: 80px 0;
-    background: #f8f9fa;
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
-    margin-top: 60px;
-}
-
-.service-card {
-    background: white;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
-
-.service-card.featured {
-    grid-column: span 2;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.service-image {
-    position: relative;
-    height: 250px;
-    overflow: hidden;
-}
-
-.service-card.featured .service-image {
-    height: 100%;
-}
-
-.service-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.service-card:hover .service-image img {
-    transform: scale(1.05);
-}
-
-.service-overlay {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-
-.service-badge {
-    background: #cc9a2c;
-    color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-.service-content {
-    padding: 30px;
-}
-
-.service-content h3 {
-    font-size: 1.4rem;
-    color: #2c3e50;
-    margin-bottom: 15px;
-}
-
-.service-content p {
-    color: #6c757d;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.service-features {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.service-features span {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #f8f9fa;
-    padding: 8px 12px;
-    border-radius: 15px;
-    font-size: 0.85rem;
-    color: #6c757d;
-}
-
-.service-features i {
-    color: #cc9a2c;
-}
-
-.service-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: #cc9a2c;
-    font-weight: 600;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.service-link:hover {
-    color: #b8941f;
-}
-
-.service-detail {
-    padding: 100px 0;
-    background: white;
-}
-
-.service-detail.alt {
-    background: #f8f9fa;
-}
-
-.service-detail-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-}
-
-.service-detail-text h2 {
-    font-size: 2.5rem;
-    color: #2c3e50;
-    margin-bottom: 20px;
-}
-
-.service-detail-text .lead {
-    font-size: 1.2rem;
-    color: #6c757d;
-    line-height: 1.6;
-    margin-bottom: 40px;
-}
-
-.service-highlights {
-    margin-bottom: 40px;
-}
-
-.highlight-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    margin-bottom: 25px;
-}
-
-.highlight-item i {
-    font-size: 1.5rem;
-    color: #cc9a2c;
-    margin-top: 5px;
-    flex-shrink: 0;
-}
-
-.highlight-item h4 {
-    color: #2c3e50;
-    margin-bottom: 8px;
-    font-size: 1.1rem;
-}
-
-.highlight-item p {
-    color: #6c757d;
-    line-height: 1.5;
-}
-
-.service-info {
-    background: #f8f9fa;
-    padding: 25px;
-    border-radius: 15px;
-    margin-bottom: 30px;
-}
-
-.info-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #e9ecef;
-}
-
-.info-item:last-child {
-    border-bottom: none;
-}
-
-.info-item strong {
-    color: #2c3e50;
-    font-weight: 600;
-}
-
-.info-item span {
-    color: #6c757d;
-}
-
-.service-detail-gallery {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.gallery-main {
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-}
-
-.gallery-main img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-}
-
-.gallery-thumbs {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-}
-
-.gallery-thumbs img {
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.gallery-thumbs img:hover {
-    transform: scale(1.05);
-}
-
-.service-menu {
-    margin-bottom: 40px;
-}
-
-.service-menu h4 {
-    color: #2c3e50;
-    margin-bottom: 20px;
-    font-size: 1.3rem;
-}
-
-.menu-items {
-    background: white;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.menu-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid #f8f9fa;
-}
-
-.menu-item:last-child {
-    border-bottom: none;
-}
-
-.menu-name {
-    font-weight: 600;
-    color: #2c3e50;
-}
-
-.menu-price {
-    color: #cc9a2c;
-    font-weight: 700;
-}
-
-.pool-features {
-    margin-bottom: 40px;
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-}
-
-.feature-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 15px;
-}
-
-.feature-item i {
-    font-size: 1.5rem;
-    color: #cc9a2c;
-    flex-shrink: 0;
-}
-
-.feature-item h4 {
-    color: #2c3e50;
-    margin-bottom: 5px;
-    font-size: 1rem;
-}
-
-.feature-item p {
-    color: #6c757d;
-    font-size: 0.9rem;
-}
-
-.fitness-programs {
-    margin-bottom: 40px;
-}
-
-.fitness-programs h4 {
-    color: #2c3e50;
-    margin-bottom: 20px;
-    font-size: 1.3rem;
-}
-
-.program-list {
-    background: white;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.program-item {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 15px 0;
-    border-bottom: 1px solid #f8f9fa;
-}
-
-.program-item:last-child {
-    border-bottom: none;
-}
-
-.program-time {
-    background: #cc9a2c;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    flex-shrink: 0;
-}
-
-.program-info h5 {
-    color: #2c3e50;
-    margin-bottom: 5px;
-    font-size: 1rem;
-}
-
-.program-info p {
-    color: #6c757d;
-    font-size: 0.9rem;
-}
-
-.conference-rooms {
-    margin-bottom: 40px;
-}
-
-.room-item {
-    background: #f8f9fa;
-    padding: 25px;
-    border-radius: 15px;
-    margin-bottom: 20px;
-}
-
-.room-item h4 {
-    color: #2c3e50;
-    margin-bottom: 15px;
-    font-size: 1.2rem;
-}
-
-.room-specs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 15px;
-}
-
-.room-specs span {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: white;
-    padding: 8px 12px;
-    border-radius: 15px;
-    font-size: 0.85rem;
-    color: #6c757d;
-}
-
-.room-specs i {
-    color: #cc9a2c;
-}
-
-.room-item p {
-    color: #6c757d;
-    line-height: 1.5;
-}
-
-.concierge-services {
-    margin-bottom: 40px;
-}
-
-.concierge-services h4 {
-    color: #2c3e50;
-    margin-bottom: 25px;
-    font-size: 1.3rem;
-}
-
-.services-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 25px;
-}
-
-.service-category {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.service-category h5 {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #2c3e50;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-}
-
-.service-category i {
-    color: #cc9a2c;
-}
-
-.service-category ul {
-    list-style: none;
-    padding: 0;
-}
-
-.service-category li {
-    padding: 8px 0;
-    color: #6c757d;
-    border-bottom: 1px solid #f8f9fa;
-    position: relative;
-    padding-left: 20px;
-}
-
-.service-category li:before {
-    content: '•';
-    color: #cc9a2c;
-    position: absolute;
-    left: 0;
-}
-
-.service-category li:last-child {
-    border-bottom: none;
-}
-
-.additional-services {
-    padding: 80px 0;
-    background: #f8f9fa;
-}
-
-.additional-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 60px;
-}
-
-.additional-item {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-.additional-item:hover {
-    transform: translateY(-5px);
-}
-
-.additional-item i {
-    font-size: 2.5rem;
-    color: #cc9a2c;
-    margin-bottom: 20px;
-}
-
-.additional-item h4 {
-    color: #2c3e50;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-}
-
-.additional-item p {
-    color: #6c757d;
-    line-height: 1.5;
-    font-size: 0.95rem;
-}
-
-.service-cta {
-    padding: 100px 0;
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-    color: white;
-    text-align: center;
-}
-
-.service-cta .cta-content h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-.service-cta .cta-content p {
-    font-size: 1.2rem;
-    margin-bottom: 40px;
-    opacity: 0.9;
-}
-
-.cta-buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.cta-buttons .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .service-card.featured {
-        grid-column: span 1;
-        display: block;
-    }
-    
-    .service-detail-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-    
-    .feature-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .service-detail-text h2 {
-        font-size: 2rem;
-    }
-    
-    .gallery-thumbs {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .cta-buttons .btn {
-        width: 100%;
-        max-width: 300px;
-    }
-}
-
-@media (max-width: 480px) {
-    .service-content {
-        padding: 20px;
-    }
-    
-    .service-features {
-        flex-direction: column;
-    }
-    
-    .info-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
-    }
-    
-    .room-specs {
-        flex-direction: column;
-    }
-    
-    .program-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-}
-</style>
 
 <?php include '../includes/footer.php'; ?>

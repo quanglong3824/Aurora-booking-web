@@ -13,11 +13,11 @@ require_once __DIR__ . '/config.php';
                     <h3>Aurora Hotel Plaza</h3>
                     <p>Khách sạn sang trọng với dịch vụ đẳng cấp quốc tế. Chúng tôi cam kết mang đến cho quý khách những trải nghiệm nghỉ dưỡng không thể nào quên.</p>
                     <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" aria-label="Facebook" title="Facebook Aurora"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram" title="Instagram Aurora"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter" title="Twitter Aurora"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube" title="YouTube Aurora"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="TikTok" title="TikTok Aurora"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
                 
@@ -58,8 +58,8 @@ require_once __DIR__ . '/config.php';
                         <h5>Đăng ký nhận tin</h5>
                         <form class="newsletter-form" action="/subscribe.php" method="POST">
                             <div class="newsletter-input">
-                                <input type="email" name="email" placeholder="Email của bạn" required>
-                                <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                                <input class="form-control" type="email" name="email" placeholder="Email của bạn" aria-label="Nhập email của bạn" required>
+                                <button class="btn btn-primary" type="submit" aria-label="Gửi đăng ký" title="Gửi"><i class="fas fa-paper-plane"></i> <span>Gửi</span></button>
                             </div>
                         </form>
                     </div>
@@ -70,9 +70,9 @@ require_once __DIR__ . '/config.php';
                 <div class="footer-bottom-content">
                     <p>&copy; <?php echo date('Y'); ?> Aurora Hotel Plaza. Tất cả quyền được bảo lưu.</p>
                     <div class="footer-links">
-                        <a href="/chinh-sach-bao-mat.php">Chính sách bảo mật</a>
-                        <a href="/dieu-khoan-su-dung.php">Điều khoản sử dụng</a>
-                        <a href="/chinh-sach-huy-dat.php">Chính sách hủy đặt</a>
+                        <a href="<?php echo url('pages/privacy/sercurity.php'); ?>">Chính sách bảo mật</a>
+                        <a href="<?php echo url('pages/privacy/term-of-use.php'); ?>">Điều khoản sử dụng</a>
+                        <a href="<?php echo url('pages/privacy/cancel-room.php'); ?>">Chính sách hủy đặt phòng</a>
                     </div>
                 </div>
             </div>
