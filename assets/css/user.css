@@ -3,7 +3,7 @@
 /* Khung chung */
 main.container {
   max-width: 980px;
-  margin: 150px auto 24px; /* đẩy nội dung xuống dưới header fixed */
+  margin-top: 150px; /* đẩy nội dung xuống dưới header fixed */
   padding: 0 16px;
 }
 
