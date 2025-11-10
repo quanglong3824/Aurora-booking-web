@@ -1,63 +1,151 @@
 // Gallery Page JavaScript
 document.addEventListener('DOMContentLoaded', function() {
-    // Filter functionality
+    // Elements
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
-    
+    const grid = document.getElementById('galleryGrid');
+    const paginationEl = document.getElementById('pagination');
+    const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+    const headerEl = document.querySelector('.header');
+
+    // State
     let currentFilter = 'all';
-    let visibleItems = 12;
-    
-    // Filter items
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Update active button
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            currentFilter = btn.getAttribute('data-filter');
-            visibleItems = 12;
-            
-            filterItems();
-        });
-    });
-    
-    function filterItems() {
-        let visibleCount = 0;
-        
-        galleryItems.forEach((item, index) => {
-            const category = item.getAttribute('data-category');
-            const shouldShow = currentFilter === 'all' || category === currentFilter;
-            
-            if (shouldShow && visibleCount < visibleItems) {
-                item.classList.remove('hidden');
-                visibleCount++;
-            } else {
-                item.classList.add('hidden');
-            }
-        });
-        
-        // Show/hide load more button
-        const totalFilteredItems = Array.from(galleryItems).filter(item => {
+    let currentPage = 1;
+    let pageSize = 9; // default for 3 cols x 3 rows
+
+    function getColumnCount() {
+        if (!grid) return 3;
+        const cc = parseInt(getComputedStyle(grid).columnCount, 10);
+        return isNaN(cc) || cc <= 0 ? 3 : cc;
+    }
+
+    function updatePageSize() {
+        const cols = getColumnCount();
+        const rows = 3; // hiển thị 3 hàng theo khung lưới
+        pageSize = cols * rows;
+    }
+
+    // Update CSS variable for sticky offset based on header height
+    function updateHeaderOffset() {
+        const h = headerEl ? headerEl.offsetHeight : 80;
+        document.documentElement.style.setProperty('--header-offset', `${h}px`);
+        return h;
+    }
+
+    // Shuffle DOM children of the grid
+    function shuffleGrid() {
+        if (!grid) return;
+        const children = Array.from(grid.children);
+        for (let i = children.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            const tmp = children[i];
+            children[i] = children[j];
+            children[j] = tmp;
+        }
+        // Re-append in new order
+        grid.innerHTML = '';
+        children.forEach(ch => grid.appendChild(ch));
+    }
+
+    function getFilteredItems() {
+        return galleryItems.filter(item => {
             const category = item.getAttribute('data-category');
             return currentFilter === 'all' || category === currentFilter;
-        }).length;
-        
-        if (visibleCount >= totalFilteredItems) {
-            loadMoreBtn.style.display = 'none';
-        } else {
-            loadMoreBtn.style.display = 'block';
-        }
+        });
     }
-    
-    // Load more functionality
-    loadMoreBtn.addEventListener('click', () => {
-        visibleItems += 12;
-        filterItems();
+
+    function renderPagination(totalPages) {
+        if (!paginationEl) return;
+        paginationEl.innerHTML = '';
+
+        if (totalPages <= 1) {
+            return; // nothing to render
+        }
+
+        const btn = (text, disabled, handler, isActive = false) => {
+            const b = document.createElement('button');
+            b.className = `btn btn-outline ${isActive ? 'active' : ''}`;
+            b.textContent = text;
+            b.disabled = !!disabled;
+            b.addEventListener('click', handler);
+            return b;
+        };
+
+        const prev = btn('<', currentPage === 1, () => {
+            currentPage = Math.max(1, currentPage - 1);
+            renderPage();
+        });
+        paginationEl.appendChild(prev);
+
+        for (let p = 1; p <= totalPages; p++) {
+            const isActive = p === currentPage;
+            const pageBtn = btn(String(p), false, () => {
+                currentPage = p;
+                renderPage();
+            }, isActive);
+            paginationEl.appendChild(pageBtn);
+        }
+
+        const next = btn('>', currentPage === totalPages, () => {
+            currentPage = Math.min(totalPages, currentPage + 1);
+            renderPage();
+        });
+        paginationEl.appendChild(next);
+    }
+
+    function renderPage() {
+        const filtered = getFilteredItems();
+        updatePageSize();
+        const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+        currentPage = Math.min(currentPage, totalPages);
+
+        // Hide all
+        galleryItems.forEach(item => item.classList.add('hidden'));
+
+        // Show current page items
+        const startIdx = (currentPage - 1) * pageSize;
+        const endIdx = startIdx + pageSize;
+        filtered.slice(startIdx, endIdx).forEach(item => item.classList.remove('hidden'));
+
+        renderPagination(totalPages);
+
+        // Scroll lên đầu khu vực grid để người dùng thấy nội dung mới
+        if (grid) {
+            // scroll có bù trừ chiều cao header (động) để không bị che
+            const headerOffset = updateHeaderOffset();
+            const extra = 20; // khoảng trống nhỏ
+            const y = grid.getBoundingClientRect().top + window.scrollY - headerOffset - extra;
+            window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+        }
+
+        // Điều chỉnh layout để đảm bảo masonry gom ảnh sau khi lọc/phân trang
+        adjustMasonryLayout();
+    }
+
+    // Filter handlers
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFilter = btn.getAttribute('data-filter');
+            currentPage = 1;
+            shuffleGrid();
+            renderPage();
+        });
     });
-    
-    // Initialize filter
-    filterItems();
+
+    // Initial render
+    shuffleGrid();
+    updatePageSize();
+    renderPage();
+    adjustMasonryLayout();
+
+    // Sync header offset on load/resize/scroll (header co lại khi cuộn)
+    updateHeaderOffset();
+    window.addEventListener('resize', updateHeaderOffset);
+    window.addEventListener('scroll', () => {
+        // debounce nhẹ
+        window.requestAnimationFrame(updateHeaderOffset);
+    });
     
     // Lightbox functionality
     const lightbox = document.getElementById('lightbox');
@@ -77,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             
-            // Get all visible images
+            // Get all visible images (current page after filter & pagination)
             currentImages = Array.from(document.querySelectorAll('.gallery-item:not(.hidden) .gallery-zoom'));
             currentImageIndex = currentImages.indexOf(btn);
             
@@ -206,3 +294,11 @@ document.addEventListener('DOMContentLoaded', function() {
         imageObserver.observe(img);
     });
 });
+    // Update page size on resize to giữ chuẩn theo số cột
+    window.addEventListener('resize', () => {
+        const prevSize = pageSize;
+        updatePageSize();
+        if (pageSize !== prevSize) {
+            renderPage();
+        }
+    });
