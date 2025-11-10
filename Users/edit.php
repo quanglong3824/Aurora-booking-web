@@ -39,15 +39,19 @@ $additional_css = ['user.css'];
 include __DIR__ . '/../includes/header.php';
 ?>
 
-<main class="container" style="margin-top:150px">
+<?php
+$modalData = null;
+if (!empty($_SESSION['modal'])) {
+  $modalData = $_SESSION['modal'];
+  unset($_SESSION['modal']);
+}
+?>
+
+<main class="container">
     <h1>Chỉnh sửa thông tin</h1>
     <p class="help-text">Một số trường không thể thay đổi theo chính sách: username, email, role, status.</p>
 
-    <?php if (isset($_GET['type'], $_GET['msg'])): ?>
-        <div style="padding:12px; border-radius:6px; margin:10px 0; <?php echo $_GET['type']==='success' ? 'background:#e6ffed; color:#03543f; border:1px solid #84e1bc;' : 'background:#ffe6e6; color:#8a1f1f; border:1px solid #f5a3a3;'; ?>">
-            <?php echo htmlspecialchars($_GET['msg']); ?>
-        </div>
-    <?php endif; ?>
+    <div id="modal-root" aria-live="polite"></div>
 
     <form method="post" action="<?php echo url('assets/php/backend/user_update.php'); ?>" id="edit-form" novalidate>
         <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
@@ -305,6 +309,50 @@ include __DIR__ . '/../includes/header.php';
         if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     });
+  })();
+</script>
+
+<script>
+  (function() {
+    const modalData = <?php echo json_encode($modalData); ?>;
+
+    function buildModal({ type = 'info', title = '', message = '' }) {
+      const backdrop = document.createElement('div');
+      backdrop.className = 'modal-backdrop';
+      const modal = document.createElement('div');
+      modal.className = `modal ${type}`;
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      modal.innerHTML = `
+        <div class="header">${title || 'Thông báo'}</div>
+        <div class="body">${message || ''}</div>
+        <div class="actions">
+          <button type="button" class="btn-secondary" id="modal-close">Đóng</button>
+        </div>
+      `;
+
+      const root = document.getElementById('modal-root') || document.body;
+      root.appendChild(backdrop);
+      root.appendChild(modal);
+
+      function close() {
+        backdrop.classList.remove('show');
+        modal.classList.remove('show');
+        setTimeout(() => { backdrop.remove(); modal.remove(); }, 140);
+      }
+
+      backdrop.addEventListener('click', close);
+      modal.querySelector('#modal-close').addEventListener('click', close);
+
+      requestAnimationFrame(() => {
+        backdrop.classList.add('show');
+        modal.classList.add('show');
+      });
+    }
+
+    if (modalData && typeof modalData === 'object') {
+      buildModal(modalData);
+    }
   })();
 </script>
 

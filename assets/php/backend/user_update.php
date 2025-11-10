@@ -7,13 +7,23 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once __DIR__ . '/../../includes/config.php';
 require_once __DIR__ . '/../../config/database.php';
 
+function setModal($type, $title, $msg) {
+    $_SESSION['modal'] = [
+        'type' => $type,
+        'title' => $title,
+        'message' => $msg,
+    ];
+}
+
 function badRequest($msg) {
-    header('Location: ' . url('Users/edit.php?type=error&msg=' . urlencode($msg)));
+    setModal('error', 'Cập nhật không thành công', $msg);
+    header('Location: ' . url('Users/edit.php'));
     exit;
 }
 
 function ok($msg) {
-    header('Location: ' . url('Users/index.php?type=success&msg=' . urlencode($msg)));
+    setModal('success', 'Cập nhật thành công', $msg);
+    header('Location: ' . url('Users/edit.php'));
     exit;
 }
 
@@ -195,7 +205,15 @@ try {
         $_SESSION['user']['full_name'] = trim(($input['first_name'] ?: '') . ' ' . ($input['last_name'] ?: ''));
     }
 
-    ok('Cập nhật thông tin thành công');
+    // Phản hồi theo kết quả cập nhật
+    $updated = (int) $stmt->rowCount();
+    if ($updated > 0) {
+        ok('Thông tin đã được lưu');
+    } else {
+        setModal('info', 'Không có thay đổi', 'Dữ liệu giữ nguyên vì không có chỉnh sửa.');
+        header('Location: ' . url('Users/edit.php'));
+        exit;
+    }
 } catch (Throwable $e) {
     // ghi log nếu cần
     error_log('[user_update] ' . $e->getMessage());
