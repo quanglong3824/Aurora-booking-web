@@ -1,27 +1,25 @@
 <?php
-//the test.php file
-
-// Kiểm tra lỗi PHP
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-// Log all errors to a file
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/logs/php_errors.log');
-
-// Optional: log all variables for debugging
 ini_set('log_errors_max_len', 0);
-
-// Optional: log all notices and warnings
 ini_set('ignore_repeated_errors', 0);
 
-// Test database connection
 require_once 'config/database.php';
-$db = new Database();
-$conn = $db->getConnection();
-if($conn) {
-    echo "Database connection successful!";
+
+echo '<h2>Kiểm tra kết nối Database</h2>';
+echo '<pre>' .
+    'DB_HOST: ' . DB_HOST . "\n" .
+    'DB_NAME: ' . DB_NAME . "\n" .
+    'DB_USER: ' . DB_USER . "\n" .
+    'DB_CHARSET: ' . DB_CHARSET .
+    '</pre>';
+
+$result = checkDBConnection(true);
+if ($result['success']) {
+    echo '<p style="color: green;">Database connection successful.</p>';
 } else {
-    echo "Database connection failed!";
+    echo '<p style="color: red;">Database connection failed.</p>';
 }
 ?>
