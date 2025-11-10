@@ -5,10 +5,10 @@
  */
 
 // Database configuration
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'aurora_booking');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_HOST', 'localhost:3306');
+define('DB_NAME', 'auroraho_web_2025');
+define('DB_USER', 'auroraho_longdev');
+define('DB_PASS', '@longdev3824');
 define('DB_CHARSET', 'utf8mb4');
 
 // Database connection class
