@@ -21,6 +21,14 @@ define( 'DB_HOST', 'localhost:3306' );
 define( 'DB_CHARSET', 'utf8' );
 define( 'DB_DEBUG', true );
 
+// Fallback cấu hình cho localhost (XAMPP)
+// Sử dụng khi kết nối cơ sở dữ liệu chính thất bại
+define( 'DB_LOCAL_NAME', 'auroraho_web_2025' );
+define( 'DB_LOCAL_USER', 'root' );
+define( 'DB_LOCAL_PASSWORD', '' );
+define( 'DB_LOCAL_HOST', '127.0.0.1:3306' );
+define( 'DB_LOCAL_CHARSET', 'utf8' );
+
 // Database connection class
 class Database {
     private $host = DB_HOST;
@@ -32,6 +40,7 @@ class Database {
     public $conn;
     private $last_error = null;
     private $last_error_code = null;
+    private $fallback_used = false;
 
     // Get database connection
     public function getConnection() {
@@ -44,12 +53,31 @@ class Database {
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         } catch(PDOException $exception) {
-            $this->last_error = $exception->getMessage();
-            $this->last_error_code = $exception->getCode();
+            // Ghi nhận lỗi kết nối chính
+            $primaryError = $exception->getMessage();
+            $primaryCode = $exception->getCode();
             if (defined('DB_DEBUG') && DB_DEBUG) {
-                error_log("DB connection error: " . $this->last_error);
+                error_log("Primary DB connection error: " . $primaryError);
             }
-            return false;
+
+            // Thử fallback sang localhost (XAMPP)
+            try {
+                $localHost = DB_LOCAL_HOST;
+                $hostWithoutPort = $this->parseHostAndPort($localHost); // cập nhật $this->port theo host
+                $dsn = "mysql:host=" . $hostWithoutPort . ";port=" . $this->port . ";dbname=" . DB_LOCAL_NAME . ";charset=" . DB_LOCAL_CHARSET;
+                $this->conn = new PDO($dsn, DB_LOCAL_USER, DB_LOCAL_PASSWORD);
+                $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+                $this->fallback_used = true;
+            } catch (PDOException $fallbackException) {
+                // Cả chính và fallback đều lỗi
+                $this->last_error = $primaryError . " | Fallback error: " . $fallbackException->getMessage();
+                $this->last_error_code = $fallbackException->getCode() ?: $primaryCode;
+                if (defined('DB_DEBUG') && DB_DEBUG) {
+                    error_log("DB fallback connection error: " . $fallbackException->getMessage());
+                }
+                return false;
+            }
         }
         
         return $this->conn;
@@ -66,6 +94,10 @@ class Database {
 
     public function getLastErrorCode() {
         return $this->last_error_code;
+    }
+
+    public function isFallbackUsed() {
+        return $this->fallback_used === true;
     }
 
     private function parseHostAndPort($host) {
@@ -124,9 +156,10 @@ function checkDBConnection($echo = true) {
         }
         return [ 'success' => false, 'message' => $output ];
     }
+    $fallbackNote = $database->isFallbackUsed() ? "\nChú ý: Đã chuyển sang kết nối localhost (XAMPP)." : '';
     if ($echo) {
-        echo "<pre>Kết nối thành công.</pre>";
+        echo "<pre>Kết nối thành công.{$fallbackNote}</pre>";
     }
-    return [ 'success' => true, 'message' => 'OK' ];
+    return [ 'success' => true, 'message' => 'OK', 'fallback' => $database->isFallbackUsed() ];
 }
 ?>
