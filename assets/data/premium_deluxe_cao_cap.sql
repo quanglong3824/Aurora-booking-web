@@ -66,7 +66,7 @@ INSERT INTO `premium_deluxe_cao_cap` (
   'Phòng Premium Deluxe Cao Cấp - Aurora Hotel Plaza',
   'Phòng Premium Deluxe cao cấp với thiết kế sang trọng, tiện nghi 5 sao tại Aurora Hotel Plaza.',
   'Không gian nghỉ dưỡng đẳng cấp với thiết kế sang trọng và tiện nghi 5 sao',
-  '2.200.000 VNĐ',
+  ' ',
   '/đêm',
   'pages/dat-phong.php?room=premium-deluxe',
   'Đặt Phòng Premium',

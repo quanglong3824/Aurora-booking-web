@@ -2,26 +2,9 @@
 // Debug tạm thời để xác định nguyên nhân 500 (sẽ gỡ sau khi fix)
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-// Thiết lập thông tin trang
-$page_title = "Căn hộ dịch vụ";
-$page_description = "Khám phá các loại căn hộ dịch vụ tại Aurora Hotel Plaza: Family, Premium, Studio với đầy đủ tiện nghi hiện đại";
-$current_page = "can-ho";
-$page_header = true;
-$page_header_title = "Căn hộ dịch vụ Aurora Hotel Plaza";
-$page_header_subtitle = "Không gian sống tiện nghi, hiện đại phù hợp mọi nhu cầu";
-$page_header_bg = '/assets/img/premium apartment/CAN-HO-PREMIUM-AURORA-HOTEL-1.jpg';
-
-// CSS riêng cho trang này
-$additional_css = isset($additional_css) && is_array($additional_css) ? $additional_css : [];
-$additional_css[] = 'can-ho.css';
-
-// Breadcrumb
-$show_breadcrumb = true;
-$breadcrumb_items = [
-    ["title" => "Phòng & Căn hộ", "url" => 'phong-va-can-ho.php'],
-    ["title" => "Căn hộ"]
-];
-
+// Nạp dữ liệu trang từ file riêng trong includes/data-pages
+include '../includes/data-pages/data-can-ho.php';
+// Include header sau khi có biến dữ liệu trang
 include '../includes/header.php';
 ?>
 
