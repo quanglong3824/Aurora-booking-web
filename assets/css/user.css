@@ -2,9 +2,8 @@
 
 /* Khung chung */
 main.container {
-  margin-top: 150px;
   max-width: 980px;
-  margin: 24px auto;
+  margin: 140px auto 24px; /* đẩy nội dung xuống dưới header fixed */
   padding: 0 16px;
 }
 
@@ -86,4 +85,5 @@ form#edit-form .actions { margin-top: 16px; display: flex; gap: 10px; }
 /* Responsive */
 @media (max-width: 768px) {
   .user-grid { grid-template-columns: 1fr; }
+  main.container { margin: 110px auto 20px; }
 }
