@@ -40,13 +40,9 @@ class Database {
         try {
             $hostWithoutPort = $this->parseHostAndPort($this->host);
             $dsn = "mysql:host=" . $hostWithoutPort . ";port=" . $this->port . ";dbname=" . $this->db_name . ";charset=" . $this->charset;
-            $this->conn = new PDO($dsn, $this->username, $this->password, [
-                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"
-            ]);
+            $this->conn = new PDO($dsn, $this->username, $this->password);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            // Tránh emulation để tăng an toàn prepared statements
-            $this->conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         } catch(PDOException $exception) {
             $this->last_error = $exception->getMessage();
             $this->last_error_code = $exception->getCode();
