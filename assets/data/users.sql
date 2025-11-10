@@ -1,0 +1,56 @@
+-- Bảng users: thông tin người dùng đầy đủ
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `password_hash` VARCHAR(255) NOT NULL,
+  `first_name` VARCHAR(100) NULL,
+  `last_name` VARCHAR(100) NULL,
+  `full_name` VARCHAR(200) NULL,
+  `gender` ENUM('male','female','other') NULL,
+  `date_of_birth` DATE NULL,
+  `phone` VARCHAR(20) NULL,
+  `id_booking` INT UNSIGNED NULL,
+  `avatar_url` VARCHAR(255) NULL,
+  `address_line1` VARCHAR(255) NULL,
+  `address_line2` VARCHAR(255) NULL,
+  `city` VARCHAR(100) NULL,
+  `state` VARCHAR(100) NULL,
+  `postal_code` VARCHAR(20) NULL,
+  `country_code` VARCHAR(2) NULL,
+  `role` ENUM('admin','staff','customer') NOT NULL DEFAULT 'customer',
+  `status` ENUM('active','inactive','banned','pending') NOT NULL DEFAULT 'active',
+  `email_verified_at` DATETIME NULL,
+  `phone_verified_at` DATETIME NULL,
+  `last_login_at` DATETIME NULL,
+  `last_login_ip` VARCHAR(45) NULL,
+  `verification_token` VARCHAR(100) NULL,
+  `password_reset_token` VARCHAR(100) NULL,
+  `password_reset_expires_at` DATETIME NULL,
+  `two_factor_enabled` TINYINT(1) NOT NULL DEFAULT 0,
+  `two_factor_secret` VARCHAR(255) NULL,
+  `locale` VARCHAR(10) NULL DEFAULT 'vi_VN',
+  `timezone` VARCHAR(50) NULL DEFAULT 'Asia/Ho_Chi_Minh',
+  `marketing_opt_in` TINYINT(1) NOT NULL DEFAULT 0,
+  `preferences` TEXT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_username` (`username`),
+  UNIQUE KEY `uniq_email` (`email`),
+  KEY `idx_phone` (`phone`),
+  KEY `id_booking` (`id_booking`),
+  KEY `idx_role` (`role`),
+  KEY `idx_status` (`status`),
+  KEY `idx_email_verified_at` (`email_verified_at`),
+  KEY `idx_last_login_at` (`last_login_at`),
+  KEY `idx_country_code` (`country_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `users` (
+  `username`, `email`, `password_hash`, `first_name`, `last_name`, `full_name`, `gender`, `date_of_birth`, `phone`, `avatar_url`,
+  `address_line1`, `city`, `state`, `postal_code`, `country_code`, `role`, `status`, `email_verified_at`, `locale`, `timezone`, `marketing_opt_in`, `preferences`
+) VALUES (
+  'admin', 'admin@example.com', '$2y$10$Zr8TQw5c2K5uD1QGv1jR9O7oO2sY3mJXfQ8G4dL1k9hC2pVb7YxkK', 'Aurora', 'Admin', 'Aurora Admin', 'other', '1990-01-01', '+84-912345678', NULL,
+  '1 Aurora Street', 'Ho Chi Minh City', NULL, '700000', 'VN', 'admin', 'active', NOW(), 'vi_VN', 'Asia/Ho_Chi_Minh', 1, '{"newsletter":true,"dark_mode":false}'
+);

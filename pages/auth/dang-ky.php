@@ -12,8 +12,13 @@ include '../../includes/header.php';
                 <div class="auth-content">
                     <h1 class="auth-title">Đăng ký tài khoản</h1>
                     <p class="auth-subtitle">Điền thông tin bên dưới để tạo tài khoản mới</p>
+                    <?php if (!empty($_GET['type']) && !empty($_GET['msg'])): ?>
+                        <div class="auth-alert" style="margin:10px 0;padding:10px;border-radius:6px;<?php echo $_GET['type']==='success' ? 'background:#e6ffed;color:#03543f;border:1px solid #84e1bc;' : 'background:#ffe6e6;color:#63171b;border:1px solid #feb2b2;'; ?>">
+                            <?php echo htmlspecialchars($_GET['msg']); ?>
+                        </div>
+                    <?php endif; ?>
 
-                    <form class="auth-form" method="post" action="#">
+                    <form class="auth-form" method="post" action="<?php echo url('assets/php/backend/register.php'); ?>">
                         <div class="form-group">
                             <label for="full_name">Họ và tên</label>
                             <input type="text" id="full_name" name="full_name" placeholder="Nguyễn Văn A" required>
