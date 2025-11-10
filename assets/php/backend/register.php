@@ -3,7 +3,9 @@ require_once __DIR__ . '/../../../config/database.php';
 require_once __DIR__ . '/../../../includes/config.php';
 
 function redirectWithMessage($type, $msg) {
-    $location = url('pages/auth/dang-ky.php') . '?type=' . urlencode($type) . '&msg=' . urlencode($msg);
+    // Dùng đường dẫn tương đối tới root để tránh BASE_URL sai khi chạy trong assets/backend
+    $qs = '?type=' . urlencode($type) . '&msg=' . urlencode($msg);
+    $location = RELATIVE_ROOT . 'pages/auth/dang-ky.php' . $qs;
     header('Location: ' . $location);
     exit;
 }

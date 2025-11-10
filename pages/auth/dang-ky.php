@@ -18,6 +18,26 @@ include '../../includes/header.php';
                         </div>
                     <?php endif; ?>
 
+                    <!-- Modal thông báo đăng ký thành công -->
+                    <div id="signupSuccessModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center;">
+                        <div style="background:#fff;max-width:520px;width:92%;border-radius:10px;box-shadow:0 10px 25px rgba(0,0,0,0.2);padding:20px;">
+                            <div style="display:flex;align-items:center;gap:12px;">
+                                <i class="fas fa-check-circle" style="font-size:28px;color:#0f766e;"></i>
+                                <h3 style="margin:0;color:#0f766e;">Đăng ký thành công</h3>
+                            </div>
+                            <p style="margin:12px 0 18px;color:#374151;">Tài khoản của bạn đã được tạo. Bạn có thể đăng nhập ngay để bắt đầu trải nghiệm Aurora Hotel Plaza.</p>
+                            <div style="display:flex;gap:10px;justify-content:flex-end;">
+                                <a href="<?php echo url('pages/auth/dang-nhap.php'); ?>" class="btn-auth" style="text-decoration:none;display:inline-block;padding:10px 16px;background:#0ea5e9;color:#fff;border-radius:8px;">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                    Đăng nhập ngay
+                                </a>
+                                <button type="button" id="closeSuccessModal" class="btn-auth" style="padding:10px 16px;background:#e5e7eb;color:#111827;border-radius:8px;">
+                                    Ở lại trang
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     <form class="auth-form" method="post" action="<?php echo url('assets/php/backend/register.php'); ?>">
                         <div class="form-group">
                             <label for="full_name">Họ và tên</label>
@@ -62,5 +82,21 @@ include '../../includes/header.php';
         </div>
     </div>
 </section>
+
+<script>
+// Hiện modal khi đăng ký thành công
+document.addEventListener('DOMContentLoaded', function () {
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get('type');
+    if (type === 'success') {
+        const modal = document.getElementById('signupSuccessModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            const closer = document.getElementById('closeSuccessModal');
+            if (closer) closer.addEventListener('click', function(){ modal.style.display = 'none'; });
+        }
+    }
+});
+</script>
 
 <?php include '../../includes/footer.php'; ?>
