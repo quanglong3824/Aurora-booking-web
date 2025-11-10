@@ -3,7 +3,7 @@
 /* Khung chung */
 main.container {
   max-width: 980px;
-  margin-top: 150px; /* đẩy nội dung xuống dưới header fixed */
+  margin: 150px auto 24px; /* đẩy nội dung xuống dưới header fixed */
   padding: 0 16px;
 }
 
@@ -69,6 +69,11 @@ form#edit-form {
   padding: 16px;
   background: #fff;
 }
+form#edit-form .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
 
 form#edit-form label { display: block; font-weight: 500; margin-bottom: 6px; }
 form#edit-form input,
@@ -79,6 +84,9 @@ form#edit-form textarea {
   border: 1px solid #ccc;
   border-radius: 6px;
 }
+form#edit-form .help-text { color: #6b7280; font-size: 13px; margin-top: 4px; }
+form#edit-form .field-error { color: #b91c1c; font-size: 13px; margin-top: 6px; display: none; }
+form#edit-form .invalid { border-color: #ef4444; background: #fff5f5; }
 
 form#edit-form .actions { margin-top: 16px; display: flex; gap: 10px; }
 
@@ -86,4 +94,5 @@ form#edit-form .actions { margin-top: 16px; display: flex; gap: 10px; }
 @media (max-width: 768px) {
   .user-grid { grid-template-columns: 1fr; }
   main.container { margin: 110px auto 20px; }
+  form#edit-form .form-grid { grid-template-columns: 1fr; }
 }

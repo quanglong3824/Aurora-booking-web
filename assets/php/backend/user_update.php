@@ -78,6 +78,10 @@ if ($input['gender'] !== null && $input['gender'] !== '' && !in_array($input['ge
 if ($input['date_of_birth']) {
     $d = date_create_from_format('Y-m-d', $input['date_of_birth']);
     if (!$d) badRequest('Ngày sinh không hợp lệ');
+    else {
+        $now = new DateTime('today');
+        if ($d > $now) badRequest('Ngày sinh không thể là thời điểm trong tương lai');
+    }
 }
 if ($input['phone'] && !preg_match('/^[0-9+\-() ]{6,20}$/', $input['phone'])) {
     badRequest('Số điện thoại không hợp lệ');
@@ -99,7 +103,18 @@ if ($input['marketing_opt_in'] !== null) {
 $checkFields = ['first_name','last_name','full_name','address_line1','address_line2','city','state','postal_code','preferences'];
 foreach ($checkFields as $f) {
     if (!empty($input[$f]) && hasCodeLike($input[$f])) {
-        badRequest('Phát hiện nội dung không cho phép trong trường ' . $f);
+        badRequest('Vui lòng không nhập mã hoặc liên kết trong trường ' . $f);
+    }
+}
+
+// Preferences: nếu người dùng nhập JSON, yêu cầu hợp lệ
+if (!empty($input['preferences'])) {
+    $pref = trim((string)$input['preferences']);
+    if ($pref !== '' && ($pref[0] === '{' || $pref[0] === '[')) {
+        $decoded = json_decode($pref, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            badRequest('Tuỳ chọn (JSON) không hợp lệ, vui lòng kiểm tra lại');
+        }
     }
 }
 
