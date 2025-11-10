@@ -1,6 +1,10 @@
 <?php
 // Include configuration for dynamic paths
 require_once __DIR__ . '/config.php';
+// Bắt đầu phiên sớm để hiển thị tên người dùng khi đã đăng nhập
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -83,9 +87,19 @@ require_once __DIR__ . '/config.php';
                     <li><a href="<?php echo url('pages/lien-he.php'); ?>" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'lien-he.php') ? 'active' : ''; ?>">Liên hệ</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <a href="<?php echo url('pages/auth/dang-nhap.php'); ?>" class="nav-login" aria-label="Đăng nhập" title="Đăng nhập">
-                        <i class="fas fa-user"></i>
-                    </a>
+                    <?php if (!empty($_SESSION['user'])): ?>
+                        <div class="nav-user" style="display:flex;align-items:center;gap:10px;">
+                            <i class="fas fa-user-circle" aria-hidden="true"></i>
+                            <span class="nav-username" title="Tài khoản"><?php echo htmlspecialchars($_SESSION['user']['full_name']); ?></span>
+                            <a href="<?php echo url('pages/auth/logout.php'); ?>" class="nav-login" aria-label="Đăng xuất" title="Đăng xuất">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </a>
+                        </div>
+                    <?php else: ?>
+                        <a href="<?php echo url('pages/auth/dang-nhap.php'); ?>" class="nav-login" aria-label="Đăng nhập" title="Đăng nhập">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    <?php endif; ?>
                     <a href="<?php echo url('pages/dat-phong.php'); ?>" class="btn-book-now">Đặt phòng</a>
                     <div class="nav-toggle" id="navToggle">
                         <span></span>

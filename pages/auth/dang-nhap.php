@@ -1,4 +1,12 @@
 <?php
+// Khởi tạo phiên để dùng CSRF token
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 $page_title = "Đăng nhập";
 $page_description = "Đăng nhập tài khoản Aurora Hotel Plaza để quản lý đặt phòng";
 $additional_css = ['auth.css'];
@@ -12,15 +20,22 @@ include '../../includes/header.php';
                 <div class="auth-content">
                     <h1 class="auth-title">Đăng nhập</h1>
                     <p class="auth-subtitle">Vui lòng nhập email và mật khẩu để tiếp tục</p>
+                    <?php if (!empty($_GET['type']) && !empty($_GET['msg'])): ?>
+                        <div class="auth-alert" style="margin:10px 0;padding:10px;border-radius:6px;<?php echo $_GET['type']==='success' ? 'background:#e6ffed;color:#03543f;border:1px solid #84e1bc;' : 'background:#ffe6e6;color:#63171b;border:1px solid #feb2b2;'; ?>">
+                            <?php echo htmlspecialchars($_GET['msg']); ?>
+                        </div>
+                    <?php endif; ?>
 
-                    <form class="auth-form" method="post" action="#">
+                    <form class="auth-form" method="post" action="<?php echo url('assets/php/backend/login.php'); ?>" autocomplete="off" novalidate>
+                        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token'] ?? ''); ?>">
+                        <input type="text" name="website" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;width:1px;height:1px;" autocomplete="off">
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" required maxlength="255" pattern="^[^<>@\s]+@[^<>@\s]+\.[^<>@\s]+$" title="Email hợp lệ, không chứa ký tự < hoặc >">
                         </div>
                         <div class="form-group">
                             <label for="password">Mật khẩu</label>
-                            <input type="password" id="password" name="password" placeholder="••••••••" required>
+                            <input type="password" id="password" name="password" placeholder="••••••••" required maxlength="72">
                         </div>
                         <div class="auth-actions">
                             <button type="submit" class="btn-auth">
