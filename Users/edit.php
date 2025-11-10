@@ -39,7 +39,7 @@ $additional_css = ['user.css'];
 include __DIR__ . '/../includes/header.php';
 ?>
 
-<main class="container">
+<main class="container" style="margin-top: 150px;">
     <h1 style="margin-bottom: 10px;">Chỉnh sửa thông tin</h1>
     <p style="color:#666;">Một số trường bị cấm thay đổi theo chính sách (username, email, role, status, id_booking).</p>
 

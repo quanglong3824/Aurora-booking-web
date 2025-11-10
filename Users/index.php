@@ -35,7 +35,7 @@ $additional_css = ['user.css'];
 include __DIR__ . '/../includes/header.php';
 ?>
 
-<main class="container">
+<main class="container" style="margin-top: 150px;">
     <h1 style="margin-bottom: 10px;">Xin chào, <?php echo htmlspecialchars($user['full_name'] ?: $user['username']); ?></h1>
     <p style="color:#666;">Đây là trang chính của bạn. Bạn có thể xem và cập nhật một số thông tin cá nhân.</p>
 
