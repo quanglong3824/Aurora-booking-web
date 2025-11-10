@@ -1,0 +1,88 @@
+/* assets/css/user.css - Styles cho khu vực User */
+
+/* Khung chung */
+main.container {
+  max-width: 980px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+main.container h1 {
+  font-size: 24px;
+  margin: 0 0 12px 0;
+}
+
+.notice {
+  padding: 12px;
+  border-radius: 6px;
+  margin: 10px 0;
+}
+.notice.success { background: #e6ffed; color: #03543f; border: 1px solid #84e1bc; }
+.notice.error { background: #ffe6e6; color: #8a1f1f; border: 1px solid #f5a3a3; }
+
+/* Lưới thông tin */
+.user-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.user-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  background: #fff;
+}
+.user-card h2 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+.user-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.user-card ul li { margin: 6px 0; }
+
+.btn-primary {
+  display: inline-block;
+  padding: 10px 14px;
+  background: #0770e3;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.btn-secondary {
+  display: inline-block;
+  padding: 10px 14px;
+  background: #eee;
+  color: #333;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+/* Form chỉnh sửa */
+form#edit-form {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  background: #fff;
+}
+
+form#edit-form label { display: block; font-weight: 500; margin-bottom: 6px; }
+form#edit-form input,
+form#edit-form select,
+form#edit-form textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+form#edit-form .actions { margin-top: 16px; display: flex; gap: 10px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .user-grid { grid-template-columns: 1fr; }
+}

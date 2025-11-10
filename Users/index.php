@@ -30,23 +30,23 @@ try {
 
 // Tiêu đề trang
 $page_title = 'Trang người dùng';
-$additional_css = [asset('assets/css/auth.css')];
+$additional_css = ['user.css'];
 
 include __DIR__ . '/../includes/header.php';
 ?>
 
-<main class="container" style="max-width: 980px; margin: 20px auto;">
+<main class="container">
     <h1 style="margin-bottom: 10px;">Xin chào, <?php echo htmlspecialchars($user['full_name'] ?: $user['username']); ?></h1>
     <p style="color:#666;">Đây là trang chính của bạn. Bạn có thể xem và cập nhật một số thông tin cá nhân.</p>
 
     <?php if (isset($_GET['type'], $_GET['msg'])): ?>
-        <div style="padding:12px; border-radius:6px; margin:10px 0; <?php echo $_GET['type']==='success' ? 'background:#e6ffed; color:#03543f; border:1px solid #84e1bc;' : 'background:#ffe6e6; color:#8a1f1f; border:1px solid #f5a3a3;'; ?>">
+        <div class="notice <?php echo $_GET['type']==='success' ? 'success' : 'error'; ?>">
             <?php echo htmlspecialchars($_GET['msg']); ?>
         </div>
     <?php endif; ?>
 
-    <section style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
-        <div style="border:1px solid #ddd; border-radius:8px; padding:16px;">
+    <section class="user-grid">
+        <div class="user-card">
             <h2>Thông tin cơ bản</h2>
             <ul style="list-style:none; padding:0; margin:0;">
                 <li><strong>Tên hiển thị:</strong> <?php echo htmlspecialchars($user['full_name'] ?: ($user['first_name'].' '.$user['last_name'])); ?></li>
@@ -57,11 +57,11 @@ include __DIR__ . '/../includes/header.php';
                 <li><strong>Quốc gia:</strong> <?php echo htmlspecialchars($user['country_code'] ?: '—'); ?></li>
             </ul>
             <div style="margin-top:12px;">
-                <a href="<?php echo url('Users/edit.php'); ?>" class="btn" style="display:inline-block; padding:10px 14px; background:#0770e3; color:#fff; border-radius:6px; text-decoration:none;">Chỉnh sửa thông tin</a>
+                <a href="<?php echo url('Users/edit.php'); ?>" class="btn-primary">Chỉnh sửa thông tin</a>
             </div>
         </div>
 
-        <div style="border:1px solid #ddd; border-radius:8px; padding:16px;">
+        <div class="user-card">
             <h2>Đăng nhập gần đây</h2>
             <ul style="list-style:none; padding:0; margin:0;">
                 <li><strong>Thời điểm:</strong> <?php echo htmlspecialchars($user['last_login_at'] ?: '—'); ?></li>
@@ -76,7 +76,7 @@ include __DIR__ . '/../includes/header.php';
         </div>
     </section>
 
-    <section style="border:1px solid #ddd; border-radius:8px; padding:16px; margin-top:20px;">
+    <section class="user-card" style="margin-top:20px;">
         <h2>Địa chỉ</h2>
         <p><?php echo htmlspecialchars(trim(($user['address_line1'] ?: '').' '.($user['address_line2'] ?: '')) ?: '—'); ?></p>
         <p><?php echo htmlspecialchars(trim(($user['city'] ?: '').' '.($user['state'] ?: '').' '.($user['postal_code'] ?: '')) ?: ''); ?></p>

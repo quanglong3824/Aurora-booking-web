@@ -35,11 +35,11 @@ try {
 }
 
 $page_title = 'Chỉnh sửa thông tin người dùng';
-$additional_css = [asset('assets/css/auth.css')];
+$additional_css = ['user.css'];
 include __DIR__ . '/../includes/header.php';
 ?>
 
-<main class="container" style="max-width: 980px; margin: 20px auto;">
+<main class="container">
     <h1 style="margin-bottom: 10px;">Chỉnh sửa thông tin</h1>
     <p style="color:#666;">Một số trường bị cấm thay đổi theo chính sách (username, email, role, status, id_booking).</p>
 
@@ -49,7 +49,7 @@ include __DIR__ . '/../includes/header.php';
         </div>
     <?php endif; ?>
 
-    <form method="post" action="<?php echo url('assets/php/backend/user_update.php'); ?>" id="edit-form" novalidate style="border:1px solid #ddd; border-radius:8px; padding:16px;">
+    <form method="post" action="<?php echo url('assets/php/backend/user_update.php'); ?>" id="edit-form" novalidate>
         <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
         <input type="text" name="website" value="" style="display:none" aria-hidden="true" autocomplete="off">
 
@@ -158,9 +158,9 @@ include __DIR__ . '/../includes/header.php';
             </div>
         </div>
 
-        <div style="margin-top:16px; display:flex; gap:10px;">
-            <button type="submit" class="btn" style="padding:10px 14px; background:#0770e3; color:#fff; border:none; border-radius:6px;">Lưu thay đổi</button>
-            <a class="btn" href="<?php echo url('Users/index.php'); ?>" style="padding:10px 14px; background:#eee; color:#333; border-radius:6px; text-decoration:none;">Huỷ</a>
+        <div class="actions">
+            <button type="submit" class="btn-primary" style="border:none;">Lưu thay đổi</button>
+            <a class="btn-secondary" href="<?php echo url('Users/index.php'); ?>">Huỷ</a>
         </div>
     </form>
 </main>
