@@ -332,19 +332,30 @@ if ($result['success']) {
     }
     echo '</div>';
 
-    // UR cho các bảng khác (không gồm users): hiển thị 5 bản ghi mới nhất và cho phép sửa text
-    echo '<h2>UR cho các bảng khác (không gồm users)</h2>';
-    foreach ($sqlFiles as $file) {
-        $contentTmp = readSqlFile($file);
-        $tableName = extractTableName($contentTmp);
-        if (!$tableName || $tableName === 'users') { continue; }
-        if (!tableExists($conn, $tableName)) { continue; }
+    // Chọn bảng và sửa (không xuất toàn bộ) — ngoại trừ users
+    echo '<h2>Chọn bảng để sửa (không gồm users)</h2>';
+    $pickableTables = array_values(array_filter($allowedTables, function($t){ return $t !== 'users'; }));
+    echo '<form method="get" action="" style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">';
+    echo '<label>Chọn bảng: <select name="table" style="padding:6px;border:1px solid #ddd;border-radius:6px;">';
+    $currentTable = isset($_GET['table']) ? preg_replace('/[^a-zA-Z0-9_]/', '', (string)$_GET['table']) : '';
+    foreach ($pickableTables as $t) {
+        $sel = ($currentTable === $t) ? 'selected' : '';
+        echo '<option value="'.htmlspecialchars($t).'" '.$sel.'>'.htmlspecialchars($t).'</option>';
+    }
+    echo '</select></label>';
+    $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 5;
+    if ($limit < 1) $limit = 1; if ($limit > 50) $limit = 50;
+    echo '<label>Số bản ghi: <input type="number" name="limit" min="1" max="50" value="'.$limit.'" style="padding:6px;border:1px solid #ddd;border-radius:6px;width:80px;" /></label>';
+    echo '<button type="submit" style="padding:8px 12px;border:none;border-radius:6px;background:#1a73e8;color:#fff;">Tải bảng</button>';
+    echo '</form>';
+
+    if ($currentTable && in_array($currentTable, $pickableTables, true) && tableExists($conn, $currentTable)) {
         echo '<div style="border:1px solid #ddd;border-radius:8px;padding:10px;margin:16px 0;">';
-        echo '<strong>Bảng:</strong> '.htmlspecialchars($tableName);
+        echo '<strong>Bảng:</strong> '.htmlspecialchars($currentTable);
         try {
-            $columns = describeTable($conn, $tableName);
+            $columns = describeTable($conn, $currentTable);
             $pk = getPrimaryKeyOrFirst($columns);
-            $stmt = $conn->query('SELECT * FROM `'.$tableName.'` ORDER BY `'.$pk.'` DESC LIMIT 5');
+            $stmt = $conn->query('SELECT * FROM `'.$currentTable.'` ORDER BY `'.$pk.'` DESC LIMIT '.(int)$limit);
             $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if (!$rows) {
                 echo '<p style="color:#666;">Chưa có dữ liệu.</p>';
@@ -353,11 +364,11 @@ if ($result['success']) {
                     echo '<div style="border:1px solid #eee;border-radius:8px;padding:10px;margin:10px 0;background:#fafafa;">';
                     echo '<form method="post" action="" style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:10px;">';
                     echo '<input type="hidden" name="action" value="update_record" />';
-                    echo '<input type="hidden" name="table" value="'.htmlspecialchars($tableName).'" />';
+                    echo '<input type="hidden" name="table" value="'.htmlspecialchars($currentTable).'" />';
                     $idVal = isset($row[$pk]) ? (int)$row[$pk] : 0;
                     echo '<input type="hidden" name="id" value="'.$idVal.'" />';
 
-                    $editable = getEditableColumns($conn, $tableName);
+                    $editable = getEditableColumns($conn, $currentTable);
                     foreach ($columns as $col) {
                         $field = (string)$col['Field'];
                         $val = isset($row[$field]) ? (string)$row[$field] : '';
@@ -383,9 +394,11 @@ if ($result['success']) {
                 }
             }
         } catch (Throwable $e) {
-            echo '<p style="color:red;">Lỗi đọc bảng '.htmlspecialchars($tableName).': '.htmlspecialchars($e->getMessage()).'</p>';
+            echo '<p style="color:red;">Lỗi đọc bảng '.htmlspecialchars($currentTable).': '.htmlspecialchars($e->getMessage()).'</p>';
         }
         echo '</div>';
+    } else {
+        echo '<p style="color:#666;">Hãy chọn một bảng (không gồm users) rồi bấm "Tải bảng".</p>';
     }
 } else {
     echo '<p>Không thể kiểm tra dữ liệu vì kết nối DB lỗi.</p>';
