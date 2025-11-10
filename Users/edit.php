@@ -111,6 +111,11 @@ if (!empty($_SESSION['modal'])) {
                 <input type="url" name="avatar_url" maxlength="255" value="<?php echo htmlspecialchars($user['avatar_url']); ?>">
                 <div class="help-text">Dán liên kết ảnh đại diện (https://...).</div>
                 <div class="field-error" data-for="avatar_url"></div>
+                <?php if (!empty($user['avatar_url'])): ?>
+                <div class="avatar-preview" style="margin-top:8px;">
+                  <img src="<?php echo htmlspecialchars($user['avatar_url']); ?>" alt="Avatar preview" style="max-width:120px;height:auto;border-radius:8px;border:1px solid #ddd;object-fit:cover;">
+                </div>
+                <?php endif; ?>
             </div>
             <div>
                 <label>Quốc gia</label>
@@ -164,12 +169,12 @@ if (!empty($_SESSION['modal'])) {
                 </select>
             </div>
 
-            <!-- <div style="grid-column: 1 / span 2;">
+            <div style="grid-column: 1 / span 2;">
                 <label>Tuỳ chọn (JSON/Text)</label>
                 <textarea name="preferences" rows="4" maxlength="2000"><?php echo htmlspecialchars($user['preferences']); ?></textarea>
-                <div class="help-text">Bạn có thể nhập dạng văn bản, hoặc JSON hợp lệ để lưu cấu hình.</div>
+                <div class="help-text">Bạn có thể nhập dạng văn bản, hoặc JSON hợp lệ để lưu cấu hình (ví dụ: {"newsletter":true}).</div>
                 <div class="field-error" data-for="preferences"></div>
-            </div> -->
+            </div>
 
             <!-- <div>
                 <label>Role (cấm sửa)</label>
@@ -309,6 +314,38 @@ if (!empty($_SESSION['modal'])) {
         if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     });
+
+    // Live avatar preview
+    const avatarInput = form.querySelector('input[name="avatar_url"]');
+    if (avatarInput) {
+      avatarInput.addEventListener('input', function() {
+        const url = avatarInput.value.trim();
+        let preview = form.querySelector('.avatar-preview img');
+        if (!preview) {
+          const wrap = document.createElement('div');
+          wrap.className = 'avatar-preview';
+          wrap.style.marginTop = '8px';
+          const img = document.createElement('img');
+          img.style.maxWidth = '120px';
+          img.style.height = 'auto';
+          img.style.borderRadius = '8px';
+          img.style.border = '1px solid #ddd';
+          img.style.objectFit = 'cover';
+          wrap.appendChild(img);
+          avatarInput.parentElement.appendChild(wrap);
+          preview = img;
+        }
+        try {
+          new URL(url);
+          preview.src = url;
+          preview.alt = 'Avatar preview';
+          preview.style.display = 'inline-block';
+        } catch {
+          preview.removeAttribute('src');
+          preview.style.display = 'none';
+        }
+      });
+    }
   })();
 </script>
 
