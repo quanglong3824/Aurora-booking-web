@@ -9,20 +9,22 @@ function getBaseUrl() {
     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
     $host = $_SERVER['HTTP_HOST'];
     $script_name = $_SERVER['SCRIPT_NAME'];
-    
-    // Get the directory path of the current script
+
+    // Directory of current script, e.g. /Aurora-booking-web/Users
     $path = dirname($script_name);
-    
-    // Remove /pages and subdirectories to get to root
-    $path = preg_replace('#/pages.*#', '', $path);
-    
-    // Ensure path ends with / but doesn't start with //
+
+    // If path ends with /pages, /Users, or /admin, step up one level to project root
+    if (preg_match('#/(pages|Users|admin)(/)?$#', $path)) {
+        $path = dirname($path);
+    }
+
+    // Ensure trailing slash
     if ($path === '' || $path === '/') {
         $path = '/';
     } else {
         $path = rtrim($path, '/') . '/';
     }
-    
+
     return $protocol . '://' . $host . $path;
 }
 
