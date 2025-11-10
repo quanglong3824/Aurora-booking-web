@@ -39,7 +39,7 @@ $additional_css = ['user.css'];
 include __DIR__ . '/../includes/header.php';
 ?>
 
-<main class="container">
+<main class="container" style="margin-top:150px">
     <h1>Chỉnh sửa thông tin</h1>
     <p class="help-text">Một số trường không thể thay đổi theo chính sách: username, email, role, status.</p>
 
@@ -160,21 +160,21 @@ include __DIR__ . '/../includes/header.php';
                 </select>
             </div>
 
-            <div style="grid-column: 1 / span 2;">
+            <!-- <div style="grid-column: 1 / span 2;">
                 <label>Tuỳ chọn (JSON/Text)</label>
                 <textarea name="preferences" rows="4" maxlength="2000"><?php echo htmlspecialchars($user['preferences']); ?></textarea>
                 <div class="help-text">Bạn có thể nhập dạng văn bản, hoặc JSON hợp lệ để lưu cấu hình.</div>
                 <div class="field-error" data-for="preferences"></div>
-            </div>
+            </div> -->
 
-            <div>
+            <!-- <div>
                 <label>Role (cấm sửa)</label>
                 <input type="text" value="<?php echo htmlspecialchars($user['role']); ?>" disabled>
             </div>
             <div>
                 <label>Trạng thái (cấm sửa)</label>
                 <input type="text" value="<?php echo htmlspecialchars($user['status']); ?>" disabled>
-            </div>
+            </div> -->
         </div>
 
         <div class="actions">
@@ -204,8 +204,14 @@ include __DIR__ . '/../includes/header.php';
     function hasCodeLike(str) {
       if (!str) return false;
       const s = String(str);
-      const re = /<[^>]+>|(https?:\/\/)|SELECT|INSERT|DELETE|UPDATE|DROP|--|\/\*|\*\//i;
-      return re.test(s);
+      const reHtmlJs = /<[^>]+>|on[a-z]+\s*=|javascript\s*:/i;
+      const reSql = /\b(SELECT|INSERT|DELETE|UPDATE|DROP|UNION|--|\/\*|\*\/|FROM|WHERE)\b/i;
+      return reHtmlJs.test(s) || reSql.test(s);
+    }
+
+    function containsDisallowedChars(str) {
+      if (!str) return false;
+      return /[`$#;|&^%*+=\\]/.test(str) || /(&&|\|\||\$\(|\$\{)/.test(str);
     }
 
     function isValidUrl(value) {
@@ -247,7 +253,7 @@ include __DIR__ . '/../includes/header.php';
         ['city', city],
         ['state', state],
       ].forEach(([name, val]) => {
-        if (hasCodeLike(val)) { showError(name, 'Vui lòng không nhập mã hoặc liên kết trong trường này.'); hasError = true; }
+        if (hasCodeLike(val) || containsDisallowedChars(val)) { showError(name, 'Trường này chứa ký tự không cho phép hoặc nội dung giống mã.'); hasError = true; }
       });
 
       // Số điện thoại

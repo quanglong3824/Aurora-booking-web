@@ -43,6 +43,31 @@ function hasCodeLike($s) {
     return preg_match($patternTags, $s) || preg_match($patternAngles, $s) || preg_match($patternJSProto, $s) || preg_match($patternPHP, $s);
 }
 
+// Ký tự và mẫu không cho phép (OS/SQL/JS/HTML injection)
+function containsDisallowedChars($s) {
+    if ($s === null) return false;
+    $reSymbols = '/[`$#;|&^%*+=\\]/u';
+    $reLogic = '/\b(eval|alert|prompt|confirm|cmd|exec|system|shell_exec|passthru|unlink|rm|curl|wget)\b/i';
+    $reSeq = '/(&&|\|\||\$\(|\$\{)/';
+    return preg_match($reSymbols, $s) || preg_match($reLogic, $s) || preg_match($reSeq, $s);
+}
+
+// Làm sạch cơ bản cho text
+function sanitizeText($s) {
+    $s = trim((string)$s);
+    $s = strip_tags($s);
+    // remove control chars
+    $s = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/u', '', $s);
+    return $s;
+}
+
+// Whitelist ký tự an toàn cho text thông thường
+function whitelistOk($s) {
+    // Cho phép chữ, số, khoảng trắng và một số dấu cơ bản . , - ' / ( )
+    if ($s === '') return true;
+    return (bool) preg_match("/^[\p{L}\p{N}\s\.,\-'\/\(\)]{1,255}$/u", $s);
+}
+
 $userId = (int) $_SESSION['user']['id'];
 
 // Lấy và chuẩn hoá dữ liệu cho phép cập nhật
@@ -104,6 +129,25 @@ $checkFields = ['first_name','last_name','full_name','address_line1','address_li
 foreach ($checkFields as $f) {
     if (!empty($input[$f]) && hasCodeLike($input[$f])) {
         badRequest('Vui lòng không nhập mã hoặc liên kết trong trường ' . $f);
+    }
+}
+
+// Làm sạch và chặn ký tự không cho phép với trường text (bổ sung)
+$textFields = ['first_name','last_name','full_name','address_line1','address_line2','city','state','postal_code'];
+foreach ($textFields as $f) {
+    if ($input[$f] !== null) {
+        $input[$f] = sanitizeText($input[$f]);
+        if (containsDisallowedChars($input[$f]) || !whitelistOk($input[$f])) {
+            badRequest('Thông tin nhập có ký tự không cho phép ở trường ' . $f);
+        }
+    }
+}
+
+// Avatar URL: chỉ cho phép http/https
+if (!empty($input['avatar_url'])) {
+    $parts = parse_url($input['avatar_url']);
+    if (!$parts || !isset($parts['scheme']) || !in_array(strtolower($parts['scheme']), ['http','https'], true)) {
+        badRequest('Liên kết ảnh đại diện cần bắt đầu bằng http/https');
     }
 }
 
