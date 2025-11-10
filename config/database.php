@@ -5,18 +5,27 @@
  */
 
 // Database configuration
-define('DB_HOST', 'localhost:3306');
-define('DB_NAME', 'auroraho_web_2025');
-define('DB_USER', 'auroraho_longdev');
-define('DB_PASS', '@longdev3824');
-define('DB_CHARSET', 'utf8mb4');
+/** The name of the database for WordPress */
+define( 'DB_NAME', 'auroraho_web_2025' );
+
+/** Database username */
+define( 'DB_USER', 'auroraho_longdev' );
+
+/** Database password */
+define( 'DB_PASSWORD', '@longdev3824' );
+
+/** Database hostname */
+define( 'DB_HOST', 'localhost:3306' );
+
+/** Database charset to use in creating database tables. */
+define( 'DB_CHARSET', 'utf8' );
 
 // Database connection class
 class Database {
     private $host = DB_HOST;
     private $db_name = DB_NAME;
     private $username = DB_USER;
-    private $password = DB_PASS;
+    private $password = DB_PASSWORD;
     private $charset = DB_CHARSET;
     public $conn;
 
