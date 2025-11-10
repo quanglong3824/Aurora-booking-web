@@ -117,7 +117,7 @@ include '../../includes/header.php';
                          decoding="async"
                          fetchpriority="high"
                          onerror="this.src='https://via.placeholder.com/1200x600/f0f0f0/666?text=Studio+VIP'">
-                </div>
+                </div> 
                 <button class="slider-btn next" aria-label="<?php echo $gallery_next_label; ?>"><i class="fas fa-chevron-right"></i></button>
                 <div class="slider-thumbs" id="sliderThumbs">
                     <?php foreach ($gallery_images as $idx => $imgPath): ?>

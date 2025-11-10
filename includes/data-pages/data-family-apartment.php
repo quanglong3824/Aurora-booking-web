@@ -1,8 +1,8 @@
 <?php
 $page_title = "Căn Hộ Family Gia Đình - Aurora Hotel Plaza";
-$page_description = "Căn hộ Family rộng rãi với 2 phòng ngủ, phù hợp cho gia đình có trẻ em. Tiện nghi đầy đủ và không gian thoải mái tại Aurora Hotel Plaza.";
+$page_description = "Căn hộ Family với giá đã bao gồm dịch vụ cơ bản, tiện ích đầy đủ; phù hợp lưu trú gia đình ngắn ngày và dài ngày.";
 $canonical_url = "https://aurorahotel.vn/can-ho-family-gia-dinh";
-$additional_css = ['room-detail.css'];
+$additional_css = ['room-detail.css', 'deluxe-sang-trong.css'];
 $additional_js = ['js/room-deluxe.js'];
 
 // Text variables for Family Apartment page
@@ -10,29 +10,38 @@ $hero_subtitle = "Không gian sống hoàn hảo cho gia đình với đầy đ�
 $about_heading = "Về Căn Hộ Family Gia Đình";
 $about_paragraph = "Căn hộ Family của Aurora Hotel Plaza được thiết kế đặc biệt cho gia đình với diện tích 80m², bao gồm 2 phòng ngủ riêng biệt, phòng khách rộng rãi, bếp đầy đủ tiện nghi và 2 phòng tắm. Đây là lựa chọn hoàn hảo cho kỳ nghỉ gia đình dài ngày với không gian sống thoải mái như ở nhà.";
 
-$amenities_heading = "Tiện Nghi Nổi Bật";
-$amenities = [
-    "WiFi tốc độ cao miễn phí",
-    "Bếp đầy đủ tiện nghi",
-    "Máy giặt & máy sấy riêng",
-    "Smart TV trong mỗi phòng",
-    "Điều hòa đa vùng",
-    "Ban công rộng rãi",
-    "Chỗ đậu xe miễn phí",
-    "Tiện nghi an toàn cho trẻ em",
+// Nội dung theo yêu cầu
+$services_heading = "Giá phòng trên đã bao gồm các dịch vụ:";
+$included_services = [
+    "Sử dụng phòng tập gym, hồ bơi, xông hơi",
+    "Dịch vụ giặt ủi miễn phí 4 miếng/khách/đêm",
+    "01 chỗ đậu xe miễn phí",
+    "Dịch vụ làm phòng 02 lần/tuần",
+    "Thay drap giường, áo gối 01 lần/tuần",
+    "Thay khăn 01 lần/tuần",
 ];
 
-$services_heading = "Dịch Vụ Đi Kèm";
-$included_services = [
-    "Breakfast buffet gia đình",
-    "Dọn phòng hằng ngày",
-    "Dịch vụ phòng",
-    "Hỗ trợ y tế 24/7",
+$amenities_heading = "Phòng bao gồm các tiện ích:";
+$amenities = [
+    "Miễn phí truy cập Internet",
+    "Truyền hình cáp kỹ thuật số VTV",
+    "Điện máy lạnh hệ thống",
+    "Nước sử dụng",
+    "Khuyến mãi thêm điện sử dụng (không quá 70Kw/tháng)",
+    "Khu vực bếp, tủ lạnh",
+];
+
+$notes_heading = "Lưu ý:";
+$notes = [
+    "Giá ăn sáng cho mỗi khách (nếu có): 150.000 VNĐ/khách/bữa",
+    "Thời hạn thuê từ 7 ngày đến 1 tháng: Bên Thuê sẽ thanh toán trước toàn bộ tiền cho Bên Cho Thuê",
+    "Thời hạn thuê từ 3 tháng trở lên: Bên Thuê sẽ trao đổi với Bên Cho Thuê về hình thức thanh toán",
+    "Giá chỉ từ: 800.000 VNĐ/đêm",
 ];
 
 // Pricing & specs
-$price_text = "Liên hệ";
-$per_night_text = "";
+$price_text = "800.000 VNĐ";
+$per_night_text = "/đêm";
 $specs = [
     ["label" => "Diện tích:", "value" => "80m²"],
     ["label" => "Phòng ngủ:", "value" => "2 phòng"],

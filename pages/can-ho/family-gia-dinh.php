@@ -1,4 +1,3 @@
-php
 <?php
 // Nạp dữ liệu trang Family từ file riêng theo mẫu Deluxe
 include '../../includes/data-pages/data-family-apartment.php';
@@ -52,6 +51,14 @@ include '../../includes/header.php';
                             <?php foreach ($included_services as $service): ?>
                                 <li><?php echo $service; ?></li>
                             <?php endforeach; ?>
+                        </ul>
+                        <h3><?php echo isset($notes_heading) ? $notes_heading : 'Lưu ý'; ?></h3>
+                        <ul class="services-list">
+                            <?php if(isset($notes) && is_array($notes)): ?>
+                                <?php foreach ($notes as $note): ?>
+                                    <li><?php echo $note; ?></li>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>

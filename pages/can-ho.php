@@ -25,6 +25,26 @@ $breadcrumb_items = [
 include '../includes/header.php';
 ?>
 
+<?php
+// Helper: load dữ liệu phòng từ file data mà không ảnh hưởng biến toàn cục
+function load_room_data($file_path) {
+    $data = [];
+    if (file_exists($file_path)) {
+        // include trong scope của function để tránh ghi đè biến trang hiện tại
+        include $file_path;
+        $data['main_image'] = isset($main_image) ? $main_image : null;
+        $data['price_text'] = isset($price_text) ? $price_text : null;
+        $data['per_night_text'] = isset($per_night_text) ? $per_night_text : null;
+    }
+    return $data;
+}
+
+// Nạp dữ liệu cho các khối căn hộ
+$familyData  = load_room_data(__DIR__ . '/../includes/data-pages/data-family-apartment.php');
+$premiumData = load_room_data(__DIR__ . '/../includes/data-pages/data-premium-apartment.php');
+$studioData  = load_room_data(__DIR__ . '/../includes/data-pages/data-studio-apartment.php');
+?>
+
 <!-- Apartment Filter & Search -->
 <section class="room-filter">
     <div class="container">
@@ -52,7 +72,7 @@ include '../includes/header.php';
             <div class="room-card" data-room-type="family">
                 <div class="room-image-container">
                     <span class="category-tag">Family</span>
-                    <img src="<?php echo asset('img/family apartment/CAN-HO-FAMILY-AURORA-HOTEL-3.jpg'); ?>" alt="Căn hộ Family Gia Đình" loading="lazy">
+                    <img src="<?php echo asset(isset($familyData['main_image']) && $familyData['main_image'] ? $familyData['main_image'] : 'img/family apartment/CAN-HO-FAMILY-AURORA-HOTEL-3.jpg'); ?>" alt="Căn hộ Family Gia Đình" loading="lazy">
                     <div class="room-badge">Gia đình</div>
                     <div class="room-gallery-btn">
                         <i class="fas fa-images"></i>
@@ -93,8 +113,8 @@ include '../includes/header.php';
 
                     <div class="room-pricing">
                         <div class="price-info">
-                            <span class="current-price">Giá liên hệ</span>
-                            <span class="price-period">—</span>
+                            <span class="current-price"><?php echo isset($familyData['price_text']) && $familyData['price_text'] ? $familyData['price_text'] : 'Giá liên hệ'; ?></span>
+                            <span class="price-period"><?php echo isset($familyData['per_night_text']) && $familyData['per_night_text'] ? $familyData['per_night_text'] : '—'; ?></span>
                         </div>
                     </div>
 
@@ -109,7 +129,7 @@ include '../includes/header.php';
             <div class="room-card" data-room-type="premium">
                 <div class="room-image-container">
                     <span class="category-tag">Premium</span>
-                    <img src="<?php echo asset('img/premium apartment/CAN-HO-PREMIUM-AURORA-HOTEL-1.jpg'); ?>" alt="Căn hộ Premium Sang Trọng" loading="lazy">
+                    <img src="<?php echo asset(isset($premiumData['main_image']) && $premiumData['main_image'] ? $premiumData['main_image'] : 'img/premium apartment/CAN-HO-PREMIUM-AURORA-HOTEL-1.jpg'); ?>" alt="Căn hộ Premium Sang Trọng" loading="lazy">
                     <div class="room-badge">Cao cấp</div>
                     <div class="room-gallery-btn">
                         <i class="fas fa-images"></i>
@@ -150,8 +170,8 @@ include '../includes/header.php';
 
                     <div class="room-pricing">
                         <div class="price-info">
-                            <span class="current-price">Giá liên hệ</span>
-                            <span class="price-period">—</span>
+                            <span class="current-price"><?php echo isset($premiumData['price_text']) && $premiumData['price_text'] ? $premiumData['price_text'] : 'Giá liên hệ'; ?></span>
+                            <span class="price-period"><?php echo isset($premiumData['per_night_text']) && $premiumData['per_night_text'] ? $premiumData['per_night_text'] : '—'; ?></span>
                         </div>
                     </div>
 
@@ -166,7 +186,7 @@ include '../includes/header.php';
             <div class="room-card" data-room-type="studio">
                 <div class="room-image-container">
                     <span class="category-tag">Studio</span>
-                    <img src="<?php echo asset('img/studio apartment/CAN-HO-STUDIO-AURORA-HOTEL-1.jpg'); ?>" alt="Căn hộ Studio Hiện Đại" loading="lazy">
+                    <img src="<?php echo asset(isset($studioData['main_image']) && $studioData['main_image'] ? $studioData['main_image'] : 'img/studio apartment/CAN-HO-STUDIO-AURORA-HOTEL-1.jpg'); ?>" alt="Căn hộ Studio Hiện Đại" loading="lazy">
                     <div class="room-badge">Hiện đại</div>
                     <div class="room-gallery-btn">
                         <i class="fas fa-images"></i>
@@ -207,8 +227,8 @@ include '../includes/header.php';
 
                     <div class="room-pricing">
                         <div class="price-info">
-                            <span class="current-price">Giá liên hệ</span>
-                            <span class="price-period">—</span>
+                            <span class="current-price"><?php echo isset($studioData['price_text']) && $studioData['price_text'] ? $studioData['price_text'] : 'Giá liên hệ'; ?></span>
+                            <span class="price-period"><?php echo isset($studioData['per_night_text']) && $studioData['per_night_text'] ? $studioData['per_night_text'] : '—'; ?></span>
                         </div>
                     </div>
 

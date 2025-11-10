@@ -1,242 +1,105 @@
-php
 <?php
-$page_title = "Căn Hộ Premium Sang Trọng - Aurora Hotel Plaza";
-$page_description = "Căn hộ Premium với thiết kế sang trọng, tiện nghi cao cấp và dịch vụ đẳng cấp 5 sao tại Aurora Hotel Plaza.";
-$canonical_url = "https://aurorahotel.vn/can-ho-premium-sang-trong";
-$additional_css = ['apartment-detail.css', 'can-ho-premium.css'];
+// Nạp dữ liệu trang Premium theo mẫu Deluxe/Family
+include '../../includes/data-pages/data-premium-apartment.php';
+// Breadcrumb cho trang Căn Hộ Premium
 $breadcrumb = [
-    ['name' => 'Trang chủ', 'url' => '/'],
-    ['name' => 'Căn hộ', 'url' => '/can-ho'],
-    ['name' => 'Căn Hộ Premium Sang Trọng', 'url' => '']
+    [
+        'title' => 'Căn hộ',
+        'url' => '/pages/can-ho.php'
+    ],
+    [
+        'title' => $page_title,
+        'active' => true
+    ]
 ];
+// Include header
 include '../../includes/header.php';
 ?>
 
-<main class="apartment-detail-page premium-theme">
+<div class="room-detail-page">
     <!-- Hero Section -->
-    <section class="apartment-hero">
+    <section class="room-hero">
         <div class="hero-image">
-            <img src="<?php echo asset('assets/image/room-presidential.jpg'); ?>" alt="Căn Hộ Premium Sang Trọng Aurora Hotel Plaza" loading="lazy">
+            <img src="<?php echo asset($main_image); ?>" alt="Căn Hộ Premium Sang Trọng Aurora Hotel Plaza" loading="lazy">
             <div class="hero-overlay">
                 <div class="container">
-                    <h1>Căn Hộ Premium Sang Trọng</h1>
-                    <p class="hero-subtitle">Đẳng cấp sống thượng lưu với thiết kế hiện đại và dịch vụ hoàn hảo</p>
+                    <h1><?php echo $page_title; ?></h1>
+                    <p class="hero-subtitle"><?php echo $hero_subtitle; ?></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Apartment Information -->
-    <section class="apartment-info">
+    <!-- Apartment Information (theo mẫu Deluxe) -->
+    <section class="room-info">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="apartment-content">
-                        <h2>Về Căn Hộ Premium Sang Trọng</h2>
-                        <p>Căn hộ Premium của Aurora Hotel Plaza là biểu tượng của sự sang trọng và tinh tế với diện tích 120m². Được thiết kế theo phong cách hiện đại kết hợp với nét đẹp cổ điển, căn hộ bao gồm 2 phòng ngủ master, phòng khách rộng rãi, bếp cao cấp và 3 phòng tắm với jacuzzi riêng. Đây là lựa chọn hoàn hảo cho những ai tìm kiếm trải nghiệm nghỉ dưỡng đẳng cấp thượng lưu.</p>
+                    <div class="room-content">
+                        <h2><?php echo $about_heading; ?></h2>
+                        <p><?php echo $about_paragraph; ?></p>
                         
-                        <h3>Thiết Kế Căn Hộ Premium</h3>
-                        <div class="apartment-layout">
-                            <div class="layout-item">
-                                <i class="fas fa-crown"></i>
-                                <div>
-                                    <h4>Phòng Ngủ Master</h4>
-                                    <p>Giường King Size cao cấp, tủ quần áo walk-in, ban công riêng với view biển</p>
-                                </div>
-                            </div>
-                            <div class="layout-item">
-                                <i class="fas fa-gem"></i>
-                                <div>
-                                    <h4>Phòng Ngủ Khách</h4>
-                                    <p>Giường Queen Size, khu vực làm việc riêng, tủ quần áo cao cấp</p>
-                                </div>
-                            </div>
-                            <div class="layout-item">
-                                <i class="fas fa-couch"></i>
-                                <div>
-                                    <h4>Phòng Khách Sang Trọng</h4>
-                                    <p>Sofa da thật, TV OLED 75 inch, hệ thống âm thanh Bose</p>
-                                </div>
-                            </div>
-                            <div class="layout-item">
-                                <i class="fas fa-utensils"></i>
-                                <div>
-                                    <h4>Bếp Cao Cấp</h4>
-                                    <p>Thiết bị Miele, đảo bếp marble, tủ rượu nhiệt độ</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h3>Tiện Nghi Premium Đẳng Cấp</h3>
-                        <div class="amenities-grid">
-                            <div class="amenity-item premium">
-                                <i class="fas fa-star"></i>
-                                <span>Dịch vụ Butler 24/7</span>
-                            </div>
-                            <div class="amenity-item premium">
-                                <i class="fas fa-hot-tub"></i>
-                                <span>Jacuzzi riêng trong phòng tắm</span>
-                            </div>
-                            <div class="amenity-item premium">
-                                <i class="fas fa-wine-glass"></i>
-                                <span>Minibar cao cấp miễn phí</span>
-                            </div>
-                            <div class="amenity-item premium">
-                                <i class="fas fa-concierge-bell"></i>
-                                <span>Dịch vụ concierge riêng</span>
-                            </div>
-                            <div class="amenity-item premium">
-                                <i class="fas fa-car-side"></i>
-                                <span>Đưa đón bằng xe sang</span>
-                            </div>
-                            <div class="amenity-item premium">
-                                <i class="fas fa-spa"></i>
-                                <span>Spa trong phòng miễn phí</span>
-                            </div>
-                            <div class="amenity-item premium">
-                                <i class="fas fa-utensils"></i>
-                                <span>Dịch vụ ăn uống 24/7</span>
-                            </div>
-                            <div class="amenity-item premium">
-                                <i class="fas fa-shield-alt"></i>
-                                <span>An ninh riêng tư tuyệt đối</span>
-                            </div>
-                        </div>
-
-                        <h3>Dịch Vụ Premium Độc Quyền</h3>
-                        <ul class="services-list premium">
-                            <li>Butler cá nhân phục vụ 24/7</li>
-                            <li>Dịch vụ spa và massage tại phòng</li>
-                            <li>Chef riêng nấu ăn theo yêu cầu</li>
-                            <li>Dịch vụ giặt ủi cao cấp trong ngày</li>
-                            <li>Concierge riêng hỗ trợ mọi nhu cầu</li>
-                            <li>Đưa đón sân bay bằng Rolls Royce</li>
-                            <li>Tổ chức tiệc riêng tư trong căn hộ</li>
-                            <li>Dịch vụ mua sắm cá nhân</li>
-                            <li>Hướng dẫn viên du lịch riêng</li>
-                            <li>Dịch vụ y tế cao cấp 24/7</li>
+                        <h3><?php echo $amenities_heading; ?></h3>
+                        <ul class="services-list">
+                            <?php foreach ($amenities as $amenity): ?>
+                                <li><?php echo $amenity; ?></li>
+                            <?php endforeach; ?>
                         </ul>
 
-                        <h3>Trải Nghiệm Ẩm Thực Đẳng Cấp</h3>
-                        <div class="dining-experiences">
-                            <div class="dining-card">
-                                <img src="../../../assets/image/restaurant.jpg" alt="Bữa sáng premium" loading="lazy">
-                                <div class="dining-content">
-                                    <h4>Bữa Sáng Premium</h4>
-                                    <p>Phục vụ tại phòng với menu đa dạng từ Âu đến Á, nguyên liệu tươi ngon hàng đầu</p>
-                                </div>
-                            </div>
-                            <div class="dining-card">
-                                <img src="../../../assets/image/bar.jpg" alt="Minibar cao cấp" loading="lazy">
-                                <div class="dining-content">
-                                    <h4>Minibar Cao Cấp</h4>
-                                    <p>Rượu vang, champagne và đồ uống cao cấp được bổ sung hàng ngày</p>
-                                </div>
-                            </div>
-                            <div class="dining-card">
-                                <img src="../../../assets/image/restaurant.jpg" alt="Dịch vụ chef riêng" loading="lazy">
-                                <div class="dining-content">
-                                    <h4>Chef Riêng</h4>
-                                    <p>Đầu bếp chuyên nghiệp nấu ăn theo yêu cầu với nguyên liệu cao cấp</p>
-                                </div>
-                            </div>
-                        </div>
+                        <h3><?php echo $services_heading; ?></h3>
+                        <ul class="services-list">
+                            <?php foreach ($included_services as $service): ?>
+                                <li><?php echo $service; ?></li>
+                            <?php endforeach; ?>
+                        </ul>
 
-                        <h3>Tiện Ích Độc Quyền</h3>
-                        <div class="exclusive-amenities">
-                            <div class="exclusive-item">
-                                <h4>Hồ Bơi Riêng Tư</h4>
-                                <p>Hồ bơi infinity riêng với view toàn cảnh thành phố, phục vụ đồ uống bên bờ</p>
-                            </div>
-                            <div class="exclusive-item">
-                                <h4>Phòng Gym Riêng</h4>
-                                <p>Thiết bị tập luyện cao cấp Technogym, huấn luyện viên cá nhân theo yêu cầu</p>
-                            </div>
-                            <div class="exclusive-item">
-                                <h4>Phòng Họp Riêng</h4>
-                                <p>Không gian làm việc sang trọng với thiết bị hội nghị hiện đại</p>
-                            </div>
-                            <div class="exclusive-item">
-                                <h4>Sân Thượng Riêng</h4>
-                                <p>Khu vực BBQ và thư giãn ngoài trời với view 360 độ tuyệt đẹp</p>
-                            </div>
-                        </div>
-
-                        <h3>Chính Sách Premium</h3>
-                        <div class="premium-policies">
-                            <div class="policy-item">
-                                <h4>Check-in VIP</h4>
-                                <p>Check-in riêng tư tại căn hộ, không cần qua lễ tân. Thời gian linh hoạt 24/7</p>
-                            </div>
-                            <div class="policy-item">
-                                <h4>Hủy Phòng Linh Hoạt</h4>
-                                <p>Chính sách hủy phòng linh hoạt đến 24h trước khi nhận phòng</p>
-                            </div>
-                            <div class="policy-item">
-                                <h4>Bảo Mật Tuyệt Đối</h4>
-                                <p>Cam kết bảo mật thông tin khách hàng và quyền riêng tư tuyệt đối</p>
-                            </div>
-                        </div>
+                        <h3><?php echo $notes_heading; ?></h3>
+                        <ul class="services-list">
+                            <?php if(isset($notes) && is_array($notes)): ?>
+                                <?php foreach ($notes as $note): ?>
+                                    <li><?php echo $note; ?></li>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </ul>
                     </div>
                 </div>
                 
                 <div class="col-lg-4">
-                    <div class="booking-card premium-apartment">
-                        <div class="premium-badge">
-                            <i class="fas fa-crown"></i>
-                            <span>PREMIUM LUXURY</span>
-                        </div>
-                        
+                    <div class="booking-card">
                         <div class="price-info">
-                            <span class="price">12.500.000 VNĐ</span>
-                            <span class="per-night">/đêm</span>
-                            <div class="premium-note">Bao gồm tất cả dịch vụ premium</div>
+                            <span class="price"><?php echo $price_text; ?></span>
+                            <span class="per-night"><?php echo $per_night_text; ?></span>
                         </div>
                         
-                        <div class="apartment-specs">
-                            <div class="spec-item">
-                                <strong>Diện tích:</strong> 120m²
-                            </div>
-                            <div class="spec-item">
-                                <strong>Phòng ngủ:</strong> 2 phòng master
-                            </div>
-                            <div class="spec-item">
-                                <strong>Phòng tắm:</strong> 3 phòng (có jacuzzi)
-                            </div>
-                            <div class="spec-item">
-                                <strong>Sức chứa:</strong> 4 người
-                            </div>
-                            <div class="spec-item">
-                                <strong>View:</strong> Biển & thành phố
-                            </div>
-                            <div class="spec-item">
-                                <strong>Tầng:</strong> Penthouse (25-30)
-                            </div>
+                        <div class="room-specs">
+                            <?php foreach ($specs as $spec): ?>
+                                <div class="spec-item">
+                                    <strong><?php echo $spec['label']; ?></strong> <?php echo $spec['value']; ?>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                         
-                        <div class="premium-perks">
-                            <h4>Đặc Quyền Premium</h4>
-                            <ul>
-                                <li>Butler 24/7 riêng</li>
-                                <li>Đưa đón Rolls Royce</li>
-                                <li>Spa tại phòng miễn phí</li>
-                                <li>Chef riêng theo yêu cầu</li>
-                                <li>Concierge cá nhân</li>
-                                <li>Hồ bơi riêng tư</li>
-                                <li>Minibar cao cấp miễn phí</li>
-                                <li>Check-in/out VIP</li>
-                            </ul>
-                        </div>
-                        
-                        <a href="../../dat-phong.php?room=premium-apartment" class="btn btn-premium-apartment btn-book">
-                            <i class="fas fa-crown"></i>
-                            Đặt Căn Hộ Premium
+                        <a href="<?php echo $booking_url; ?>" class="btn btn-primary btn-book">
+                            <?php echo $book_button_text; ?>
                         </a>
                         
                         <div class="contact-info">
-                            <p><strong>Hotline Premium:</strong></p>
-                            <p><a href="tel:+84123456789">+84 123 456 789</a></p>
-                            <small>Dịch vụ tư vấn cao cấp 24/7</small>
+                            <div class="contact-item">
+                                <i class="fas fa-phone contact-icon" aria-hidden="true"></i>
+                                <div class="contact-line">
+                                    <span class="label"><?php echo $contact_hotline_label; ?></span>
+                                    <a class="value" href="tel:+842513918888" aria-label="Gọi đặt phòng"><?php echo $contact_hotline; ?></a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope contact-icon" aria-hidden="true"></i>
+                                <div class="contact-line">
+                                    <span class="label"><?php echo $contact_email_label; ?></span>
+                                    <a class="value" href="mailto:<?php echo $contact_email_booking; ?>" aria-label="Gửi email đặt phòng"><?php echo $contact_email_booking; ?></a>
+                                    <span class="divider">|</span>
+                                    <a class="value" href="mailto:<?php echo $contact_email_info; ?>" aria-label="Gửi email thông tin"><?php echo $contact_email_info; ?></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -244,73 +107,68 @@ include '../../includes/header.php';
         </div>
     </section>
 
-    <!-- Apartment Gallery -->
-    <section class="apartment-gallery">
+    <!-- Room Gallery (Slider) -->
+    <section class="room-gallery">
         <div class="container">
-            <h3>Hình Ảnh Căn Hộ Premium</h3>
-            <div class="gallery-grid apartment">
-                <div class="gallery-item main">
-                    <img src="<?php echo asset('assets/image/room-presidential.jpg'); ?>" alt="Căn hộ Premium - Phòng khách sang trọng" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span>Phòng khách sang trọng</span>
-                    </div>
+            <h3><?php echo $gallery_heading; ?></h3>
+            <div class="image-slider" id="deluxeSlider">
+                <button class="slider-btn prev" aria-label="<?php echo $gallery_prev_label; ?>"><i class="fas fa-chevron-left"></i></button>
+                <div class="slider-main">
+                    <img id="sliderMainImage"
+                         src="<?php echo asset('img/premium apartment/CAN-HO-PREMIUM-AURORA-HOTEL-1.jpg'); ?>"
+                         alt="<?php echo $gallery_main_alt; ?>"
+                         loading="eager"
+                         decoding="async"
+                         fetchpriority="high">
                 </div>
-                <div class="gallery-item">
-                    <img src="<?php echo asset('assets/image/room-suite-ocean.jpg'); ?>" alt="Căn hộ Premium - Phòng ngủ master" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span>Phòng ngủ master</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="<?php echo asset('assets/image/room-suite.jpg'); ?>" alt="Căn hộ Premium - Phòng tắm jacuzzi" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span>Phòng tắm jacuzzi</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="<?php echo asset('assets/image/room-deluxe.jpg'); ?>" alt="Căn hộ Premium - Bếp cao cấp" loading="lazy">
-                    <div class="gallery-overlay">
-                        <span>Bếp cao cấp Miele</span>
-                    </div>
+                <button class="slider-btn next" aria-label="<?php echo $gallery_next_label; ?>"><i class="fas fa-chevron-right"></i></button>
+                <div class="slider-thumbs" id="sliderThumbs">
+                    <img class="thumb active" src="<?php echo asset('img/premium apartment/CAN-HO-PREMIUM-AURORA-HOTEL-1.jpg'); ?>" data-full="<?php echo asset('img/premium apartment/CAN-HO-PREMIUM-AURORA-HOTEL-1.jpg'); ?>" alt="Thumb 1" loading="lazy" decoding="async">
+                    <img class="thumb" src="<?php echo asset('img/premium apartment/CAN-HO-PREMIUM-AURORA-HOTEL-2.jpg'); ?>" data-full="<?php echo asset('img/premium apartment/CAN-HO-PREMIUM-AURORA-HOTEL-2.jpg'); ?>" alt="Thumb 2" loading="lazy" decoding="async">
+                    <img class="thumb" src="<?php echo asset('img/premium apartment/CAN-HO-PREMIUM-AURORA-HOTEL-3.jpg'); ?>" data-full="<?php echo asset('img/premium apartment/CAN-HO-PREMIUM-AURORA-HOTEL-3.jpg'); ?>" alt="Thumb 3" loading="lazy" decoding="async">
+                    <img class="thumb" src="<?php echo asset('img/premium apartment/CAN-HO-PREMIUM-AURORA-HOTEL-7.jpg'); ?>" data-full="<?php echo asset('img/premium apartment/CAN-HO-PREMIUM-AURORA-HOTEL-7.jpg'); ?>" alt="Thumb 4" loading="lazy" decoding="async">
+                    <img class="thumb" src="<?php echo asset('img/premium apartment/CAN-HO-PREMIUM-AURORA-HOTEL-8.jpg'); ?>" data-full="<?php echo asset('img/premium apartment/CAN-HO-PREMIUM-AURORA-HOTEL-8.jpg'); ?>" alt="Thumb 5" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Lightbox for images -->
+    <div class="lightbox" id="imageLightbox" aria-hidden="true">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose" aria-label="<?php echo $lightbox_close_label; ?>"><i class="fas fa-times"></i></button>
+            <button class="lightbox-prev" id="lightboxPrev" aria-label="<?php echo $gallery_prev_label; ?>"><i class="fas fa-chevron-left"></i></button>
+            <img id="lightboxImage" src="<?php echo asset('img/premium apartment/CAN-HO-PREMIUM-AURORA-HOTEL-1.jpg'); ?>" alt="Xem ảnh lớn">
+            <button class="lightbox-next" id="lightboxNext" aria-label="<?php echo $gallery_next_label; ?>"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="lightbox-overlay" id="lightboxOverlay"></div>
+    </div>
 
     <!-- Related Apartments -->
-    <section class="related-apartments">
+    <section class="related-rooms">
         <div class="container">
-            <h3>Các Căn Hộ Khác</h3>
-            <div class="apartments-grid">
-                <div class="apartment-card">
-                    <img src="<?php echo asset('assets/image/room-suite-ocean.jpg'); ?>" alt="Căn hộ Family" loading="lazy">
-                    <div class="apartment-card-content">
-                        <h4>Căn Hộ Family</h4>
-                        <p class="apartment-price">5.500.000 VNĐ/đêm</p>
-                        <a href="<?php echo url('pages/can-ho/family-gia-dinh.php'); ?>" class="btn btn-outline">Xem Chi Tiết</a>
+            <h3><?php echo $related_heading; ?></h3>
+            <div class="rooms-grid">
+                <div class="room-card">
+                    <img src="<?php echo asset('img/family apartment/CAN-HO-FAMILY-AURORA-HOTEL-3.jpg'); ?>" alt="Căn Hộ Family" loading="lazy">
+                    <div class="room-card-content">
+                        <h4><?php echo $related1_title; ?></h4>
+                        <p class="room-price"><?php echo $related1_price; ?></p>
+                        <a href="<?php echo url('pages/can-ho/family-gia-dinh.php'); ?>" class="btn btn-outline"><?php echo $related1_btn_text; ?></a>
                     </div>
                 </div>
                 
-                <div class="apartment-card">
-                    <img src="<?php echo asset('assets/image/room-standard.jpg'); ?>" alt="Căn hộ Studio" loading="lazy">
-                    <div class="apartment-card-content">
-                        <h4>Căn Hộ Studio</h4>
-                        <p class="apartment-price">4.800.000 VNĐ/đêm</p>
-                        <a href="<?php echo url('pages/can-ho/studio-hien-dai.php'); ?>" class="btn btn-outline">Xem Chi Tiết</a>
-                    </div>
-                </div>
-                
-                <div class="apartment-card">
-                    <img src="<?php echo asset('assets/image/room-deluxe.jpg'); ?>" alt="Phòng Studio VIP" loading="lazy">
-                    <div class="apartment-card-content">
-                        <h4>Phòng Studio VIP</h4>
-                        <p class="apartment-price">4.200.000 VNĐ/đêm</p>
-                        <a href="<?php echo url('pages/phong/studio-vip-dang-cap.php'); ?>" class="btn btn-outline">Xem Chi Tiết</a>
+                <div class="room-card">
+                    <img src="<?php echo asset('img/studio apartment/CAN-HO-STUDIO-AURORA-HOTEL-1.jpg'); ?>" alt="Căn Hộ Studio" loading="lazy">
+                    <div class="room-card-content">
+                        <h4><?php echo $related2_title; ?></h4>
+                        <p class="room-price"><?php echo $related2_price; ?></p>
+                        <a href="<?php echo url('pages/can-ho/studio-hien-dai.php'); ?>" class="btn btn-outline"><?php echo $related2_btn_text; ?></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-</main>
+</div>
 
-<?php include '../../includes/footer.php'; ?>
+<?php include_once '../../includes/footer.php'; ?>

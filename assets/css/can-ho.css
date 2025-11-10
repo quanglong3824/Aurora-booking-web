@@ -96,3 +96,50 @@
 .room-image-container {
   position: relative;
 }
+
+/* Balance card heights and align actions */
+.rooms-grid.three-cols .room-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.rooms-grid.three-cols .room-image-container {
+  height: 240px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.rooms-grid.three-cols .room-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rooms-grid.three-cols .room-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.rooms-grid.three-cols .room-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rooms-grid.three-cols .room-pricing {
+  margin-top: auto; /* đẩy khối giá xuống gần cuối để đồng đều */
+}
+
+.rooms-grid.three-cols .room-actions {
+  margin-top: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.rooms-grid.three-cols .room-actions .btn-primary,
+.rooms-grid.three-cols .room-actions .btn-secondary {
+  flex-shrink: 0;
+}

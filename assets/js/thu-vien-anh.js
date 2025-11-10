@@ -5,31 +5,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const grid = document.getElementById('galleryGrid');
     const paginationEl = document.getElementById('pagination');
     const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
-    const headerEl = document.querySelector('.header');
 
     // State
     let currentFilter = 'all';
     let currentPage = 1;
-    let pageSize = 9; // default for 3 cols x 3 rows
-
-    function getColumnCount() {
-        if (!grid) return 3;
-        const cc = parseInt(getComputedStyle(grid).columnCount, 10);
-        return isNaN(cc) || cc <= 0 ? 3 : cc;
-    }
-
-    function updatePageSize() {
-        const cols = getColumnCount();
-        const rows = 3; // hiển thị 3 hàng theo khung lưới
-        pageSize = cols * rows;
-    }
-
-    // Update CSS variable for sticky offset based on header height
-    function updateHeaderOffset() {
-        const h = headerEl ? headerEl.offsetHeight : 80;
-        document.documentElement.style.setProperty('--header-offset', `${h}px`);
-        return h;
-    }
+    const pageSize = 5;
 
     // Shuffle DOM children of the grid
     function shuffleGrid() {
@@ -94,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderPage() {
         const filtered = getFilteredItems();
-        updatePageSize();
         const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
         currentPage = Math.min(currentPage, totalPages);
 
@@ -110,10 +89,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Scroll lên đầu khu vực grid để người dùng thấy nội dung mới
         if (grid) {
-            // scroll có bù trừ chiều cao header (động) để không bị che
-            const headerOffset = updateHeaderOffset();
-            const extra = 20; // khoảng trống nhỏ
-            const y = grid.getBoundingClientRect().top + window.scrollY - headerOffset - extra;
+            // scroll có bù trừ chiều cao thanh filter sticky để không bị che
+            const headerOffset = 120; // cao khoảng filter + khoảng trống
+            const y = grid.getBoundingClientRect().top + window.scrollY - headerOffset;
             window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
         }
 
@@ -135,17 +113,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initial render
     shuffleGrid();
-    updatePageSize();
     renderPage();
     adjustMasonryLayout();
-
-    // Sync header offset on load/resize/scroll (header co lại khi cuộn)
-    updateHeaderOffset();
-    window.addEventListener('resize', updateHeaderOffset);
-    window.addEventListener('scroll', () => {
-        // debounce nhẹ
-        window.requestAnimationFrame(updateHeaderOffset);
-    });
     
     // Lightbox functionality
     const lightbox = document.getElementById('lightbox');
@@ -294,11 +263,3 @@ document.addEventListener('DOMContentLoaded', function() {
         imageObserver.observe(img);
     });
 });
-    // Update page size on resize to giữ chuẩn theo số cột
-    window.addEventListener('resize', () => {
-        const prevSize = pageSize;
-        updatePageSize();
-        if (pageSize !== prevSize) {
-            renderPage();
-        }
-    });
