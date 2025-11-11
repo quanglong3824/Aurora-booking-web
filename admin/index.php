@@ -8,6 +8,32 @@ $error = '';
 
 function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 
+// Danh sách các trường phòng kinh doanh thường dùng
+$BUSINESS_FIELDS = [
+  'room_deluxe_title',
+  'room_deluxe_hero_subtitle',
+  'room_deluxe_description',
+  'room_deluxe_price_text',
+  'room_deluxe_per_night_text',
+  'room_deluxe_booking_url',
+  'room_deluxe_book_button_text',
+  'room_deluxe_contact_hotline_label',
+  'room_deluxe_contact_hotline',
+  'room_deluxe_contact_email_label',
+  'room_deluxe_contact_email_booking',
+  'room_deluxe_contact_email_info',
+  'room_deluxe_amenities',
+  'room_deluxe_included_services',
+  'room_deluxe_specs',
+  'room_deluxe_related_heading',
+  'room_deluxe_related1_title',
+  'room_deluxe_related1_price',
+  'room_deluxe_related1_btn_text',
+  'room_deluxe_related2_title',
+  'room_deluxe_related2_price',
+  'room_deluxe_related2_btn_text'
+];
+
 function getAllDeluxe($pdo) {
     $stmt = $pdo->query("SELECT * FROM deluxe_sang_trong ORDER BY id DESC");
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -19,6 +45,7 @@ function getDeluxeById($pdo, $id) {
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+// Nếu cần lấy full schema thì dùng DESCRIBE; hiện không dùng khi hiển thị theo BUSINESS_FIELDS
 function getColumns($pdo, $table) {
     $stmt = $pdo->query("DESCRIBE `{$table}`");
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -29,9 +56,8 @@ try {
         $action = $_POST['action'] ?? '';
         if ($action === 'update') {
             $id = (int)($_POST['id'] ?? 0);
-            // Cập nhật động theo schema bảng
-            $cols = getColumns($pdo, 'deluxe_sang_trong');
-            $allowed = array_map(fn($c) => $c['Field'], $cols);
+            // Cập nhật theo BUSINESS_FIELDS để đảm bảo chỉ sửa các trường kinh doanh
+            $allowed = $BUSINESS_FIELDS;
             $setParts = [];
             $values = [];
             foreach ($allowed as $col) {
@@ -59,7 +85,10 @@ $rows = [];
 $columns = [];
 try {
     $rows = getAllDeluxe($pdo);
-    $columns = getColumns($pdo, 'deluxe_sang_trong');
+    // Chỉ hiển thị các trường kinh doanh: chuyển từ list field sang cấu trúc tương tự DESCRIBE
+    $columns = array_map(function($f){
+      return ['Field' => $f, 'Type' => 'text'];
+    }, array_merge(['id'], $BUSINESS_FIELDS));
 } catch (Throwable $e) {
     $error = $e->getMessage();
 }
@@ -119,7 +148,7 @@ if (isset($_GET['edit'])) {
   <?php endif; ?>
 
   <section>
-    <h2>Danh sách bản ghi Deluxe (hiển thị toàn bộ cột)</h2>
+    <h2>Danh sách bản ghi Deluxe (trường phòng kinh doanh)</h2>
     <div class="table-wrap">
       <table>
         <thead>
@@ -159,7 +188,7 @@ if (isset($_GET['edit'])) {
         <input type="hidden" name="id" value="<?php echo h($editing['id']); ?>">
         <div class="form-grid">
         <?php 
-          $cols = $columns;
+          $cols = $columns; // gồm id + BUSINESS_FIELDS
           foreach ($cols as $c):
             $field = $c['Field'];
             $type = strtolower($c['Type']);
@@ -174,6 +203,9 @@ if (isset($_GET['edit'])) {
             } else {
               if ($isText || $isTextareaByName) {
                 echo '<textarea id="' . h($field) . '" name="' . h($field) . '">' . h($val) . '</textarea>';
+                if (preg_match('/(_amenities|_included_services|_specs)$/', $field)) {
+                  echo '<div style="font-size:12px;color:#6b7280;margin-top:6px;">Gợi ý: nhập JSON hợp lệ. Ví dụ amenities: ["Wifi","Hồ bơi"]. Specs: [{"label":"Diện tích","value":"35m²"}]</div>';
+                }
               } else {
                 echo '<input type="text" id="' . h($field) . '" name="' . h($field) . '" value="' . h($val) . '">';
               }
