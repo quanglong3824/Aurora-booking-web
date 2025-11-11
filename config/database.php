@@ -150,10 +150,10 @@ function checkDBConnection($echo = true) {
         }
         return [ 'success' => false, 'message' => $output ];
     }
-    $fallHost = $database->isFallbackUsed() ? "\n Chú ý : Đã chuyển sang kết nối công khai Hosting Cpanel" : '';
+    $fallHosting = $database->isFallbackUsed() ? DB_LOCAL_HOST : DB_HOST;
     $fallbackNote = $database->isFallbackUsed() ? "\nChú ý: Đã chuyển sang kết nối localhost (XAMPP)." : '';
     if ($echo) {
-        echo "<pre>Kết nối thành công. Host: {$fallHost}{$fallbackNote}</pre>";
+        echo "<pre>Kết nối thành công. Host: {$fallHosting}{$fallbackNote}</pre>";
     }
     return [ 'success' => true, 'message' => 'OK', 'fallback' => $database->isFallbackUsed() ];
 }
