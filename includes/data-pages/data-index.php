@@ -1,4 +1,5 @@
 <?php
+
 // Thiết lập thông tin trang
 $page_title = "Aurora Hotel Plaza - Khách sạn sang trọng";
 $page_description = "Trải nghiệm nghỉ dưỡng sang trọng với dịch vụ đẳng cấp quốc tế tại Aurora Hotel Plaza";
@@ -43,6 +44,175 @@ $room_deluxe_price = '2.000.000';
 $room_suite_title = 'Phòng suite';
 $room_suite_desc = 'Phòng hạng sang với không gian riêng biệt và dịch vụ VIP';
 $room_suite_price = '3.500.000';
+
+// ===== Liên kết cơ sở dữ liệu và nạp dữ liệu trang chủ (home_index) =====
+// Sẵn sàng 2 trường hợp kết nối như cấu hình trong config/database.php (primary và fallback localhost)
+// Chúng ta nạp dữ liệu từ bảng home_index với home_slug = 'index' và ánh xạ vào các biến trang
+if (!function_exists('json_decode_safe_array')) {
+    function json_decode_safe_array($json, $fallback = []) {
+        if (!is_string($json) || $json === '') return $fallback;
+        $decoded = json_decode($json, true);
+        return (is_array($decoded)) ? $decoded : $fallback;
+    }
+}
+if (!function_exists('json_decode_safe_assoc')) {
+    function json_decode_safe_assoc($json, $fallback = []) {
+        if (!is_string($json) || $json === '') return $fallback;
+        $decoded = json_decode($json, true);
+        return (is_array($decoded)) ? $decoded : $fallback;
+    }
+}
+
+// Kết nối DB và nạp dữ liệu nếu có
+try {
+    // Tự nạp cấu hình DB vì file này chạy trước header.php
+    require_once __DIR__ . '/../../config/database.php';
+    $db = getDB();
+    if ($db) {
+        $stmt = $db->prepare("SELECT * FROM home_index WHERE home_slug = :slug LIMIT 1");
+        $stmt->execute([':slug' => 'index']);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($row) {
+            // Meta
+            $page_title = $row['page_title'] ?? $page_title;
+            $page_description = $row['page_description'] ?? $page_description;
+            $page_keywords = $row['page_keywords'] ?? $page_keywords;
+
+            // Hero
+            $hero_background = $row['hero_background'] ?? $hero_background;
+            $hero_title = $row['hero_title'] ?? $hero_title;
+            $hero_subtitle = $row['hero_subtitle'] ?? $hero_subtitle;
+            $hero_images = json_decode_safe_array($row['hero_images'], $hero_images);
+            if (!empty($row['hero_slide_interval']) && is_numeric($row['hero_slide_interval'])) {
+                $hero_slide_interval = (int)$row['hero_slide_interval'];
+            }
+
+            // Booking header
+            $booking_title = $row['booking_title'] ?? $booking_title;
+            $booking_subtitle = $row['booking_subtitle'] ?? $booking_subtitle;
+
+            // Rooms section
+            $rooms_title = $row['rooms_title'] ?? $rooms_title;
+            $rooms_desc = $row['rooms_desc'] ?? $rooms_desc;
+
+            // Deluxe card
+            $room_deluxe_title = $row['room_deluxe_title'] ?? $room_deluxe_title;
+            $room_deluxe_desc = $row['room_deluxe_desc'] ?? $room_deluxe_desc;
+            $room_deluxe_price = $row['room_deluxe_price'] ?? $room_deluxe_price;
+            // index.php dùng asset($room_deluxe_image), ánh xạ từ cột room_deluxe_card_image
+            if (!empty($row['room_deluxe_card_image'])) {
+                $room_deluxe_image = $row['room_deluxe_card_image'];
+            }
+
+            // Premium card
+            $room_premium_title = $row['room_premium_title'] ?? (isset($room_premium_title) ? $room_premium_title : 'Premium Deluxe Cao Cấp');
+            $room_premium_desc = $row['room_premium_desc'] ?? (isset($room_premium_desc) ? $room_premium_desc : 'Không gian nghỉ dưỡng đẳng cấp, tiện nghi 5 sao.');
+            $room_premium_price = $row['room_premium_price'] ?? (isset($room_premium_price) ? $room_premium_price : '2.200.000');
+            if (!empty($row['room_premium_image'])) {
+                $room_premium_image = $row['room_premium_image'];
+            }
+            if (!empty($row['room_premium_link_path'])) {
+                $room_premium_link_path = $row['room_premium_link_path'];
+            }
+            $room_premium_amenity_wifi = $row['room_premium_amenity_wifi'] ?? (isset($room_premium_amenity_wifi) ? $room_premium_amenity_wifi : 'WiFi miễn phí');
+            $room_premium_amenity_bath = $row['room_premium_amenity_bath'] ?? (isset($room_premium_amenity_bath) ? $room_premium_amenity_bath : 'Vòi sen & bồn tắm');
+            $room_premium_amenity_service = $row['room_premium_amenity_service'] ?? (isset($room_premium_amenity_service) ? $room_premium_amenity_service : 'Dịch vụ phòng');
+
+            // Services
+            $services_title = $row['services_title'] ?? $services_title;
+            $services_desc = $row['services_desc'] ?? $services_desc;
+            $service_items = json_decode_safe_array($row['service_items']);
+            if (is_array($service_items) && count($service_items) > 0) {
+                // Ánh xạ theo thứ tự để giữ nguyên UI hiện tại
+                $map = [
+                    ['key' => 'service_restaurant', 'idx' => 0],
+                    ['key' => 'service_spa', 'idx' => 1],
+                    ['key' => 'service_pool', 'idx' => 2],
+                    ['key' => 'service_fitness', 'idx' => 3],
+                    ['key' => 'service_conference', 'idx' => 4],
+                    ['key' => 'service_concierge', 'idx' => 5],
+                ];
+                foreach ($map as $m) {
+                    $i = $m['idx'];
+                    if (isset($service_items[$i]) && is_array($service_items[$i])) {
+                        $title = isset($service_items[$i]['title']) ? $service_items[$i]['title'] : null;
+                        $desc = isset($service_items[$i]['desc']) ? $service_items[$i]['desc'] : null;
+                        if ($title) {
+                            ${$m['key'] . '_title'} = $title;
+                        }
+                        if ($desc) {
+                            ${$m['key'] . '_desc'} = $desc;
+                        }
+                    }
+                }
+                // Giữ nguyên label liên kết
+                if (!isset($service_link_text)) {
+                    $service_link_text = 'Xem chi tiết';
+                }
+            }
+
+            // About
+            $about_title = $row['about_title'] ?? $about_title;
+            $about_text = $row['about_text'] ?? $about_text;
+
+            // Gallery
+            $gallery_title = $row['gallery_title'] ?? $gallery_title;
+            $gallery_subtitle = $row['gallery_subtitle'] ?? $gallery_subtitle;
+            $gallery_images = json_decode_safe_array($row['gallery_images'], $gallery_images);
+
+            // Contact
+            $contact_title = $row['contact_title'] ?? $contact_title;
+            $contact_subtitle = $row['contact_subtitle'] ?? $contact_subtitle;
+
+            // Booking labels (JSON object)
+            $labels = json_decode_safe_assoc($row['booking_labels'], []);
+            if (!empty($labels)) {
+                $checkin_label = $labels['checkin_label'] ?? $checkin_label;
+                $checkin_hint = $labels['checkin_hint'] ?? $checkin_hint;
+                $checkout_label = $labels['checkout_label'] ?? $checkout_label;
+                $checkout_hint = $labels['checkout_hint'] ?? $checkout_hint;
+                $guests_label = $labels['guests_label'] ?? $guests_label;
+                $guest_placeholder = $labels['guest_placeholder'] ?? (isset($guest_placeholder) ? $guest_placeholder : 'Chọn số khách');
+                $guest_option_1 = $labels['guest_option_1'] ?? $guest_option_1;
+                $guest_option_2 = $labels['guest_option_2'] ?? $guest_option_2;
+                $guest_option_3 = $labels['guest_option_3'] ?? $guest_option_3;
+                $guest_option_4 = $labels['guest_option_4'] ?? $guest_option_4;
+                $room_type_label = $labels['room_type_label'] ?? $room_type_label;
+                $room_type_placeholder = $labels['room_type_placeholder'] ?? $room_type_placeholder;
+                $room_type_standard_option_text = $labels['room_type_standard_option_text'] ?? $room_type_standard_option_text;
+                // Khớp giá Deluxe trong label nếu cung cấp
+                $room_type_deluxe_option_text = $labels['room_type_deluxe_option_text'] ?? ('Phòng Cao Cấp – ' . $room_deluxe_price . ' ₫/đêm');
+                $room_type_suite_option_text = $labels['room_type_suite_option_text'] ?? $room_type_suite_option_text;
+                $search_room_cta = $labels['search_room_cta'] ?? $search_room_cta;
+                $booking_note = $labels['booking_note'] ?? $booking_note;
+            }
+
+            // Additional CSS/JS
+            $db_additional_css = json_decode_safe_array($row['additional_css'], []);
+            if (!empty($db_additional_css)) {
+                $additional_css = isset($additional_css) && is_array($additional_css) ? $additional_css : [];
+                foreach ($db_additional_css as $css) {
+                    if (is_string($css) && $css !== '') {
+                        $additional_css[] = $css;
+                    }
+                }
+            }
+            $db_additional_js = json_decode_safe_array($row['additional_js'], []);
+            if (!empty($db_additional_js)) {
+                $additional_js = isset($additional_js) && is_array($additional_js) ? $additional_js : [];
+                foreach ($db_additional_js as $js) {
+                    if (is_string($js) && $js !== '') {
+                        $additional_js[] = $js;
+                    }
+                }
+            }
+        }
+    }
+} catch (Throwable $e) {
+    if (defined('DB_DEBUG') && DB_DEBUG) {
+        error_log('Home index DB load error: ' . $e->getMessage());
+    }
+}
 
 // Đồng bộ dữ liệu giá/phần chọn của Deluxe từ trang gốc (tránh sửa nhiều nơi)
 if (!function_exists('get_deluxe_page_data')) {

@@ -10,22 +10,32 @@ function getBaseUrl() {
     $host = $_SERVER['HTTP_HOST'];
     $script_name = $_SERVER['SCRIPT_NAME'];
 
-    // Directory of current script, e.g. /Aurora-booking-web/Users
+    // Lấy thư mục chứa script hiện tại
     $path = dirname($script_name);
+    $path = rtrim($path, '/');
 
-    // If path ends with /pages, /Users, or /admin, step up one level to project root
-    if (preg_match('#/(pages|Users|admin)(/)?$#', $path)) {
-        $path = dirname($path);
+    // Chuẩn hoá: cắt về thư mục gốc dự án nếu nằm trong /pages, /admin hoặc /Users
+    $segments = explode('/', $path); // ví dụ: ['', 'Aurora-booking-web', 'pages', 'phong']
+    foreach (['pages', 'admin', 'Users'] as $marker) {
+        $idx = array_search($marker, $segments, true);
+        if ($idx !== false) {
+            // Lấy phần trước thư mục đặc biệt để trỏ về gốc dự án
+            $segments = array_slice($segments, 0, $idx);
+            break;
+        }
     }
 
-    // Ensure trailing slash
-    if ($path === '' || $path === '/') {
-        $path = '/';
+    // Ghép lại đường dẫn base (đảm bảo bắt đầu bằng '/')
+    $basePath = implode('/', $segments);
+    if ($basePath === '') {
+        $basePath = '/';
     } else {
-        $path = rtrim($path, '/') . '/';
+        // Đảm bảo có dấu '/' đầu và cuối
+        if ($basePath[0] !== '/') { $basePath = '/' . $basePath; }
+        $basePath = rtrim($basePath, '/') . '/';
     }
 
-    return $protocol . '://' . $host . $path;
+    return $protocol . '://' . $host . $basePath;
 }
 
 // Get relative path to root from current location
