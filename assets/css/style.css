@@ -3015,6 +3015,9 @@ html {
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transform-origin: bottom right;
     min-width: 200px;
+    max-height: 60vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .floating-menu.active {
@@ -3088,6 +3091,10 @@ html {
 @media (max-width: 1024px) {
     .floating-menu-container {
         display: block;
+    }
+    /* Nếu có widget FAQ ở góc, đẩy menu nổi lên trên để không chồng lên */
+    body.has-faq-widget .floating-menu-container {
+        bottom: 100px; /* fallback khi JS chưa tính toán chiều cao thực tế */
     }
 }
 

@@ -9,26 +9,214 @@ include '../includes/header.php';
 ?>
 
 <?php
-// Helper: load dữ liệu phòng từ file data mà không ảnh hưởng biến toàn cục
-function load_room_data($file_path) {
-    $data = [];
-    if (file_exists($file_path)) {
-        // include trong scope của function để tránh ghi đè biến trang hiện tại
-        include $file_path;
-        $data['main_image'] = isset($main_image) ? $main_image : null;
-        $data['price_text'] = isset($price_text) ? $price_text : null;
+// Helper: nạp dữ liệu căn hộ theo loại, đảm bảo dùng một hàm duy nhất
+function load_apartment_data($type) {
+    $map = [
+        'family'     => __DIR__ . '/../includes/data-pages/data-family-apartment.php',
+        'premium'    => __DIR__ . '/../includes/data-pages/data-premium-apartment.php',
+        'studio'     => __DIR__ . '/../includes/data-pages/data-studio-apartment.php',
+        'indochine'  => __DIR__ . '/../includes/data-pages/data-indochine-studio.php',
+        'modern_studio' => __DIR__ . '/../includes/data-pages/data-modern-studio-apartment.php',
+    ];
+    $data = ['main_image' => null, 'price_text' => null, 'per_night_text' => null];
+    if (isset($map[$type]) && file_exists($map[$type])) {
+        include $map[$type]; // include trong scope function để tránh ghi đè biến toàn cục
+        $data['main_image']     = isset($main_image) ? $main_image : null;
+        $data['price_text']     = isset($price_text) ? $price_text : null;
         $data['per_night_text'] = isset($per_night_text) ? $per_night_text : null;
     }
     return $data;
 }
 
-// Nạp dữ liệu cho các khối căn hộ
-$familyData  = load_room_data(__DIR__ . '/../includes/data-pages/data-family-apartment.php');
-$premiumData = load_room_data(__DIR__ . '/../includes/data-pages/data-premium-apartment.php');
-$studioData  = load_room_data(__DIR__ . '/../includes/data-pages/data-studio-apartment.php');
+// Nạp dữ liệu cho các khối căn hộ bằng hàm chung
+$familyData  = load_apartment_data('family');
+$premiumData = load_apartment_data('premium');
+$studioData  = load_apartment_data('studio');
 ?>
 
-<!-- Apartment Filter & Search -->
+<?php
+// Dữ liệu Indochine Studio: dùng chung hàm tổng quát
+$newIndochineData = load_apartment_data('indochine');
+// Dữ liệu Modern Studio cho mục "Căn hộ mới" (data riêng)
+$newModernData = load_apartment_data('modern_studio');
+?>
+
+<!-- New Apartments Grid: 1 row / 3 columns -->
+<section class="rooms-showcase apartments-showcase">
+    <div class="container">
+        <div class="section-header">
+            <h2>Căn hộ mới</h2>
+            <p>Hạng mục căn hộ mới bổ sung</p>
+        </div>
+
+        <div class="rooms-grid three-cols">
+            <!-- New Indochine Studio Apartment -->
+            <div class="room-card" data-room-type="new-indochine">
+                <div class="room-image-container">
+                    <span class="category-tag">Mới</span>
+                    <img src="<?php echo asset('img/indochine studio apartment/indochine-studio-apartment-1.jpg'); ?>" alt="Căn hộ Studio Indochine" loading="lazy">
+                    <div class="room-badge">Indochine</div>
+                    <div class="room-gallery-btn">
+                        <i class="fas fa-images"></i>
+                        <?php $indochine_images = glob(__DIR__ . '/../assets/img/indochine studio apartment/*.jpg'); ?>
+                        <span><?php echo isset($indochine_images) ? count($indochine_images) : 0; ?> ảnh</span>
+                    </div>
+                </div>
+
+                <div class="room-content">
+                    <div class="room-header">
+                        <h3>Căn hộ Studio Indochine</h3>
+                        <div class="room-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.8/5</span>
+                        </div>
+                    </div>
+
+                    <div class="room-details">
+                        <div class="room-specs">
+                            <span><i class="fas fa-expand-arrows-alt"></i> 28m²</span>
+                            <span><i class="fas fa-users"></i> 1-2 khách</span>
+                            <span><i class="fas fa-bed"></i> 1 giường đôi</span>
+                        </div>
+
+                        <div class="room-amenities">
+                            <div class="amenity-item"><i class="fas fa-wifi"></i><span>WiFi tốc độ cao</span></div>
+                            <div class="amenity-item"><i class="fas fa-tv"></i><span>Smart TV</span></div>
+                            <div class="amenity-item"><i class="fas fa-snowflake"></i><span>Điều hoà nhiệt độ</span></div>
+                            <div class="amenity-item"><i class="fas fa-mug-hot"></i><span>Bếp nhỏ</span></div>
+                        </div>
+                    </div>
+
+                    <div class="room-pricing">
+                        <div class="price-info">
+                            <span class="current-price"><?php echo isset($newIndochineData['price_text']) && $newIndochineData['price_text'] ? $newIndochineData['price_text'] : 'Giá liên hệ'; ?></span>
+                            <span class="price-period"><?php echo isset($newIndochineData['per_night_text']) && $newIndochineData['per_night_text'] ? $newIndochineData['per_night_text'] : '—'; ?></span>
+                        </div>
+                    </div>
+
+                    <div class="room-actions">
+                        <a href="<?php echo url('pages/can-ho-moi/can-ho-nho/indochine-studio-apartment.php'); ?>" class="btn-secondary room-details-btn">Xem chi tiết</a>
+                        <a href="<?php echo url('pages/dat-phong.php?type=apartment&apt=indochine-studio'); ?>" class="btn-primary room-book-btn">Đặt ngay</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Modern Studio Apartment -->
+            <div class="room-card" data-room-type="new-modern-studio">
+                <div class="room-image-container">
+                    <span class="category-tag">Mới</span>
+                    <img src="<?php echo asset('img/Modern studio apartment/modern-studio-apartment-1.jpg'); ?>" alt="Căn hộ Studio Hiện Đại" loading="lazy">
+                    <div class="room-badge">Modern</div>
+                    <div class="room-gallery-btn">
+                        <i class="fas fa-images"></i>
+                        <?php $modern_images = glob(__DIR__ . '/../assets/img/Modern studio apartment/*.jpg'); ?>
+                        <span><?php echo isset($modern_images) ? count($modern_images) : 0; ?> ảnh</span>
+                    </div>
+                </div>
+
+                <div class="room-content">
+                    <div class="room-header">
+                        <h3>Căn hộ Studio Hiện Đại</h3>
+                        <div class="room-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">4.9/5</span>
+                        </div>
+                    </div>
+
+                    <div class="room-details">
+                        <div class="room-specs">
+                            <span><i class="fas fa-expand-arrows-alt"></i> 45m²</span>
+                            <span><i class="fas fa-users"></i> 1-2 khách</span>
+                            <span><i class="fas fa-bed"></i> 1 giường Queen</span>
+                        </div>
+
+                        <div class="room-amenities">
+                            <div class="amenity-item"><i class="fas fa-wifi"></i><span>WiFi tốc độ cao</span></div>
+                            <div class="amenity-item"><i class="fas fa-tv"></i><span>Smart TV</span></div>
+                            <div class="amenity-item"><i class="fas fa-snowflake"></i><span>Điều hoà nhiệt độ</span></div>
+                            <div class="amenity-item"><i class="fas fa-mug-hot"></i><span>Bếp nhỏ</span></div>
+                        </div>
+                    </div>
+
+                    <div class="room-pricing">
+                        <div class="price-info">
+                            <span class="current-price"><?php echo isset($newModernData['price_text']) && $newModernData['price_text'] ? $newModernData['price_text'] : 'Giá liên hệ'; ?></span>
+                            <span class="price-period"><?php echo isset($newModernData['per_night_text']) && $newModernData['per_night_text'] ? $newModernData['per_night_text'] : '—'; ?></span>
+                        </div>
+                    </div>
+
+                    <div class="room-actions">
+                        <a href="<?php echo url('pages/can-ho-moi/can-ho-nho/morden-studio-apartment.php'); ?>" class="btn-secondary room-details-btn">Xem chi tiết</a>
+                        <a href="<?php echo url('pages/dat-phong.php?type=apartment&apt=studio-modern'); ?>" class="btn-primary room-book-btn">Đặt ngay</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Placeholder Column 3 -->
+            <div class="room-card" data-room-type="new-placeholder-3">
+                <div class="room-image-container">
+                    <span class="category-tag">Mới</span>
+                    <img src="<?php echo asset('img/hero banner/AURORA-HOTEL-BIEN-HOA-2.jpg'); ?>" alt="Căn hộ mới - đang cập nhật" loading="lazy">
+                    <div class="room-badge">Sắp ra mắt</div>
+                    <div class="room-gallery-btn">
+                        <i class="fas fa-images"></i>
+                        <span>0 ảnh</span>
+                    </div>
+                </div>
+
+                <div class="room-content">
+                    <div class="room-header">
+                        <h3>Đang cập nhật</h3>
+                        <div class="room-rating">
+                            <div class="stars">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-text">—</span>
+                        </div>
+                    </div>
+
+                    <div class="room-details">
+                        <div class="room-specs">
+                            <span><i class="fas fa-expand-arrows-alt"></i> —</span>
+                            <span><i class="fas fa-users"></i> —</span>
+                            <span><i class="fas fa-bed"></i> —</span>
+                        </div>
+                    </div>
+
+                    <div class="room-pricing">
+                        <div class="price-info">
+                            <span class="current-price">Giá liên hệ</span>
+                            <span class="price-period">—</span>
+                        </div>
+                    </div>
+
+                    <div class="room-actions">
+                        <a href="#" class="btn-secondary room-details-btn" aria-disabled="true">Sắp ra mắt</a>
+                        <a href="#" class="btn-primary room-book-btn" aria-disabled="true">—</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+<!-- Apartment Filter & Search
 <section class="room-filter">
     <div class="container">
         <div class="filter-controls">
@@ -40,7 +228,7 @@ $studioData  = load_room_data(__DIR__ . '/../includes/data-pages/data-studio-apa
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- Apartments Grid: 1 row / 3 columns -->
 <section class="rooms-showcase apartments-showcase">

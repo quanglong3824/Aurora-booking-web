@@ -31,8 +31,8 @@ $included_services = [
 ];
 
 // Pricing & specs
-$price_text = "Giá chỉ từ: 2.200.000 VNĐ";
-$per_night_text = ""; // để trống vì đã có "Giá chỉ từ"
+$price_text = "2.200.000 VNĐ";
+$per_night_text = "/đêm";
 $specs = [
     ["label" => "Diện tích:", "value" => "50m²"],
     ["label" => "Sức chứa:", "value" => "4 người lớn + 2 trẻ em"],

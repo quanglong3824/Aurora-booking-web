@@ -143,4 +143,10 @@ include '../../includes/header.php';
     <!-- Related Rooms removed: hiển thị đã theo data -->
 </div>
 
+<?php
+// Gợi ý ngẫu nhiên 3 phòng
+include_once '../../includes/UI-Random-Rooms/random-suggestions.php';
+aurora_render_random_suggestions('room', 3);
+?>
+
 <?php include_once '../../includes/footer.php'; ?>

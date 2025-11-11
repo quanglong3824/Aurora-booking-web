@@ -1,0 +1,95 @@
+-- Aurora Hotel Plaza - Indochine Studio Apartment
+-- Bảng dữ liệu cho trang Căn hộ Studio Indochine, dùng tiền tố cột: indochine_studio
+
+CREATE TABLE IF NOT EXISTS `indochine_studio_apartment` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `indochine_studio_slug` VARCHAR(100) NOT NULL,
+  `indochine_studio_title` VARCHAR(255) NOT NULL,
+  `indochine_studio_description` TEXT,
+  `indochine_studio_hero_subtitle` VARCHAR(255),
+  `indochine_studio_price_text` VARCHAR(50),
+  `indochine_studio_per_night_text` VARCHAR(20),
+  `indochine_studio_booking_url` VARCHAR(255),
+  `indochine_studio_book_button_text` VARCHAR(100),
+  `indochine_studio_contact_hotline_label` VARCHAR(100),
+  `indochine_studio_contact_hotline` VARCHAR(50),
+  `indochine_studio_contact_email_label` VARCHAR(100),
+  `indochine_studio_contact_email_booking` VARCHAR(150),
+  `indochine_studio_contact_email_info` VARCHAR(150),
+  `indochine_studio_amenities` TEXT, -- JSON array
+  `indochine_studio_included_services` TEXT, -- JSON array
+  `indochine_studio_specs` TEXT, -- JSON array of objects {label,value}
+  `indochine_studio_gallery_main_alt` VARCHAR(255),
+  `indochine_studio_gallery_prev_label` VARCHAR(100),
+  `indochine_studio_gallery_next_label` VARCHAR(100),
+  `indochine_studio_lightbox_close_label` VARCHAR(100),
+  `indochine_studio_related_heading` VARCHAR(150),
+  `indochine_studio_related1_title` VARCHAR(150),
+  `indochine_studio_related1_price` VARCHAR(100),
+  `indochine_studio_related1_btn_text` VARCHAR(100),
+  `indochine_studio_related2_title` VARCHAR(150),
+  `indochine_studio_related2_price` VARCHAR(100),
+  `indochine_studio_related2_btn_text` VARCHAR(100),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `indochine_studio_apartment` (
+  `indochine_studio_slug`,
+  `indochine_studio_title`,
+  `indochine_studio_description`,
+  `indochine_studio_hero_subtitle`,
+  `indochine_studio_price_text`,
+  `indochine_studio_per_night_text`,
+  `indochine_studio_booking_url`,
+  `indochine_studio_book_button_text`,
+  `indochine_studio_contact_hotline_label`,
+  `indochine_studio_contact_hotline`,
+  `indochine_studio_contact_email_label`,
+  `indochine_studio_contact_email_booking`,
+  `indochine_studio_contact_email_info`,
+  `indochine_studio_amenities`,
+  `indochine_studio_included_services`,
+  `indochine_studio_specs`,
+  `indochine_studio_gallery_main_alt`,
+  `indochine_studio_gallery_prev_label`,
+  `indochine_studio_gallery_next_label`,
+  `indochine_studio_lightbox_close_label`,
+  `indochine_studio_related_heading`,
+  `indochine_studio_related1_title`,
+  `indochine_studio_related1_price`,
+  `indochine_studio_related1_btn_text`,
+  `indochine_studio_related2_title`,
+  `indochine_studio_related2_price`,
+  `indochine_studio_related2_btn_text`
+) VALUES (
+  'indochine-studio-apartment',
+  'Căn Hộ Studio Indochine - Aurora Hotel Plaza',
+  'Căn hộ Studio mang phong cách Indochine, kết hợp tinh tế giữa nét cổ điển Đông Dương và tiện nghi hiện đại. Không gian ấm áp, tinh xảo, phù hợp cho cặp đôi hoặc khách công tác cần sự riêng tư và tiện nghi.',
+  'Không gian tinh tế phong cách Đông Dương hiện đại',
+  '1.600.000 VNĐ',
+  '/đêm',
+  '../../../dat-phong.php?room=indochine-studio',
+  'Đặt Căn Hộ Ngay',
+  'Hotline đặt phòng:',
+  '(+84-251) 391.8888',
+  'Email liên hệ:',
+  'booking@aurorahotelplaza.com',
+  'info@aurorahotelplaza.com',
+  '["Internet, Wifi miễn phí","TV vệ tinh","Két an toàn","Bếp nhỏ","Máy sấy tóc","Điều hoà","Giường đôi: 1 cái"]',
+  '["Bữa sáng miễn phí","Dịch vụ phòng","Giặt ủi","Hồ bơi","Phòng Gym"]',
+  '[{"label":"Diện tích:","value":"28m²"},{"label":"Sức chứa:","value":"2 người lớn"},{"label":"Loại giường:","value":"King Size"},{"label":"Phong cách:","value":"Indochine"}]',
+  'Căn hộ Studio Indochine - Không gian chính',
+  'Ảnh trước',
+  'Ảnh sau',
+  'Đóng',
+  'Các Căn Hộ Khác',
+  'Căn hộ Premium hiện đại',
+  '3.000.000 VNĐ/đêm',
+  'Xem Chi Tiết',
+  'Căn hộ Family cổ điển',
+  '2.500.000 VNĐ/đêm',
+  'Xem Chi Tiết'
+);
+
+-- Lưu ý: các trường JSON đang lưu ở dạng TEXT để tương thích mọi phiên bản MySQL/MariaDB.
+-- Khi triển khai CSDL với hỗ trợ JSON, có thể đổi các cột JSON sang kiểu JSON.

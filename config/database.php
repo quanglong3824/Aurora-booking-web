@@ -6,10 +6,10 @@
 
 // Database configuration
 /** The name of the database for WordPress */
-define( 'DB_NAME', '' );
-define( 'DB_USER', '' );
-define( 'DB_PASSWORD', '' );
-define( 'DB_HOST', '' );
+define( 'DB_NAME', 'auroraho_web_2025' ); //auroraho_web_2025
+define( 'DB_USER', 'auroraho_longdev' ); //auroraho_longdev
+define( 'DB_PASSWORD', '@longdev3824' ); //@longdev3824
+define( 'DB_HOST', 'localhost:3306' ); //localhost:3306
  
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );

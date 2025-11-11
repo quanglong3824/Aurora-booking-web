@@ -155,4 +155,10 @@ include '../../includes/header.php';
     </section>
 </div>
 
+<?php
+// Gợi ý ngẫu nhiên 3 căn hộ
+include_once '../../includes/UI-Random-Rooms/random-suggestions.php';
+aurora_render_random_suggestions('apartment', 3);
+?>
+
 <?php include '../../includes/footer.php'; ?>

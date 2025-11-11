@@ -438,12 +438,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Floating Action Button
     const floatingBtn = document.getElementById('floatingBtn');
     const floatingMenu = document.getElementById('floatingMenu');
+    const floatingContainer = document.querySelector('.floating-menu-container');
+    const faqWidget = document.getElementById('faqAiWidget') || document.querySelector('.faq-ai-widget');
 
     if (floatingBtn && floatingMenu) {
         floatingBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             floatingBtn.classList.toggle('active');
             floatingMenu.classList.toggle('active');
+            const isOpen = floatingMenu.classList.contains('active');
+            floatingBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            floatingMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
         });
 
         // Close floating menu when clicking outside
@@ -451,6 +456,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!floatingBtn.contains(e.target) && !floatingMenu.contains(e.target)) {
                 floatingBtn.classList.remove('active');
                 floatingMenu.classList.remove('active');
+                floatingBtn.setAttribute('aria-expanded', 'false');
+                floatingMenu.setAttribute('aria-hidden', 'true');
             }
         });
 
@@ -460,6 +467,8 @@ document.addEventListener('DOMContentLoaded', function() {
             link.addEventListener('click', function() {
                 floatingBtn.classList.remove('active');
                 floatingMenu.classList.remove('active');
+                floatingBtn.setAttribute('aria-expanded', 'false');
+                floatingMenu.setAttribute('aria-hidden', 'true');
             });
         });
 
@@ -468,9 +477,35 @@ document.addEventListener('DOMContentLoaded', function() {
             if (e.key === 'Escape' && floatingMenu.classList.contains('active')) {
                 floatingBtn.classList.remove('active');
                 floatingMenu.classList.remove('active');
+                floatingBtn.setAttribute('aria-expanded', 'false');
+                floatingMenu.setAttribute('aria-hidden', 'true');
             }
         });
     }
+
+    // Tránh chồng lên nút Hỗ trợ (FAQ AI) ở góc
+    function adjustFloatingMenuOffset() {
+        if (!floatingContainer) return;
+        const faqToggle = document.getElementById('faqAiToggle');
+        if (faqWidget && faqToggle) {
+            const height = faqToggle.offsetHeight || 48;
+            const gap = 16; // khoảng cách giữa hai nút
+            const newBottom = 20 + height + gap;
+            floatingContainer.style.bottom = newBottom + 'px';
+            document.body.classList.add('has-faq-widget');
+        } else if (faqWidget) {
+            const fallback = 84; // widget chỉ có nút toggle
+            floatingContainer.style.bottom = (20 + fallback) + 'px';
+            document.body.classList.add('has-faq-widget');
+        } else {
+            floatingContainer.style.bottom = '20px';
+            document.body.classList.remove('has-faq-widget');
+        }
+    }
+
+    // Gọi khi load và khi resize
+    adjustFloatingMenuOffset();
+    window.addEventListener('resize', adjustFloatingMenuOffset);
 
     console.log('Aurora Hotel Plaza website loaded successfully! 🏨✨');
 });

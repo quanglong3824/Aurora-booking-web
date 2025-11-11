@@ -178,23 +178,50 @@ if (session_status() === PHP_SESSION_NONE) {
     <?php endif; ?>
 
     <!-- Floating Action Button for Mobile/Tablet -->
-    <div class="floating-menu-container">
-        <button class="floating-btn" id="floatingBtn">
-            <i class="fas fa-bars"></i>
+    <div class="floating-menu-container" aria-label="Menu nhanh trên thiết bị di động">
+        <button class="floating-btn" id="floatingBtn" aria-label="Mở menu nhanh" aria-controls="floatingMenu" aria-expanded="false">
+            <i class="fas fa-bars" aria-hidden="true"></i>
         </button>
-        <div class="floating-menu" id="floatingMenu">
+        <div class="floating-menu" id="floatingMenu" role="menu" aria-hidden="true">
             <div class="floating-menu-item">
-                <a href="index.php" class="floating-link">
+                <a href="<?php echo url('index.php'); ?>" class="floating-link">
                     <i class="fas fa-home"></i>
                     <span>Trang chủ</span>
                 </a>
             </div>
+            <!-- Lưu trú: giống menu máy tính -->
             <div class="floating-menu-item">
-                <a href="<?php echo url('pages/phong-va-can-ho.php'); ?>" class="floating-link">
-                    <i class="fas fa-building"></i>
-                    <span>Phòng & Căn hộ</span>
+                <a href="<?php echo url('pages/phong.php'); ?>" class="floating-link">
+                    <i class="fas fa-bed"></i>
+                    <span>Phòng</span>
                 </a>
             </div>
+            <div class="floating-menu-item">
+                <a href="<?php echo url('pages/can-ho.php'); ?>" class="floating-link">
+                    <i class="fas fa-building"></i>
+                    <span>Căn hộ</span>
+                </a>
+            </div>
+            <div class="floating-menu-item">
+                <a href="<?php echo url('pages/can-ho.php'); ?>" class="floating-link">
+                    <i class="fas fa-star"></i>
+                    <span>Căn hộ mới</span>
+                </a>
+            </div>
+            <!-- Khám phá: giống menu máy tính -->
+            <div class="floating-menu-item">
+                <a href="<?php echo url('pages/thu-vien-anh.php'); ?>" class="floating-link">
+                    <i class="fas fa-images"></i>
+                    <span>Thư viện ảnh</span>
+                </a>
+            </div>
+            <div class="floating-menu-item">
+                <a href="<?php echo url('pages/gioi-thieu.php'); ?>" class="floating-link">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Giới thiệu</span>
+                </a>
+            </div>
+            <!-- Dịch vụ & Liên hệ -->
             <div class="floating-menu-item">
                 <a href="<?php echo url('pages/dich-vu.php'); ?>" class="floating-link">
                     <i class="fas fa-concierge-bell"></i>
@@ -207,11 +234,26 @@ if (session_status() === PHP_SESSION_NONE) {
                     <span>Liên hệ</span>
                 </a>
             </div>
+            <!-- Đặt phòng -->
             <div class="floating-menu-item">
                 <a href="<?php echo url('pages/dat-phong.php'); ?>" class="floating-link booking-link">
                     <i class="fas fa-calendar-check"></i>
                     <span>Đặt phòng</span>
                 </a>
+            </div>
+            <!-- Tài khoản / Đăng nhập -->
+            <div class="floating-menu-item">
+                <?php if (!empty($_SESSION['user'])): ?>
+                    <a href="<?php echo url('Users/index.php'); ?>" class="floating-link">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Tài khoản</span>
+                    </a>
+                <?php else: ?>
+                    <a href="<?php echo url('pages/auth/dang-nhap.php'); ?>" class="floating-link">
+                        <i class="fas fa-user"></i>
+                        <span>Đăng nhập</span>
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </div>

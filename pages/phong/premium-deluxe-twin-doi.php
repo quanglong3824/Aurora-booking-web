@@ -186,4 +186,10 @@ include '../../includes/header.php';
     ?>
 </div>
 
-<?php include_once '../../includes/footer.php'; ?>
+<?php
+// Gợi ý ngẫu nhiên 3 phòng
+include_once '../../includes/UI-Random-Rooms/random-suggestions.php';
+aurora_render_random_suggestions('room', 3);
+
+include_once '../../includes/footer.php';
+?>
