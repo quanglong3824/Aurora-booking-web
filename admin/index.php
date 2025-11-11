@@ -24,14 +24,8 @@ $BUSINESS_FIELDS = [
   'room_deluxe_contact_email_info',
   'room_deluxe_amenities',
   'room_deluxe_included_services',
-  'room_deluxe_specs',
-  'room_deluxe_related_heading',
-  'room_deluxe_related1_title',
-  'room_deluxe_related1_price',
-  'room_deluxe_related1_btn_text',
-  'room_deluxe_related2_title',
-  'room_deluxe_related2_price',
-  'room_deluxe_related2_btn_text'
+  'room_deluxe_specs'
+  // Loại bỏ các trường related_* khỏi admin tạm thời
 ];
 
 function getAllDeluxe($pdo) {
