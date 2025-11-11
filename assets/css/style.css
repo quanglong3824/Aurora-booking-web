@@ -342,6 +342,61 @@ h3 {
     display: none;
 }
 
+/* NEW Ribbon for submenu item */
+.dropdown-menu li.menu-item-new { position: relative; }
+.dropdown-menu .menu-badge-new {
+    position: absolute;
+    top: -6px;
+    right: 10px;
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent; /* không nền, chỉ hiển thị sao đỏ */
+    color: #e53935;
+    font-size: 12px; /* kích thước icon */
+    border-radius: 50%; /* icon tròn */
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.35); /* phát sáng vàng nhẹ */
+    text-shadow: 0 0 3px rgba(212, 175, 55, 0.55);
+    animation: newBadgePulse 2.8s ease-in-out infinite;
+    will-change: box-shadow, transform;
+    pointer-events: none;
+}
+
+/* Màu icon mặc định: sao đỏ, ép ưu tiên để không bị ghi đè */
+.dropdown-menu .menu-badge-new i { color: #e53935 !important; }
+
+/* Hover: hiển thị ngôi sao vàng, bỏ nền đỏ */
+.dropdown-menu li.menu-item-new:hover .menu-badge-new,
+.dropdown-menu li.menu-item-new a:hover .menu-badge-new {
+  background: transparent;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.55);
+  text-shadow: 0 0 4px rgba(212, 175, 55, 0.7);
+}
+.dropdown-menu li.menu-item-new:hover .menu-badge-new i,
+.dropdown-menu li.menu-item-new a:hover .menu-badge-new i {
+  color: #c62828 !important; /* đậm hơn khi hover, vẫn là đỏ */
+}
+
+/* Tránh chồng chéo nội dung link với icon NEW */
+.dropdown-menu li.menu-item-new a { padding-right: 2.2rem; }
+
+@keyframes newBadgePulse {
+  0% { transform: translateY(0); box-shadow: 0 0 6px rgba(212,175,55,0.35); }
+  50% { transform: translateY(-1px); box-shadow: 0 0 12px 4px rgba(212,175,55,0.45); }
+  100% { transform: translateY(0); box-shadow: 0 0 6px rgba(212,175,55,0.35); }
+}
+
+@media (max-width: 768px) {
+  .dropdown-menu .menu-badge-new {
+    right: 16px;
+    transform: none;
+    box-shadow: 0 0 6px rgba(212,175,55,0.35); /* giảm cường độ ánh sáng trên mobile */
+    animation-duration: 3.4s;
+  }
+}
+
 /* Navigation Actions */
 .nav-actions {
     display: flex;

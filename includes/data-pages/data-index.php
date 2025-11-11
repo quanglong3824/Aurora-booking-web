@@ -25,6 +25,13 @@ $cta_booking_text = "Đặt phòng ngay";
 
 // Hero slider images & interval (ms)
 $hero_images = [
+    //thêm ảnh 6 căn hộ mới 
+    'assets/img/classical family apartment/classical-family-apartment6.jpg',
+    'assets/img/classical premium apartment/classical-premium-apartment-1.jpg',
+    'assets/img/indochine-family-apartment/indochine-family-apartment-1.jpg',
+    'assets/img/indochine-studio-apartment/indochine-studio-apartment-1.jpg',
+    'assets/img/modern premium apartment/modern-premium-apartment-5.jpg',
+    'assets/img/modern studio apartment/modern-studio-apartment-2.jpg',
     'assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-1.jpg',
     'assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-2.jpg',
     'assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-3.jpg',
@@ -32,6 +39,9 @@ $hero_images = [
     'assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-6.jpg'
 ];
 $hero_slide_interval = 5000;
+
+// Ưu tiên danh sách ảnh hero từ file cục bộ, tránh bị DB ghi đè
+$prefer_local_hero_images = true;
 
 $booking_title = 'Đặt phòng nhanh';
 $booking_subtitle = 'Chọn ngày, loại phòng và số khách để xem giá tốt nhất';
@@ -82,7 +92,10 @@ try {
             $hero_background = $row['hero_background'] ?? $hero_background;
             $hero_title = $row['hero_title'] ?? $hero_title;
             $hero_subtitle = $row['hero_subtitle'] ?? $hero_subtitle;
-            $hero_images = json_decode_safe_array($row['hero_images'], $hero_images);
+            $db_hero_images = json_decode_safe_array($row['hero_images'], []);
+            if (!$prefer_local_hero_images && !empty($db_hero_images)) {
+                $hero_images = $db_hero_images;
+            }
             if (!empty($row['hero_slide_interval']) && is_numeric($row['hero_slide_interval'])) {
                 $hero_slide_interval = (int)$row['hero_slide_interval'];
             }

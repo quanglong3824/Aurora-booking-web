@@ -72,6 +72,14 @@ if (session_status() === PHP_SESSION_NONE) {
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo url('pages/phong.php'); ?>">Phòng</a></li>
                             <li><a href="<?php echo url('pages/can-ho.php'); ?>">Căn hộ</a></li>
+                            <li class="menu-item-new">
+                                <a href="<?php echo url('pages/can-ho.php'); ?>">
+                                    Căn hộ mới
+                                    <span class="menu-badge-new" aria-label="Mới">
+                                        <i class="fas fa-star" aria-hidden="true"></i>
+                                    </span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li><a href="<?php echo url('pages/dich-vu.php'); ?>" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'dich-vu.php') ? 'active' : ''; ?>">Dịch vụ</a></li>
