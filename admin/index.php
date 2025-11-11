@@ -87,16 +87,19 @@ if (isset($_GET['edit'])) {
     .status { margin:10px 0; padding:10px; border-radius:6px; }
     .status.success { background:#e7f6e7; color:#136a19; border:1px solid #bfe3bf; }
     .status.error { background:#fdeaea; color:#8a1111; border:1px solid #f5c2c2; }
-    table { width:100%; border-collapse: collapse; margin-top: 10px; }
-    th, td { border: 1px solid #ddd; padding: 8px; }
+    .table-wrap { overflow-x:auto; -webkit-overflow-scrolling: touch; border:1px solid #e5e7eb; border-radius:8px; }
+    .table-wrap table { width:100%; border-collapse: collapse; margin-top: 0; min-width: 1200px; table-layout: fixed; }
+    th, td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }
     th { background: #f6f8fa; text-align: left; }
+    td, th { max-width: 240px; word-break: break-word; }
     .actions { display:flex; gap:8px; }
     .btn { display:inline-block; padding:8px 12px; border-radius:6px; text-decoration:none; border:1px solid #ccc; background:#fff; color:#333; }
     .btn.primary { background:#2563eb; border-color:#1f56cc; color:#fff; }
     .btn.danger { background:#dc2626; border-color:#b91c1c; color:#fff; }
     form.inline { display:inline; }
-    form.edit { max-width:820px; padding:16px; border:1px solid #e5e7eb; border-radius:10px; background:#fafafa; }
-    .grid { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+    form.edit { max-width:980px; padding:16px; border:1px solid #e5e7eb; border-radius:10px; background:#fafafa; }
+    .form-grid { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+    .field.full { grid-column: 1 / -1; }
     label { font-weight:600; margin-bottom:4px; display:block; }
     input[type="text"], textarea { width:100%; padding:8px; border:1px solid #d1d5db; border-radius:6px; }
     textarea { min-height: 90px; }
@@ -111,42 +114,41 @@ if (isset($_GET['edit'])) {
   <?php if (!empty($_GET['success'])): ?>
     <div class="status success">Cập nhật thành công.</div>
   <?php endif; ?>
-  <?php if (!empty($_GET['deleted'])): ?>
-    <div class="status error">Đã xoá bản ghi.</div>
-  <?php endif; ?>
   <?php if ($error): ?>
     <div class="status error">Lỗi: <?php echo h($error); ?></div>
   <?php endif; ?>
 
   <section>
     <h2>Danh sách bản ghi Deluxe (hiển thị toàn bộ cột)</h2>
-    <table>
-      <thead>
-        <tr>
-          <?php foreach ($columns as $col): ?>
-            <th><?php echo h($col['Field']); ?></th>
-          <?php endforeach; ?>
-          <th>Thao tác</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($rows as $row): ?>
+    <div class="table-wrap">
+      <table>
+        <thead>
           <tr>
-            <?php foreach ($columns as $col): $field = $col['Field']; ?>
-              <td><?php 
-                $val = $row[$field] ?? '';
-                $text = (string)$val;
-                if (strlen($text) > 120) { $text = substr($text, 0, 120) . '…'; }
-                echo nl2br(h($text));
-              ?></td>
+            <?php foreach ($columns as $col): ?>
+              <th><?php echo h($col['Field']); ?></th>
             <?php endforeach; ?>
-            <td class="actions">
-              <a class="btn primary" href="<?php echo url('admin/index.php?edit=' . (int)$row['id']); ?>">Sửa</a>
-            </td>
+            <th>Thao tác</th>
           </tr>
-        <?php endforeach; ?>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <?php foreach ($rows as $row): ?>
+            <tr>
+              <?php foreach ($columns as $col): $field = $col['Field']; ?>
+                <td><?php 
+                  $val = $row[$field] ?? '';
+                  $text = (string)$val;
+                  if (strlen($text) > 120) { $text = substr($text, 0, 120) . '…'; }
+                  echo nl2br(h($text));
+                ?></td>
+              <?php endforeach; ?>
+              <td class="actions">
+                <a class="btn primary" href="<?php echo url('admin/index.php?edit=' . (int)$row['id']); ?>">Sửa</a>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <?php if ($editing): ?>
@@ -155,19 +157,21 @@ if (isset($_GET['edit'])) {
       <form class="edit" method="post" action="<?php echo url('admin/index.php'); ?>">
         <input type="hidden" name="action" value="update">
         <input type="hidden" name="id" value="<?php echo h($editing['id']); ?>">
+        <div class="form-grid">
         <?php 
           $cols = $columns;
           foreach ($cols as $c):
             $field = $c['Field'];
             $type = strtolower($c['Type']);
             $val = $editing[$field] ?? '';
-            echo '<div style="margin-bottom:12px;">';
+            $isText = strpos($type, 'text') !== false;
+            $isTextareaByName = preg_match('/(_description|_amenities|_included_services|_specs|_gallery_images|breadcrumb)$/', $field);
+            $fullClass = ($isText || $isTextareaByName || $field === 'id') ? ' field full' : ' field';
+            echo '<div class="' . $fullClass . '" style="margin-bottom:12px;">';
             echo '<label for="' . h($field) . '">' . h($field) . '</label>';
             if ($field === 'id') {
               echo '<input type="text" value="' . h($val) . '" disabled>';
             } else {
-              $isText = strpos($type, 'text') !== false;
-              $isTextareaByName = preg_match('/(_description|_amenities|_included_services|_specs|_gallery_images|breadcrumb)$/', $field);
               if ($isText || $isTextareaByName) {
                 echo '<textarea id="' . h($field) . '" name="' . h($field) . '">' . h($val) . '</textarea>';
               } else {
@@ -177,6 +181,7 @@ if (isset($_GET['edit'])) {
             echo '</div>';
           endforeach;
         ?>
+        </div>
         <div style="margin-top:16px;">
           <button type="submit" class="btn primary">Lưu thay đổi</button>
           <a class="btn" href="<?php echo url('admin/index.php'); ?>">Huỷ</a>
