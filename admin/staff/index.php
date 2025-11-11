@@ -1,7 +1,9 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../includes/config.php';
-
+// Kiểm tra lỗi PHP
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 $pdo = getDB();
 $message = '';
 $error = '';
