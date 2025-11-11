@@ -167,7 +167,7 @@ if (isset($_GET['edit'])) {
                 ?></td>
               <?php endforeach; ?>
               <td class="actions">
-                <a class="btn primary" href="<?php echo url('admin/staff/index.php?edit=' . (int)$row['id']); ?>">Sửa</a>
+                <a class="btn primary" href="<?php echo url('admin/index.php?edit=' . (int)$row['id']); ?>">Sửa</a>
               </td>
             </tr>
           <?php endforeach; ?>
@@ -179,7 +179,7 @@ if (isset($_GET['edit'])) {
   <?php if ($editing): ?>
     <section style="margin-top:24px;">
       <h2>Sửa bản ghi #<?php echo h($editing['id']); ?></h2>
-      <form class="edit" method="post" action="<?php echo url('admin/staff/index.php'); ?>">
+      <form class="edit" method="post" action="<?php echo url('admin/index.php'); ?>">
         <input type="hidden" name="action" value="update">
         <input type="hidden" name="id" value="<?php echo h($editing['id']); ?>">
         <div class="form-grid">
@@ -212,7 +212,7 @@ if (isset($_GET['edit'])) {
         </div>
         <div style="margin-top:16px;">
           <button type="submit" class="btn primary">Lưu thay đổi</button>
-          <a class="btn" href="<?php echo url('admin/staff/index.php'); ?>">Huỷ</a>
+          <a class="btn" href="<?php echo url('admin/index.php'); ?>">Huỷ</a>
         </div>
       </form>
     </section>
