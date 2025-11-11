@@ -9,7 +9,8 @@ $error = '';
 function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 
 function getAllDeluxe($pdo) {
-    $stmt = $pdo->query("SELECT id, page_title, updated_at FROM deluxe_sang_trong ORDER BY id DESC");
+    // Schema dùng tiền tố room_deluxe_*
+    $stmt = $pdo->query("SELECT id, room_deluxe_title, room_deluxe_hero_subtitle FROM deluxe_sang_trong ORDER BY id DESC");
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -24,17 +25,24 @@ try {
         $action = $_POST['action'] ?? '';
         if ($action === 'update') {
             $id = (int)($_POST['id'] ?? 0);
-            $page_title = trim($_POST['page_title'] ?? '');
-            $hero_subtitle = trim($_POST['hero_subtitle'] ?? '');
-            $about_heading = trim($_POST['about_heading'] ?? '');
-            $about_paragraph = trim($_POST['about_paragraph'] ?? '');
-            $price_text = trim($_POST['price_text'] ?? '');
-            $contact_phone = trim($_POST['contact_phone'] ?? '');
-            $contact_email = trim($_POST['contact_email'] ?? '');
+            // Map form inputs sang cột thật trong DB (room_deluxe_*)
+            $page_title = trim($_POST['page_title'] ?? ''); // -> room_deluxe_title
+            $hero_subtitle = trim($_POST['hero_subtitle'] ?? ''); // -> room_deluxe_hero_subtitle
+            $about_paragraph = trim($_POST['about_paragraph'] ?? ''); // -> room_deluxe_description
+            $price_text = trim($_POST['price_text'] ?? ''); // -> room_deluxe_price_text
+            $contact_phone = trim($_POST['contact_phone'] ?? ''); // -> room_deluxe_contact_hotline
+            $contact_email = trim($_POST['contact_email'] ?? ''); // -> room_deluxe_contact_email_booking
 
-            $sql = "UPDATE deluxe_sang_trong SET page_title = ?, hero_subtitle = ?, about_heading = ?, about_paragraph = ?, price_text = ?, contact_phone = ?, contact_email = ?, updated_at = NOW() WHERE id = ?";
+            $sql = "UPDATE deluxe_sang_trong 
+                    SET room_deluxe_title = ?, 
+                        room_deluxe_hero_subtitle = ?, 
+                        room_deluxe_description = ?, 
+                        room_deluxe_price_text = ?, 
+                        room_deluxe_contact_hotline = ?, 
+                        room_deluxe_contact_email_booking = ?
+                    WHERE id = ?";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$page_title, $hero_subtitle, $about_heading, $about_paragraph, $price_text, $contact_phone, $contact_email, $id]);
+            $stmt->execute([$page_title, $hero_subtitle, $about_paragraph, $price_text, $contact_phone, $contact_email, $id]);
             header('Location: ' . url('admin/index.php?edit=' . $id . '&success=1'));
             exit;
         } elseif ($action === 'delete') {
@@ -117,7 +125,7 @@ if (isset($_GET['edit'])) {
         <tr>
           <th>ID</th>
           <th>Tiêu đề trang</th>
-          <th>Cập nhật lúc</th>
+          <th>Phụ đề hero</th>
           <th>Thao tác</th>
         </tr>
       </thead>
@@ -125,8 +133,8 @@ if (isset($_GET['edit'])) {
         <?php foreach ($rows as $row): ?>
           <tr>
             <td><?php echo h($row['id']); ?></td>
-            <td><?php echo h($row['page_title']); ?></td>
-            <td><?php echo h($row['updated_at']); ?></td>
+            <td><?php echo h($row['room_deluxe_title']); ?></td>
+            <td><?php echo h($row['room_deluxe_hero_subtitle']); ?></td>
             <td class="actions">
               <a class="btn primary" href="<?php echo url('admin/index.php?edit=' . (int)$row['id']); ?>">Sửa</a>
               <form class="inline" method="post" action="<?php echo url('admin/index.php'); ?>" onsubmit="return confirm('Xác nhận xoá bản ghi này?');">
@@ -150,33 +158,29 @@ if (isset($_GET['edit'])) {
         <div class="grid">
           <div>
             <label for="page_title">Tiêu đề trang</label>
-            <input type="text" id="page_title" name="page_title" value="<?php echo h($editing['page_title'] ?? ''); ?>">
+            <input type="text" id="page_title" name="page_title" value="<?php echo h($editing['room_deluxe_title'] ?? ''); ?>">
           </div>
           <div>
             <label for="hero_subtitle">Hero subtitle</label>
-            <input type="text" id="hero_subtitle" name="hero_subtitle" value="<?php echo h($editing['hero_subtitle'] ?? ''); ?>">
-          </div>
-          <div>
-            <label for="about_heading">Tiêu đề giới thiệu</label>
-            <input type="text" id="about_heading" name="about_heading" value="<?php echo h($editing['about_heading'] ?? ''); ?>">
+            <input type="text" id="hero_subtitle" name="hero_subtitle" value="<?php echo h($editing['room_deluxe_hero_subtitle'] ?? ''); ?>">
           </div>
           <div>
             <label for="price_text">Giá/ưu đãi</label>
-            <input type="text" id="price_text" name="price_text" value="<?php echo h($editing['price_text'] ?? ''); ?>">
+            <input type="text" id="price_text" name="price_text" value="<?php echo h($editing['room_deluxe_price_text'] ?? ''); ?>">
           </div>
         </div>
         <div style="margin-top:12px;">
           <label for="about_paragraph">Mô tả giới thiệu</label>
-          <textarea id="about_paragraph" name="about_paragraph"><?php echo h($editing['about_paragraph'] ?? ''); ?></textarea>
+          <textarea id="about_paragraph" name="about_paragraph"><?php echo h($editing['room_deluxe_description'] ?? ''); ?></textarea>
         </div>
         <div class="grid" style="margin-top:12px;">
           <div>
             <label for="contact_phone">Số điện thoại</label>
-            <input type="text" id="contact_phone" name="contact_phone" value="<?php echo h($editing['contact_phone'] ?? ''); ?>">
+            <input type="text" id="contact_phone" name="contact_phone" value="<?php echo h($editing['room_deluxe_contact_hotline'] ?? ''); ?>">
           </div>
           <div>
             <label for="contact_email">Email liên hệ</label>
-            <input type="text" id="contact_email" name="contact_email" value="<?php echo h($editing['contact_email'] ?? ''); ?>">
+            <input type="text" id="contact_email" name="contact_email" value="<?php echo h($editing['room_deluxe_contact_email_booking'] ?? ''); ?>">
           </div>
         </div>
         <div style="margin-top:16px;">
