@@ -187,32 +187,8 @@ include '../../includes/header.php';
             ];
         };
 
-        $pool = [];
-        foreach ($roomCatalog as $key => $conf) {
-            if ($key !== $current_type) { $pool[] = $buildCard($conf); }
-        }
-        shuffle($pool);
-        $suggested_rooms = array_slice($pool, 0, 2);
+        // Related Rooms removed: hiển thị đã theo data
     ?>
-    <section class="related-rooms">
-        <div class="container">
-            <h3><?php echo htmlspecialchars($related_heading); ?></h3>
-            <div class="rooms-grid">
-                <?php foreach ($suggested_rooms as $s): ?>
-                    <div class="room-card">
-                        <img src="<?php echo asset($s['image']); ?>" alt="<?php echo htmlspecialchars($s['title']); ?>" loading="lazy">
-                        <div class="room-card-content">
-                            <h4><?php echo htmlspecialchars($s['title']); ?></h4>
-                            <?php if (!empty($s['price'])): ?>
-                                <p class="room-price"><?php echo htmlspecialchars($s['price']); ?></p>
-                            <?php endif; ?>
-                            <a href="<?php echo url($s['link']); ?>" class="btn btn-outline">Xem Chi Tiết</a>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </section>
 </main>
 
 <?php include '../../includes/footer.php'; ?>

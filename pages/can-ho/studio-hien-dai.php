@@ -143,31 +143,7 @@ include '../../includes/header.php';
         <div class="lightbox-overlay" id="lightboxOverlay"></div>
     </div>
 
-    <!-- Related Rooms (mẫu Deluxe để có style) -->
-    <section class="related-rooms">
-        <div class="container">
-            <h3><?php echo $related_heading; ?></h3>
-            <div class="rooms-grid">
-                <div class="room-card">
-                    <img src="<?php echo asset('img/family apartment/CAN-HO-FAMILY-AURORA-HOTEL-3.jpg'); ?>" alt="Căn Hộ Family" loading="lazy">
-                    <div class="room-card-content">
-                        <h4>Căn Hộ Family</h4>
-                        <p class="room-price">800.000 VNĐ/đêm</p>
-                        <a href="<?php echo url('pages/can-ho/family-gia-dinh.php'); ?>" class="btn btn-outline">Xem Chi Tiết</a>
-                    </div>
-                </div>
-
-                <div class="room-card">
-                    <img src="<?php echo asset('img/premium apartment/CAN-HO-PREMIUM-AURORA-HOTEL-1.jpg'); ?>" alt="Căn Hộ Premium" loading="lazy">
-                    <div class="room-card-content">
-                        <h4>Căn Hộ Premium</h4>
-                        <p class="room-price">600.000 VNĐ/đêm</p>
-                        <a href="<?php echo url('pages/can-ho/premium-sang-trong.php'); ?>" class="btn btn-outline">Xem Chi Tiết</a>
-                    </div>
-                </div>
-
-                <div class="room-card">
-                    <img src="<?php echo asset('img/deluxe/DELUXE-ROOM-AURORA-1.jpg'); ?>" alt="Phòng Deluxe" loading="lazy">
+    <!-- Related Rooms removed: hiển thị đã theo data -->
                     <div class="room-card-content">
                         <h4>Phòng Deluxe</h4>
                         <p class="room-price">1.900.000 VNĐ/đêm</p>

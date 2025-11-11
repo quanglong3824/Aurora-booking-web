@@ -144,31 +144,7 @@ include '../../includes/header.php';
         <div class="lightbox-overlay" id="lightboxOverlay"></div>
     </div>
 
-    <!-- Related Apartments -->
-    <section class="related-rooms">
-        <div class="container">
-            <h3><?php echo $related_heading; ?></h3>
-            <div class="rooms-grid">
-                <div class="room-card">
-                    <img src="<?php echo asset('img/family apartment/CAN-HO-FAMILY-AURORA-HOTEL-3.jpg'); ?>" alt="Căn Hộ Family" loading="lazy">
-                    <div class="room-card-content">
-                        <h4><?php echo $related1_title; ?></h4>
-                        <p class="room-price"><?php echo $related1_price; ?></p>
-                        <a href="<?php echo url('pages/can-ho/family-gia-dinh.php'); ?>" class="btn btn-outline"><?php echo $related1_btn_text; ?></a>
-                    </div>
-                </div>
-                
-                <div class="room-card">
-                    <img src="<?php echo asset('img/studio apartment/CAN-HO-STUDIO-AURORA-HOTEL-1.jpg'); ?>" alt="Căn Hộ Studio" loading="lazy">
-                    <div class="room-card-content">
-                        <h4><?php echo $related2_title; ?></h4>
-                        <p class="room-price"><?php echo $related2_price; ?></p>
-                        <a href="<?php echo url('pages/can-ho/studio-hien-dai.php'); ?>" class="btn btn-outline"><?php echo $related2_btn_text; ?></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Related Apartments removed: hiển thị đã theo data -->
 </div>
 
 <?php include_once '../../includes/footer.php'; ?>
