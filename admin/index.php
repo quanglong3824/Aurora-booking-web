@@ -69,7 +69,7 @@ try {
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute($values);
             }
-            header('Location: ' . url('admin/staff/index.php?edit=' . $id . '&success=1'));
+            header('Location: ' . url('admin/index.php?edit=' . $id . '&success=1'));
             exit;
         }
     }
