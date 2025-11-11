@@ -28,8 +28,8 @@ $hero_images = [
     //thêm ảnh 6 căn hộ mới 
     'assets/img/classical family apartment/classical-family-apartment6.jpg',
     'assets/img/classical premium apartment/classical-premium-apartment-1.jpg',
-    'assets/img/indochine-family-apartment/indochine-family-apartment-1.jpg',
-    'assets/img/indochine-studio-apartment/indochine-studio-apartment-1.jpg',
+    'assets/img/indochine family apartment/indochine-family-apartment-1.jpg',
+    'assets/img/indochine studio apartment/indochine-studio-apartment-1.jpg',
     'assets/img/modern premium apartment/modern-premium-apartment-5.jpg',
     'assets/img/modern studio apartment/modern-studio-apartment-2.jpg',
     'assets/img/hero banner/AURORA-HOTEL-BIEN-HOA-1.jpg',

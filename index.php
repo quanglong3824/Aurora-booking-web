@@ -15,6 +15,17 @@ ini_set('display_errors', 1);
         <p><?= $hero_subtitle ?></p>
         <a href="#booking" class="btn-primary" style="background-color: rgb(<?= $brand_color_rgb ?>); border-color: rgb(<?= $brand_color_rgb ?>);"><?= $cta_booking_text ?></a>
     </div>
+    <!-- Hero dots (center bottom) -->
+    <div class="hero-controls" aria-label="Điều hướng ảnh hero">
+        <div class="hero-dots" role="tablist" aria-label="Chọn ảnh"></div>
+    </div>
+    <!-- Side overlay arrows (full height, 5% width) -->
+    <button class="hero-arrow hero-prev" aria-label="Ảnh trước" type="button">
+        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+    </button>
+    <button class="hero-arrow hero-next" aria-label="Ảnh kế" type="button">
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+    </button>
     <div class="hero-overlay"></div>
 </section>
 
