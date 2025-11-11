@@ -15,7 +15,6 @@ $BUSINESS_FIELDS = [
   'room_deluxe_description',
   'room_deluxe_price_text',
   'room_deluxe_per_night_text',
-  'room_deluxe_booking_url',
   'room_deluxe_book_button_text',
   'room_deluxe_contact_hotline_label',
   'room_deluxe_contact_hotline',
@@ -26,6 +25,7 @@ $BUSINESS_FIELDS = [
   'room_deluxe_included_services',
   'room_deluxe_specs'
   // Loại bỏ các trường related_* khỏi admin tạm thời
+  // Không chỉnh sửa đường dẫn/URL trong admin tạm thời
 ];
 
 function getAllDeluxe($pdo) {
